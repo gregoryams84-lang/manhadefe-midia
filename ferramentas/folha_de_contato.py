@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """Folhas de contato para a conferência visual das imagens geradas.
 
-Uso: python ferramentas/folha_de_contato.py [pasta=imagens] [saida=ferramentas/imagens/qa]
+Uso: python ferramentas/folha_de_contato.py [pasta=imagens] [saida=ferramentas/imagens/qa] [padrao=*.webp]
+
+O padrão filtra os arquivos (ex.: '*-catolico.webp' só a arte sacra; 'comum-*.webp').
 
 Monta grades de 3 x 4 miniaturas (270 x 338 cada) com o id escrito embaixo,
 uma folha por 12 imagens, em ordem alfabética. Quem confere (revisor ou
@@ -22,7 +24,8 @@ def main():
     pasta = Path(sys.argv[1]) if len(sys.argv) > 1 else RAIZ / 'imagens'
     saida = Path(sys.argv[2]) if len(sys.argv) > 2 else RAIZ / 'ferramentas' / 'imagens' / 'qa'
     saida.mkdir(parents=True, exist_ok=True)
-    arquivos = sorted(pasta.glob('*.webp'))
+    padrao = sys.argv[3] if len(sys.argv) > 3 else '*.webp'
+    arquivos = sorted(pasta.glob(padrao))
     if not arquivos:
         sys.exit(f'nenhum .webp em {pasta}')
     try:
