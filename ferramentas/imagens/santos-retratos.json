@@ -996,6 +996,124 @@
   "foco": 0.2,
   "titulo": "São Raimundo Nonato"
  },
+ "santos/sao-josue.webp": {
+  "arquivo": "File:Jean Fouquet 001.jpg",
+  "foco": 0.5,
+  "titulo": "A tomada de Jericó por Josué (iluminura de Jean Fouquet)"
+ },
+ "santos/sao-gregorio-magno.webp": {
+  "arquivo": "File:Lille PdBA fetti gregoire.jpg",
+  "foco": 0.2,
+  "titulo": "São Gregório Magno"
+ },
+ "santos/sao-moises.webp": {
+  "arquivo": "File:Kunsthistorisches Museum Wien, Fetti, Moses vor dem brennenden Dornbusch.JPG",
+  "foco": 0.3,
+  "titulo": "Moisés diante da sarça ardente"
+ },
+ "santos/natividade-de-nossa-senhora.webp": {
+  "arquivo": "File:The Birth of the Virgin MET DT11676.jpg",
+  "foco": 0.5,
+  "titulo": "O nascimento de Nossa Senhora"
+ },
+ "santos/sao-pedro-claver.webp": {
+  "arquivo": "File:San Pedro Claver, PA00624.jpg",
+  "foco": 0.3,
+  "recorte": [
+   0.05,
+   0.03,
+   0.95,
+   0.87
+  ],
+  "titulo": "São Pedro Claver (gravura de Bartolomé Maura, 1887)"
+ },
+ "santos/sao-nicolau-de-tolentino.webp": {
+  "arquivo": "File:Piero della Francesca - Saint Nicholas of Tolentino - Google Art Project.jpg",
+  "foco": 0.05,
+  "titulo": "São Nicolau de Tolentino"
+ },
+ "santos/sao-joao-gabriel-perboyre.webp": {
+  "arquivo": "File:Vaudon - Le bienheureux J.-Gabriel Perboyre, 1890 (page 31 crop).jpg",
+  "foco": 0.2,
+  "titulo": "São João Gabriel Perboyre em trajes chineses (gravura de 1890)"
+ },
+ "santos/sao-joao-crisostomo.webp": {
+  "arquivo": "File:Byzantinischer Mosaizist des 9. Jahrhunderts 003.jpg",
+  "foco": 0.5,
+  "titulo": "São João Crisóstomo (mosaico de Santa Sofia, Constantinopla, fim do século IX)"
+ },
+ "santos/exaltacao-da-santa-cruz.webp": {
+  "arquivo": "File:Heraclius Carrying the Cross LACMA M.2000.179.10.jpg",
+  "foco": 0.3,
+  "titulo": "O imperador Heráclio leva a Santa Cruz de volta a Jerusalém"
+ },
+ "santos/nossa-senhora-das-dores.webp": {
+  "arquivo": "File:Dieric Bouts - Mater Dolorosa (Sorrowing Virgin) - 1986.998 - Art Institute of Chicago.jpg",
+  "foco": 0.4,
+  "titulo": "Mater Dolorosa (ateliê de Dieric Bouts, c. 1490)"
+ },
+ "santos/sao-roberto-belarmino.webp": {
+  "arquivo": "File:Portret van kardinaal Robertus Bellarminus, onbekend, schilderij, Museum Plantin-Moretus (Antwerpen) - MPM V IV 110 (cropped).jpg",
+  "foco": 0.2,
+  "titulo": "São Roberto Belarmino (retrato anônimo do século XVII, Museu Plantin-Moretus)"
+ },
+ "santos/sao-januario.webp": {
+  "arquivo": "File:Saint Januarius.jpg",
+  "foco": 0.0,
+  "titulo": "São Januário"
+ },
+ "santos/sao-mateus.webp": {
+  "arquivo": "File:Guido Reni 043.jpg",
+  "foco": 0.3,
+  "titulo": "São Mateus e o anjo"
+ },
+ "santos/sao-mauricio-e-companheiros.webp": {
+  "arquivo": "File:Saint Maurice MET DP344253.jpg",
+  "foco": 0.02,
+  "titulo": "São Maurício"
+ },
+ "santos/nossa-senhora-das-merces.webp": {
+  "arquivo": "File:Aparición de la Virgen de la Merced a San Pedro Nolasco, de Alonso del Arco (Museo del Prado).jpg",
+  "foco": 0.4,
+  "titulo": "A aparição de Nossa Senhora das Mercês a São Pedro Nolasco"
+ },
+ "santos/sao-cleofas.webp": {
+  "arquivo": "File:Altobello Melone - The Road to Emmaus - Google Art Project.jpg",
+  "foco": 0.5,
+  "recorte": [
+   0.1,
+   0.0,
+   0.9,
+   1.0
+  ],
+  "titulo": "O caminho de Emaús"
+ },
+ "santos/sao-cosme-e-sao-damiao.webp": {
+  "arquivo": "File:Saint Côme & Saint Damien Grandes Heures Anne de Bretagne XVIe.jpg",
+  "foco": 0.5,
+  "recorte": [
+   0.12,
+   0.1,
+   0.88,
+   0.9
+  ],
+  "titulo": "São Cosme e São Damião (Grandes Horas de Ana da Bretanha)"
+ },
+ "santos/sao-vicente-de-paulo.webp": {
+  "arquivo": "File:Simon François de Tours - Portrait Vincent de Paul (4x5 cropped).jpeg",
+  "foco": 0.5,
+  "titulo": "São Vicente de Paulo"
+ },
+ "santos/santos-arcanjos-miguel-gabriel-e-rafael.webp": {
+  "arquivo": "File:Meister von Pratovecchio - The three archangels and the infant Tobias - 1616 - Gemäldegalerie.jpg",
+  "foco": 0.2,
+  "titulo": "Os três arcanjos com o pequeno Tobias"
+ },
+ "santos/sao-jeronimo.webp": {
+  "arquivo": "File:Domenico ghirlandaio, san girolamo 02.jpg",
+  "foco": 0.4,
+  "titulo": "São Jerônimo no seu estúdio"
+ },
  "santos/santos-anjos-da-guarda.webp": {
   "arquivo": "File:Franceschini, Marcantonio - The Guardian Angel - Google Art Project.jpg",
   "foco": 0.3,
