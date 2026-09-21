@@ -15,7 +15,7 @@ Entrada: um JSON de escolhas, por destino relativo ao repo de mídia:
       "santos/sao-benedito.webp": { "arquivo": "File:..." }
     }
 
-Saída: o .webp em 1080 x 1350 (q82, alvo <= 120 KB) e, ao lado do JSON de
+Saída: o .webp em 1080 x 1350 (q82, alvo <= 120 KB; a qualidade desce de 82 até 40 para chegar lá) e, ao lado do JSON de
 entrada, um <nome>-creditos.json com título, artista, data, licença e URL de
 cada arquivo (vai para a tela de Créditos do app). Só aceita licenças de
 domínio público (PD-*, CC0) — qualquer outra é recusada e registrada.
@@ -66,7 +66,7 @@ def info_do_arquivo(titulo):
     return {
         'titulo': limpar_titulo(campo('ObjectName') or campo('ImageDescription')),
         'artista': campo('Artist'),
-        'data': campo('DateTimeOriginal'),
+        'data': limpar_data(campo('DateTimeOriginal')),
         'licenca': campo('LicenseShortName'),
         'url': ii.get('descriptionurl'),
         'thumb': ii.get('thumburl') or ii['url'],
@@ -86,6 +86,11 @@ def limpar_titulo(texto):
     texto = re.split(r'title QS:|label QS:', texto)[0]
     texto = re.sub(r'^[A-Za-z]+:\s*', '', texto)  # "Danish: " e afins
     return texto.strip()[:120]
+
+
+def limpar_data(texto):
+    """O Commons cola marcação do Wikidata na data ('1660 date QS:P571,...')."""
+    return re.split(r'\s*date QS:|\s*QS:P', texto)[0].strip()
 
 
 def baixar(url):
@@ -115,15 +120,22 @@ def recortar(dados, foco, recorte):
     while True:
         buf = io.BytesIO()
         im.save(buf, 'WEBP', quality=q, method=6)
-        if buf.tell() <= ALVO_BYTES or q <= 60:
+        if buf.tell() <= ALVO_BYTES or q <= 40:
             return buf.getvalue(), q
         q -= 6
 
 
 def main():
+    # Nomes de arquivo em cirílico ou grego derrubavam o print no console do
+    # Windows (cp1252) e o script morria no meio, sem mensagem.
+    for fluxo in (sys.stdout, sys.stderr):
+        if hasattr(fluxo, 'reconfigure'):
+            fluxo.reconfigure(encoding='utf-8', errors='replace')
     ap = argparse.ArgumentParser()
     ap.add_argument('escolhas')
     ap.add_argument('--refazer', action='store_true')
+    ap.add_argument('--refazer-acima-de', type=int, default=0, metavar='BYTES',
+                    help='refaz só os arquivos já baixados que passam deste tamanho')
     ap.add_argument('--pausa', type=float, default=1.0)
     args = ap.parse_args()
 
@@ -137,7 +149,9 @@ def main():
     feitos = pulados = erros = 0
     for destino_rel, escolha in escolhas.items():
         destino = RAIZ / destino_rel
-        if destino.exists() and not args.refazer and destino_rel in creditos:
+        pesado = (args.refazer_acima_de and destino.exists()
+                  and destino.stat().st_size > args.refazer_acima_de)
+        if destino.exists() and not args.refazer and not pesado and destino_rel in creditos:
             pulados += 1
             continue
         titulo = escolha['arquivo']
