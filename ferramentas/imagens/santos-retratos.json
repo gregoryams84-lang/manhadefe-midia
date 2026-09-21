@@ -1,0 +1,155 @@
+{
+ "santos/santa-teresinha-do-menino-jesus.webp": {
+  "arquivo": "File:Histoire d’une âme (édition de 1912) (page 211 crop).jpg",
+  "foco": 0.3,
+  "recorte": [
+   0.08,
+   0.04,
+   0.92,
+   0.74
+  ],
+  "titulo": "Santa Teresinha como sacristã no Carmelo de Lisieux (fotografia de 1896, edição de 1912 da História de uma alma)"
+ },
+ "santos/santos-anjos-da-guarda.webp": {
+  "arquivo": "File:Franceschini, Marcantonio - The Guardian Angel - Google Art Project.jpg",
+  "foco": 0.3,
+  "titulo": "O Anjo da Guarda"
+ },
+ "santos/sao-francisco-de-assis.webp": {
+  "arquivo": "File:El Greco, St Francis in Prayer before the Crucifix.JPG",
+  "foco": 0.5,
+  "titulo": "São Francisco ajoelhado em meditação diante do crucifixo"
+ },
+ "santos/sao-bruno.webp": {
+  "arquivo": "File:Carlo Sellitto, Saint Bruno.jpg",
+  "foco": 0.0,
+  "recorte": [
+   0.1,
+   0.0,
+   0.9,
+   0.8
+  ],
+  "titulo": "São Bruno em oração, de Carlo Sellitto (início do século XVII)"
+ },
+ "santos/nossa-senhora-do-rosario.webp": {
+  "arquivo": "File:Murillo, Bartolomé Estéban - The Madonna of the Rosary - Google Art Project.jpg",
+  "foco": 0.25,
+  "titulo": "Nossa Senhora do Rosário (Dulwich Picture Gallery)"
+ },
+ "santos/sao-joao-henrique-newman.webp": {
+  "arquivo": "File:John Henry Newman by Sir John Everett Millais, 1st Bt.jpg",
+  "foco": 0.0,
+  "titulo": "O cardeal John Henry Newman"
+ },
+ "santos/sao-daniel-comboni.webp": {
+  "arquivo": "File:Missionari contemporanei popolari Daniele Comboni.jpg",
+  "foco": 0.2,
+  "recorte": [
+   0.05,
+   0.03,
+   0.95,
+   0.86
+  ],
+  "titulo": "Dom Daniel Comboni (gravura de 1882)"
+ },
+ "santos/sao-teofilo-de-antioquia.webp": {
+  "arquivo": "File:Theophilus Antiochenus.png",
+  "foco": 0.3,
+  "recorte": [
+   0.02,
+   0.0,
+   0.98,
+   0.87
+  ],
+  "titulo": "São Teófilo de Antioquia (gravura de 1677)"
+ },
+ "santos/sao-calisto-i.webp": {
+  "arquivo": "File:Fresco of Pope Callixtus I - Basilica of Saint Paul Outside the Walls (Before 1823).jpg",
+  "foco": 0.5,
+  "titulo": "São Calisto I (afresco antigo da basílica de São Paulo fora dos Muros, Roma)"
+ },
+ "santos/santa-teresa-de-avila.webp": {
+  "arquivo": "File:Peter Paul Rubens - Hl. Therese von Avila - GG 7119 - Kunsthistorisches Museum.jpg",
+  "foco": 0.5,
+  "titulo": "Santa Teresa de Ávila"
+ },
+ "santos/santa-edviges.webp": {
+  "arquivo": "File:Court workshop of Duke Ludwig I of Liegnitz and Brieg (Polish - Saint Hedwig of Silesia with Duke Ludwig of Legnica and Brieg and Duchess Agnés - Google Art Project.jpg",
+  "foco": 0.3,
+  "recorte": [
+   0.2,
+   0.04,
+   0.86,
+   0.8
+  ],
+  "titulo": "Santa Edviges da Silésia (Códice de Santa Edviges, 1353)"
+ },
+ "santos/santo-inacio-de-antioquia.webp": {
+  "arquivo": "File:Hosios Loukas (south west chapel, south side) - Ignatios.jpg",
+  "foco": 0.0,
+  "titulo": "Santo Inácio de Antioquia (afresco bizantino do mosteiro de Hósios Lukás, século XI)"
+ },
+ "santos/sao-lucas.webp": {
+  "arquivo": "File:El Greco 035.jpg",
+  "foco": 0.4,
+  "titulo": "São Lucas evangelista"
+ },
+ "santos/sao-pedro-de-alcantara.webp": {
+  "arquivo": "File:San Pedro de Alcántara (Museo de El Greco, Toledo).JPG",
+  "foco": 0.2,
+  "titulo": "São Pedro de Alcântara, de Luis Tristán (século XVII)"
+ },
+ "santos/sao-cornelio-centuriao.webp": {
+  "arquivo": "File:Netherlandish 15th Century, The Vision of the Centurion Cornelius, c. 1460, NGA 52352.jpg",
+  "foco": 0.4,
+  "titulo": "A visão do centurião Cornélio (tapeçaria flamenga, c. 1460)"
+ },
+ "santos/santa-ursula.webp": {
+  "arquivo": "File:Sant'Orsola.jpg",
+  "foco": 0.1,
+  "titulo": "Santa Úrsula com anjos e doadora"
+ },
+ "santos/sao-joao-de-capistrano.webp": {
+  "arquivo": "File:Pieter van Lint - The Miracle of Saint John of Capestrano.jpg",
+  "foco": 0.15,
+  "titulo": "O milagre de São João de Capistrano"
+ },
+ "santos/santo-antonio-maria-claret.webp": {
+  "arquivo": "File:Antonio María Claret, c.1860.jpg",
+  "foco": 0.0,
+  "titulo": "Santo Antônio Maria Claret (fotografia de c. 1860)"
+ },
+ "santos/santo-evaristo.webp": {
+  "arquivo": "File:Evaristus. Evaristo, santo e papa.jpg",
+  "foco": 0.5,
+  "recorte": [
+   0.17,
+   0.2,
+   0.83,
+   0.8
+  ],
+  "titulo": "Santo Evaristo, papa (cromolitografia de 1879)"
+ },
+ "santos/sao-simao-e-sao-judas-tadeu.webp": {
+  "arquivo": "File:Los Apóstoles Simón, Judas y Tomás, del Maestro de la Colección Pacully (Museo del Prado).jpg",
+  "foco": 0.5,
+  "recorte": [
+   0.07,
+   0.0,
+   0.56,
+   1.0
+  ],
+  "titulo": "Os apóstolos São Simão e São Judas, do Mestre da Coleção Pacully (Museu do Prado, c. 1490)"
+ },
+ "santos/santo-afonso-rodriguez.webp": {
+  "arquivo": "File:Francisco de Zurbarán - Visión del Beato Alonso Rodríguez - Google Art Project.jpg",
+  "foco": 0.5,
+  "recorte": [
+   0.1,
+   0.4,
+   1.0,
+   1.0
+  ],
+  "titulo": "A visão de Santo Afonso Rodríguez (detalhe)"
+ }
+}
