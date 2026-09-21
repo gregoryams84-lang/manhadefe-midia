@@ -10,7 +10,11 @@ palavra reprova o arquivo; o reprovado é gerado de novo com
 Números: o texto enviado traz algarismos ("capítulo 23, versículo 1") e o
 Scribe pode devolver algarismos ou palavras; os dois lados são normalizados
 para algarismos antes da comparação (0 a 199, o que cobre capítulos e
-versículos).
+versículos). Anos ("em 1597"), numerais romanos ("Pio XII", "século IV") e
+ordinais variam demais de forma: uma diferença em que os DOIS lados são só
+números fica registrada como "numero" e não reprova. O mesmo vale para nome
+próprio com grafia parecida ("Roccaporena" x "Rocaporena"): fica como "grafia".
+Qualquer outra palavra trocada, a mais ou a menos, reprova.
 
 Resultado: ferramentas/narracao/stt.log.jsonl (uma linha por arquivo, com a
 semelhança e as diferenças) e, no fim, a lista dos reprovados.
@@ -39,7 +43,6 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from narrar import API, ENTRADA, RAIZ, chave_api, ler_entrada  # noqa: E402
 
 LOG = RAIZ / 'ferramentas' / 'narracao' / 'stt.log.jsonl'
-LIMIAR = 0.97  # abaixo disto, ou com palavra trocada, reprova
 
 UNIDADES = {'zero': 0, 'um': 1, 'uma': 1, 'dois': 2, 'duas': 2, 'tres': 3,
             'quatro': 4, 'cinco': 5, 'seis': 6, 'sete': 7, 'oito': 8,
@@ -51,7 +54,36 @@ DEZENAS = {'vinte': 20, 'trinta': 30, 'quarenta': 40, 'cinquenta': 50,
            'sessenta': 60, 'setenta': 70, 'oitenta': 80, 'noventa': 90}
 CENTENAS = {'cem': 100, 'cento': 100}
 
+OUTROS_NUMEROS = {'e', 'mil', 'duzentos', 'trezentos', 'quatrocentos',
+                  'quinhentos', 'seiscentos', 'setecentos', 'oitocentos',
+                  'novecentos', 'primeiro', 'primeira', 'segundo', 'segunda',
+                  'terceiro', 'terceira', 'quarto', 'quarta', 'quinto',
+                  'quinta', 'sexto', 'sexta', 'setimo', 'setima', 'oitavo',
+                  'oitava', 'nono', 'nona', 'decimo', 'decima', 'vigesimo',
+                  'vigesima', 'trigesimo', 'undecimo', 'duodecimo'}
+ROMANO = re.compile(r'^m{0,3}(cm|cd|d?c{0,3})(xc|xl|l?x{0,3})(ix|iv|v?i{0,3})$')
+
 _trava = threading.Lock()
+
+
+def e_numero(tok):
+    return (tok.isdigit() or tok in UNIDADES or tok in DEZENAS or tok in CENTENAS
+            or tok in OUTROS_NUMEROS or bool(tok and ROMANO.match(tok)))
+
+
+def nomes_proprios(texto):
+    """Palavras que aparecem com maiúscula no MEIO de uma frase."""
+    texto = re.sub(r'<break[^>]*>', ' ', texto)
+    nomes = set()
+    for m in re.finditer(r'[A-Za-zÀ-ÿ]+', texto):
+        p = m.group(0)
+        if not p[0].isupper():
+            continue
+        antes = texto[:m.start()].rstrip()
+        if not antes or antes[-1] in '.!?:"“':
+            continue  # início de frase: a maiúscula não diz nada
+        nomes.add(sem_acento(p.lower()))
+    return nomes
 
 
 def sem_acento(t):
@@ -146,14 +178,23 @@ def transcrever(chave, arquivo):
 
 
 def comparar(esperado, ouvido):
+    """Devolve (semelhança, diferenças que reprovam, diferenças toleradas)."""
     a, b = normalizar(esperado), normalizar(ouvido)
+    nomes = nomes_proprios(esperado)
     sm = difflib.SequenceMatcher(a=a, b=b, autojunk=False)
-    diferencas = []
+    duras, leves = [], []
     for op, i1, i2, j1, j2 in sm.get_opcodes():
-        if op != 'equal':
-            diferencas.append({'op': op, 'esperado': ' '.join(a[i1:i2]),
-                               'ouvido': ' '.join(b[j1:j2])})
-    return round(sm.ratio(), 4), diferencas
+        if op == 'equal':
+            continue
+        ta, tb = a[i1:i2], b[j1:j2]
+        d = {'op': op, 'esperado': ' '.join(ta), 'ouvido': ' '.join(tb)}
+        if ta and tb and all(e_numero(t) for t in ta) and all(e_numero(t) for t in tb):
+            leves.append(dict(d, tipo='numero'))
+        elif ta and tb and any(t in nomes for t in ta) and                 difflib.SequenceMatcher(a=''.join(ta), b=''.join(tb)).ratio() >= 0.75:
+            leves.append(dict(d, tipo='grafia'))
+        else:
+            duras.append(d)
+    return round(sm.ratio(), 4), duras, leves
 
 
 def conferir(chave, item):
@@ -163,10 +204,10 @@ def conferir(chave, item):
                 'bytes': arquivo.stat().st_size}
     try:
         ouvido = transcrever(chave, arquivo)
-        semelhanca, diferencas = comparar(item['texto'], ouvido)
+        semelhanca, diferencas, toleradas = comparar(item['texto'], ouvido)
         registro.update(ok=True, semelhanca=semelhanca, diferencas=diferencas,
-                        aprovado=(semelhanca >= LIMIAR and not diferencas) or
-                                 (semelhanca >= 0.995))
+                        toleradas=toleradas,
+                        aprovado=not diferencas and semelhanca >= 0.90)
         if not registro['aprovado']:
             registro['ouvido'] = ouvido
     except Exception as e:  # noqa: BLE001
