@@ -1,6 +1,6 @@
 {
   "versao": 1,
-  "geradoEm": "2026-09-21T14:28:38.000Z",
+  "geradoEm": "2026-09-21T18:22:23.000Z",
   "arquivos": {
     "imagens/01-01-catolico.webp": {
       "bytes": 92432,
@@ -35,8 +35,8 @@
       "sha256": "daf00eb349ce9b9253a9e40f9dca99e43c2fd015c7ad216e79e3b794b1fa3fe4"
     },
     "imagens/12-31-catolico.webp": {
-      "bytes": 118202,
-      "sha256": "ed1abcf6c859fcc6d9ca2a1a828cb23d4c04451631bb6783a273f9a4ca0df542"
+      "bytes": 114198,
+      "sha256": "77fa89420585c327bd85b78a11016540a1b49df9cb92dcceaf020ab9cfab299a"
     },
     "imagens/12-31.webp": {
       "bytes": 106188,
@@ -59,8 +59,8 @@
       "sha256": "a9630d829360cb39a01c343d9798e715468d025c62ac51834ec185fe5d91d820"
     },
     "imagens/advento-003-catolico.webp": {
-      "bytes": 329856,
-      "sha256": "ce0f10ff58cf26f7af746ffe6f9df9cabd121832fed6c558cfab8a64eaa778cc"
+      "bytes": 344286,
+      "sha256": "ad69ebf91241805b77ac4881787b2bd94973b7d8454644772887835279a022e5"
     },
     "imagens/advento-003.webp": {
       "bytes": 65912,
@@ -107,8 +107,8 @@
       "sha256": "c957fb15906b02694ad54e4780115e7c0f02e4956cc288c9409f8472dc64ecc0"
     },
     "imagens/advento-009-catolico.webp": {
-      "bytes": 117274,
-      "sha256": "64a89687992be473b8caed1f4785e92a9ef69dcb372b0bd3def3cf0f6c3e04ba"
+      "bytes": 131300,
+      "sha256": "7155e4621929087ed16abd7513ae6fc88e07c73ed74c8ec14a32371fd5bb9f50"
     },
     "imagens/advento-009.webp": {
       "bytes": 82490,
@@ -123,8 +123,8 @@
       "sha256": "2f44be7c04297f6bda8d7b0f506f9ec8cb80e515c5cc716338fda4db9e294f10"
     },
     "imagens/advento-011-catolico.webp": {
-      "bytes": 105740,
-      "sha256": "c150f2ca243b129f1d57d40bbd2e0fa8902b72ba49e1067a7cacc89d5f8572df"
+      "bytes": 104232,
+      "sha256": "06aeed14657e447a1572694b24e2a91f1ecebfb1337def0dbb0ace12765e042d"
     },
     "imagens/advento-011.webp": {
       "bytes": 83502,
@@ -195,8 +195,8 @@
       "sha256": "eb03571482a1b19218e7762d40995a49c1cb1d17ab739968a7455f91daf06ab6"
     },
     "imagens/advento-020-catolico.webp": {
-      "bytes": 137008,
-      "sha256": "2ee6dde66cbf82642dbf8be92d41a83c919377e98e3d495b4c6c20e86f02571f"
+      "bytes": 136306,
+      "sha256": "c862308a4bfa9ed0400c439c2959ff0127b608e7c45e37e3fd247df20e7ebf25"
     },
     "imagens/advento-020.webp": {
       "bytes": 91926,
@@ -211,8 +211,8 @@
       "sha256": "549ef85f33ba5be3e6a69b5f62f7d2913cdc146d0ab1f6041c354ced5452135c"
     },
     "imagens/advento-022-catolico.webp": {
-      "bytes": 192752,
-      "sha256": "05f4e9ef05423d33a859131dbdf06381b513e4713fb28bddefd78fbe249cac71"
+      "bytes": 180652,
+      "sha256": "25a2c0bf79b6643d51c6440bfd74ee44fd22c6ca10afc56b982c51bb4a19a922"
     },
     "imagens/advento-022.webp": {
       "bytes": 103094,
@@ -227,16 +227,16 @@
       "sha256": "2f540568f7dc6036c3f5dac9b08523c1d6877eba38cab3633f972fd1842069dd"
     },
     "imagens/advento-024-catolico.webp": {
-      "bytes": 86066,
-      "sha256": "e9112da85fee8ff70511eb41daa165ae27c559ca127e57470b2c6175fb043280"
+      "bytes": 99762,
+      "sha256": "a0266b76cf5fe904e24809e42363c276747e2b99d565241cda4a478a3dbf73d5"
     },
     "imagens/advento-024.webp": {
       "bytes": 122598,
       "sha256": "02bb2287a1519a9973160cf7eef68d791cd6844d318f28c33547c04a6f88e369"
     },
     "imagens/advento-025-catolico.webp": {
-      "bytes": 119386,
-      "sha256": "9fbd1665b7c6e61bfe364049b52b7adf015134484cae5e607a303f139f4db2d6"
+      "bytes": 116268,
+      "sha256": "7a1df3758970aebfecbab14e2acb0f9c9d9ecf6ae3f985d85e82e0435a8ff669"
     },
     "imagens/advento-025.webp": {
       "bytes": 112422,
@@ -259,8 +259,8 @@
       "sha256": "3f18dd903086b4732aba9a496bee1db8177535dd85be54bccfadaa39a1b62477"
     },
     "imagens/advento-028-catolico.webp": {
-      "bytes": 89076,
-      "sha256": "752eb5b7f8082ccf8b090765e56fdda787ce6496099f91917f40f3352bd7331d"
+      "bytes": 108494,
+      "sha256": "37be3ba40fc587259ca4f10ba02a2282ddafd07ae3dcfbbeace38abd55ef7179"
     },
     "imagens/advento-028.webp": {
       "bytes": 112248,
@@ -339,8 +339,8 @@
       "sha256": "e16985c2bf7db8ae3a478aed7f58346b52c70f41b0cfc17015ca62f255fba0be"
     },
     "imagens/comum-010-catolico.webp": {
-      "bytes": 110614,
-      "sha256": "0cd18758d7211031cc6ae408d4900d1ed035f593b4e8d71f845cfdd5ab7f3e7e"
+      "bytes": 114568,
+      "sha256": "8cb2a40cb2390e9ff0c3c242766a8f854fe6b2860d4d8ccd15f95c069e9e45d2"
     },
     "imagens/comum-010.webp": {
       "bytes": 117342,
@@ -411,8 +411,8 @@
       "sha256": "e65378dc793cb056f23523649edccdd0d638ab144db45eed214d900b44d303d2"
     },
     "imagens/comum-019-catolico.webp": {
-      "bytes": 108118,
-      "sha256": "4c5690bde452cfc716203b49613cbd3f9654b1eebc79c9b20dbeb3dc6eae2a16"
+      "bytes": 114792,
+      "sha256": "063a817c9987684e173fa7934b0375d230d02b1adcb51c9dce5ec8f1eb8e870a"
     },
     "imagens/comum-019.webp": {
       "bytes": 115760,
@@ -467,8 +467,8 @@
       "sha256": "105474ff1ddd0a9148f3178d3f834a9b9abd89e56bda886a19a25dc03d64763a"
     },
     "imagens/comum-026-catolico.webp": {
-      "bytes": 205624,
-      "sha256": "fb139e97b16e6aadf79856c548cab3f782ba90f55af808a7b3bcec82581b0eac"
+      "bytes": 174982,
+      "sha256": "ff60b9deea17c0571937a143907a1740f5fd2bf3926ac089bf037dd8a2343115"
     },
     "imagens/comum-026.webp": {
       "bytes": 69566,
@@ -491,24 +491,24 @@
       "sha256": "4182f035ef2ed7fdc19e10f935786b8e78fae3d6497cbebc4b5fc9cd0757e2cb"
     },
     "imagens/comum-029-catolico.webp": {
-      "bytes": 119008,
-      "sha256": "16925f0a1ac526ecd27ad47089b8b34283d8906e0ffce2603059b83464ccb5f1"
+      "bytes": 107606,
+      "sha256": "bb1a6d943cf0fc82af093881d5e69095f769ed3e2fff85b981fcbaacaf097cb5"
     },
     "imagens/comum-029.webp": {
       "bytes": 77720,
       "sha256": "5c70cb9bf509fea1497160c2005404eba95d850dec227218a69f7e370c9f827a"
     },
     "imagens/comum-030-catolico.webp": {
-      "bytes": 81852,
-      "sha256": "b2e8ebf93391b9db507cb24f5a8dd257f0c64f729228e72d4c91c559a81de816"
+      "bytes": 98780,
+      "sha256": "ee7193f573f48431afb17a1a99f60faccb2c0373301aa6ab087c47078aadc056"
     },
     "imagens/comum-030.webp": {
       "bytes": 92574,
       "sha256": "1e7b56ad52be6913e93368e902a86baecd99c24bc04a5c754c5868ef5e6ecf68"
     },
     "imagens/comum-031-catolico.webp": {
-      "bytes": 139846,
-      "sha256": "83cc9ea2167fdb9b3571dc574c5fcbd412d72052ef943ce377ce801b4fe28a37"
+      "bytes": 111780,
+      "sha256": "7e507e376b480942735c2bd4ba93abe2396e919ccedce6ea217e41029247616d"
     },
     "imagens/comum-031.webp": {
       "bytes": 85800,
@@ -547,8 +547,8 @@
       "sha256": "7a4f6a8db964a7d0f30d9ede8800206c75e80f3ebad3559681a6e1f641650764"
     },
     "imagens/comum-036-catolico.webp": {
-      "bytes": 98874,
-      "sha256": "d6e3b8526a701a2e9038346f39f12b5c37aabaa928215e63668eb8ab8b9dbf1a"
+      "bytes": 104458,
+      "sha256": "2904afc5ee4dca9388431fc78f839940e8c25576d6354a106df2086894d8ec20"
     },
     "imagens/comum-036.webp": {
       "bytes": 92000,
@@ -587,8 +587,8 @@
       "sha256": "be60e1d3adb24fe14e288a59e3618f9f13d0cb6f0fd281fbfc8573c0f408d974"
     },
     "imagens/comum-041-catolico.webp": {
-      "bytes": 117396,
-      "sha256": "758600a47ef9aa2f05ea5451ae85786c3b26c2ff9c6e5789d2f5165c1229f4c7"
+      "bytes": 112232,
+      "sha256": "7852645836a79a61f8eceef6b0b22f333f5985ca2549c6ab4884d70f1841cc7d"
     },
     "imagens/comum-041.webp": {
       "bytes": 93256,
@@ -635,8 +635,8 @@
       "sha256": "fe93d6c5d48ebd458e6c8340f26efa294e3036fd2eacc2083551bbe404ada4e1"
     },
     "imagens/comum-047-catolico.webp": {
-      "bytes": 94000,
-      "sha256": "0db29bf6d0049ab7060c65bdfb91c61f18dc2b1c360963a763f77122b919e9d9"
+      "bytes": 92464,
+      "sha256": "371980f902f86efa754ef017f2f3677e1d8d49bd9ef2c66127d4ad17b8525d63"
     },
     "imagens/comum-047.webp": {
       "bytes": 110326,
@@ -659,16 +659,16 @@
       "sha256": "13e5ecd28a5a4efac6eb5aba0fe13fcae345c1bfe8e7397709c8a69f1d297aa9"
     },
     "imagens/comum-050-catolico.webp": {
-      "bytes": 100710,
-      "sha256": "10c0ab01e78da0513c9cafca784e5060dee9357345bdd92d79753f17689dce21"
+      "bytes": 109828,
+      "sha256": "3cca91338906e0c63c5af91912ae6a184fe21c109e24a6f19db41f2e07b66e80"
     },
     "imagens/comum-050.webp": {
       "bytes": 100750,
       "sha256": "f6d63a07c76d6544bcadba083b9894aca639c89246d3c74273c18c15eedc6ff4"
     },
     "imagens/comum-051-catolico.webp": {
-      "bytes": 95498,
-      "sha256": "fbe009ab510fbc79ee5820f71db555b7c1e79e1c38a7a81cf79a284b87e61e2b"
+      "bytes": 230338,
+      "sha256": "a49fe02d3491fc40c15b7348fa9aeeccec8d05c2720335ff4ff6eceb2335aeb8"
     },
     "imagens/comum-051.webp": {
       "bytes": 96594,
@@ -699,16 +699,16 @@
       "sha256": "af2d2179a10e04ebf718f870ccf4cb2e279476a96f8d7ee8cf1939c765507d4e"
     },
     "imagens/comum-055-catolico.webp": {
-      "bytes": 122864,
-      "sha256": "00105e0fab99e2a8348df276f4b3a99c960c79959ce4815167d09197bc070c84"
+      "bytes": 104896,
+      "sha256": "6490a92cb92132e15df1425340e262dddf84ef2b1edec659ad81069d400e28bf"
     },
     "imagens/comum-055.webp": {
       "bytes": 93606,
       "sha256": "9e3369e5c4e648ff38b4d6a3681690bb49df6a3935bc9cf143c2b0bd193b5ccd"
     },
     "imagens/comum-056-catolico.webp": {
-      "bytes": 113488,
-      "sha256": "01da6def3d0e9363045e6b062fc049b96f8fe63064010ab6ea56dee2fb9cc739"
+      "bytes": 116192,
+      "sha256": "14b3ec744a1a835b73197090081eda0ddf8a02e8e47d2c893b95357582376237"
     },
     "imagens/comum-056.webp": {
       "bytes": 65188,
@@ -723,24 +723,24 @@
       "sha256": "0e77b06b8633489b0bb8f16385d3b9435837fb150faffe1bd173b1a58a194934"
     },
     "imagens/comum-058-catolico.webp": {
-      "bytes": 115450,
-      "sha256": "a6e43697e1dfbb799ad734035dfed74be1cc5506968c157225677bca19b1f8c5"
+      "bytes": 118486,
+      "sha256": "1e154c0ef93c66865f18ee30391c62bf31090a7a1f613ad6bbafd83d0a203e79"
     },
     "imagens/comum-058.webp": {
       "bytes": 65380,
       "sha256": "e064de2e413a906b25f0edb8d5ffa4efbbc7afc1c646cd7b340bbb109bbeb1ae"
     },
     "imagens/comum-059-catolico.webp": {
-      "bytes": 100266,
-      "sha256": "923c20e8eb1a4d027707cb63459be8ce78dd654cb63e6ac9b25dcbee7e4a7eb8"
+      "bytes": 140910,
+      "sha256": "5d3d73bec4f9b7d4c11b6fb5e766005536e9f909979fd6181162a8655799ecaf"
     },
     "imagens/comum-059.webp": {
       "bytes": 94166,
       "sha256": "aa11ed456133ed9ac24a8a9bc0e5ae7db6e3093282fa66bcd1f9c351282f3c60"
     },
     "imagens/comum-060-catolico.webp": {
-      "bytes": 128134,
-      "sha256": "eeb30e6af1ea740e3168cfd44fa06e74365d253f6fb2105f839944ad70bb7685"
+      "bytes": 113430,
+      "sha256": "76d437e9f0fb268718537987b75c63724918e45d5a4c26f847377592e21c429f"
     },
     "imagens/comum-060.webp": {
       "bytes": 80126,
@@ -787,8 +787,8 @@
       "sha256": "6c0cb0375da8b940baa8909fb257430545d63957bde4d777c89822e1a6c802b1"
     },
     "imagens/comum-066-catolico.webp": {
-      "bytes": 107178,
-      "sha256": "04ac119e9e706f5e73ba96ccc6ab2af2b0617dc3991e4c93ef33078acc92e434"
+      "bytes": 102742,
+      "sha256": "9d397ec417b54e9403027617e32ec817b0fc0c795c7337c173d5211bcfabc32c"
     },
     "imagens/comum-066.webp": {
       "bytes": 93548,
@@ -867,8 +867,8 @@
       "sha256": "aec89003172a8247bcba865168e5c6bef47d1faa69081589ddb5c78c9fdb4e61"
     },
     "imagens/comum-076-catolico.webp": {
-      "bytes": 78758,
-      "sha256": "d784a9ecbcc5b4c9a7ba6539bd39c6b028525cded78941a96ce317167b689587"
+      "bytes": 68538,
+      "sha256": "fdbbef2dc39a0b992e7c251ff80c271881a3297e99df2af9fea77fd57dab559e"
     },
     "imagens/comum-076.webp": {
       "bytes": 103482,
@@ -891,8 +891,8 @@
       "sha256": "046faf754098264b31e10e7a9c194c2bdc5b95e4aa91e9cb61440a709165b661"
     },
     "imagens/comum-079-catolico.webp": {
-      "bytes": 95052,
-      "sha256": "9e6e35c06041935b9614958d2f2a83f7c78aa473fdffecaa5dc01c7828e7b5c7"
+      "bytes": 109910,
+      "sha256": "5b39317dadf5db41756cf4ecece26ecce04dd5746d3066f7c87e3d88b691b5ed"
     },
     "imagens/comum-079.webp": {
       "bytes": 118130,
@@ -915,16 +915,16 @@
       "sha256": "8c94fdccebd600c62b392c70b0b06978210fd4cdfa6687db8b611cdab60004a3"
     },
     "imagens/comum-082-catolico.webp": {
-      "bytes": 132406,
-      "sha256": "ac408a25304e6dc63ec13b4e246345ae93a4e1579364abd194b0e54409396ac8"
+      "bytes": 175500,
+      "sha256": "5a99d5596e4c1cc973dc5e16fb8f38c88e9a3f9243ce3c9d5c667b0663821966"
     },
     "imagens/comum-082.webp": {
       "bytes": 87382,
       "sha256": "ee92551d48b1579446df82c843a00bd288bd8940070e04c7df76580f21ceedaf"
     },
     "imagens/comum-083-catolico.webp": {
-      "bytes": 121844,
-      "sha256": "21c8d1c2563976ac65081f619ae7a9f12a0700100e6a17782aad8fcb4d87c56b"
+      "bytes": 109040,
+      "sha256": "78c7e900c56bf71b6edb04362ae8a55d0ef2fde975db1bfb417618288d34eca8"
     },
     "imagens/comum-083.webp": {
       "bytes": 90026,
@@ -939,8 +939,8 @@
       "sha256": "c74a91fc4d84bd8b2108865a776fd85b39e0fb98c86002c3852cee807f157855"
     },
     "imagens/comum-085-catolico.webp": {
-      "bytes": 92606,
-      "sha256": "eabda3f63c0c5fe5001ec96c5c4842734e0b42a260e5bb959f8f915df0523b48"
+      "bytes": 120798,
+      "sha256": "b9ca0e910b424d9863f4531d0734fa5ffed7508e3ab1ae156e82601ac360e6ad"
     },
     "imagens/comum-085.webp": {
       "bytes": 95142,
@@ -971,24 +971,24 @@
       "sha256": "5802cd0671d804621373dfdba1e374834402c2d1df7fe9efac3818a017317840"
     },
     "imagens/comum-089-catolico.webp": {
-      "bytes": 113956,
-      "sha256": "3007a8a3401b49fca95013a1a4b36ab740607804215be77442ac55f2631bcbd2"
+      "bytes": 113182,
+      "sha256": "f56689baeb86b544c074a785cd3bce70c14591f8c8666f7e01794f0355e0f931"
     },
     "imagens/comum-089.webp": {
       "bytes": 100234,
       "sha256": "6dd07860d13382fd2b2bc76531f016eff14ac1d83c752119657995fa36ad9013"
     },
     "imagens/comum-090-catolico.webp": {
-      "bytes": 114320,
-      "sha256": "71f85d6fa05ac9e49045769f4d80991285af93d297a8fc0716eac2ea4c89caa5"
+      "bytes": 118708,
+      "sha256": "aaae08cb2df186bb1f15bad0de0e0b3bc7baae6dde49be1afbe893a5568598de"
     },
     "imagens/comum-090.webp": {
       "bytes": 109732,
       "sha256": "dad3dc011fa3f14f05bf55121a8c5efd64c736d7f8c3eae6c5305b6a42ee4608"
     },
     "imagens/comum-091-catolico.webp": {
-      "bytes": 116360,
-      "sha256": "93efb26dee18377bf884f51e751b7b13b9db8c0ad7a450d3867a04896eeea923"
+      "bytes": 121078,
+      "sha256": "9f38fff81be1ac8215a3803ec5612ca7710538dd4c2988b86b9a75e5a62f1c30"
     },
     "imagens/comum-091.webp": {
       "bytes": 69448,
@@ -1003,8 +1003,8 @@
       "sha256": "403db7ea39db3540c2ee2e9f3b2421a6984721d6b3d88689ad4e6b4d783cc428"
     },
     "imagens/comum-093-catolico.webp": {
-      "bytes": 117194,
-      "sha256": "a356557e27e570f404cb88e0d820d6fefbfe2078ca07cd8834536a26dcddc03e"
+      "bytes": 107900,
+      "sha256": "d6f04723cd8ba211c987ece485be6282092c043fb468b200303bb0d24b27cda7"
     },
     "imagens/comum-093.webp": {
       "bytes": 113146,
@@ -1043,16 +1043,16 @@
       "sha256": "58432d68ee87c3c4aeb975621f48fd0a6852cd329a4b5f631da636bd4053fe20"
     },
     "imagens/comum-098-catolico.webp": {
-      "bytes": 137530,
-      "sha256": "a7170c8f81cb198eb763fe389d128a0cc8e9f4386ab7088e4e526c96a12cda4e"
+      "bytes": 114206,
+      "sha256": "aa6b14216f8519fb8066828d0491faa7331dbc98d9235db7f2dc5350dab1ac72"
     },
     "imagens/comum-098.webp": {
       "bytes": 88714,
       "sha256": "0627216bbfd29fe9428186598b06d6b3a24d065e5890331e6d5212da5f234166"
     },
     "imagens/comum-099-catolico.webp": {
-      "bytes": 112160,
-      "sha256": "ce3ed43330c04228d69e23c91be92dde625a4a7b7c2f0a7c9e21c637f8d6a91e"
+      "bytes": 82058,
+      "sha256": "227819c01c0843718a7787ffd9c17488db2919704b7b56b1db797511a83a2c5b"
     },
     "imagens/comum-099.webp": {
       "bytes": 92674,
@@ -1067,8 +1067,8 @@
       "sha256": "5c12a0a739cb1d5bc03dbc6af753b90d23f68d92663bff7572a236de8ec86830"
     },
     "imagens/comum-101-catolico.webp": {
-      "bytes": 115906,
-      "sha256": "e4ebe1c918a2105a745f18530bd86382d72d16227003b1db942030aa5f6b4faf"
+      "bytes": 120992,
+      "sha256": "b4647cf5219bac3a3f2dea3f999a6996f66bf3dc4c4d8270055dba936f5adf9f"
     },
     "imagens/comum-101.webp": {
       "bytes": 89716,
@@ -1083,16 +1083,16 @@
       "sha256": "0561209cbc74df5e78568e7af43408df0872260ef318c6c65bd3116cd1c3c030"
     },
     "imagens/comum-103-catolico.webp": {
-      "bytes": 96768,
-      "sha256": "b1c5d253876e3bb87cc059a1ad25b0214b64263e9e5becaaa3e197f6fdeff47e"
+      "bytes": 82128,
+      "sha256": "4944eb3698588d56c7b72bc66d7307a5bc8c4cb21e4a96931dd4e769ca7f4301"
     },
     "imagens/comum-103.webp": {
       "bytes": 103088,
       "sha256": "b8b3c05d9c47e380a7987abfb5d301c5055d2bfa3e2ad09e966d9d3efd5fe360"
     },
     "imagens/comum-104-catolico.webp": {
-      "bytes": 92478,
-      "sha256": "6663eb62a1f69afd9ef1e14077175232a470fed0a81449a104fa6b2ddee1d65a"
+      "bytes": 116798,
+      "sha256": "5e4df70f3a86dd8a6d58aeaed8720a18b4edfde8437cf1257a51e733b708a428"
     },
     "imagens/comum-104.webp": {
       "bytes": 96106,
@@ -1107,16 +1107,16 @@
       "sha256": "c0aff26e7aafa47d632f71e204632b6e1fee6eeb65a1c818fd50fb44f743075a"
     },
     "imagens/comum-106-catolico.webp": {
-      "bytes": 113566,
-      "sha256": "a64074df4bb4d182eaa8fe8d1ffdab949148650cd3df10178e1bf8fb64c3d104"
+      "bytes": 114194,
+      "sha256": "39e9bcdf14ce8d511e9e43afb98b7beda7001b5564da3ed1f0f70d132c0206c1"
     },
     "imagens/comum-106.webp": {
       "bytes": 91686,
       "sha256": "a2e9a4eb8783eaf25750a5a43f14b84845c713aaf80355b96a5fb302ccd48f5b"
     },
     "imagens/comum-107-catolico.webp": {
-      "bytes": 113906,
-      "sha256": "24cc3c205b622a2ee18cb26c5025a5429f35b33bc628e2d7726f0b28d33c0c0a"
+      "bytes": 113390,
+      "sha256": "c665bcf6afe9f9f1b53eba301a38340fe02a7b510b8a59a18a0f38ed80abbde4"
     },
     "imagens/comum-107.webp": {
       "bytes": 113558,
@@ -1147,16 +1147,16 @@
       "sha256": "170800005502d7b30c321f36f13d4603463d560e1f3327f8ad9df8f94be0044e"
     },
     "imagens/comum-111-catolico.webp": {
-      "bytes": 153584,
-      "sha256": "c1bb988877618aba6d887df2e15b23f02ae0b6646058f7c9beb2158995a7f27d"
+      "bytes": 153126,
+      "sha256": "a5c4ed6ebc5e833cc700a89af15dc86bf2a424a5b07dbbaf0d0d72a128984dfa"
     },
     "imagens/comum-111.webp": {
       "bytes": 67036,
       "sha256": "f4a66b3ec15b43f9f8ad73becbc4669bd1aabd54e34d2fe3a1031189bfaa467b"
     },
     "imagens/comum-112-catolico.webp": {
-      "bytes": 87174,
-      "sha256": "fa8608ab9603e136d4fa9ca94984f74c4a1e583e766de26d9040c754a62b7749"
+      "bytes": 71498,
+      "sha256": "3a7d1bd842a3866fcb4535fe5f737e63bb203e3505262479bbc203a7904592d0"
     },
     "imagens/comum-112.webp": {
       "bytes": 92872,
@@ -1171,8 +1171,8 @@
       "sha256": "5188b5994ecc586d504ca137ff71c5d4ce3163240a7e8241803f675dcd2840d6"
     },
     "imagens/comum-114-catolico.webp": {
-      "bytes": 117982,
-      "sha256": "b1e803543476061550ca3bf24aff8cd8d2070a105d7fee168b173a836e4cd1da"
+      "bytes": 120634,
+      "sha256": "ada22ed25c26f552b4b284b8b1890b2e77eadbdcb309a4220b24055aff8a208c"
     },
     "imagens/comum-114.webp": {
       "bytes": 114004,
@@ -1203,8 +1203,8 @@
       "sha256": "a62ec5404238375910538a0ef83db7959bd76ee6f10c0fbb226b80cde73eeaa7"
     },
     "imagens/comum-118-catolico.webp": {
-      "bytes": 239274,
-      "sha256": "5d0924350abb89675e94e2ba48c36f965a32092608a326fbebf51c4c16326278"
+      "bytes": 115448,
+      "sha256": "54bd8d118c1e793b42420016b3a3dcb484e184c67be9f60c6854f1191cfa5189"
     },
     "imagens/comum-118.webp": {
       "bytes": 47112,
@@ -1235,32 +1235,32 @@
       "sha256": "7ef55abb79e65c44028d4e1ae17bab078cf6b3ba94a764633b4448bea69f25d3"
     },
     "imagens/comum-122-catolico.webp": {
-      "bytes": 108548,
-      "sha256": "a89dac47fa1a1dd2ac90f34ee74792514b698e24cfff2876bedbd818863bdca2"
+      "bytes": 114480,
+      "sha256": "74514edec27079ad57913607b3137213dc1a0121ac34f02c51680ec983fa3cf0"
     },
     "imagens/comum-122.webp": {
       "bytes": 104670,
       "sha256": "1752ee33cd5d3b12462622b835f735a41bef63e8548ab0d8f211cef6c83b4c47"
     },
     "imagens/comum-123-catolico.webp": {
-      "bytes": 107476,
-      "sha256": "36a47e80eaf01b05cbe9061c932e030717668611197ca1ab4ba9acd2d9416508"
+      "bytes": 121634,
+      "sha256": "3cd15a1f7f42f8f59ba90d266f6ef0fc5f91ef9f6438d72bc97a1abe58ebebd5"
     },
     "imagens/comum-123.webp": {
       "bytes": 104308,
       "sha256": "4fc7e58962a4e85294ef09891e8f5f396d03f4ad39d7798e4dd959f1a2aa3da1"
     },
     "imagens/comum-124-catolico.webp": {
-      "bytes": 186418,
-      "sha256": "77d42fc4f61aee032d440bff23f40ddf0039d68d96c721a785ff58b750eb5e56"
+      "bytes": 181112,
+      "sha256": "41e44e583f44c2092115f11a7754a7b70265b3d49ddd83aadcbd9caae7797ba7"
     },
     "imagens/comum-124.webp": {
       "bytes": 83116,
       "sha256": "6ab3ff18b3de2eb1ea9843d41a885953f6fb20ff404e8504b76ab8cd03aaaa3b"
     },
     "imagens/comum-125-catolico.webp": {
-      "bytes": 61354,
-      "sha256": "38ea0304947a62ab31081830ccaf8e9c60e56348dad35f9ae24c702a4e50fa9d"
+      "bytes": 65660,
+      "sha256": "960d3b14bd1e052a658507e8553b2364c2b3d476bc2b78812799b7b500670a80"
     },
     "imagens/comum-125.webp": {
       "bytes": 100034,
@@ -1275,24 +1275,24 @@
       "sha256": "3e4a29b484d712de6154804490a17f4910ebebe0062c1ed39f77f218c99f2373"
     },
     "imagens/comum-127-catolico.webp": {
-      "bytes": 121392,
-      "sha256": "f8a6e5605e5be4e936c99518cc1868fa21889a0fbb8289da153c7d7cb143f102"
+      "bytes": 120520,
+      "sha256": "e6b25dfc8011f85531a4c8c287934ddb786a16884c3196ff5ad297400b4afe32"
     },
     "imagens/comum-127.webp": {
       "bytes": 119738,
       "sha256": "b311d3ca0db4771684d2be880c1ac231b2d71dd06485cdde7553a69b21ac2eff"
     },
     "imagens/comum-128-catolico.webp": {
-      "bytes": 121708,
-      "sha256": "ef3fd18b29a81d3e6724d11d83bed55a2615f50f95800d58f8ea6011ef6f5f97"
+      "bytes": 119998,
+      "sha256": "00feb1b1d376075c8fa1bbef46e73d63870ad5a80fe376357f8c490ba3079ef3"
     },
     "imagens/comum-128.webp": {
       "bytes": 78214,
       "sha256": "f902c417cb3da85936c7344b2fe58c2c3c1737e2db79360475318ea03c550ffe"
     },
     "imagens/comum-129-catolico.webp": {
-      "bytes": 106366,
-      "sha256": "d5ffad8b9f1784d3ae8e1c4b72dbd3d3e5ecd29ea372cca167fd11a1f4a78666"
+      "bytes": 121116,
+      "sha256": "7fd0621f6b03f6eb263e79136f0c42f8068135b4be25400da63d69feb5eda889"
     },
     "imagens/comum-129.webp": {
       "bytes": 72122,
@@ -1307,16 +1307,16 @@
       "sha256": "9b614b26055b6b0d4381cdb18b65ecdd8349f68d9cf75519d194ead88c4dbf58"
     },
     "imagens/comum-131-catolico.webp": {
-      "bytes": 120736,
-      "sha256": "4b68177cdf12944b45b551c257207c5a7e10d46ee479038234160abc65bf735f"
+      "bytes": 122706,
+      "sha256": "48e740370b8bfbe3d5f5d749d0ebe1d4cc73eddf2a32e7d809c0c49038f8d40b"
     },
     "imagens/comum-131.webp": {
       "bytes": 112456,
       "sha256": "74f909c24cdd5a39e1c623a08f518f74ae2b97cea39093b400d078d70de509eb"
     },
     "imagens/comum-132-catolico.webp": {
-      "bytes": 421018,
-      "sha256": "ee5461b353b6ca73fddea6431b5ff3709107053b1cbce0311aad36824027fb39"
+      "bytes": 465446,
+      "sha256": "c053427336563af06a873288bf2af93f91e28a3700a3170d6f52e7b564aac6f8"
     },
     "imagens/comum-132.webp": {
       "bytes": 105368,
@@ -1331,16 +1331,16 @@
       "sha256": "9aca512f012dcd8b0f36faefb36733231a0e7023f61c9bb9497077fc2ce4b7a1"
     },
     "imagens/comum-134-catolico.webp": {
-      "bytes": 116268,
-      "sha256": "78124b7098020fec02adf2109c3cf0bf1396bacd8ad0fd5352143d418f7025c9"
+      "bytes": 71028,
+      "sha256": "f1e8b86862cbddf899a51292619e9e8faa63e54fc5cd8a57802732350abbad83"
     },
     "imagens/comum-134.webp": {
       "bytes": 71866,
       "sha256": "2a3783df1b7dc36b61c5994181de2e7c8dce2c4607acbd97b8853630399783fa"
     },
     "imagens/comum-135-catolico.webp": {
-      "bytes": 113488,
-      "sha256": "01da6def3d0e9363045e6b062fc049b96f8fe63064010ab6ea56dee2fb9cc739"
+      "bytes": 114484,
+      "sha256": "6947c9751a61f735e7d90069ee71092a11a811770dfcc42c98882886448bbf18"
     },
     "imagens/comum-135.webp": {
       "bytes": 103152,
@@ -1355,16 +1355,16 @@
       "sha256": "d9287c583588278073bb300f6a0e73213f1c9c42154db869d1b56563d6456a2c"
     },
     "imagens/comum-137-catolico.webp": {
-      "bytes": 116498,
-      "sha256": "3520937565281f12d99f6288ed0789e9553dff2e62e5092be1637ae778cca426"
+      "bytes": 97300,
+      "sha256": "11112490265d9afb101e5422069f43de19e37dabea596c7aab7cf26320700c17"
     },
     "imagens/comum-137.webp": {
       "bytes": 113224,
       "sha256": "5d91e6b3583e51b236f2461510899fd1a3fba56fd8986197dab13687bc10c959"
     },
     "imagens/comum-138-catolico.webp": {
-      "bytes": 102666,
-      "sha256": "d77f80353e8ef7b4b64419baf95a5efcda1e5e6880758bf059964f59645661b1"
+      "bytes": 95796,
+      "sha256": "cb403f84f406fc70489dbcb60de6be2260efc0f39dd7d7ba91b9128fe26fcde3"
     },
     "imagens/comum-138.webp": {
       "bytes": 77932,
@@ -1403,16 +1403,16 @@
       "sha256": "8e8fe1f79e9d44143688e5e692d82da4c6ed685eeae2f0b9694d213423c1bcd1"
     },
     "imagens/comum-143-catolico.webp": {
-      "bytes": 115780,
-      "sha256": "179a565a93a3ba24ac9b8ee80993fd35fb1cb31d4b6d6fb1af7a074a36af4eea"
+      "bytes": 136970,
+      "sha256": "c96afef605489811dbbf3f6bde7ad1edad41ff538d448d0750f4c78c25a73ca5"
     },
     "imagens/comum-143.webp": {
       "bytes": 74466,
       "sha256": "21444da90098af5664e25a5db3350140c57c322626c421d6dfa40e1bd2a8947e"
     },
     "imagens/comum-144-catolico.webp": {
-      "bytes": 92348,
-      "sha256": "edf808a164745cb40530f817c2e7563323cbd55ee8f8431c208e95c23f14f189"
+      "bytes": 120574,
+      "sha256": "cb70afd9094c1e795f3144daf348bf34a38098f815748416019cd8d552f0b219"
     },
     "imagens/comum-144.webp": {
       "bytes": 55042,
@@ -1427,8 +1427,8 @@
       "sha256": "0112e018da40027ac935e85e6479624192e7d35d917e747d2ca37c2bab009f65"
     },
     "imagens/comum-146-catolico.webp": {
-      "bytes": 107830,
-      "sha256": "24d7024d69cf08dd7670cb79a5e22acba6630d5078d9d1a1d6b13263ec4687c4"
+      "bytes": 100496,
+      "sha256": "ba4083d92c99f9793f4649b8310de23b3457afde4f86926093d6efcdd2d840f8"
     },
     "imagens/comum-146.webp": {
       "bytes": 98612,
@@ -1443,8 +1443,8 @@
       "sha256": "0c0ad9d74d80bb0e19b0f8dc953e4b12c7d77683fce30a4db9e1def2db8d52fe"
     },
     "imagens/comum-148-catolico.webp": {
-      "bytes": 117194,
-      "sha256": "a356557e27e570f404cb88e0d820d6fefbfe2078ca07cd8834536a26dcddc03e"
+      "bytes": 122416,
+      "sha256": "262e7d312b6d0d48cb6e066653306ae50fa99005e1996f1ef2d093ec2a199916"
     },
     "imagens/comum-148.webp": {
       "bytes": 85302,
@@ -1459,8 +1459,8 @@
       "sha256": "779ee1f0fe1b2ab0ffae204ea425e08299a5eacffbf0f9cccff260b2a947b11e"
     },
     "imagens/comum-150-catolico.webp": {
-      "bytes": 68484,
-      "sha256": "a60ee07117f4fbf5d5a3d81f7f2cf778aa2fddda9b870d4ce922415f3ca83f1e"
+      "bytes": 74796,
+      "sha256": "ab14416bffab3bb18e460ae5324f80de6a4c6a6a64a0cf674bc670f4273c7397"
     },
     "imagens/comum-150.webp": {
       "bytes": 104526,
@@ -1475,8 +1475,8 @@
       "sha256": "bd21d36d4f9262559bac46415ba2b7e79ea52674800866398ee604f777f27e21"
     },
     "imagens/comum-152-catolico.webp": {
-      "bytes": 113076,
-      "sha256": "b1d480bf16df1e02893f5d3e8d598e39e6d687c0302c74f5fd9d03e8d7bc9dd9"
+      "bytes": 111886,
+      "sha256": "d2ae818a20c23b9d74ba50e711df0e7612d76cf68ab495c1feecddbf6fceea02"
     },
     "imagens/comum-152.webp": {
       "bytes": 101046,
@@ -1491,24 +1491,24 @@
       "sha256": "2344d97501b841fce570c8647de4bcb7671fb7d941c8408d16f69b30a142c90d"
     },
     "imagens/comum-154-catolico.webp": {
-      "bytes": 97742,
-      "sha256": "ec016d1c69d8a84c75f0f240e3e41ffe6245e1a11cb750b37b98ec38411faab8"
+      "bytes": 121900,
+      "sha256": "4be9beff15fc381dae4f2465f0c8784860157d37871051dd3209011e4401db30"
     },
     "imagens/comum-154.webp": {
       "bytes": 81856,
       "sha256": "63b4af3a422537154789e15bc6512582daef30177b3d4941ccd452664a57dfa8"
     },
     "imagens/comum-155-catolico.webp": {
-      "bytes": 110134,
-      "sha256": "8245c0ed4d96008cb2df2a7a6920bbcafd817f77f7e9e81d4ddccb2ec885cb4c"
+      "bytes": 139208,
+      "sha256": "68e6fb6bd90a915bcca0f9a2603bdadc361de46f006d84826801967b2aedc921"
     },
     "imagens/comum-155.webp": {
       "bytes": 102848,
       "sha256": "a2ad1292cf96a7f2a119757859b22fdd3cef5d5cee06b4ced5982dd3076bc4a5"
     },
     "imagens/comum-156-catolico.webp": {
-      "bytes": 69788,
-      "sha256": "b56b14f292350ff0adfdae9fdbe0e80e239e82dc09e9921694a7421b4dbdba4e"
+      "bytes": 71784,
+      "sha256": "85714acc1788970b15b411be14548fc6578fc9a6e3cf7633088be1be71d462c8"
     },
     "imagens/comum-156.webp": {
       "bytes": 91960,
@@ -1531,16 +1531,16 @@
       "sha256": "cbc54a21931484bc59337fcfa09013757a5c1bbe3ab6703d9186e1e9e39d07db"
     },
     "imagens/comum-159-catolico.webp": {
-      "bytes": 105740,
-      "sha256": "c150f2ca243b129f1d57d40bbd2e0fa8902b72ba49e1067a7cacc89d5f8572df"
+      "bytes": 91096,
+      "sha256": "da235855bb3498adda7e8c376de55fa03018dc64c636c9f9422b07a1e37de5f3"
     },
     "imagens/comum-159.webp": {
       "bytes": 110446,
       "sha256": "23c96b2955ecc0714428ea1fde8c36deaea1d283aecc42ee99b4805065efb47d"
     },
     "imagens/comum-160-catolico.webp": {
-      "bytes": 90112,
-      "sha256": "1ccc6cbcab67640f35168b82d6672baff109d906e6d1ce8cf3fe85fc1edab6e3"
+      "bytes": 109208,
+      "sha256": "8a356852a560437af124c1988a2acf1c3247d03636447507364b02288890d24b"
     },
     "imagens/comum-160.webp": {
       "bytes": 93854,
@@ -1571,8 +1571,8 @@
       "sha256": "e877088749b5e95584620b10fc4155a9ab618e074285c6755622684defa885d3"
     },
     "imagens/comum-164-catolico.webp": {
-      "bytes": 122202,
-      "sha256": "009236ae7410e8b56fb073197678a22275910d571792cb9547ad2fd35cc467b0"
+      "bytes": 112868,
+      "sha256": "a1c8ad7c71c362e5cc4cea5a461d347b6e63af2d1448e77c0839804ed1231f70"
     },
     "imagens/comum-164.webp": {
       "bytes": 95706,
@@ -1587,16 +1587,16 @@
       "sha256": "16f5e65ec1fb6e6f95c764cb90b25fca629a6047fc1981590ba4637cd5197af1"
     },
     "imagens/comum-166-catolico.webp": {
-      "bytes": 70712,
-      "sha256": "fd5e39cd0160b72855126fb455a74ccb6b95460408255093ff0e832483dfa7b7"
+      "bytes": 104752,
+      "sha256": "995674c7e71afb16c397e8e0fedb22841e74c4416381308c291bb5c6aff7c74b"
     },
     "imagens/comum-166.webp": {
       "bytes": 108402,
       "sha256": "619a4b0ae0f45abb1996e3c80add0da3c9eaeb7572e938de20fab2dc040320fa"
     },
     "imagens/comum-167-catolico.webp": {
-      "bytes": 97574,
-      "sha256": "b8b4ef11cc12df11b70af0476f915e2cdc8cf27b0bcd966f1601bde812495595"
+      "bytes": 95666,
+      "sha256": "c35358ea97766521dcf04e87145d7ce437b26d5fd894b387102289c45bd4b423"
     },
     "imagens/comum-167.webp": {
       "bytes": 105252,
@@ -1611,16 +1611,16 @@
       "sha256": "b20d0dca0dfdfe21f7ed394e68e1c81a5d4974a1e99baaf88b1f89b0274d26bb"
     },
     "imagens/comum-169-catolico.webp": {
-      "bytes": 113484,
-      "sha256": "b6f06d73cd5b9575165fa7edf1048ff5c51d33b2cd962d20c14165df9e837a46"
+      "bytes": 121632,
+      "sha256": "6c70f1dd814557d17e750a37e465e25ec9183bfb82f1f1b781269764831afa6d"
     },
     "imagens/comum-169.webp": {
       "bytes": 105780,
       "sha256": "b127739e04e05d27e628ce74ca4d1b3a658c735d0f494a19b856534551fb345d"
     },
     "imagens/comum-170-catolico.webp": {
-      "bytes": 103314,
-      "sha256": "251ccf0f15d9cba13d8b9a282a110f8e89485e74ee542468e88cfa18f412701a"
+      "bytes": 94112,
+      "sha256": "3c0c7725339d73819176be79aa7ce4e5454c3ca090bf256c30125aeb49a152b0"
     },
     "imagens/comum-170.webp": {
       "bytes": 114894,
@@ -1651,8 +1651,8 @@
       "sha256": "8c0bd72de1f1814e7f92fa97e1dd7d0ee889a13d9b40e77b7659dcde990eee58"
     },
     "imagens/comum-174-catolico.webp": {
-      "bytes": 81348,
-      "sha256": "cb72690ad5f6a5fb2e4d36d17f0b2f4ae539412e78d9c236eefa615c8d38146f"
+      "bytes": 118430,
+      "sha256": "4ad5a275d987cbc099ae0810496c349207d45524c12fc4a087b057e7048c3401"
     },
     "imagens/comum-174.webp": {
       "bytes": 121594,
@@ -1667,32 +1667,32 @@
       "sha256": "6b90b07f696dac386873705eabbc59b5d0b1322aaed9f42394c7bbc8df91cf69"
     },
     "imagens/comum-176-catolico.webp": {
-      "bytes": 226360,
-      "sha256": "df8dfd14d081a701053fa883cf52f2f74973952dac1b31e241e1a168ff9ac6c9"
+      "bytes": 264262,
+      "sha256": "dfc94ceca04d42387248211c18b38e433393a1fe122bd1f08c875318681a7f61"
     },
     "imagens/comum-176.webp": {
       "bytes": 122574,
       "sha256": "edbaba97b1f386f2c11602bc8cc753137e1854de8516a08dfec3022aaccbec59"
     },
     "imagens/comum-177-catolico.webp": {
-      "bytes": 120376,
-      "sha256": "258ab9c6aa1c42e5d964f55b2cddb7a08e4fc2939610b912754cc7b9d3fcc3a0"
+      "bytes": 119426,
+      "sha256": "0b6438fabd737908a5492b493de6791248ddefdcafe62874a1718fbaef403a39"
     },
     "imagens/comum-177.webp": {
       "bytes": 79806,
       "sha256": "f824d96c8e7c2e3157873b238d83437db5d1e7ff149b7ae4e026c8560e20516b"
     },
     "imagens/comum-178-catolico.webp": {
-      "bytes": 160002,
-      "sha256": "61bd73172d24e46bb878c27f3f6e755f673b5429585216b90bce7ebae35013c5"
+      "bytes": 169970,
+      "sha256": "ef881f9682d682815078a30ef3dba1c681205b46e9f6c4db7ecee2007f040282"
     },
     "imagens/comum-178.webp": {
       "bytes": 89698,
       "sha256": "89b77743115c722a7430cf07200089867d494f1daa5db9a92ac5a5e7e18b0d39"
     },
     "imagens/comum-179-catolico.webp": {
-      "bytes": 113332,
-      "sha256": "d36b86ea701f090323f1d36b7ad94a91a8032b52a46ce5852e466c7dfdb9cd93"
+      "bytes": 115954,
+      "sha256": "7373d2a5c01a6f038ca359d96ab1473e740a856611e9a393ec9f7a29ba5f95ba"
     },
     "imagens/comum-179.webp": {
       "bytes": 58512,
@@ -1715,40 +1715,40 @@
       "sha256": "29b817f7a9812122762842f97f8e75092721f7becb4a9e5338ddd63e4271d482"
     },
     "imagens/comum-182-catolico.webp": {
-      "bytes": 119880,
-      "sha256": "47bc9f98ee2a113a64cad1aef7200e6a22dc02ed3187b7a388218c7f2093e5f0"
+      "bytes": 113510,
+      "sha256": "a315ae1184237f5fb98c117f883b37b2c0afa7e6713c119c64453519e7e3e853"
     },
     "imagens/comum-182.webp": {
       "bytes": 66678,
       "sha256": "7724f734756ff3b03b5c73317372aa53b9b4128493006fd0ea99575e7897f9b1"
     },
     "imagens/comum-183-catolico.webp": {
-      "bytes": 85958,
-      "sha256": "1e3c08ac91b62700e5607e87948de31f924d3cc2b76890da3dc7f9365550b002"
+      "bytes": 101452,
+      "sha256": "c5aa7c131fdedbc6d957f9159e1dab98ed799e37d3bd6b57168be9a78893bb52"
     },
     "imagens/comum-183.webp": {
       "bytes": 111900,
       "sha256": "9547281461a4099f11b413d671bc1a8a2834b6c8e04f52d099daa69b4fce6256"
     },
     "imagens/comum-184-catolico.webp": {
-      "bytes": 109344,
-      "sha256": "1a3196a76e1c7803d1bfea304687ed9d2c374f0fa24e54c96bb8356cc350af5b"
+      "bytes": 122246,
+      "sha256": "aa41fc9296d32466f3727802f22e778e4b5b59b6f6d5ae1c555ea635959949fe"
     },
     "imagens/comum-184.webp": {
       "bytes": 93250,
       "sha256": "2d8aca1b459a0e9c201dd75e7e9521ccc4bab7c279dc7e88a412022e79c3cb58"
     },
     "imagens/comum-185-catolico.webp": {
-      "bytes": 94644,
-      "sha256": "378b949a38ecc1e7ff41498f60e2949b93fcb69d1df31c8f1005e756702299f3"
+      "bytes": 112534,
+      "sha256": "27965fdd84fcbdd965a70077a20af7f8aae5c39d8510b88d0b2b8ef767b13823"
     },
     "imagens/comum-185.webp": {
       "bytes": 58976,
       "sha256": "959cd94a0f42a441172038b0eba03f3323cdacc29bc2f805bdba3f6431252f13"
     },
     "imagens/comum-186-catolico.webp": {
-      "bytes": 101874,
-      "sha256": "019200e943a71fc2f7d5e5b998ed7471590501bda0fb821147b3b0ac17e0378e"
+      "bytes": 103194,
+      "sha256": "7cfd6de51cb5183a0ca6a2058485294e19de534bbfbee0091ee19f2fcacc0c6d"
     },
     "imagens/comum-186.webp": {
       "bytes": 112020,
@@ -1763,8 +1763,8 @@
       "sha256": "1f53042eaddde89ba025a2bacc74215da6d3654719acca634000722ebbb3b651"
     },
     "imagens/comum-188-catolico.webp": {
-      "bytes": 108168,
-      "sha256": "27f810e493526df9174baed589a8272b08a7d7a97a332e71f465c74511b1ff8e"
+      "bytes": 91064,
+      "sha256": "4aa07e19cdbdd0eca818bd29273ad6e7672f82a263c825c218d4903e07ee71c9"
     },
     "imagens/comum-188.webp": {
       "bytes": 64184,
@@ -1787,24 +1787,24 @@
       "sha256": "045b37a7eb3b960d2c3ee6e8678c4667373a3e468f772e4f4c07acb93ecbd214"
     },
     "imagens/comum-191-catolico.webp": {
-      "bytes": 116286,
-      "sha256": "a3e62caf14bb846949ce8428ef16b2f6b4b15653efb34bd2523aa7e05d2692fc"
+      "bytes": 120446,
+      "sha256": "61b3fa9946a40fd6463777db5ce271be1826ccdf8ac5a68a0641e8c811254fef"
     },
     "imagens/comum-191.webp": {
       "bytes": 121324,
       "sha256": "75c7edc69226c237d24dfb8c36b505c9f43edf774ce80245512042c16037a3d4"
     },
     "imagens/comum-192-catolico.webp": {
-      "bytes": 111740,
-      "sha256": "365ba3598b41de367cae93b70746aeb3eae8cab45cf1f20061fd1a379e6da929"
+      "bytes": 122082,
+      "sha256": "ddcc61e06ece7b86e6968177be4aa8673fc9da5545bc3bbb0f907560a43560ab"
     },
     "imagens/comum-192.webp": {
       "bytes": 118300,
       "sha256": "a3f5ba198b0b4c58201fc8c257b38dfcb673eaaf883f4d1b1b1f7bc7030943c0"
     },
     "imagens/comum-193-catolico.webp": {
-      "bytes": 87174,
-      "sha256": "fa8608ab9603e136d4fa9ca94984f74c4a1e583e766de26d9040c754a62b7749"
+      "bytes": 218452,
+      "sha256": "2b8cf219a684054a1657914561cd25774febfaa98a34e4b807735cfa17e60ac6"
     },
     "imagens/comum-193.webp": {
       "bytes": 94800,
@@ -1827,8 +1827,8 @@
       "sha256": "efcbdca82349bcd74366b3c3b1a7a9ddc21fe6ff228ea96463fead5d9c84a4f0"
     },
     "imagens/comum-196-catolico.webp": {
-      "bytes": 105814,
-      "sha256": "a61740bed60b361159b64069634ccd6bdd1008ea67fdae93884da22ea0ac69e0"
+      "bytes": 104388,
+      "sha256": "fa466edf9f4809f4fe9d57129d106cf898963d51dac8e872be3f3dbd618b2c0f"
     },
     "imagens/comum-196.webp": {
       "bytes": 95618,
@@ -1843,8 +1843,8 @@
       "sha256": "ac5be6a27e404b8b8157f841d631e7e0310167dbddda0971951453a7214c42e1"
     },
     "imagens/comum-198-catolico.webp": {
-      "bytes": 86236,
-      "sha256": "79754c4d1fc6fd755201d5462ed94921a5d2cc75e0213c310ecf09881dda6ef7"
+      "bytes": 89518,
+      "sha256": "13bbdaff9f839b028f6e960aee72d6036d984ebafaf4b2b5d156742a509da04c"
     },
     "imagens/comum-198.webp": {
       "bytes": 76364,
@@ -1867,8 +1867,8 @@
       "sha256": "b9f249e1916c0f7a4d52a598693ab6c6c125779ac6e0f73686558c97ba58bcf8"
     },
     "imagens/comum-201-catolico.webp": {
-      "bytes": 97602,
-      "sha256": "e651c6958d157448e896157f4a985520631e753e2c15d19bd3678b6eb2e432c7"
+      "bytes": 96554,
+      "sha256": "1152241443790facdd0ccd4fb91450243ac046f766677defa150cfff5a1893a0"
     },
     "imagens/comum-201.webp": {
       "bytes": 101778,
@@ -1915,24 +1915,24 @@
       "sha256": "18d29428bf3472631e9b10b2214f2696f371349f1aa207fbcd5964f6c63c7174"
     },
     "imagens/comum-207-catolico.webp": {
-      "bytes": 125194,
-      "sha256": "f7fe25c56941dd7e65be9ae12d5bdfa9e5faa01951b26132774d9332b105bdfa"
+      "bytes": 141510,
+      "sha256": "d83a0740e7f240238a3fbeb94688c6f7fe81baeefc134a8952f32a8182edbdda"
     },
     "imagens/comum-207.webp": {
       "bytes": 65726,
       "sha256": "dfbec79446d70031d78f927d2119a99c998c9dfb0df0c1d2f33e34097c1ee3aa"
     },
     "imagens/comum-208-catolico.webp": {
-      "bytes": 116936,
-      "sha256": "cd7a70de66d7f56a373af81d6fcc47f86c98653bd8461969f82edcd24bf991ce"
+      "bytes": 126378,
+      "sha256": "60e4de835424f82d04a05edeb24d05f7f1aa8155d594090609604704fe6788df"
     },
     "imagens/comum-208.webp": {
       "bytes": 72222,
       "sha256": "d39dd0d629e5b17e6f1f48fd379f78f1ec1553e897fd54be468d69f7f03edca2"
     },
     "imagens/comum-209-catolico.webp": {
-      "bytes": 98874,
-      "sha256": "d6e3b8526a701a2e9038346f39f12b5c37aabaa928215e63668eb8ab8b9dbf1a"
+      "bytes": 117856,
+      "sha256": "faacbafd810d50f6be4def179bb5a08e1e0d8314792c629856b2d60008d240da"
     },
     "imagens/comum-209.webp": {
       "bytes": 99856,
@@ -1947,8 +1947,8 @@
       "sha256": "d2b66c49b3012d5a8b54452ccf8937d902164973866cb7fbf978c644e22fb00f"
     },
     "imagens/comum-211-catolico.webp": {
-      "bytes": 117846,
-      "sha256": "573c077f3cdd2f2ccc172649c4b2aaa7686b9508231846ad6603140187ca82d4"
+      "bytes": 106252,
+      "sha256": "2e8c7bdd29b2f33843e7052a3b0693faa7b37b5f619c07d4dc8577902cdc5feb"
     },
     "imagens/comum-211.webp": {
       "bytes": 100352,
@@ -1963,8 +1963,8 @@
       "sha256": "544eca397912fef0ede03b075c0d2e2f04766a8eb0ec849b517cd98b67069b81"
     },
     "imagens/comum-213-catolico.webp": {
-      "bytes": 112160,
-      "sha256": "ce3ed43330c04228d69e23c91be92dde625a4a7b7c2f0a7c9e21c637f8d6a91e"
+      "bytes": 80686,
+      "sha256": "afdaec20eb0b4c349cd4c81e20d16abb75cf520187fbc7a7ee13dd409530bc68"
     },
     "imagens/comum-213.webp": {
       "bytes": 92460,
@@ -1979,24 +1979,24 @@
       "sha256": "1f680fd15b8b235ed0331f36ad08008c938410d57a524319ee2de342f17b1f29"
     },
     "imagens/comum-215-catolico.webp": {
-      "bytes": 205624,
-      "sha256": "fb139e97b16e6aadf79856c548cab3f782ba90f55af808a7b3bcec82581b0eac"
+      "bytes": 117732,
+      "sha256": "fac3dc6b367bf8bc9317cdf269275f4e1f8eee2bb94bc32c9f1295f0a46beadd"
     },
     "imagens/comum-215.webp": {
       "bytes": 101674,
       "sha256": "1302b1c070a27f5e01622a26b0b39a4bbeaf2eeebf25b3515ea8ec126a1b0690"
     },
     "imagens/comum-216-catolico.webp": {
-      "bytes": 108118,
-      "sha256": "4c5690bde452cfc716203b49613cbd3f9654b1eebc79c9b20dbeb3dc6eae2a16"
+      "bytes": 100778,
+      "sha256": "77475b7db39707176d3c60904599bae9dca665df2306920394cc77a8ebec65c3"
     },
     "imagens/comum-216.webp": {
       "bytes": 91044,
       "sha256": "b77d470b4264e4cd1116cf0a4a94c5fa2a48b129acd6ed0d9b28686dbc371bed"
     },
     "imagens/comum-217-catolico.webp": {
-      "bytes": 110614,
-      "sha256": "0cd18758d7211031cc6ae408d4900d1ed035f593b4e8d71f845cfdd5ab7f3e7e"
+      "bytes": 112132,
+      "sha256": "ee26c51b273663f6507c682a5ff60732ba3a24a505d30d7c4d59b3e019df34c3"
     },
     "imagens/comum-217.webp": {
       "bytes": 78224,
@@ -2027,40 +2027,40 @@
       "sha256": "653e58bea732b5737ca377beb772c5b59f919f20f21434ff7ca4783fb971a4d9"
     },
     "imagens/comum-221-catolico.webp": {
-      "bytes": 121708,
-      "sha256": "ef3fd18b29a81d3e6724d11d83bed55a2615f50f95800d58f8ea6011ef6f5f97"
+      "bytes": 129656,
+      "sha256": "de86b7023bbcfd3b86054341336866129aede9ead79d22b13e82922ee0ae9a49"
     },
     "imagens/comum-221.webp": {
       "bytes": 65726,
       "sha256": "d5c1df1999bd4b1916e6479ce56bb3ceeeee671bcbe69b82b0d1eca5a18f620e"
     },
     "imagens/comum-222-catolico.webp": {
-      "bytes": 108670,
-      "sha256": "f96b39863ba1c5a42f0ffc106c4f13c9700e3908e6c25f56d52485066b15dc15"
+      "bytes": 139126,
+      "sha256": "4b4edb626df095130adbf8745754710e4ca988c90b5d84a6b879c7ca24caabd9"
     },
     "imagens/comum-222.webp": {
       "bytes": 70762,
       "sha256": "cca001e4f24e03642c19020166f8fda8d64791647d547fcc494b657b1b61f30a"
     },
     "imagens/comum-223-catolico.webp": {
-      "bytes": 115338,
-      "sha256": "a99dcb570b3b5f2dbea0d7f730391202d55ca4915971ec6db4c92a01f052ead6"
+      "bytes": 120658,
+      "sha256": "34f39cb5d878a665e6f12fa7691be35a66c075b40e4794bf8639940439834f51"
     },
     "imagens/comum-223.webp": {
       "bytes": 109040,
       "sha256": "1e4bba06d679f37a31940ed3a107209d83aac2b2ebebd38c69d3238ca749ecb9"
     },
     "imagens/comum-224-catolico.webp": {
-      "bytes": 113072,
-      "sha256": "cdde3509ad8c838bccb0643a4b75dd9b50eb062b89df5bb3d8a70384bdca91e7"
+      "bytes": 99974,
+      "sha256": "2a931bd58cf7cf298cf65732e4865cc9dba4ad47ee9c7d0512c5b041945f8e6d"
     },
     "imagens/comum-224.webp": {
       "bytes": 78120,
       "sha256": "f71ad9f5a169b21b0f73757e80662e2eef9109974e09114058bd259bc8ad25fe"
     },
     "imagens/comum-225-catolico.webp": {
-      "bytes": 90794,
-      "sha256": "2b0423e6f032f45d332de98a42df47d412f6ba1a6ee0d4c983a539890575c823"
+      "bytes": 104434,
+      "sha256": "826299fb542c6d7e0a6a3597ffcc5651815eaeda2583f6564451568143c59b99"
     },
     "imagens/comum-225.webp": {
       "bytes": 108036,
@@ -2075,24 +2075,24 @@
       "sha256": "89cfd626267108b832c76ceb02c031ac065ebb387e56f36b62eeaaff87479342"
     },
     "imagens/comum-227-catolico.webp": {
-      "bytes": 115978,
-      "sha256": "4ec884e80fec6ed2883ce11e46b8b117acc469823d24c2c50eacdedcd41bc5ef"
+      "bytes": 116832,
+      "sha256": "158426bacfca68a9f3df053b2adf474322e0d6ab6b09aa5136b5d18d9a165fbf"
     },
     "imagens/comum-227.webp": {
       "bytes": 112532,
       "sha256": "4825606c1cbb6c4781db336be69329992d731de1a61ba3d385762c686599bfbe"
     },
     "imagens/comum-228-catolico.webp": {
-      "bytes": 118202,
-      "sha256": "ed1abcf6c859fcc6d9ca2a1a828cb23d4c04451631bb6783a273f9a4ca0df542"
+      "bytes": 108856,
+      "sha256": "cb0925adf00f80a92c4a0c37acb112a24878764c31e4e0294584be05453c0d17"
     },
     "imagens/comum-228.webp": {
       "bytes": 106898,
       "sha256": "dada53391225db6032bab78964693abe385bacfd3dd2ac49d6bf2744608571d6"
     },
     "imagens/comum-229-catolico.webp": {
-      "bytes": 105872,
-      "sha256": "b69be31146c16d526f3fed5f5722fac4b16854c573b0f0bae028f49ca140d685"
+      "bytes": 103758,
+      "sha256": "2bd77f3de920a76a205713fb3e77038f888800fa75e13c6cd5952afa20384840"
     },
     "imagens/comum-229.webp": {
       "bytes": 70908,
@@ -2107,8 +2107,8 @@
       "sha256": "c3453574b3645d7ffd158a5d4bed97d0aa38fb4d5bad15a74766a853410e5e8a"
     },
     "imagens/comum-231-catolico.webp": {
-      "bytes": 122304,
-      "sha256": "8c0f50fed2077affff3ee4001e133b4bf964aae31992f7b4e9cc4a72519839db"
+      "bytes": 104346,
+      "sha256": "8b604bda97960574e23734323a462f35b34737c6eee4e64687881562048f192c"
     },
     "imagens/comum-231.webp": {
       "bytes": 88566,
@@ -2123,16 +2123,16 @@
       "sha256": "0c9c1a2f1dced097995a99169c8117be75dcce927a2b203f83281d2e03e93093"
     },
     "imagens/comum-233-catolico.webp": {
-      "bytes": 144002,
-      "sha256": "f6df1e0afd9904300091ac4fb7c833b790c5f50a57922c7f7dcbbf289a36071b"
+      "bytes": 124918,
+      "sha256": "846a488249d55fddf2a8014e0d427b1e26635a1603559efcec347b1a035febec"
     },
     "imagens/comum-233.webp": {
       "bytes": 104292,
       "sha256": "6d124a34119ff0af9d24b6d970882595e951f9f71b0c88a2d7c54dca14f27e70"
     },
     "imagens/comum-234-catolico.webp": {
-      "bytes": 119896,
-      "sha256": "e5971d620507eabda0fb45d9413852695b043e4d424a72a235c1b887c76b038a"
+      "bytes": 119476,
+      "sha256": "17b51db9d7327cefc1e10a5d78abf6b108c351b2d93a004d8d4d6c65a98829e6"
     },
     "imagens/comum-234.webp": {
       "bytes": 102024,
@@ -2155,8 +2155,8 @@
       "sha256": "cde53afd52e943b9065caa05d61b4b127fa1fb28e902a96c2ac804e4cff4115d"
     },
     "imagens/comum-237-catolico.webp": {
-      "bytes": 121194,
-      "sha256": "c015dc2a87e181680d7ca859891909bd6933c8ed8aac2b80509c9f7de66c223e"
+      "bytes": 106768,
+      "sha256": "2173aa44d3fbde072e907da1aa5b2552b37e11a56068c11bcb6330495c05bfe7"
     },
     "imagens/comum-237.webp": {
       "bytes": 103050,
@@ -2171,8 +2171,8 @@
       "sha256": "33b16d3038cf1e5e0b1a0f7e004498bc12f79356ecf61c490aac51875bfeeff6"
     },
     "imagens/comum-239-catolico.webp": {
-      "bytes": 137530,
-      "sha256": "a7170c8f81cb198eb763fe389d128a0cc8e9f4386ab7088e4e526c96a12cda4e"
+      "bytes": 145754,
+      "sha256": "e1e93ecbd74fc73c7258d0f97774aecfa727551fd6c71ce48fa81088ddfbaf81"
     },
     "imagens/comum-239.webp": {
       "bytes": 93314,
@@ -2187,24 +2187,24 @@
       "sha256": "12856e0aff40c4a822ecea1e82809d26bc3aec7f27c81a9d0c25e61c827718be"
     },
     "imagens/comum-241-catolico.webp": {
-      "bytes": 113932,
-      "sha256": "41d6b47cb89921fb20a4f6d8efde6bef6c715cfb3d71d04b13f3246e64218536"
+      "bytes": 115638,
+      "sha256": "9007bf77c92c079d076192d95cb3901531f22e543de72217d095e1cf67039951"
     },
     "imagens/comum-241.webp": {
       "bytes": 68548,
       "sha256": "d06de59a1a9fd5a189213d2bd0fd75bf3d3ea79dc2d53759e01f5db54533d709"
     },
     "imagens/comum-242-catolico.webp": {
-      "bytes": 104356,
-      "sha256": "c0ddfcb3d2442f2196e76e55be31c25e61eb460ed0da19555e24a015b3dc5e84"
+      "bytes": 104100,
+      "sha256": "6f14bb014481d49351bbb046b606f44aba464ed8549a17c854fad394dd3060e4"
     },
     "imagens/comum-242.webp": {
       "bytes": 95652,
       "sha256": "bfab4d4a94994e06f65ca96dcb663dd4e6852209f9febc68c4a2b79d61f3db64"
     },
     "imagens/comum-243-catolico.webp": {
-      "bytes": 120922,
-      "sha256": "7ecab594c92a23537bf3006f5e5e46ac8e10cc7dead941bb81ef7d7d1b264b80"
+      "bytes": 113508,
+      "sha256": "5f6e97f9ce9a4d791e946bc85da5e8faa62c3745f2256a3fa2a7005774481025"
     },
     "imagens/comum-243.webp": {
       "bytes": 94736,
@@ -2475,32 +2475,32 @@
       "sha256": "f0ba8d4799c2d2c050ee4ac1351cd4bbade855e9f78d1b7ff7123c1df12401d4"
     },
     "imagens/pascoa-014-catolico.webp": {
-      "bytes": 121014,
-      "sha256": "42e37634726e11782c90e89cf0c20b4ba22ce909ab31c0aed36f95d10498a4cb"
+      "bytes": 146916,
+      "sha256": "34446a5d8c7fc17d8726838c7fe53220b8c6e3987e4cbd173013b0397d2980f3"
     },
     "imagens/pascoa-014.webp": {
       "bytes": 101882,
       "sha256": "f2ea2e4e793a48ec15c1348284cecd6ddae5bfe2bbb61336ebe0a55383592fff"
     },
     "imagens/pascoa-015-catolico.webp": {
-      "bytes": 116420,
-      "sha256": "7f64a7e1acd62c055c8f2a8d05c933a2d93adfb564475b240858f128961e74fb"
+      "bytes": 203868,
+      "sha256": "3ee9a929a460f79ab1cae6e1237f185f6787a3fe8a62dad0ef82bf3b6c93ca40"
     },
     "imagens/pascoa-015.webp": {
       "bytes": 101788,
       "sha256": "e31ea4d3207fd0ef4399ea9658cf468a6ee7b361b6ed35ab922f2ea8739c8545"
     },
     "imagens/pascoa-016-catolico.webp": {
-      "bytes": 113490,
-      "sha256": "0bd3063b48e0f2008f0da991aab18045d2ac70f613f04f65819000237150d2ff"
+      "bytes": 121052,
+      "sha256": "8cf42f29ee630b6143cdd0fdfe6d84503844cb904b0a13d4b7f6362060e9f978"
     },
     "imagens/pascoa-016.webp": {
       "bytes": 76056,
       "sha256": "98e8e75ee234f4956812e6593afd1877834c8805086fdd07e3eff3c6999e2957"
     },
     "imagens/pascoa-017-catolico.webp": {
-      "bytes": 114696,
-      "sha256": "e7c8f2b7b03355634c4be85dc77e89a994a6804bf0b282cfea637276cc5fa2ef"
+      "bytes": 101762,
+      "sha256": "ed1a00ff2c6f4d88994113beed3406f992759149cfd93775d778323de72d0b4b"
     },
     "imagens/pascoa-017.webp": {
       "bytes": 77042,
@@ -2515,16 +2515,16 @@
       "sha256": "f8092ea52b220a2910491987b07e103b44178f865309884f5b4c590def5af9b2"
     },
     "imagens/pascoa-019-catolico.webp": {
-      "bytes": 120560,
-      "sha256": "8665b61e2fa9dc02f323c45141bb38ee1bfe816cd41fe675e1bf22ce1c276bd1"
+      "bytes": 122684,
+      "sha256": "38bca64780f72193b8621e6b602b878106065c51041632cb67f07a8603ac84a3"
     },
     "imagens/pascoa-019.webp": {
       "bytes": 85954,
       "sha256": "f175433922aea30487aa87c387135c87ff1632ca8e0622fb8562e85b6b2a71ed"
     },
     "imagens/pascoa-020-catolico.webp": {
-      "bytes": 112662,
-      "sha256": "c935b20dcc565beae5282633dba0fc605bdb0686c20c73e123ea220e2c4803db"
+      "bytes": 114290,
+      "sha256": "0f9f780dfcec6f0b715a21aa1141058e764e776d8db2e2a2e3d1ead71b55f35b"
     },
     "imagens/pascoa-020.webp": {
       "bytes": 83030,
@@ -2539,8 +2539,8 @@
       "sha256": "041d039aaca46d9b42a86327897910ec18cef5e009cf95992699a924330aa06e"
     },
     "imagens/pascoa-022-catolico.webp": {
-      "bytes": 117014,
-      "sha256": "a0859bd9e126357ec7343f386d64369a77c6eedb8bc352f1503e25515cfdc967"
+      "bytes": 111490,
+      "sha256": "72453acb9c19f3167e8466bd5adf61d13b06731bfa3ef8e52937e6677b5c725d"
     },
     "imagens/pascoa-022.webp": {
       "bytes": 78348,
@@ -2555,8 +2555,8 @@
       "sha256": "7eb95492cd8846239ef5ec68d434bdf0b463d033936056cd6fd2e215abcad83e"
     },
     "imagens/pascoa-024-catolico.webp": {
-      "bytes": 104464,
-      "sha256": "b187032ea521a7f4f09f81c842470e07582cb6e1834d5596a6e2db519d94a75c"
+      "bytes": 105032,
+      "sha256": "42cb5b4466ccf68e69b513446c25ca73c0758d07689dbf6773da411d8e9b29a3"
     },
     "imagens/pascoa-024.webp": {
       "bytes": 67448,
@@ -2579,40 +2579,40 @@
       "sha256": "f48285d6fa55c3f8b36aa6c2322fa67f90378223866caa359309adb509886619"
     },
     "imagens/pascoa-027-catolico.webp": {
-      "bytes": 119654,
-      "sha256": "534e589bbc126104988d155724ddfdc4bbbcdfe6dd1b819ac03dd9e741e1cd47"
+      "bytes": 122806,
+      "sha256": "401fd0409e1cd3fb2afedec94409a1c16d8c3348e7cbaab2bd2ca5986ab43994"
     },
     "imagens/pascoa-027.webp": {
       "bytes": 91784,
       "sha256": "22d46904f539990e453e61225b5afa11fd32c929bc72eca658bd481cd1094068"
     },
     "imagens/pascoa-028-catolico.webp": {
-      "bytes": 93740,
-      "sha256": "43b68e84c1cc543d4347c80fa3efec2c82ff2eb2acbd31c403598bcfb7daf117"
+      "bytes": 110836,
+      "sha256": "a7b9c7118778132d904cffe540101018db80ac127ea385919c445dae5154f7e9"
     },
     "imagens/pascoa-028.webp": {
       "bytes": 95614,
       "sha256": "b1251708d0216186fa81042d8d6b268899f924dfcd8773b4483c8189e91073b4"
     },
     "imagens/pascoa-029-catolico.webp": {
-      "bytes": 229770,
-      "sha256": "c21aa81a7f64890cde6acbcf61cee8eb56945927917360a3cd0b354cdb58578a"
+      "bytes": 229070,
+      "sha256": "0cfbb7040a6e16d239b75f9a08764a6bd676282b3ff5a7829254f44213714c53"
     },
     "imagens/pascoa-029.webp": {
       "bytes": 107280,
       "sha256": "7d16c83fd908bbe90520db002a0c76c1824955da851ba77c60f3570e30793b27"
     },
     "imagens/pascoa-030-catolico.webp": {
-      "bytes": 119790,
-      "sha256": "4d1c43a7adc9efea0ee37cf23d6793b4ef09dccad9d7db5ee70030993370f74c"
+      "bytes": 115260,
+      "sha256": "b0c8b83b35ac2aa8528a10d17fcb90faf7d8ea2a36a79cc7fccb2c6a3a8f0282"
     },
     "imagens/pascoa-030.webp": {
       "bytes": 95256,
       "sha256": "a63d7f0469cf115b30cd59f8ce0e0786ca0b9e8b3262bbc018fe9191f0febee9"
     },
     "imagens/pascoa-031-catolico.webp": {
-      "bytes": 116336,
-      "sha256": "d9b209b43249d29538a777487f6016f49ad6ccdfea6bce52c81aa7007a32147d"
+      "bytes": 118096,
+      "sha256": "756830dbaf0e81267668ce9948967fc7a2c3357596fef1b07baef99014ff201d"
     },
     "imagens/pascoa-031.webp": {
       "bytes": 99114,
@@ -2659,24 +2659,24 @@
       "sha256": "cd518cd872f11b43973af0fe534e08c3300f6e3e9b874cefc6714ba57aa7bdb1"
     },
     "imagens/pascoa-037-catolico.webp": {
-      "bytes": 107376,
-      "sha256": "5b8ccdb936d8fca9ad1678776ecfffe7f5096f75fc5b831581816d34eedafba3"
+      "bytes": 140992,
+      "sha256": "61eb68804beb668cf290cc906df08e40df5c481bed61a092fb030311e22b9785"
     },
     "imagens/pascoa-037.webp": {
       "bytes": 99206,
       "sha256": "374aa1c47f0994b53aad568dd815a71b7c8d8db929e0cdfa3fcb4d21d7db08e0"
     },
     "imagens/pascoa-038-catolico.webp": {
-      "bytes": 189850,
-      "sha256": "b6eae4d871809d95d0f21cbb69f30befd23a10263be3d22a59d2153b65a96fc8"
+      "bytes": 158436,
+      "sha256": "8ce080996e2820465affea17c1cef70d0473ea2867952ead3ef8cd80a2a83921"
     },
     "imagens/pascoa-038.webp": {
       "bytes": 89290,
       "sha256": "134e53c45b36aa2a760e38eb5a7649b6bbfbc2d93d68396be225600dfc2ed22e"
     },
     "imagens/pascoa-039-catolico.webp": {
-      "bytes": 106630,
-      "sha256": "5e61e4a35b68e2a686c30356c160eac82e70a8426fb22638d428617c9a3f36ef"
+      "bytes": 120452,
+      "sha256": "bd730d60f981717212ccd0ef3136bff951732e6d2014e1f813812a1c2edde017"
     },
     "imagens/pascoa-039.webp": {
       "bytes": 89274,
@@ -2699,32 +2699,32 @@
       "sha256": "d7166c1472f6f05d6806a991271e21040bc0e42537349e60d96d4f6d94ce7f25"
     },
     "imagens/pascoa-042-catolico.webp": {
-      "bytes": 118728,
-      "sha256": "2dcaafdf39778644c3dad40a11fa706de121f44df8f3e6388e17a7209e6c050a"
+      "bytes": 114294,
+      "sha256": "d358a1408173a83d4ae7c03bdaa60aa0ff8e511810a107bb7c13f2cec2b08a3e"
     },
     "imagens/pascoa-042.webp": {
       "bytes": 69156,
       "sha256": "229675853bc05d86d1af2f4b69796848dec25d48c2ff49c00c002d4428f5df52"
     },
     "imagens/pascoa-043-catolico.webp": {
-      "bytes": 117396,
-      "sha256": "758600a47ef9aa2f05ea5451ae85786c3b26c2ff9c6e5789d2f5165c1229f4c7"
+      "bytes": 109850,
+      "sha256": "e8555d60f30212716d7dcafdd7619c951442b965d737115da87eac314076187f"
     },
     "imagens/pascoa-043.webp": {
       "bytes": 87860,
       "sha256": "6a6cecd56509788c9fb474a872da9f7249276002f0771278235c2a6eb60b3763"
     },
     "imagens/pascoa-044-catolico.webp": {
-      "bytes": 169536,
-      "sha256": "90bc3d5e8fcc4ec3d1e0e21d0e60618d988f075782f05821ae00ba94da8b59b3"
+      "bytes": 173438,
+      "sha256": "8b2280f029c18f4c31fe585b734d9ac9c2683a0bac345357223743c3a4d3304f"
     },
     "imagens/pascoa-044.webp": {
       "bytes": 75794,
       "sha256": "1ec7f432bc44fb47e6fa05f9e9a33e25450839833853e31493a87da113f7759d"
     },
     "imagens/pascoa-045-catolico.webp": {
-      "bytes": 137530,
-      "sha256": "a7170c8f81cb198eb763fe389d128a0cc8e9f4386ab7088e4e526c96a12cda4e"
+      "bytes": 122350,
+      "sha256": "743dacccd2cf05fe99069ffe1d617d5e64c0514228f3908a5681db24ab5dc275"
     },
     "imagens/pascoa-045.webp": {
       "bytes": 106974,
@@ -2747,24 +2747,24 @@
       "sha256": "372c110374757c91aea3f77b23c1278117b2602557e571ad96665f1af7062d65"
     },
     "imagens/pascoa-048-catolico.webp": {
-      "bytes": 113076,
-      "sha256": "b1d480bf16df1e02893f5d3e8d598e39e6d687c0302c74f5fd9d03e8d7bc9dd9"
+      "bytes": 107992,
+      "sha256": "9664499d4b9f10df09771d88afbc67c166d6570b0e9078fac12dc72112e97184"
     },
     "imagens/pascoa-048.webp": {
       "bytes": 111548,
       "sha256": "7c51bc1995fb689ea3ce1415f30ab6fae500d0a7a20a35b4be4968f3afadcb60"
     },
     "imagens/pascoa-049-catolico.webp": {
-      "bytes": 132406,
-      "sha256": "ac408a25304e6dc63ec13b4e246345ae93a4e1579364abd194b0e54409396ac8"
+      "bytes": 167390,
+      "sha256": "489b2a1a4e723be8e87ad5298bede0446a0e504772b70c1f86b5358ea76fa738"
     },
     "imagens/pascoa-049.webp": {
       "bytes": 104500,
       "sha256": "d281945ac08053877037f4791fa8d93e0b588dc2a1090bd87095232800a62d2f"
     },
     "imagens/pascoa-050-catolico.webp": {
-      "bytes": 100266,
-      "sha256": "923c20e8eb1a4d027707cb63459be8ce78dd654cb63e6ac9b25dcbee7e4a7eb8"
+      "bytes": 103530,
+      "sha256": "3f8b464f6c464ebd5961475c10829dec1dfe67542bff2c38571038cce2145aa1"
     },
     "imagens/pascoa-050.webp": {
       "bytes": 83976,
@@ -2803,8 +2803,8 @@
       "sha256": "218ea361af37265e4f6692c225e12945a852d85ac80433f0c4bd9a620500e36d"
     },
     "imagens/quaresma-005-catolico.webp": {
-      "bytes": 94644,
-      "sha256": "378b949a38ecc1e7ff41498f60e2949b93fcb69d1df31c8f1005e756702299f3"
+      "bytes": 99964,
+      "sha256": "803e4b0a3193ba7cf9515688990cb2142f2232467394af920ceb7d23f172d149"
     },
     "imagens/quaresma-005.webp": {
       "bytes": 89658,
@@ -2859,8 +2859,8 @@
       "sha256": "406ce0e881b37fc319bfd2f4ff94a01dbd31f2ed42b130701d13fc52a999321f"
     },
     "imagens/quaresma-012-catolico.webp": {
-      "bytes": 136384,
-      "sha256": "930b0378e8a1b03eb22b1f1c2678ce605520d953946a3305d26affc574627a71"
+      "bytes": 136250,
+      "sha256": "656793d729cf3eb171ed63c480e77fe3fe48e408b03971506030ecd4185bf8a2"
     },
     "imagens/quaresma-012.webp": {
       "bytes": 105838,
@@ -2875,16 +2875,16 @@
       "sha256": "c63895f38f0c3381b10fcf07f94f7da0cac8dd66ff5f49720b34b251ca462b65"
     },
     "imagens/quaresma-014-catolico.webp": {
-      "bytes": 99238,
-      "sha256": "fb85ae73677c0848058c7b31f6641c970517e15aedca16ffbf6441b8b351ff9e"
+      "bytes": 101056,
+      "sha256": "ef965c3c5dda2dd4aa0e0b6bb0bf91e07615683c770b01258ba1553d70d51165"
     },
     "imagens/quaresma-014.webp": {
       "bytes": 67250,
       "sha256": "5ebe6ccf28d2ffcd976d22078c98489a7aac5b133148debd6b9fb3708e4a417a"
     },
     "imagens/quaresma-015-catolico.webp": {
-      "bytes": 153584,
-      "sha256": "c1bb988877618aba6d887df2e15b23f02ae0b6646058f7c9beb2158995a7f27d"
+      "bytes": 152670,
+      "sha256": "53203742a113d5f3aca9fe972ce18af555f73eb901109bff4ed169772715800b"
     },
     "imagens/quaresma-015.webp": {
       "bytes": 111336,
@@ -2931,16 +2931,16 @@
       "sha256": "fe2d96677777482e8003ae0c4f98974565f8549276fcdd1356284c6cde916a8a"
     },
     "imagens/quaresma-021-catolico.webp": {
-      "bytes": 90112,
-      "sha256": "1ccc6cbcab67640f35168b82d6672baff109d906e6d1ce8cf3fe85fc1edab6e3"
+      "bytes": 79116,
+      "sha256": "8e41414a849a6487bf1f6fc374b18f4c617821a4a1357f04e1a824fb82ae0c13"
     },
     "imagens/quaresma-021.webp": {
       "bytes": 99936,
       "sha256": "2cb82ac30413b29c56943fb570cb8bd433cfca0b8f4e82e07b2380ba9611f87b"
     },
     "imagens/quaresma-022-catolico.webp": {
-      "bytes": 93632,
-      "sha256": "39afa71efea70803ae4b422c5695c55ad1a7c65b626cf4fd4badbf3a86bd432b"
+      "bytes": 116084,
+      "sha256": "c8cdedaba0acedc672eec6cc81fd98eb6cfa7959e84bc0ab1bd03adcf7df5cea"
     },
     "imagens/quaresma-022.webp": {
       "bytes": 84818,
@@ -2971,8 +2971,8 @@
       "sha256": "c4bdf89de0803ca01532acb01b537d92801602632a86ca889edc9873d63e51d7"
     },
     "imagens/quaresma-026-catolico.webp": {
-      "bytes": 82322,
-      "sha256": "b28f4608e9cf8d2fd71023a451792781350f4d5ebb79065fd2b41e4b41fd1211"
+      "bytes": 90540,
+      "sha256": "2be8e351f3b5eb5019bc16dbd591a0e5986c63cadccaf94cf1b399cbfe160fc5"
     },
     "imagens/quaresma-026.webp": {
       "bytes": 66894,
@@ -2995,24 +2995,24 @@
       "sha256": "e7f277405e20bf01f7319f231c2b028bb9212f7f79989500ca6070330ade35d0"
     },
     "imagens/quaresma-029-catolico.webp": {
-      "bytes": 112134,
-      "sha256": "45053cfe603216792933c578e74b85efd279215d17896a510b7c043b2360e966"
+      "bytes": 122702,
+      "sha256": "c6b777894a1f32ca234926010c3d2d7ea7f9a43c0755430bf803a29513bff9c0"
     },
     "imagens/quaresma-029.webp": {
       "bytes": 91806,
       "sha256": "65ca976d641ad5dc503b2cb73942923f6fe75fa20b95c49bee7c1a6c84b6be7e"
     },
     "imagens/quaresma-030-catolico.webp": {
-      "bytes": 117002,
-      "sha256": "6ecd1c5690ffae91a35df0e116a9cff2bc8938b5ff3f93f8f81af7e3d6fdc944"
+      "bytes": 115344,
+      "sha256": "a97c3d0ae57510c09e891c504dfd63897967cbfbc76137a211fb6a16ef8e2379"
     },
     "imagens/quaresma-030.webp": {
       "bytes": 102800,
       "sha256": "ad1872ca83a017d139d5dce2fa629cb31f42b78d0351648c10c15722f60467d2"
     },
     "imagens/quaresma-031-catolico.webp": {
-      "bytes": 106366,
-      "sha256": "d5ffad8b9f1784d3ae8e1c4b72dbd3d3e5ecd29ea372cca167fd11a1f4a78666"
+      "bytes": 136702,
+      "sha256": "fc9b7631fd0898d19317116bbb797f671c12ac8bec7970133e21391dcff5b28b"
     },
     "imagens/quaresma-031.webp": {
       "bytes": 102514,
@@ -3027,16 +3027,16 @@
       "sha256": "aa3317e684e1c66c9ed622c0e53933219fe903a02275c89c744d593b452d1090"
     },
     "imagens/quaresma-033-catolico.webp": {
-      "bytes": 67528,
-      "sha256": "d7a335e326763fd5daaa06809bfb03b16d9485d597b6c0142f3d5e850125c3ca"
+      "bytes": 82216,
+      "sha256": "b4f725069ae55a18c3782af80f4f19f241a1dd526721c117ea15394b6f6ff35b"
     },
     "imagens/quaresma-033.webp": {
       "bytes": 86530,
       "sha256": "4b67c3ea895df86837576da4997d6efb0803a2a7413d200f74287ee9e1a1b5ad"
     },
     "imagens/quaresma-034-catolico.webp": {
-      "bytes": 121330,
-      "sha256": "362e58f6c69b440dc3b055835325aee283a8494b11732f958e2b19181a964cff"
+      "bytes": 120132,
+      "sha256": "4d25cce662d7d259967504853d4793146242ff07582187ab1638736056d02525"
     },
     "imagens/quaresma-034.webp": {
       "bytes": 91644,
@@ -3107,16 +3107,16 @@
       "sha256": "e582926921525928d60b6a8de6295679cccaac71a6fc44d2e0ba74a8e82457b1"
     },
     "imagens/quaresma-043-catolico.webp": {
-      "bytes": 108040,
-      "sha256": "b281d84838411fca7bb186c30c1f18d2d12a0858110eb76f31fd4c92db171c7f"
+      "bytes": 79714,
+      "sha256": "6531614efef264da9471616d2df27e0783fb2e8de2dba6f9455f4eb4858954b0"
     },
     "imagens/quaresma-043.webp": {
       "bytes": 89230,
       "sha256": "cd002af2cabd8a7ccf92a21b5370f53f655bd170f77ecb9cc91f3ff51fcb81cc"
     },
     "imagens/quaresma-044-catolico.webp": {
-      "bytes": 103414,
-      "sha256": "042dcc20163cb0edb9b94632b76f22df2dce8eea22797feebafd5c5889d9f5f3"
+      "bytes": 93482,
+      "sha256": "95ee8a969463c2de749db98d58e766c4fe534fe4928faa06ef452da62fb7e089"
     },
     "imagens/quaresma-044.webp": {
       "bytes": 109294,
