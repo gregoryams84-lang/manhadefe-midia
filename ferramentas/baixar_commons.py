@@ -177,8 +177,12 @@ def main():
         except Exception as e:  # noqa: BLE001
             erros += 1
             print(f'    ERRO {e}')
-        json.dump(creditos, open(creditos_path, 'w', encoding='utf-8'),
-                  ensure_ascii=False, indent=2, sort_keys=True)
+        # newline='
+': no Windows o modo texto gravaria CRLF e o arquivo
+        # inteiro apareceria como alterado a cada rodada (.gitattributes: * -text).
+        with open(creditos_path, 'w', encoding='utf-8', newline='
+') as f:
+            json.dump(creditos, f, ensure_ascii=False, indent=2, sort_keys=True)
         time.sleep(args.pausa)
     print(f'\nbaixadas {feitos} - ja existiam {pulados} - erros {erros}')
     return 1 if erros else 0
