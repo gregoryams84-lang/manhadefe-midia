@@ -71,6 +71,14 @@
     "titulo": "A adoração dos pastores",
     "url": "https://commons.wikimedia.org/wiki/File:The_Adoration_of_the_Shepherds_by_Guido_Reni.jpg"
   },
+  "santos/natividade-de-sao-joao-batista.webp": {
+    "arquivo": "File:Nativity and Naming of St. John the Baptist (SM 878a).png",
+    "artista": "Dutch Master around 1510",
+    "data": "circa 1510",
+    "licenca": "PDM-owner",
+    "titulo": "O nascimento de São João Batista e a escolha do nome (mestre holandês, c. 1510, a partir de Rogier van der Weyden)",
+    "url": "https://commons.wikimedia.org/wiki/File:Nativity_and_Naming_of_St._John_the_Baptist_(SM_878a).png"
+  },
   "santos/nossa-senhora-auxiliadora.webp": {
     "arquivo": "File:María Auxiliadora Entera.jpg",
     "artista": "Tommaso Andrea Lorenzone (1824-1902), at the request of Don Bosco.",
@@ -102,6 +110,14 @@
     "licenca": "Public domain",
     "titulo": "Nossa Senhora do Ó (Madonna del Parto)",
     "url": "https://commons.wikimedia.org/wiki/File:Piero_della_Francesca_-_Madonna_del_Parto_-_WGA17613.jpg"
+  },
+  "santos/nossa-senhora-do-perpetuo-socorro.webp": {
+    "arquivo": "File:Andrea Rico di Candia - Virgin of the Passion - y33 - Princeton University Art Museum.jpg",
+    "artista": "Andreas Ritzos",
+    "data": "",
+    "licenca": "Public domain",
+    "titulo": "A Virgem da Paixão, de Andreas Ritzos (século XV), o tipo do ícone de Nossa Senhora do Perpétuo Socorro",
+    "url": "https://commons.wikimedia.org/wiki/File:Andrea_Rico_di_Candia_-_Virgin_of_the_Passion_-_y33_-_Princeton_University_Art_Museum.jpg"
   },
   "santos/nossa-senhora-do-rosario.webp": {
     "arquivo": "File:Murillo, Bartolomé Estéban - The Madonna of the Rosary - Google Art Project.jpg",
@@ -239,6 +255,14 @@
     "titulo": "Madre Francisca Xavier Cabrini (fotografia de c. 1900)",
     "url": "https://commons.wikimedia.org/wiki/File:Mother_Cabrini.jpg"
   },
+  "santos/santa-germana-cousin.webp": {
+    "arquivo": "File:Giuseppe Cades Scene from the Life of Saint Germaine Cousin.jpg",
+    "artista": "Giuseppe Cades",
+    "data": "before 1799",
+    "licenca": "Public domain",
+    "titulo": "Cena da vida de Santa Germana Cousin, de Giuseppe Cades (antes de 1799)",
+    "url": "https://commons.wikimedia.org/wiki/File:Giuseppe_Cades_Scene_from_the_Life_of_Saint_Germaine_Cousin.jpg"
+  },
   "santos/santa-gertrudes.webp": {
     "arquivo": "File:Miguel Cabrera - Saint Gertrude (Santa Gertrudis) - 2006.37 - Dallas Museum of Art.jpg",
     "artista": "Miguel Cabrera",
@@ -295,6 +319,14 @@
     "titulo": "Santa Luísa de Marillac (retrato anônimo de c. 1660, Museu Carnavalet)",
     "url": "https://commons.wikimedia.org/wiki/File:Anonymous_-_Portrait_de_Louise_Legras,_n%C3%A9e_de_Marillac_(1591-1622)._-_P849_-_Mus%C3%A9e_Carnavalet.jpg"
   },
+  "santos/santa-lutgarda.webp": {
+    "arquivo": "File:Lutgardis van Tongeren (tg-uact-876).jpg",
+    "artista": "Cornelis Galle the Elder",
+    "data": "1624",
+    "licenca": "CC0",
+    "titulo": "Santa Lutgarda abraça o Crucificado (gravura de Cornelis Galle, 1624)",
+    "url": "https://commons.wikimedia.org/wiki/File:Lutgardis_van_Tongeren_(tg-uact-876).jpg"
+  },
   "santos/santa-luzia.webp": {
     "arquivo": "File:Francisco de Zurbarán, Saint Lucy, c. 1625-1630, NGA 12209.jpg",
     "artista": "Francisco de Zurbarán",
@@ -302,14 +334,6 @@
     "licenca": "CC0",
     "titulo": "Santa Luzia",
     "url": "https://commons.wikimedia.org/wiki/File:Francisco_de_Zurbar%C3%A1n,_Saint_Lucy,_c._1625-1630,_NGA_12209.jpg"
-  },
-  "santos/santa-rita-de-cassia.webp": {
-    "arquivo": "File:'Saint Rita of Cascia' by Antonio de Torres, c. 1720.JPG",
-    "artista": "Antonio de Torres",
-    "data": "circa 1720",
-    "licenca": "Public domain",
-    "titulo": "Santa Rita de Cássia",
-    "url": "https://commons.wikimedia.org/wiki/File:%27Saint_Rita_of_Cascia%27_by_Antonio_de_Torres,_c._1720.JPG"
   },
   "santos/santa-sincletica.webp": {
     "arquivo": "File:Righteous Syncletica of Alexandria (Menologion of Basil II).jpg",
@@ -423,6 +447,14 @@
     "titulo": "Santo Antão, abade, de Juan Rexach (Museu do Prado, século XV)",
     "url": "https://commons.wikimedia.org/wiki/File:San_Antonio_Abad,_de_Juan_Reixac_(Museo_del_Prado).jpg"
   },
+  "santos/santo-antonio-de-padua.webp": {
+    "arquivo": "File:San Antonio de Padua con Niño (Murillo).jpg",
+    "artista": "Bartolomé Esteban Murillo",
+    "data": "between circa 1668 and circa 1669",
+    "licenca": "Public domain",
+    "titulo": "Santo Antônio de Pádua com o Menino Jesus",
+    "url": "https://commons.wikimedia.org/wiki/File:San_Antonio_de_Padua_con_Ni%C3%B1o_(Murillo).jpg"
+  },
   "santos/santo-antonio-maria-claret.webp": {
     "arquivo": "File:Antonio María Claret, c.1860.jpg",
     "artista": "Cesc2003",
@@ -454,6 +486,22 @@
     "licenca": "Public domain",
     "titulo": "Santo Edmundo, rei, coroado pelos anjos (iluminura inglesa do século XII)",
     "url": "https://commons.wikimedia.org/wiki/File:Stedmundcrownedbyangelspierpontms736f42.jpg"
+  },
+  "santos/santo-efrem.webp": {
+    "arquivo": "File:Hosios Luka - Ephraim.jpg",
+    "artista": "AnonymousUnknown author",
+    "data": "11th century",
+    "licenca": "Public domain",
+    "titulo": "Santo Efrém, o Sírio (mosaico do mosteiro de Hósios Lukás, século XI)",
+    "url": "https://commons.wikimedia.org/wiki/File:Hosios_Luka_-_Ephraim.jpg"
+  },
+  "santos/santo-eliseu.webp": {
+    "arquivo": "File:0169Hb. Prophet Elisha, 2nd half of the 19th century.jpg",
+    "artista": "Unknown authorUnknown author",
+    "data": "2-я половина XIX",
+    "licenca": "Public domain",
+    "titulo": "O profeta Eliseu (ícone russo da segunda metade do século XIX)",
+    "url": "https://commons.wikimedia.org/wiki/File:0169Hb._Prophet_Elisha,_2nd_half_of_the_19th_century.jpg"
   },
   "santos/santo-estanislau.webp": {
     "arquivo": "File:Sanctus Stanislaus.JPG",
@@ -527,6 +575,14 @@
     "titulo": "Santo Inácio de Antioquia (afresco bizantino do mosteiro de Hósios Lukás, século XI)",
     "url": "https://commons.wikimedia.org/wiki/File:Hosios_Loukas_(south_west_chapel,_south_side)_-_Ignatios.jpg"
   },
+  "santos/santo-ireneu.webp": {
+    "arquivo": "File:H. Ireneüs van Lyon, RP-P-1907-47.jpg",
+    "artista": "Rijksmuseum",
+    "data": "between 1600 and 1699",
+    "licenca": "CC0",
+    "titulo": "Santo Ireneu, bispo de Lyon (gravura do século XVII)",
+    "url": "https://commons.wikimedia.org/wiki/File:H._Irene%C3%BCs_van_Lyon,_RP-P-1907-47.jpg"
+  },
   "santos/santo-isidoro-lavrador.webp": {
     "arquivo": "File:'Saint Isidore the Farmer' by Donaciano Aguilar, oil in tin retablo, 1841, El Paso Museum of Art.JPG",
     "artista": "Donaciano Aguilar",
@@ -583,6 +639,14 @@
     "titulo": "O triunfo dos Inocentes (detalhe)",
     "url": "https://commons.wikimedia.org/wiki/File:William_Holman_Hunt_-_The_Triumph_of_the_Innocents_-_1870-1903.jpg"
   },
+  "santos/santos-joao-fisher-e-tomas-more.webp": {
+    "arquivo": "File:Hans Holbein, the Younger - Sir Thomas More - Google Art Project.jpg",
+    "artista": "Hans Holbein the Younger",
+    "data": "1527",
+    "licenca": "Public domain",
+    "titulo": "São Tomás More, de Hans Holbein, o Jovem (1527); São João Fisher é celebrado no mesmo dia",
+    "url": "https://commons.wikimedia.org/wiki/File:Hans_Holbein,_the_Younger_-_Sir_Thomas_More_-_Google_Art_Project.jpg"
+  },
   "santos/santos-reis-magos.webp": {
     "arquivo": "File:Adoration of the Magi Spedale degli Innocenti.jpg",
     "artista": "Domenico Ghirlandaio",
@@ -590,6 +654,14 @@
     "licenca": "Public domain",
     "titulo": "A adoração dos Magos (Hospital dos Inocentes, Florença)",
     "url": "https://commons.wikimedia.org/wiki/File:Adoration_of_the_Magi_Spedale_degli_Innocenti.jpg"
+  },
+  "santos/sao-barnabe.webp": {
+    "arquivo": "File:Botticelli-Pala di San Barnaba-particolare.jpg",
+    "artista": "Sandro Botticelli",
+    "data": "1487",
+    "licenca": "Public domain",
+    "titulo": "São Barnabé (detalhe do retábulo de São Barnabé, de Botticelli, 1487)",
+    "url": "https://commons.wikimedia.org/wiki/File:Botticelli-Pala_di_San_Barnaba-particolare.jpg"
   },
   "santos/sao-basilio-magno.webp": {
     "arquivo": "File:Francisco de Herrera (I) - St Basil Dictating His Doctrine - WGA11378.jpg",
@@ -622,6 +694,14 @@
     "licenca": "Public domain",
     "titulo": "São Bernardino de Sena",
     "url": "https://commons.wikimedia.org/wiki/File:Saint_Bernardino_of_Siena.PNG"
+  },
+  "santos/sao-bonifacio.webp": {
+    "arquivo": "File:De heilige Bonifatius Prelaten en bisschoppen van Utrecht (serietitel), RP-P-BI-1286.jpg",
+    "artista": "Rijksmuseum",
+    "data": "in of na 1626",
+    "licenca": "CC0",
+    "titulo": "São Bonifácio (gravura de Cornelis Bloemaert, c. 1626)",
+    "url": "https://commons.wikimedia.org/wiki/File:De_heilige_Bonifatius_Prelaten_en_bisschoppen_van_Utrecht_(serietitel),_RP-P-BI-1286.jpg"
   },
   "santos/sao-bras.webp": {
     "arquivo": "File:Pere Fernández - Saint Blaise - Google Art Project.jpg",
@@ -807,6 +887,14 @@
     "titulo": "São Gerásimo do Jordão com o leão (ícone russo do século XVI)",
     "url": "https://commons.wikimedia.org/wiki/File:Saint_Gerasimus_of_Jordan_with_a_Lion._Icon._Russia,_16th_century.jpg"
   },
+  "santos/sao-gregorio-barbarigo.webp": {
+    "arquivo": "File:San Gregorio Giovanni Gaspare Barbarigo.png",
+    "artista": "Unidentified painter",
+    "data": "circa 1687",
+    "licenca": "Public domain",
+    "titulo": "São Gregório Barbarigo (retrato anônimo de c. 1687)",
+    "url": "https://commons.wikimedia.org/wiki/File:San_Gregorio_Giovanni_Gaspare_Barbarigo.png"
+  },
   "santos/sao-gregorio-de-nissa.webp": {
     "arquivo": "File:Hosios Loukas (nave, north-west conch) - Gregory of Nyssa - detail.jpg",
     "artista": "AnonymousUnknown author",
@@ -927,6 +1015,14 @@
     "titulo": "São José Allamano (fotografia anterior a 1926, autor desconhecido)",
     "url": "https://commons.wikimedia.org/wiki/File:Giuseppe_Allamano.jpg"
   },
+  "santos/sao-jose-de-anchieta.webp": {
+    "arquivo": "File:Benedito Calixto de Jesus - Retrato do Padre José de Anchieta, Acervo do Museu Paulista da USP.jpg",
+    "artista": "Benedito Calixto",
+    "data": "1902",
+    "licenca": "Public domain",
+    "titulo": "Retrato do padre José de Anchieta, de Benedito Calixto (1902, Museu Paulista)",
+    "url": "https://commons.wikimedia.org/wiki/File:Benedito_Calixto_de_Jesus_-_Retrato_do_Padre_Jos%C3%A9_de_Anchieta,_Acervo_do_Museu_Paulista_da_USP.jpg"
+  },
   "santos/sao-jose-operario.webp": {
     "arquivo": "File:Annunciation Triptych (Merode Altarpiece) MET DT7258.jpg",
     "artista": "Workshop of Robert Campin",
@@ -982,6 +1078,14 @@
     "licenca": "Public domain",
     "titulo": "São Lucas evangelista",
     "url": "https://commons.wikimedia.org/wiki/File:El_Greco_035.jpg"
+  },
+  "santos/sao-luis-gonzaga.webp": {
+    "arquivo": "File:The Vocation of Saint Aloysius (Luigi) Gonzaga MET DT1956.jpg",
+    "artista": "Guercino",
+    "data": "1650",
+    "licenca": "CC0",
+    "titulo": "A vocação de São Luís Gonzaga (detalhe)",
+    "url": "https://commons.wikimedia.org/wiki/File:The_Vocation_of_Saint_Aloysius_(Luigi)_Gonzaga_MET_DT1956.jpg"
   },
   "santos/sao-marcos-evangelista.webp": {
     "arquivo": "File:1448 Mantegna Der Evangelist Markus Städel Museum anagoria.jpg",
@@ -1087,6 +1191,14 @@
     "titulo": "São Pedro de Alcântara, de Luis Tristán (século XVII)",
     "url": "https://commons.wikimedia.org/wiki/File:San_Pedro_de_Alc%C3%A1ntara_(Museo_de_El_Greco,_Toledo).JPG"
   },
+  "santos/sao-pedro-e-sao-paulo.webp": {
+    "arquivo": "File:Guido Reni 044.jpg",
+    "artista": "Guido Reni",
+    "data": "circa 1605",
+    "licenca": "Public domain",
+    "titulo": "São Pedro e São Paulo",
+    "url": "https://commons.wikimedia.org/wiki/File:Guido_Reni_044.jpg"
+  },
   "santos/sao-pio-v.webp": {
     "arquivo": "File:El Greco 050.jpg",
     "artista": "El Greco",
@@ -1102,6 +1214,22 @@
     "licenca": "Public domain",
     "titulo": "São Policarpo de Esmirna (gravura de 1716)",
     "url": "https://commons.wikimedia.org/wiki/File:Apostolici-_or,_the_history_of_the_lives,_acts,_death,_and_martyrdoms_of_those_who_were_contemporary_with,_or_immediately_succeeded_the_Apostles_Fleuron_T126603-18.png"
+  },
+  "santos/sao-rainerio-de-pisa.webp": {
+    "arquivo": "File:'Saint Rainerius' by Cecco di Pietro.jpg",
+    "artista": "Cecco di Pietro",
+    "data": "",
+    "licenca": "Public domain",
+    "titulo": "São Rainério de Pisa, de Cecco di Pietro (século XIV)",
+    "url": "https://commons.wikimedia.org/wiki/File:%27Saint_Rainerius%27_by_Cecco_di_Pietro.jpg"
+  },
+  "santos/sao-romualdo.webp": {
+    "arquivo": "File:Fra Angelico (Fra Giovanni da Fiesole) - Saint Romuald - 62.9 - Minneapolis Institute of Arts.jpg",
+    "artista": "Fra Angelico",
+    "data": "circa 1440",
+    "licenca": "Public domain",
+    "titulo": "São Romualdo (do retábulo de São Marcos)",
+    "url": "https://commons.wikimedia.org/wiki/File:Fra_Angelico_(Fra_Giovanni_da_Fiesole)_-_Saint_Romuald_-_62.9_-_Minneapolis_Institute_of_Arts.jpg"
   },
   "santos/sao-ruperto-de-salzburgo.webp": {
     "arquivo": "File:Hallstatt kath. Kirche Knappenaltar Rupert und Bischof 01.jpg",

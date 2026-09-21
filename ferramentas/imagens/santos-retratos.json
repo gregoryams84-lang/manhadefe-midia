@@ -580,11 +580,6 @@
   "foco": 0.3,
   "titulo": "São Bernardino de Sena"
  },
- "santos/santa-rita-de-cassia.webp": {
-  "arquivo": "File:'Saint Rita of Cascia' by Antonio de Torres, c. 1720.JPG",
-  "foco": 0.6,
-  "titulo": "Santa Rita de Cássia"
- },
  "santos/nossa-senhora-auxiliadora.webp": {
   "arquivo": "File:María Auxiliadora Entera.jpg",
   "foco": 0.0,
@@ -626,6 +621,133 @@
    0.98
   ],
   "titulo": "A Visitação"
+ },
+ "santos/sao-bonifacio.webp": {
+  "arquivo": "File:De heilige Bonifatius Prelaten en bisschoppen van Utrecht (serietitel), RP-P-BI-1286.jpg",
+  "foco": 0.2,
+  "recorte": [
+   0.05,
+   0.05,
+   0.95,
+   0.85
+  ],
+  "titulo": "São Bonifácio (gravura de Cornelis Bloemaert, c. 1626)"
+ },
+ "santos/santo-efrem.webp": {
+  "arquivo": "File:Hosios Luka - Ephraim.jpg",
+  "foco": 0.3,
+  "titulo": "Santo Efrém, o Sírio (mosaico do mosteiro de Hósios Lukás, século XI)"
+ },
+ "santos/sao-jose-de-anchieta.webp": {
+  "arquivo": "File:Benedito Calixto de Jesus - Retrato do Padre José de Anchieta, Acervo do Museu Paulista da USP.jpg",
+  "foco": 0.1,
+  "titulo": "Retrato do padre José de Anchieta, de Benedito Calixto (1902, Museu Paulista)"
+ },
+ "santos/sao-barnabe.webp": {
+  "arquivo": "File:Botticelli-Pala di San Barnaba-particolare.jpg",
+  "foco": 0.05,
+  "titulo": "São Barnabé (detalhe do retábulo de São Barnabé, de Botticelli, 1487)"
+ },
+ "santos/santo-antonio-de-padua.webp": {
+  "arquivo": "File:San Antonio de Padua con Niño (Murillo).jpg",
+  "foco": 0.85,
+  "titulo": "Santo Antônio de Pádua com o Menino Jesus"
+ },
+ "santos/santo-eliseu.webp": {
+  "arquivo": "File:0169Hb. Prophet Elisha, 2nd half of the 19th century.jpg",
+  "foco": 0.3,
+  "recorte": [
+   0.2,
+   0.145,
+   0.8,
+   0.7
+  ],
+  "titulo": "O profeta Eliseu (ícone russo da segunda metade do século XIX)"
+ },
+ "santos/santa-germana-cousin.webp": {
+  "arquivo": "File:Giuseppe Cades Scene from the Life of Saint Germaine Cousin.jpg",
+  "foco": 0.4,
+  "recorte": [
+   0.05,
+   0.04,
+   0.95,
+   0.94
+  ],
+  "titulo": "Cena da vida de Santa Germana Cousin, de Giuseppe Cades (antes de 1799)"
+ },
+ "santos/santa-lutgarda.webp": {
+  "arquivo": "File:Lutgardis van Tongeren (tg-uact-876).jpg",
+  "foco": 0.4,
+  "recorte": [
+   0.12,
+   0.1,
+   0.88,
+   0.85
+  ],
+  "titulo": "Santa Lutgarda abraça o Crucificado (gravura de Cornelis Galle, 1624)"
+ },
+ "santos/sao-rainerio-de-pisa.webp": {
+  "arquivo": "File:'Saint Rainerius' by Cecco di Pietro.jpg",
+  "foco": 0.0,
+  "titulo": "São Rainério de Pisa, de Cecco di Pietro (século XIV)"
+ },
+ "santos/sao-gregorio-barbarigo.webp": {
+  "arquivo": "File:San Gregorio Giovanni Gaspare Barbarigo.png",
+  "foco": 0.1,
+  "titulo": "São Gregório Barbarigo (retrato anônimo de c. 1687)"
+ },
+ "santos/sao-romualdo.webp": {
+  "arquivo": "File:Fra Angelico (Fra Giovanni da Fiesole) - Saint Romuald - 62.9 - Minneapolis Institute of Arts.jpg",
+  "foco": 0.0,
+  "recorte": [
+   0.09,
+   0.025,
+   0.91,
+   0.43
+  ],
+  "titulo": "São Romualdo (do retábulo de São Marcos)"
+ },
+ "santos/sao-luis-gonzaga.webp": {
+  "arquivo": "File:The Vocation of Saint Aloysius (Luigi) Gonzaga MET DT1956.jpg",
+  "foco": 0.5,
+  "recorte": [
+   0.27,
+   0.32,
+   0.94,
+   0.96
+  ],
+  "titulo": "A vocação de São Luís Gonzaga (detalhe)"
+ },
+ "santos/santos-joao-fisher-e-tomas-more.webp": {
+  "arquivo": "File:Hans Holbein, the Younger - Sir Thomas More - Google Art Project.jpg",
+  "foco": 0.2,
+  "titulo": "São Tomás More, de Hans Holbein, o Jovem (1527); São João Fisher é celebrado no mesmo dia"
+ },
+ "santos/natividade-de-sao-joao-batista.webp": {
+  "arquivo": "File:Nativity and Naming of St. John the Baptist (SM 878a).png",
+  "foco": 0.45,
+  "titulo": "O nascimento de São João Batista e a escolha do nome (mestre holandês, c. 1510, a partir de Rogier van der Weyden)"
+ },
+ "santos/nossa-senhora-do-perpetuo-socorro.webp": {
+  "arquivo": "File:Andrea Rico di Candia - Virgin of the Passion - y33 - Princeton University Art Museum.jpg",
+  "foco": 0.2,
+  "titulo": "A Virgem da Paixão, de Andreas Ritzos (século XV), o tipo do ícone de Nossa Senhora do Perpétuo Socorro"
+ },
+ "santos/santo-ireneu.webp": {
+  "arquivo": "File:H. Ireneüs van Lyon, RP-P-1907-47.jpg",
+  "foco": 0.3,
+  "recorte": [
+   0.05,
+   0.03,
+   0.95,
+   0.87
+  ],
+  "titulo": "Santo Ireneu, bispo de Lyon (gravura do século XVII)"
+ },
+ "santos/sao-pedro-e-sao-paulo.webp": {
+  "arquivo": "File:Guido Reni 044.jpg",
+  "foco": 0.2,
+  "titulo": "São Pedro e São Paulo"
  },
  "santos/santos-anjos-da-guarda.webp": {
   "arquivo": "File:Franceschini, Marcantonio - The Guardian Angel - Google Art Project.jpg",
