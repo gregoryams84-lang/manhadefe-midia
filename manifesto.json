@@ -1,6 +1,6 @@
 {
   "versao": 1,
-  "geradoEm": "2026-09-21T21:15:35.000Z",
+  "geradoEm": "2026-09-21T21:24:24.000Z",
   "arquivos": {
     "imagens/01-01-catolico.webp": {
       "bytes": 92432,
@@ -3150,6 +3150,10 @@
       "bytes": 110102,
       "sha256": "3a5f503c36f2dcd133bc581683dd933d51f9fd430bd6b1ea76fa3e02d501b0dc"
     },
+    "santos/assuncao-de-nossa-senhora.webp": {
+      "bytes": 79936,
+      "sha256": "727427545852c1df43046b48edb72a32ed3acb912f098249a7c30fedfd69bb1e"
+    },
     "santos/catedra-de-sao-pedro.webp": {
       "bytes": 104594,
       "sha256": "76e3338926fc5bc35596753bb217d935953e9373acb8a78f847e12be00730eb2"
@@ -3161,6 +3165,10 @@
     "santos/dedicacao-da-basilica-de-latrao.webp": {
       "bytes": 142106,
       "sha256": "c8b51f986f4bff0a96e304e482de1ebac050659396181f39552316b44c96e7d9"
+    },
+    "santos/exaltacao-da-santa-cruz.webp": {
+      "bytes": 111454,
+      "sha256": "4a820ac2a9050fae497c4863d27cae7a52c06f7d566437bc21eeadd859987183"
     },
     "santos/fieis-defuntos.webp": {
       "bytes": 90552,
@@ -3178,9 +3186,17 @@
       "bytes": 113668,
       "sha256": "94a7770b5105acb35051246309d99bde6555025838b33f1273fa51b4a968e992"
     },
+    "santos/martirio-de-sao-joao-batista.webp": {
+      "bytes": 123874,
+      "sha256": "2da66ec62508eda30fb4cf086c905b4f634d6e8f8737956046eccef440d992e5"
+    },
     "santos/natal-do-senhor.webp": {
       "bytes": 75218,
       "sha256": "caeca14b36e37a3bff47ac3e557ffb5ac8b7889c5c3bc9c4e5c7776cb279fc76"
+    },
+    "santos/natividade-de-nossa-senhora.webp": {
+      "bytes": 91466,
+      "sha256": "cf758a205c6500293e3b5dc2efea216670d54a9f8698e6ce78fb9cab26f1f02e"
     },
     "santos/natividade-de-sao-joao-batista.webp": {
       "bytes": 168276,
@@ -3194,9 +3210,21 @@
       "bytes": 101162,
       "sha256": "49d0207b9120b5511b9fe51577c28f92fcd0f90842b388519ff257e6c07d8bcd"
     },
+    "santos/nossa-senhora-das-dores.webp": {
+      "bytes": 111562,
+      "sha256": "44613e6b0ad2b216c0688da0b7255bca2d3e5d66dbb635ae98455d6df0177785"
+    },
     "santos/nossa-senhora-das-gracas.webp": {
       "bytes": 122014,
       "sha256": "84957edf65c9811f296b8de7e766ab6d11728970fa421706e83ad2a0667f710e"
+    },
+    "santos/nossa-senhora-das-merces.webp": {
+      "bytes": 107974,
+      "sha256": "73927f9064a4e992d3e4202f647bb4b410555c24f14bb314576cc27e20907723"
+    },
+    "santos/nossa-senhora-das-neves.webp": {
+      "bytes": 117742,
+      "sha256": "6c0f4d5bf5356b5efdb93b4c0c99ba136aca64fa2bbafa49335086e236064ebd"
     },
     "santos/nossa-senhora-de-guadalupe.webp": {
       "bytes": 150430,
@@ -3225,6 +3253,10 @@
     "santos/nossa-senhora-mae-de-deus.webp": {
       "bytes": 132864,
       "sha256": "eccbd6564e4df27f64530bb753f27198ce1d8084fb0a5a12217ed494f2354b8d"
+    },
+    "santos/nossa-senhora-rainha.webp": {
+      "bytes": 279142,
+      "sha256": "e61983292b4962d6c967fed47ed1e3c3b382e74baa269e8fb5550233c0117aad"
     },
     "santos/santa-adelaide.webp": {
       "bytes": 116382,
@@ -3257,6 +3289,10 @@
     "santos/santa-barbara.webp": {
       "bytes": 99770,
       "sha256": "4663d182817ea2b6b434539c649a94938143860072822af26039e8825c548da7"
+    },
+    "santos/santa-beatriz-da-silva.webp": {
+      "bytes": 175674,
+      "sha256": "6c91a36742efc040ad4bf230f569a81ad254367ced664290b0d906ea45cd6c88"
     },
     "santos/santa-bernadette-soubirous.webp": {
       "bytes": 122510,
@@ -3293,6 +3329,10 @@
     "santos/santa-cecilia.webp": {
       "bytes": 81242,
       "sha256": "28058695a06d932eebf24ac0b6b5808317c81f485ed610848a36a3629cfa0963"
+    },
+    "santos/santa-clara.webp": {
+      "bytes": 109320,
+      "sha256": "8a334e8439a3897e3cb08fee4d86c29331fb7d830786a3af324524f7e4a8fd1f"
     },
     "santos/santa-coleta-de-corbie.webp": {
       "bytes": 151206,
@@ -3334,6 +3374,10 @@
       "bytes": 77882,
       "sha256": "825edf6b00d2c98a42bd786e8cc0feda618821925bb48613fe1d014c75627f5f"
     },
+    "santos/santa-helena.webp": {
+      "bytes": 122116,
+      "sha256": "454ad375b4bb013711a76503cab8aaad63f0031a5c36e1d5b22a633f6eb31890"
+    },
     "santos/santa-ines-de-montepulciano.webp": {
       "bytes": 107690,
       "sha256": "c4a81c88603a226294561407bb3b39ecafbdd192e0df23b2a8ce055b9ca2fd50"
@@ -3362,6 +3406,10 @@
       "bytes": 122344,
       "sha256": "06a415bdeedfce543d85f773e41d878e0bee9b7329c1782fee6714da1ecd9c3e"
     },
+    "santos/santa-joana-francisca-de-chantal.webp": {
+      "bytes": 120260,
+      "sha256": "693e8230c3aa67a44134cf2d0736620a115c4edd22e78424ba9e26a121e136aa"
+    },
     "santos/santa-josefina-bakhita.webp": {
       "bytes": 104100,
       "sha256": "0e3799a8c0aaa156ba0023ff6df4af57f70f85723dfe7c71fcd8a4095a3555a9"
@@ -3377,6 +3425,10 @@
     "santos/santa-lea-de-roma.webp": {
       "bytes": 85476,
       "sha256": "c2efbb2336bec3d57b12b59d033ce84ebcd179935161113316afe7cc5d6411dc"
+    },
+    "santos/santa-lidia.webp": {
+      "bytes": 96126,
+      "sha256": "653362c7a8d782ceace803ced307076ab4299621234951415255868e7c78cea6"
     },
     "santos/santa-liduina-de-schiedam.webp": {
       "bytes": 116562,
@@ -3422,9 +3474,17 @@
       "bytes": 96380,
       "sha256": "0ce2291c19b94ebc13cabc7934ae9cf0ac2d5b175012ab9054ee69e818237502"
     },
+    "santos/santa-monica.webp": {
+      "bytes": 165994,
+      "sha256": "07fb3de923fac71df2f10d0416120bf0849b28c0bb772e6cd91433b7286d5753"
+    },
     "santos/santa-paula-montal.webp": {
       "bytes": 95072,
       "sha256": "925487abaa42a83b544de68d4ae881d2bb73b15114f662f9c56c8f09dd6af29e"
+    },
+    "santos/santa-rosa-de-lima.webp": {
+      "bytes": 114310,
+      "sha256": "5a52ddb84090abef4645953c03a2444076268f7f402897f9876d905aa7823005"
     },
     "santos/santa-rosa-filipina-duchesne.webp": {
       "bytes": 93310,
@@ -3470,6 +3530,10 @@
       "bytes": 118506,
       "sha256": "fa3637b425fadeb89665ed047f95a2b5e145867335cd245f07180eea4525c374"
     },
+    "santos/santo-afonso-de-ligorio.webp": {
+      "bytes": 107850,
+      "sha256": "305debe524e8a8050a0f028da8f3d71ce9411f7bee300551dbca88407e94700e"
+    },
     "santos/santo-afonso-rodriguez.webp": {
       "bytes": 67182,
       "sha256": "863cadbd7b4b31ef6e900036a8c981233dfeb4658804960063c44f72a27643fb"
@@ -3477,6 +3541,10 @@
     "santos/santo-agostinho-de-cantuaria.webp": {
       "bytes": 172852,
       "sha256": "97fe641288ca637ee4e09d1191f9cb814679487a63ca9a8027710aa583f21af3"
+    },
+    "santos/santo-agostinho.webp": {
+      "bytes": 116734,
+      "sha256": "427f0c111c51d3fdacd5b982e22ce8f997ad080ef7fc3268dacc96e9dbc49c3d"
     },
     "santos/santo-alberto-magno.webp": {
       "bytes": 88962,
@@ -3642,6 +3710,10 @@
       "bytes": 189670,
       "sha256": "1c39663d1de0554ff29e958f26f78a497da5cb0dfe5c97ef54a35e36aea19c76"
     },
+    "santos/santos-arcanjos-miguel-gabriel-e-rafael.webp": {
+      "bytes": 127732,
+      "sha256": "605ec7b51ca1f98f7ec084a338f74b64a738b598d70edd40235a3ea349fa45c5"
+    },
     "santos/santos-cirilo-e-metodio.webp": {
       "bytes": 122418,
       "sha256": "c90720b7d64f82a6f7a8190571ca83c1416b658e043472cfbe289f0f13145645"
@@ -3678,6 +3750,10 @@
       "bytes": 86260,
       "sha256": "163a32356bb65336ec00cc959b7eb2fe85f94aaedeb5784eb6e4ad0878cf522d"
     },
+    "santos/sao-bartolomeu.webp": {
+      "bytes": 104694,
+      "sha256": "880c0014b6d0f3bfe282349212e809d01b416bf697df14660e09793065ae5f5f"
+    },
     "santos/sao-basilio-magno.webp": {
       "bytes": 109968,
       "sha256": "96fc3426efde2fabeced712ac835664a29c2f324fa3eb61734ab083baa063f76"
@@ -3706,6 +3782,10 @@
       "bytes": 283944,
       "sha256": "3f117efc599d04176a245afb7cf865f9e7bd41df3747195d52caaec71ca2a1ca"
     },
+    "santos/sao-bernardo.webp": {
+      "bytes": 183986,
+      "sha256": "59587ca9cee243408fa6b2f1be5dc07e848995be94e089ccba58a74199c6eae1"
+    },
     "santos/sao-boaventura.webp": {
       "bytes": 96024,
       "sha256": "15ad123eb674dd64c0e67c6e7d7d01bcb2223fa5ee5c8ca74f785e67a546dc09"
@@ -3721,6 +3801,10 @@
     "santos/sao-bruno.webp": {
       "bytes": 111962,
       "sha256": "6a3eb455d9d43d7da47a2fa9ac5918ee30e82242ce7d314ce1d57972800d3fa5"
+    },
+    "santos/sao-caetano.webp": {
+      "bytes": 69430,
+      "sha256": "f434a7a1eb8127539a860d5abb351ca3091b86e5bc0fc8d31de889d8cec81d0c"
     },
     "santos/sao-calisto-i.webp": {
       "bytes": 116880,
@@ -3754,9 +3838,17 @@
       "bytes": 161768,
       "sha256": "aa88f4b2fc755798d5a7dbc50837171d018eeaf7534b269467c3c6795956b0e3"
     },
+    "santos/sao-cleofas.webp": {
+      "bytes": 105870,
+      "sha256": "727d79028c6ec839b52f1b8583ffbc415c1a03ed579128db875b4ac9e4f2e445"
+    },
     "santos/sao-cornelio-centuriao.webp": {
       "bytes": 207908,
       "sha256": "f2ae363856761bc8c9d4efda59b84f0ef7501912e23de9632e8bf009f526cee6"
+    },
+    "santos/sao-cosme-e-sao-damiao.webp": {
+      "bytes": 115466,
+      "sha256": "e671280398b7279098ada8c3261e09475b34fc7545f40730f19e48006c788e48"
     },
     "santos/sao-damaso-i.webp": {
       "bytes": 211154,
@@ -3781,6 +3873,10 @@
     "santos/sao-domingos-savio.webp": {
       "bytes": 96090,
       "sha256": "a1ade3ceac3efb9348f0a655834d31fbc9ecb9e1232eeffc8a635dc5dc853988"
+    },
+    "santos/sao-domingos.webp": {
+      "bytes": 107516,
+      "sha256": "f06fff78c2fc47bc1a2b21d04721ffe23b7b892856853fd875155a59cbcbc7aa"
     },
     "santos/sao-felix-de-nola.webp": {
       "bytes": 112018,
@@ -3842,9 +3938,21 @@
       "bytes": 454802,
       "sha256": "4cec1b6ac5a2e89578bf239022a3de39b1e83ae879d2afa42e3d7c714431be0d"
     },
+    "santos/sao-gregorio-magno.webp": {
+      "bytes": 117986,
+      "sha256": "d861a04f5613190e6afe7d08cfc8042d2f7a9a6fb10f0ae51a183a78d1d99dee"
+    },
     "santos/sao-guido-maria-conforti.webp": {
       "bytes": 97304,
       "sha256": "78017b072c51e9ec80ebf7fb5e140875518756f53c043442e8ad683b1202b903"
+    },
+    "santos/sao-januario.webp": {
+      "bytes": 70274,
+      "sha256": "2768a75c0d340177f5864250d7dab23a4ce6018663ba1f117226ad33179f110d"
+    },
+    "santos/sao-jeronimo.webp": {
+      "bytes": 123656,
+      "sha256": "98015c65edf99b7407dcc4a7f356d25c6aac523093c01ab90e41f3a49794dd72"
     },
     "santos/sao-joao-batista-de-la-salle.webp": {
       "bytes": 177156,
@@ -3857,6 +3965,10 @@
     "santos/sao-joao-cancio.webp": {
       "bytes": 102954,
       "sha256": "fabf06e5e7aabb671d40a77bbb0832ddfab2e2a78cac0ee8ab56d8664d00b609"
+    },
+    "santos/sao-joao-crisostomo.webp": {
+      "bytes": 126566,
+      "sha256": "c1167afdbce9c0cb9aad11891b679dc3dbc8fa6a1f03e93998d7a535c3268fcd"
     },
     "santos/sao-joao-da-cruz.webp": {
       "bytes": 111190,
@@ -3889,6 +4001,10 @@
     "santos/sao-joao-evangelista.webp": {
       "bytes": 124608,
       "sha256": "9a804fafb702429b2e0cc0da05cf80b7698452fc32e47fedd042759e05b8b65d"
+    },
+    "santos/sao-joao-gabriel-perboyre.webp": {
+      "bytes": 95966,
+      "sha256": "6bb63c6a1c6b26e6b419c3dcde63c13da204730c4bceb2ee8a34062a75720a0d"
     },
     "santos/sao-joao-henrique-newman.webp": {
       "bytes": 118546,
@@ -3950,6 +4066,10 @@
       "bytes": 121660,
       "sha256": "aa05edd2f26011948b1f5fc9efc1a64bd1b83ee1ccc642b294636b28aacc561a"
     },
+    "santos/sao-josue.webp": {
+      "bytes": 116976,
+      "sha256": "de2f6411585f225e1ab37dae2c23ecfe1948dbb60f1b07c2b2b11d33f100ef83"
+    },
     "santos/sao-leandro-de-sevilha.webp": {
       "bytes": 91604,
       "sha256": "3314eff79727ed4c37f12679f02e500971fcbf02fdecf22a522ceb9d3260a3ed"
@@ -3982,6 +4102,10 @@
       "bytes": 119594,
       "sha256": "449145c41fc6133df59284020387a738c86800128386ab30e6a3efa9f0099ec3"
     },
+    "santos/sao-lourenco.webp": {
+      "bytes": 116584,
+      "sha256": "188e69851ed066f862b5b7f01230cbca09a280ab15cdf680a26ec6768d4c884a"
+    },
     "santos/sao-lucas.webp": {
       "bytes": 105740,
       "sha256": "235d75bbb39d320caaaa952c16fa7aa55055090379c7131bd8f9870f10d5c8a6"
@@ -3993,6 +4117,10 @@
     "santos/sao-luis-gonzaga.webp": {
       "bytes": 118330,
       "sha256": "cfdd142e352d5c51f1670505377e502932be831200562174b7c852df8671492d"
+    },
+    "santos/sao-luis-ix.webp": {
+      "bytes": 116794,
+      "sha256": "eba4e9c879b0c1e8e870aa6b36fb45fc6b3dafcdec6581fbe73f07c24da33c7c"
     },
     "santos/sao-luis-maria-grignion-de-montfort.webp": {
       "bytes": 76342,
@@ -4030,9 +4158,21 @@
       "bytes": 145930,
       "sha256": "d01e37ae5a311fe54d659ca4df7e59149f38d005f007a257e905ac20867a530e"
     },
+    "santos/sao-mateus.webp": {
+      "bytes": 115486,
+      "sha256": "fb1681ce8a918c83bd22a83221062944574579601107c1616bf4fb3e0eeb7917"
+    },
     "santos/sao-matias.webp": {
       "bytes": 115580,
       "sha256": "faa78265088f25b4fb2ce5358332340d0be4570a23c92b2c14a9e58c3eadf354"
+    },
+    "santos/sao-mauricio-e-companheiros.webp": {
+      "bytes": 119354,
+      "sha256": "8e7e6011e137aeff5e3c0bd170c3e633f4f833fe757417e9e813202e3b9d4b57"
+    },
+    "santos/sao-moises.webp": {
+      "bytes": 139312,
+      "sha256": "91cc397c4b37e714fb7e0751a3622c60a3a3aa729f9e3486399feb057647808a"
     },
     "santos/sao-narciso-de-jerusalem.webp": {
       "bytes": 92934,
@@ -4041,6 +4181,10 @@
     "santos/sao-nicolau-de-flue.webp": {
       "bytes": 154128,
       "sha256": "7b8be3b42caffc9a7fec2d34af53e85792a30bf600b2880b5f8fa506c79f6153"
+    },
+    "santos/sao-nicolau-de-tolentino.webp": {
+      "bytes": 120490,
+      "sha256": "cc2989eda18e7b547b047e0cb09dc10c9d9a7daf7d3021cf3f9e30447d1b5a4f"
     },
     "santos/sao-nicolau.webp": {
       "bytes": 175686,
@@ -4090,6 +4234,10 @@
       "bytes": 150472,
       "sha256": "62411ecc116162db9bd9d2d9910578d45c183ec43d5bfe476abb5a7786bf2822"
     },
+    "santos/sao-pedro-claver.webp": {
+      "bytes": 227432,
+      "sha256": "b644a90299e4899ed560318ceba14fb41c8d027667b084b745dbb66bbde5f62d"
+    },
     "santos/sao-pedro-damiao.webp": {
       "bytes": 92364,
       "sha256": "637bb29cf23bd9e431fc1ecd663e6379625e423f30682c25f420a6a5a200e820"
@@ -4110,6 +4258,10 @@
       "bytes": 117626,
       "sha256": "b8002775c216e39034e9370afa9db94c773f952b224d78963c063d6ef62b75c4"
     },
+    "santos/sao-pio-x.webp": {
+      "bytes": 52720,
+      "sha256": "f6de71905144c4efe4acf21e1beafd85bf38ea75e86b7d7e15695473541db28a"
+    },
     "santos/sao-policarpo.webp": {
       "bytes": 310794,
       "sha256": "4c39edce07870111959beb81b8081a36822f525e0c64d732c931d96917a2ad47"
@@ -4122,6 +4274,10 @@
       "bytes": 98550,
       "sha256": "42843c173409353400bda14fe5b95040db89af176e33d9466e463587621cb278"
     },
+    "santos/sao-raimundo-nonato.webp": {
+      "bytes": 96454,
+      "sha256": "2ab779e38c152c25efa5bb1832d48b54ef16cf7d30a9792591d1da219ba6ffb9"
+    },
     "santos/sao-rainerio-de-pisa.webp": {
       "bytes": 104772,
       "sha256": "1516dcc266b0e678efde930e9e643f79414f0961c3091ef86ac491d3c8115030"
@@ -4130,6 +4286,10 @@
       "bytes": 122386,
       "sha256": "39c0fcbf8d7fc754eadfc23ffabc1d08e9116caa9f11ead6e1b392fd8d006177"
     },
+    "santos/sao-roberto-belarmino.webp": {
+      "bytes": 89390,
+      "sha256": "41834092ea3d8a7e44730028b89e17ddb4e009875aed9b9c977cb93bd3f8789e"
+    },
     "santos/sao-romualdo.webp": {
       "bytes": 184720,
       "sha256": "a3f109627e8e13a4597150ee143bb658f412180d9f6ce1c1511e8fffb9e421e2"
@@ -4137,6 +4297,10 @@
     "santos/sao-roque-gonzalez-e-companheiros.webp": {
       "bytes": 119124,
       "sha256": "c7abd9f57c46bc9f713e92179cb3bfbca14ed84c2fab1cbecb815eeee96e6af6"
+    },
+    "santos/sao-roque.webp": {
+      "bytes": 104398,
+      "sha256": "109cbb75903da621aabf9c62be5a5d8a8c7f1aa55c68150a40cefc05d3a88e24"
     },
     "santos/sao-ruperto-de-salzburgo.webp": {
       "bytes": 195478,
@@ -4206,6 +4370,10 @@
       "bytes": 92904,
       "sha256": "f3a3397ec6dc57cf726dd4360ff596d4109faf56ecf7c198cb734b1b00d50116"
     },
+    "santos/sao-vicente-de-paulo.webp": {
+      "bytes": 88314,
+      "sha256": "d6c848aa052107d9a0132713e17f3148573fabb81fce4fbde23713278035764b"
+    },
     "santos/sao-vicente-ferrer.webp": {
       "bytes": 112704,
       "sha256": "b22c3e8993d5c6e7d6933f61a5bef984dc82cc0a0d0a92048069550a72670c49"
@@ -4225,6 +4393,10 @@
     "santos/todos-os-santos.webp": {
       "bytes": 116900,
       "sha256": "7346794c609bf133eb27589ab91c5d1882e0a20d4efb858ea0f177ec4f5634c0"
+    },
+    "santos/transfiguracao-do-senhor.webp": {
+      "bytes": 120268,
+      "sha256": "5e3db821547162e993a107d505569d96b15bbf9c208011b9f212f41b0e90f51d"
     },
     "santos/visitacao-de-nossa-senhora.webp": {
       "bytes": 115188,
