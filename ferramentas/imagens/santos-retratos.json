@@ -151,5 +151,168 @@
    1.0
   ],
   "titulo": "A visão de Santo Afonso Rodríguez (detalhe)"
+ },
+ "santos/todos-os-santos.webp": {
+  "arquivo": "File:Albrecht Dürer - Adoration of the Trinity (Landauer Altar) - Google Art Project.jpg",
+  "foco": 0.4,
+  "titulo": "A adoração da Santíssima Trindade por todos os santos (retábulo Landauer)"
+ },
+ "santos/fieis-defuntos.webp": {
+  "arquivo": "File:William-Adolphe Bouguereau (1825-1905) - The Day of the Dead (1859).jpg",
+  "foco": 0.5,
+  "titulo": "O Dia de Finados"
+ },
+ "santos/sao-carlos-borromeu.webp": {
+  "arquivo": "File:Orazio Borgianni - St Carlo Borromeo - WGA2468.jpg",
+  "foco": 0.2,
+  "titulo": "São Carlos Borromeu em oração"
+ },
+ "santos/sao-guido-maria-conforti.webp": {
+  "arquivo": "File:Guido Maria Conforti Vescovo.jpg",
+  "foco": 0.1,
+  "titulo": "Dom Guido Maria Conforti (fotografia de 1902)"
+ },
+ "santos/sao-nuno-de-santa-maria.webp": {
+  "arquivo": "File:Nuno Álvares, praying during the battle of Valverde - História de Portugal, popular e ilustrada.jpg",
+  "foco": 0.5,
+  "recorte": [
+   0.17,
+   0.0,
+   0.83,
+   0.93
+  ],
+  "titulo": "Nuno Álvares Pereira rezando durante a batalha de Valverde (ilustração de Roque Gameiro, c. 1899)"
+ },
+ "santos/sao-vilibrordo.webp": {
+  "arquivo": "File:Willibrord (Paris, BN Lat. 10510).jpg",
+  "foco": 0.4,
+  "recorte": [
+   0.04,
+   0.03,
+   0.96,
+   0.97
+  ],
+  "titulo": "São Vilibrordo entre dois diáconos (iluminura do século X)"
+ },
+ "santos/dedicacao-da-basilica-de-latrao.webp": {
+  "arquivo": "File:Rome, a view of Piazza San Giovanni Laterano with figures and horse-drawn carts (by Gaspar van Wittel).jpg",
+  "foco": 0.5,
+  "recorte": [
+   0.585,
+   0.0,
+   0.875,
+   1.0
+  ],
+  "titulo": "A basílica de São João de Latrão vista da praça, em Roma (detalhe)"
+ },
+ "santos/sao-leao-magno.webp": {
+  "arquivo": "File:Herrera mozo San León magno Lienzo. Óvalo. 164 x 105 cm. Museo del Prado.png",
+  "foco": 0.1,
+  "titulo": "São Leão Magno"
+ },
+ "santos/sao-martinho-de-tours.webp": {
+  "arquivo": "File:Saint Martin Dividing His Cloak G-024841-20120502.jpg",
+  "foco": 0.3,
+  "titulo": "São Martinho reparte o manto com o mendigo"
+ },
+ "santos/sao-josafa.webp": {
+  "arquivo": "File:Iosaphat Martyr (miedzioryt) (cropped).jpg",
+  "foco": 0.5,
+  "recorte": [
+   0.0,
+   0.03,
+   1.0,
+   0.93
+  ],
+  "titulo": "São Josafá, bispo e mártir (gravura de Aleksander Tarasowicz, século XVII)"
+ },
+ "santos/santo-homobono.webp": {
+  "arquivo": "File:Bode Museum Enthroned madonna with child and saints - Bartolomeo Montagna - ca. 1515 1251.jpg",
+  "foco": 0.5,
+  "recorte": [
+   0.09,
+   0.33,
+   0.43,
+   0.665
+  ],
+  "titulo": "Santo Homobono dá esmola a um pobre (detalhe de A Virgem entronizada com santos, de Bartolomeo Montagna, c. 1515)"
+ },
+ "santos/santo-alberto-magno.webp": {
+  "arquivo": "File:Albertus magnus dominikanerstammbaum.jpg",
+  "foco": 0.5,
+  "recorte": [
+   0.0,
+   0.12,
+   1.0,
+   0.78
+  ],
+  "titulo": "Santo Alberto Magno (detalhe da árvore dos dominicanos, 1501)"
+ },
+ "santos/santa-gertrudes.webp": {
+  "arquivo": "File:Miguel Cabrera - Saint Gertrude (Santa Gertrudis) - 2006.37 - Dallas Museum of Art.jpg",
+  "foco": 0.5,
+  "titulo": "Santa Gertrudes, a Grande"
+ },
+ "santos/santa-isabel-da-hungria.webp": {
+  "arquivo": "File:Elisabet av Thüringen.jpg",
+  "foco": 0.2,
+  "titulo": "A caridade de Santa Isabel da Hungria"
+ },
+ "santos/santo-edmundo.webp": {
+  "arquivo": "File:Stedmundcrownedbyangelspierpontms736f42.jpg",
+  "foco": 0.0,
+  "recorte": [
+   0.0,
+   0.03,
+   1.0,
+   0.78
+  ],
+  "titulo": "Santo Edmundo, rei, coroado pelos anjos (iluminura inglesa do século XII)"
+ },
+ "santos/apresentacao-de-nossa-senhora.webp": {
+  "arquivo": "File:Presentation of the Virgin - Capella dei Scrovegni.jpg",
+  "foco": 0.5,
+  "titulo": "A apresentação de Nossa Senhora no Templo (capela Scrovegni)"
+ },
+ "santos/santa-cecilia.webp": {
+  "arquivo": "File:St. Cecilia by Guido Reni.jpg",
+  "foco": 0.5,
+  "titulo": "Santa Cecília"
+ },
+ "santos/sao-clemente-i.webp": {
+  "arquivo": "File:San Clemente, Papa, por Juan Correa de Vivar.jpg",
+  "foco": 0.0,
+  "titulo": "São Clemente, papa"
+ },
+ "santos/santa-catarina-de-alexandria.webp": {
+  "arquivo": "File:Raffael 020.jpg",
+  "foco": 0.5,
+  "titulo": "Santa Catarina de Alexandria"
+ },
+ "santos/sao-leonardo-de-porto-mauricio.webp": {
+  "arquivo": "File:Vasini - Leonardo di porto maurizio 1763.jpg",
+  "foco": 0.1,
+  "titulo": "São Leonardo de Porto Maurício (1763)"
+ },
+ "santos/nossa-senhora-das-gracas.webp": {
+  "arquivo": "File:Gege Erscheinung der Hl Maria zu Paris 1830 Hinterglasbild 19Jh.jpg",
+  "foco": 0.0,
+  "recorte": [
+   0.0,
+   0.0,
+   1.0,
+   0.87
+  ],
+  "titulo": "A aparição de Nossa Senhora das Graças em Paris, em 1830 (pintura sobre vidro, século XIX)"
+ },
+ "santos/santa-catarina-laboure.webp": {
+  "arquivo": "File:Jan Bąkowski Wizerunek św. Katarzyny Labouré.jpg",
+  "foco": 0.05,
+  "titulo": "Santa Catarina Labouré"
+ },
+ "santos/santo-andre.webp": {
+  "arquivo": "File:El Greco - St. Andrew - Google Art Project.jpg",
+  "foco": 0.3,
+  "titulo": "Santo André apóstolo"
  }
 }

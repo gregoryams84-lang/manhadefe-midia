@@ -1,4 +1,36 @@
 {
+  "santos/apresentacao-de-nossa-senhora.webp": {
+    "arquivo": "File:Presentation of the Virgin - Capella dei Scrovegni.jpg",
+    "artista": "Giotto",
+    "data": "14th century",
+    "licenca": "Public domain",
+    "titulo": "A apresentação de Nossa Senhora no Templo (capela Scrovegni)",
+    "url": "https://commons.wikimedia.org/wiki/File:Presentation_of_the_Virgin_-_Capella_dei_Scrovegni.jpg"
+  },
+  "santos/dedicacao-da-basilica-de-latrao.webp": {
+    "arquivo": "File:Rome, a view of Piazza San Giovanni Laterano with figures and horse-drawn carts (by Gaspar van Wittel).jpg",
+    "artista": "Gaspar van Wittel",
+    "data": "18th-Century",
+    "licenca": "Public domain",
+    "titulo": "A basílica de São João de Latrão vista da praça, em Roma (detalhe)",
+    "url": "https://commons.wikimedia.org/wiki/File:Rome,_a_view_of_Piazza_San_Giovanni_Laterano_with_figures_and_horse-drawn_carts_(by_Gaspar_van_Wittel).jpg"
+  },
+  "santos/fieis-defuntos.webp": {
+    "arquivo": "File:William-Adolphe Bouguereau (1825-1905) - The Day of the Dead (1859).jpg",
+    "artista": "William-Adolphe Bouguereau",
+    "data": "1859",
+    "licenca": "Public domain",
+    "titulo": "O Dia de Finados",
+    "url": "https://commons.wikimedia.org/wiki/File:William-Adolphe_Bouguereau_(1825-1905)_-_The_Day_of_the_Dead_(1859).jpg"
+  },
+  "santos/nossa-senhora-das-gracas.webp": {
+    "arquivo": "File:Gege Erscheinung der Hl Maria zu Paris 1830 Hinterglasbild 19Jh.jpg",
+    "artista": "Alois Gege (1795-1864), Seehausen am Staffelsee",
+    "data": "19th century",
+    "licenca": "Public domain",
+    "titulo": "A aparição de Nossa Senhora das Graças em Paris, em 1830 (pintura sobre vidro, século XIX)",
+    "url": "https://commons.wikimedia.org/wiki/File:Gege_Erscheinung_der_Hl_Maria_zu_Paris_1830_Hinterglasbild_19Jh.jpg"
+  },
   "santos/nossa-senhora-do-rosario.webp": {
     "arquivo": "File:Murillo, Bartolomé Estéban - The Madonna of the Rosary - Google Art Project.jpg",
     "artista": "Bartolomé Esteban Murillo",
@@ -7,6 +39,30 @@
     "titulo": "Nossa Senhora do Rosário (Dulwich Picture Gallery)",
     "url": "https://commons.wikimedia.org/wiki/File:Murillo,_Bartolom%C3%A9_Est%C3%A9ban_-_The_Madonna_of_the_Rosary_-_Google_Art_Project.jpg"
   },
+  "santos/santa-catarina-de-alexandria.webp": {
+    "arquivo": "File:Raffael 020.jpg",
+    "artista": "Raphael",
+    "data": "circa 1507",
+    "licenca": "Public domain",
+    "titulo": "Santa Catarina de Alexandria",
+    "url": "https://commons.wikimedia.org/wiki/File:Raffael_020.jpg"
+  },
+  "santos/santa-catarina-laboure.webp": {
+    "arquivo": "File:Jan Bąkowski Wizerunek św. Katarzyny Labouré.jpg",
+    "artista": "Jan Bąkowski",
+    "data": "by 10 October 1934",
+    "licenca": "Public domain",
+    "titulo": "Santa Catarina Labouré",
+    "url": "https://commons.wikimedia.org/wiki/File:Jan_B%C4%85kowski_Wizerunek_%C5%9Bw._Katarzyny_Labour%C3%A9.jpg"
+  },
+  "santos/santa-cecilia.webp": {
+    "arquivo": "File:St. Cecilia by Guido Reni.jpg",
+    "artista": "Guido Reni",
+    "data": "1606",
+    "licenca": "Public domain",
+    "titulo": "Santa Cecília",
+    "url": "https://commons.wikimedia.org/wiki/File:St._Cecilia_by_Guido_Reni.jpg"
+  },
   "santos/santa-edviges.webp": {
     "arquivo": "File:Court workshop of Duke Ludwig I of Liegnitz and Brieg (Polish - Saint Hedwig of Silesia with Duke Ludwig of Legnica and Brieg and Duchess Agnés - Google Art Project.jpg",
     "artista": "Court workshop of Duke Ludwig I of Liegnitz and Brieg (Polish, 1364 - 1398) (1364 - 1398) – illuminator (Polish) Details on Google Art Project",
@@ -14,6 +70,22 @@
     "licenca": "Public domain",
     "titulo": "Santa Edviges da Silésia (Códice de Santa Edviges, 1353)",
     "url": "https://commons.wikimedia.org/wiki/File:Court_workshop_of_Duke_Ludwig_I_of_Liegnitz_and_Brieg_(Polish_-_Saint_Hedwig_of_Silesia_with_Duke_Ludwig_of_Legnica_and_Brieg_and_Duchess_Agn%C3%A9s_-_Google_Art_Project.jpg"
+  },
+  "santos/santa-gertrudes.webp": {
+    "arquivo": "File:Miguel Cabrera - Saint Gertrude (Santa Gertrudis) - 2006.37 - Dallas Museum of Art.jpg",
+    "artista": "Miguel Cabrera",
+    "data": "1763",
+    "licenca": "Public domain",
+    "titulo": "Santa Gertrudes, a Grande",
+    "url": "https://commons.wikimedia.org/wiki/File:Miguel_Cabrera_-_Saint_Gertrude_(Santa_Gertrudis)_-_2006.37_-_Dallas_Museum_of_Art.jpg"
+  },
+  "santos/santa-isabel-da-hungria.webp": {
+    "arquivo": "File:Elisabet av Thüringen.jpg",
+    "artista": "Edmund Blair Leighton",
+    "data": "1895",
+    "licenca": "Public domain",
+    "titulo": "A caridade de Santa Isabel da Hungria",
+    "url": "https://commons.wikimedia.org/wiki/File:Elisabet_av_Th%C3%BCringen.jpg"
   },
   "santos/santa-teresa-de-avila.webp": {
     "arquivo": "File:Peter Paul Rubens - Hl. Therese von Avila - GG 7119 - Kunsthistorisches Museum.jpg",
@@ -47,6 +119,22 @@
     "titulo": "A visão de Santo Afonso Rodríguez (detalhe)",
     "url": "https://commons.wikimedia.org/wiki/File:Francisco_de_Zurbar%C3%A1n_-_Visi%C3%B3n_del_Beato_Alonso_Rodr%C3%ADguez_-_Google_Art_Project.jpg"
   },
+  "santos/santo-alberto-magno.webp": {
+    "arquivo": "File:Albertus magnus dominikanerstammbaum.jpg",
+    "artista": "Hans Holbein the Elder",
+    "data": "1501",
+    "licenca": "Public domain",
+    "titulo": "Santo Alberto Magno (detalhe da árvore dos dominicanos, 1501)",
+    "url": "https://commons.wikimedia.org/wiki/File:Albertus_magnus_dominikanerstammbaum.jpg"
+  },
+  "santos/santo-andre.webp": {
+    "arquivo": "File:El Greco - St. Andrew - Google Art Project.jpg",
+    "artista": "El Greco",
+    "data": "between circa 1610 and circa 1614",
+    "licenca": "Public domain",
+    "titulo": "Santo André apóstolo",
+    "url": "https://commons.wikimedia.org/wiki/File:El_Greco_-_St._Andrew_-_Google_Art_Project.jpg"
+  },
   "santos/santo-antonio-maria-claret.webp": {
     "arquivo": "File:Antonio María Claret, c.1860.jpg",
     "artista": "Cesc2003",
@@ -55,6 +143,14 @@
     "titulo": "Santo Antônio Maria Claret (fotografia de c. 1860)",
     "url": "https://commons.wikimedia.org/wiki/File:Antonio_Mar%C3%ADa_Claret,_c.1860.jpg"
   },
+  "santos/santo-edmundo.webp": {
+    "arquivo": "File:Stedmundcrownedbyangelspierpontms736f42.jpg",
+    "artista": "public domain",
+    "data": "12th century",
+    "licenca": "Public domain",
+    "titulo": "Santo Edmundo, rei, coroado pelos anjos (iluminura inglesa do século XII)",
+    "url": "https://commons.wikimedia.org/wiki/File:Stedmundcrownedbyangelspierpontms736f42.jpg"
+  },
   "santos/santo-evaristo.webp": {
     "arquivo": "File:Evaristus. Evaristo, santo e papa.jpg",
     "artista": "Oleografia Panigati e Meneghini Milano",
@@ -62,6 +158,14 @@
     "licenca": "CC0",
     "titulo": "Santo Evaristo, papa (cromolitografia de 1879)",
     "url": "https://commons.wikimedia.org/wiki/File:Evaristus._Evaristo,_santo_e_papa.jpg"
+  },
+  "santos/santo-homobono.webp": {
+    "arquivo": "File:Bode Museum Enthroned madonna with child and saints - Bartolomeo Montagna - ca. 1515 1251.jpg",
+    "artista": "Dosseman",
+    "data": "2022-06-21",
+    "licenca": "Public domain",
+    "titulo": "Santo Homobono dá esmola a um pobre (detalhe de A Virgem entronizada com santos, de Bartolomeo Montagna, c. 1515)",
+    "url": "https://commons.wikimedia.org/wiki/File:Bode_Museum_Enthroned_madonna_with_child_and_saints_-_Bartolomeo_Montagna_-_ca._1515_1251.jpg"
   },
   "santos/santo-inacio-de-antioquia.webp": {
     "arquivo": "File:Hosios Loukas (south west chapel, south side) - Ignatios.jpg",
@@ -95,6 +199,22 @@
     "titulo": "São Calisto I (afresco antigo da basílica de São Paulo fora dos Muros, Roma)",
     "url": "https://commons.wikimedia.org/wiki/File:Fresco_of_Pope_Callixtus_I_-_Basilica_of_Saint_Paul_Outside_the_Walls_(Before_1823).jpg"
   },
+  "santos/sao-carlos-borromeu.webp": {
+    "arquivo": "File:Orazio Borgianni - St Carlo Borromeo - WGA2468.jpg",
+    "artista": "Orazio Borgianni",
+    "data": "early 1610s",
+    "licenca": "Public domain",
+    "titulo": "São Carlos Borromeu em oração",
+    "url": "https://commons.wikimedia.org/wiki/File:Orazio_Borgianni_-_St_Carlo_Borromeo_-_WGA2468.jpg"
+  },
+  "santos/sao-clemente-i.webp": {
+    "arquivo": "File:San Clemente, Papa, por Juan Correa de Vivar.jpg",
+    "artista": "Juan Correa de Vivar",
+    "data": "between 1540 and 1545",
+    "licenca": "Public domain",
+    "titulo": "São Clemente, papa",
+    "url": "https://commons.wikimedia.org/wiki/File:San_Clemente,_Papa,_por_Juan_Correa_de_Vivar.jpg"
+  },
   "santos/sao-cornelio-centuriao.webp": {
     "arquivo": "File:Netherlandish 15th Century, The Vision of the Centurion Cornelius, c. 1460, NGA 52352.jpg",
     "artista": "Netherlandish 15th Century",
@@ -119,6 +239,14 @@
     "titulo": "São Francisco ajoelhado em meditação diante do crucifixo",
     "url": "https://commons.wikimedia.org/wiki/File:El_Greco,_St_Francis_in_Prayer_before_the_Crucifix.JPG"
   },
+  "santos/sao-guido-maria-conforti.webp": {
+    "arquivo": "File:Guido Maria Conforti Vescovo.jpg",
+    "artista": "Unknown authorUnknown author",
+    "data": "1902",
+    "licenca": "Public domain",
+    "titulo": "Dom Guido Maria Conforti (fotografia de 1902)",
+    "url": "https://commons.wikimedia.org/wiki/File:Guido_Maria_Conforti_Vescovo.jpg"
+  },
   "santos/sao-joao-de-capistrano.webp": {
     "arquivo": "File:Pieter van Lint - The Miracle of Saint John of Capestrano.jpg",
     "artista": "Pieter van Lint",
@@ -135,6 +263,30 @@
     "titulo": "O cardeal John Henry Newman",
     "url": "https://commons.wikimedia.org/wiki/File:John_Henry_Newman_by_Sir_John_Everett_Millais,_1st_Bt.jpg"
   },
+  "santos/sao-josafa.webp": {
+    "arquivo": "File:Iosaphat Martyr (miedzioryt) (cropped).jpg",
+    "artista": "Aleksander Tarasowicz (1640-1727)",
+    "data": "1660-01-23",
+    "licenca": "Public domain",
+    "titulo": "São Josafá, bispo e mártir (gravura de Aleksander Tarasowicz, século XVII)",
+    "url": "https://commons.wikimedia.org/wiki/File:Iosaphat_Martyr_(miedzioryt)_(cropped).jpg"
+  },
+  "santos/sao-leao-magno.webp": {
+    "arquivo": "File:Herrera mozo San León magno Lienzo. Óvalo. 164 x 105 cm. Museo del Prado.png",
+    "artista": "Francisco Herrera the Younger",
+    "data": "17th century",
+    "licenca": "Public domain",
+    "titulo": "São Leão Magno",
+    "url": "https://commons.wikimedia.org/wiki/File:Herrera_mozo_San_Le%C3%B3n_magno_Lienzo._%C3%93valo._164_x_105_cm._Museo_del_Prado.png"
+  },
+  "santos/sao-leonardo-de-porto-mauricio.webp": {
+    "arquivo": "File:Vasini - Leonardo di porto maurizio 1763.jpg",
+    "artista": "Clarice Vasini (1731-1823)",
+    "data": "1763",
+    "licenca": "Public domain",
+    "titulo": "São Leonardo de Porto Maurício (1763)",
+    "url": "https://commons.wikimedia.org/wiki/File:Vasini_-_Leonardo_di_porto_maurizio_1763.jpg"
+  },
   "santos/sao-lucas.webp": {
     "arquivo": "File:El Greco 035.jpg",
     "artista": "El Greco",
@@ -142,6 +294,22 @@
     "licenca": "Public domain",
     "titulo": "São Lucas evangelista",
     "url": "https://commons.wikimedia.org/wiki/File:El_Greco_035.jpg"
+  },
+  "santos/sao-martinho-de-tours.webp": {
+    "arquivo": "File:Saint Martin Dividing His Cloak G-024841-20120502.jpg",
+    "artista": "Attributed to Jan Boeckhorst",
+    "data": "circa 1640",
+    "licenca": "Public domain",
+    "titulo": "São Martinho reparte o manto com o mendigo",
+    "url": "https://commons.wikimedia.org/wiki/File:Saint_Martin_Dividing_His_Cloak_G-024841-20120502.jpg"
+  },
+  "santos/sao-nuno-de-santa-maria.webp": {
+    "arquivo": "File:Nuno Álvares, praying during the battle of Valverde - História de Portugal, popular e ilustrada.jpg",
+    "artista": "Roque Gameiro",
+    "data": "circa 1899",
+    "licenca": "Public domain",
+    "titulo": "Nuno Álvares Pereira rezando durante a batalha de Valverde (ilustração de Roque Gameiro, c. 1899)",
+    "url": "https://commons.wikimedia.org/wiki/File:Nuno_%C3%81lvares,_praying_during_the_battle_of_Valverde_-_Hist%C3%B3ria_de_Portugal,_popular_e_ilustrada.jpg"
   },
   "santos/sao-pedro-de-alcantara.webp": {
     "arquivo": "File:San Pedro de Alcántara (Museo de El Greco, Toledo).JPG",
@@ -166,5 +334,21 @@
     "licenca": "Public domain",
     "titulo": "São Teófilo de Antioquia (gravura de 1677)",
     "url": "https://commons.wikimedia.org/wiki/File:Theophilus_Antiochenus.png"
+  },
+  "santos/sao-vilibrordo.webp": {
+    "arquivo": "File:Willibrord (Paris, BN Lat. 10510).jpg",
+    "artista": "10. century monk",
+    "data": "10th century",
+    "licenca": "Public domain",
+    "titulo": "São Vilibrordo entre dois diáconos (iluminura do século X)",
+    "url": "https://commons.wikimedia.org/wiki/File:Willibrord_(Paris,_BN_Lat._10510).jpg"
+  },
+  "santos/todos-os-santos.webp": {
+    "arquivo": "File:Albrecht Dürer - Adoration of the Trinity (Landauer Altar) - Google Art Project.jpg",
+    "artista": "Albrecht Dürer",
+    "data": "1511",
+    "licenca": "Public domain",
+    "titulo": "A adoração da Santíssima Trindade por todos os santos (retábulo Landauer)",
+    "url": "https://commons.wikimedia.org/wiki/File:Albrecht_D%C3%BCrer_-_Adoration_of_the_Trinity_(Landauer_Altar)_-_Google_Art_Project.jpg"
   }
 }
