@@ -71,6 +71,14 @@
     "titulo": "A adoração dos pastores",
     "url": "https://commons.wikimedia.org/wiki/File:The_Adoration_of_the_Shepherds_by_Guido_Reni.jpg"
   },
+  "santos/nossa-senhora-auxiliadora.webp": {
+    "arquivo": "File:María Auxiliadora Entera.jpg",
+    "artista": "Tommaso Andrea Lorenzone (1824-1902), at the request of Don Bosco.",
+    "data": "circa 1867",
+    "licenca": "Public domain",
+    "titulo": "Nossa Senhora Auxiliadora (o quadro da basílica de Turim encomendado por Dom Bosco)",
+    "url": "https://commons.wikimedia.org/wiki/File:Mar%C3%ADa_Auxiliadora_Entera.jpg"
+  },
   "santos/nossa-senhora-das-gracas.webp": {
     "arquivo": "File:Gege Erscheinung der Hl Maria zu Paris 1830 Hinterglasbild 19Jh.jpg",
     "artista": "Alois Gege (1795-1864), Seehausen am Staffelsee",
@@ -255,6 +263,14 @@
     "titulo": "A caridade de Santa Isabel da Hungria",
     "url": "https://commons.wikimedia.org/wiki/File:Elisabet_av_Th%C3%BCringen.jpg"
   },
+  "santos/santa-joana-darc.webp": {
+    "arquivo": "File:Ingres coronation charles vii.jpg",
+    "artista": "Jean-Auguste-Dominique Ingres",
+    "data": "1854",
+    "licenca": "Public domain",
+    "titulo": "Joana d'Arc na sagração do rei Carlos VII",
+    "url": "https://commons.wikimedia.org/wiki/File:Ingres_coronation_charles_vii.jpg"
+  },
   "santos/santa-kateri-tekakwitha.webp": {
     "arquivo": "File:Kateri Tekakwitha - Claude Chauchetiere.jpg",
     "artista": "Joseph Légaré",
@@ -286,6 +302,14 @@
     "licenca": "CC0",
     "titulo": "Santa Luzia",
     "url": "https://commons.wikimedia.org/wiki/File:Francisco_de_Zurbar%C3%A1n,_Saint_Lucy,_c._1625-1630,_NGA_12209.jpg"
+  },
+  "santos/santa-rita-de-cassia.webp": {
+    "arquivo": "File:'Saint Rita of Cascia' by Antonio de Torres, c. 1720.JPG",
+    "artista": "Antonio de Torres",
+    "data": "circa 1720",
+    "licenca": "Public domain",
+    "titulo": "Santa Rita de Cássia",
+    "url": "https://commons.wikimedia.org/wiki/File:%27Saint_Rita_of_Cascia%27_by_Antonio_de_Torres,_c._1720.JPG"
   },
   "santos/santa-sincletica.webp": {
     "arquivo": "File:Righteous Syncletica of Alexandria (Menologion of Basil II).jpg",
@@ -343,6 +367,14 @@
     "titulo": "A visão de Santo Afonso Rodríguez (detalhe)",
     "url": "https://commons.wikimedia.org/wiki/File:Francisco_de_Zurbar%C3%A1n_-_Visi%C3%B3n_del_Beato_Alonso_Rodr%C3%ADguez_-_Google_Art_Project.jpg"
   },
+  "santos/santo-agostinho-de-cantuaria.webp": {
+    "arquivo": "File:Pictures of English History Plate V - Saint Augustine and the Saxons.jpg",
+    "artista": "Joseph Martin Kronheim (1810–96)[1]",
+    "data": "1868",
+    "licenca": "Public domain",
+    "titulo": "Santo Agostinho de Cantuária prega ao rei Etelberto (cromolitografia de 1868)",
+    "url": "https://commons.wikimedia.org/wiki/File:Pictures_of_English_History_Plate_V_-_Saint_Augustine_and_the_Saxons.jpg"
+  },
   "santos/santo-alberto-magno.webp": {
     "arquivo": "File:Albertus magnus dominikanerstammbaum.jpg",
     "artista": "Hans Holbein the Elder",
@@ -398,6 +430,22 @@
     "licenca": "Public domain",
     "titulo": "Santo Antônio Maria Claret (fotografia de c. 1860)",
     "url": "https://commons.wikimedia.org/wiki/File:Antonio_Mar%C3%ADa_Claret,_c.1860.jpg"
+  },
+  "santos/santo-arsenio.webp": {
+    "arquivo": "File:Paintings in the Church of the Theotokos Peribleptos of Ohrid 0396.JPG",
+    "artista": "Painters Michael and Ephtichius",
+    "data": "14th century AD",
+    "licenca": "Public domain",
+    "titulo": "Santo Arsênio, o Grande (afresco do século XIV, igreja da Peribleptos, Ohrid)",
+    "url": "https://commons.wikimedia.org/wiki/File:Paintings_in_the_Church_of_the_Theotokos_Peribleptos_of_Ohrid_0396.JPG"
+  },
+  "santos/santo-atanasio.webp": {
+    "arquivo": "File:Saint-Athanasius-of-Alexandria-icon-Sozopol-Bulgaria-17century.jpg",
+    "artista": "Unknown authorUnknown author",
+    "data": "End of 17 century",
+    "licenca": "Public domain",
+    "titulo": "Santo Atanásio (ícone de Sozopol, Bulgária, fim do século XVII)",
+    "url": "https://commons.wikimedia.org/wiki/File:Saint-Athanasius-of-Alexandria-icon-Sozopol-Bulgaria-17century.jpg"
   },
   "santos/santo-edmundo.webp": {
     "arquivo": "File:Stedmundcrownedbyangelspierpontms736f42.jpg",
@@ -479,6 +527,22 @@
     "titulo": "Santo Inácio de Antioquia (afresco bizantino do mosteiro de Hósios Lukás, século XI)",
     "url": "https://commons.wikimedia.org/wiki/File:Hosios_Loukas_(south_west_chapel,_south_side)_-_Ignatios.jpg"
   },
+  "santos/santo-isidoro-lavrador.webp": {
+    "arquivo": "File:'Saint Isidore the Farmer' by Donaciano Aguilar, oil in tin retablo, 1841, El Paso Museum of Art.JPG",
+    "artista": "Donaciano Aguilar",
+    "data": "1841",
+    "licenca": "Public domain",
+    "titulo": "Santo Isidoro Lavrador, com o anjo que ara por ele (retábulo mexicano de Donaciano Aguilar, 1841)",
+    "url": "https://commons.wikimedia.org/wiki/File:%27Saint_Isidore_the_Farmer%27_by_Donaciano_Aguilar,_oil_in_tin_retablo,_1841,_El_Paso_Museum_of_Art.JPG"
+  },
+  "santos/santo-ivo.webp": {
+    "arquivo": "File:Claude Vignon 1635 Saint Yves.jpg",
+    "artista": "Claude Vignon",
+    "data": "1635",
+    "licenca": "Public domain",
+    "titulo": "Santo Ivo entre o rico e o pobre",
+    "url": "https://commons.wikimedia.org/wiki/File:Claude_Vignon_1635_Saint_Yves.jpg"
+  },
   "santos/santos-anjos-da-guarda.webp": {
     "arquivo": "File:Franceschini, Marcantonio - The Guardian Angel - Google Art Project.jpg",
     "artista": "Franceschini, Marcantonio (1648 - 1729) – Artist Details on Google Art Project",
@@ -535,6 +599,14 @@
     "titulo": "São Basílio ditando a sua doutrina",
     "url": "https://commons.wikimedia.org/wiki/File:Francisco_de_Herrera_(I)_-_St_Basil_Dictating_His_Doctrine_-_WGA11378.jpg"
   },
+  "santos/sao-beda-veneravel.webp": {
+    "arquivo": "File:James Doyle Penrose - The last chapter (Bonhams 2010).jpg",
+    "artista": "James Doyle Penrose",
+    "data": "Unknown date",
+    "licenca": "Public domain",
+    "titulo": "O último capítulo: São Beda dita a tradução do Evangelho de João, de James Doyle Penrose (1902)",
+    "url": "https://commons.wikimedia.org/wiki/File:James_Doyle_Penrose_-_The_last_chapter_(Bonhams_2010).jpg"
+  },
   "santos/sao-benedito.webp": {
     "arquivo": "File:Rto. do B. Beneditto de S. Philadelfio (1744, Joan a Moxeno sculp.) - John Carter Brown Library.png",
     "artista": "Joan a Moxeno, sculp.",
@@ -542,6 +614,14 @@
     "licenca": "Public domain",
     "titulo": "São Benedito recebe o Menino Jesus das mãos de Nossa Senhora (gravura portuguesa de 1744)",
     "url": "https://commons.wikimedia.org/wiki/File:Rto._do_B._Beneditto_de_S._Philadelfio_(1744,_Joan_a_Moxeno_sculp.)_-_John_Carter_Brown_Library.png"
+  },
+  "santos/sao-bernardino-de-sena.webp": {
+    "arquivo": "File:Saint Bernardino of Siena.PNG",
+    "artista": "Jacopo Bellini",
+    "data": "between circa 1450 and circa 1455",
+    "licenca": "Public domain",
+    "titulo": "São Bernardino de Sena",
+    "url": "https://commons.wikimedia.org/wiki/File:Saint_Bernardino_of_Siena.PNG"
   },
   "santos/sao-bras.webp": {
     "arquivo": "File:Pere Fernández - Saint Blaise - Google Art Project.jpg",
@@ -663,6 +743,30 @@
     "titulo": "São Fidélis de Sigmaringa e São José de Leonessa",
     "url": "https://commons.wikimedia.org/wiki/File:Giambattista_Tiepolo_-_I_santi_Fedele_da_Sigmaringen_e_Giuseppe_da_Leonessa_(Parma_ca.1752).jpg"
   },
+  "santos/sao-filipe-e-sao-tiago.webp": {
+    "arquivo": "File:St. Philip and St. James the Less, from the series The Apostles MET DP836395.jpg",
+    "artista": "Master E. S.",
+    "data": "15th century",
+    "licenca": "CC0",
+    "titulo": "São Filipe e São Tiago Menor (gravura do Mestre E. S., século XV)",
+    "url": "https://commons.wikimedia.org/wiki/File:St._Philip_and_St._James_the_Less,_from_the_series_The_Apostles_MET_DP836395.jpg"
+  },
+  "santos/sao-filipe-neri.webp": {
+    "arquivo": "File:Painting of Saint Philip Neri, by Sebastiano Conca.jpg",
+    "artista": "Sebastiano Conca",
+    "data": "18th century",
+    "licenca": "Public domain",
+    "titulo": "São Filipe Néri",
+    "url": "https://commons.wikimedia.org/wiki/File:Painting_of_Saint_Philip_Neri,_by_Sebastiano_Conca.jpg"
+  },
+  "santos/sao-floriano.webp": {
+    "arquivo": "File:Francesco del Cossa, Saint Florian, c. 1473-1474, NGA 368.jpg",
+    "artista": "Francesco del Cossa",
+    "data": "c. 1473/1474",
+    "licenca": "CC0",
+    "titulo": "São Floriano (políptico Griffoni)",
+    "url": "https://commons.wikimedia.org/wiki/File:Francesco_del_Cossa,_Saint_Florian,_c._1473-1474,_NGA_368.jpg"
+  },
   "santos/sao-francisco-de-assis.webp": {
     "arquivo": "File:El Greco, St Francis in Prayer before the Crucifix.JPG",
     "artista": "El Greco",
@@ -751,6 +855,14 @@
     "titulo": "São João da Cruz, de Antoine Ranc (igreja de São Mateus, Montpellier, c. 1700)",
     "url": "https://commons.wikimedia.org/wiki/File:Mus%C3%A9e_Fabre_expo._Jean_Ranc04_Antoine_Ranc_St_Jean_de_la_Croix.jpg"
   },
+  "santos/sao-joao-de-avila.webp": {
+    "arquivo": "File:Attributed to el Greco - Portrait of Juan de Ávila - Google Art Project.jpg",
+    "artista": "Workshop of El Greco",
+    "data": "1580",
+    "licenca": "Public domain",
+    "titulo": "São João de Ávila",
+    "url": "https://commons.wikimedia.org/wiki/File:Attributed_to_el_Greco_-_Portrait_of_Juan_de_%C3%81vila_-_Google_Art_Project.jpg"
+  },
   "santos/sao-joao-de-capistrano.webp": {
     "arquivo": "File:Pieter van Lint - The Miracle of Saint John of Capestrano.jpg",
     "artista": "Pieter van Lint",
@@ -783,6 +895,14 @@
     "titulo": "O cardeal John Henry Newman",
     "url": "https://commons.wikimedia.org/wiki/File:John_Henry_Newman_by_Sir_John_Everett_Millais,_1st_Bt.jpg"
   },
+  "santos/sao-joao-i.webp": {
+    "arquivo": "File:Ioannes I. Giovanni I, santo e papa.jpg",
+    "artista": "Oleografia Panigati e Meneghini Milano",
+    "data": "1879",
+    "licenca": "CC0",
+    "titulo": "São João I, papa (cromolitografia de 1879)",
+    "url": "https://commons.wikimedia.org/wiki/File:Ioannes_I._Giovanni_I,_santo_e_papa.jpg"
+  },
   "santos/sao-jorge.webp": {
     "arquivo": "File:Raphael, Saint George and the Dragon, c. 1506, NGA 28.jpg",
     "artista": "Raphael",
@@ -806,6 +926,14 @@
     "licenca": "Public domain",
     "titulo": "São José Allamano (fotografia anterior a 1926, autor desconhecido)",
     "url": "https://commons.wikimedia.org/wiki/File:Giuseppe_Allamano.jpg"
+  },
+  "santos/sao-jose-operario.webp": {
+    "arquivo": "File:Annunciation Triptych (Merode Altarpiece) MET DT7258.jpg",
+    "artista": "Workshop of Robert Campin",
+    "data": "between circa 1427 and circa 1432",
+    "licenca": "Public domain",
+    "titulo": "São José na sua oficina de carpinteiro (ala direita do tríptico de Mérode)",
+    "url": "https://commons.wikimedia.org/wiki/File:Annunciation_Triptych_(Merode_Altarpiece)_MET_DT7258.jpg"
   },
   "santos/sao-jose-vaz.webp": {
     "arquivo": "File:Padre José Vaz (BNP Inv. 14496).jpg",
@@ -879,6 +1007,14 @@
     "titulo": "São Martinho I, papa (cromolitografia de 1879)",
     "url": "https://commons.wikimedia.org/wiki/File:Martinus_I._Martino_I,_santo_e_papa.jpg"
   },
+  "santos/sao-matias.webp": {
+    "arquivo": "File:Saint Matthias MET DP168805.jpg",
+    "artista": "Simone Martini",
+    "data": "circa 1317",
+    "licenca": "CC0",
+    "titulo": "São Matias apóstolo",
+    "url": "https://commons.wikimedia.org/wiki/File:Saint_Matthias_MET_DP168805.jpg"
+  },
   "santos/sao-nicolau-de-flue.webp": {
     "arquivo": "File:Von Flüe Schilling.jpg",
     "artista": "Diebold Schilling, upload Adrian Michael",
@@ -902,6 +1038,22 @@
     "licenca": "Public domain",
     "titulo": "Nuno Álvares Pereira rezando durante a batalha de Valverde (ilustração de Roque Gameiro, c. 1899)",
     "url": "https://commons.wikimedia.org/wiki/File:Nuno_%C3%81lvares,_praying_during_the_battle_of_Valverde_-_Hist%C3%B3ria_de_Portugal,_popular_e_ilustrada.jpg"
+  },
+  "santos/sao-pacomio.webp": {
+    "arquivo": "File:St. Pachomius, Abbot Met DP890959.jpg",
+    "artista": "Jacques Callot",
+    "data": "1636",
+    "licenca": "CC0",
+    "titulo": "São Pacômio recebe a regra de um anjo (gravura de Jacques Callot, 1636)",
+    "url": "https://commons.wikimedia.org/wiki/File:St._Pachomius,_Abbot_Met_DP890959.jpg"
+  },
+  "santos/sao-pascoal-bailao.webp": {
+    "arquivo": "File:Agustín Arrieta - San Pascual Bailón.jpg",
+    "artista": "",
+    "data": "",
+    "licenca": "Public domain",
+    "titulo": "São Pascoal Bailão em adoração na cozinha do convento, de Agustín Arrieta (século XIX)",
+    "url": "https://commons.wikimedia.org/wiki/File:Agust%C3%ADn_Arrieta_-_San_Pascual_Bail%C3%B3n.jpg"
   },
   "santos/sao-patricio.webp": {
     "arquivo": "File:Tiepolo-s.patrizio.jpg",
@@ -983,6 +1135,14 @@
     "titulo": "Os apóstolos São Simão e São Judas, do Mestre da Coleção Pacully (Museu do Prado, c. 1490)",
     "url": "https://commons.wikimedia.org/wiki/File:Los_Ap%C3%B3stoles_Sim%C3%B3n,_Judas_y_Tom%C3%A1s,_del_Maestro_de_la_Colecci%C3%B3n_Pacully_(Museo_del_Prado).jpg"
   },
+  "santos/sao-simao-stock.webp": {
+    "arquivo": "File:Spanish School - The Presentation of the Scapular to Saint Simon Stock - 19 - Peterhouse.jpg",
+    "artista": "anonymous",
+    "data": "17th century",
+    "licenca": "Public domain",
+    "titulo": "Nossa Senhora entrega o escapulário a São Simão Stock (escola espanhola, século XVII)",
+    "url": "https://commons.wikimedia.org/wiki/File:Spanish_School_-_The_Presentation_of_the_Scapular_to_Saint_Simon_Stock_-_19_-_Peterhouse.jpg"
+  },
   "santos/sao-sofronio-de-jerusalem.webp": {
     "arquivo": "File:Fresco Icon of Saint Sophronios of Jerusalem 2.jpg",
     "artista": "Unknown authorUnknown author",
@@ -1062,5 +1222,13 @@
     "licenca": "Public domain",
     "titulo": "A adoração da Santíssima Trindade por todos os santos (retábulo Landauer)",
     "url": "https://commons.wikimedia.org/wiki/File:Albrecht_D%C3%BCrer_-_Adoration_of_the_Trinity_(Landauer_Altar)_-_Google_Art_Project.jpg"
+  },
+  "santos/visitacao-de-nossa-senhora.webp": {
+    "arquivo": "File:Philippe de Champaigne - The Visitation - y1994-17 - Princeton University Art Museum.jpg",
+    "artista": "Philippe de Champaigne",
+    "data": "between 1643 and 1648",
+    "licenca": "Public domain",
+    "titulo": "A Visitação",
+    "url": "https://commons.wikimedia.org/wiki/File:Philippe_de_Champaigne_-_The_Visitation_-_y1994-17_-_Princeton_University_Art_Museum.jpg"
   }
 }

@@ -468,6 +468,165 @@
   "foco": 0.1,
   "titulo": "São Pio V"
  },
+ "santos/sao-jose-operario.webp": {
+  "arquivo": "File:Annunciation Triptych (Merode Altarpiece) MET DT7258.jpg",
+  "foco": 0.75,
+  "titulo": "São José na sua oficina de carpinteiro (ala direita do tríptico de Mérode)"
+ },
+ "santos/santo-atanasio.webp": {
+  "arquivo": "File:Saint-Athanasius-of-Alexandria-icon-Sozopol-Bulgaria-17century.jpg",
+  "foco": 0.3,
+  "recorte": [
+   0.08,
+   0.03,
+   0.92,
+   0.9
+  ],
+  "titulo": "Santo Atanásio (ícone de Sozopol, Bulgária, fim do século XVII)"
+ },
+ "santos/sao-filipe-e-sao-tiago.webp": {
+  "arquivo": "File:St. Philip and St. James the Less, from the series The Apostles MET DP836395.jpg",
+  "foco": 0.5,
+  "recorte": [
+   0.2,
+   0.37,
+   0.86,
+   0.92
+  ],
+  "titulo": "São Filipe e São Tiago Menor (gravura do Mestre E. S., século XV)"
+ },
+ "santos/sao-floriano.webp": {
+  "arquivo": "File:Francesco del Cossa, Saint Florian, c. 1473-1474, NGA 368.jpg",
+  "foco": 0.3,
+  "recorte": [
+   0.13,
+   0.155,
+   0.87,
+   0.8
+  ],
+  "titulo": "São Floriano (políptico Griffoni)"
+ },
+ "santos/santo-arsenio.webp": {
+  "arquivo": "File:Paintings in the Church of the Theotokos Peribleptos of Ohrid 0396.JPG",
+  "foco": 0.2,
+  "titulo": "Santo Arsênio, o Grande (afresco do século XIV, igreja da Peribleptos, Ohrid)"
+ },
+ "santos/sao-pacomio.webp": {
+  "arquivo": "File:St. Pachomius, Abbot Met DP890959.jpg",
+  "foco": 0.3,
+  "recorte": [
+   0.04,
+   0.04,
+   0.96,
+   0.92
+  ],
+  "titulo": "São Pacômio recebe a regra de um anjo (gravura de Jacques Callot, 1636)"
+ },
+ "santos/sao-joao-de-avila.webp": {
+  "arquivo": "File:Attributed to el Greco - Portrait of Juan de Ávila - Google Art Project.jpg",
+  "foco": 0.2,
+  "titulo": "São João de Ávila"
+ },
+ "santos/sao-matias.webp": {
+  "arquivo": "File:Saint Matthias MET DP168805.jpg",
+  "foco": 0.2,
+  "titulo": "São Matias apóstolo"
+ },
+ "santos/santo-isidoro-lavrador.webp": {
+  "arquivo": "File:'Saint Isidore the Farmer' by Donaciano Aguilar, oil in tin retablo, 1841, El Paso Museum of Art.JPG",
+  "foco": 0.3,
+  "recorte": [
+   0.03,
+   0.03,
+   0.97,
+   0.9
+  ],
+  "titulo": "Santo Isidoro Lavrador, com o anjo que ara por ele (retábulo mexicano de Donaciano Aguilar, 1841)"
+ },
+ "santos/sao-simao-stock.webp": {
+  "arquivo": "File:Spanish School - The Presentation of the Scapular to Saint Simon Stock - 19 - Peterhouse.jpg",
+  "foco": 0.3,
+  "titulo": "Nossa Senhora entrega o escapulário a São Simão Stock (escola espanhola, século XVII)"
+ },
+ "santos/sao-pascoal-bailao.webp": {
+  "arquivo": "File:Agustín Arrieta - San Pascual Bailón.jpg",
+  "foco": 0.5,
+  "recorte": [
+   0.1,
+   0.08,
+   0.9,
+   0.92
+  ],
+  "titulo": "São Pascoal Bailão em adoração na cozinha do convento, de Agustín Arrieta (século XIX)"
+ },
+ "santos/sao-joao-i.webp": {
+  "arquivo": "File:Ioannes I. Giovanni I, santo e papa.jpg",
+  "foco": 1.0,
+  "recorte": [
+   0.17,
+   0.13,
+   0.84,
+   0.808
+  ],
+  "titulo": "São João I, papa (cromolitografia de 1879)"
+ },
+ "santos/santo-ivo.webp": {
+  "arquivo": "File:Claude Vignon 1635 Saint Yves.jpg",
+  "foco": 0.3,
+  "titulo": "Santo Ivo entre o rico e o pobre"
+ },
+ "santos/sao-bernardino-de-sena.webp": {
+  "arquivo": "File:Saint Bernardino of Siena.PNG",
+  "foco": 0.3,
+  "titulo": "São Bernardino de Sena"
+ },
+ "santos/santa-rita-de-cassia.webp": {
+  "arquivo": "File:'Saint Rita of Cascia' by Antonio de Torres, c. 1720.JPG",
+  "foco": 0.6,
+  "titulo": "Santa Rita de Cássia"
+ },
+ "santos/nossa-senhora-auxiliadora.webp": {
+  "arquivo": "File:María Auxiliadora Entera.jpg",
+  "foco": 0.0,
+  "recorte": [
+   0.12,
+   0.13,
+   0.88,
+   0.8
+  ],
+  "titulo": "Nossa Senhora Auxiliadora (o quadro da basílica de Turim encomendado por Dom Bosco)"
+ },
+ "santos/sao-beda-veneravel.webp": {
+  "arquivo": "File:James Doyle Penrose - The last chapter (Bonhams 2010).jpg",
+  "foco": 0.5,
+  "titulo": "O último capítulo: São Beda dita a tradução do Evangelho de João, de James Doyle Penrose (1902)"
+ },
+ "santos/sao-filipe-neri.webp": {
+  "arquivo": "File:Painting of Saint Philip Neri, by Sebastiano Conca.jpg",
+  "foco": 0.2,
+  "titulo": "São Filipe Néri"
+ },
+ "santos/santo-agostinho-de-cantuaria.webp": {
+  "arquivo": "File:Pictures of English History Plate V - Saint Augustine and the Saxons.jpg",
+  "foco": 0.5,
+  "titulo": "Santo Agostinho de Cantuária prega ao rei Etelberto (cromolitografia de 1868)"
+ },
+ "santos/santa-joana-darc.webp": {
+  "arquivo": "File:Ingres coronation charles vii.jpg",
+  "foco": 0.15,
+  "titulo": "Joana d'Arc na sagração do rei Carlos VII"
+ },
+ "santos/visitacao-de-nossa-senhora.webp": {
+  "arquivo": "File:Philippe de Champaigne - The Visitation - y1994-17 - Princeton University Art Museum.jpg",
+  "foco": 0.3,
+  "recorte": [
+   0.01,
+   0.01,
+   0.97,
+   0.98
+  ],
+  "titulo": "A Visitação"
+ },
  "santos/santos-anjos-da-guarda.webp": {
   "arquivo": "File:Franceschini, Marcantonio - The Guardian Angel - Google Art Project.jpg",
   "foco": 0.3,
