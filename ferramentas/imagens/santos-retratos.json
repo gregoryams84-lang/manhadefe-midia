@@ -749,6 +749,114 @@
   "foco": 0.2,
   "titulo": "São Pedro e São Paulo"
  },
+ "santos/sao-bernardino-realino.webp": {
+  "arquivo": "File:Portret van de jezuïet Bernardin Realini, RP-P-1906-2102.jpg",
+  "foco": 0.2,
+  "recorte": [
+   0.04,
+   0.03,
+   0.96,
+   0.85
+  ],
+  "titulo": "São Bernardino Realino (gravura do século XVII)"
+ },
+ "santos/sao-tome.webp": {
+  "arquivo": "File:Saint Thomas à la pique - Georges de La Tour - Musée du Louvre Peintures RF 1988 15.jpg",
+  "foco": 0.3,
+  "titulo": "São Tomé com a lança"
+ },
+ "santos/santa-isabel-de-portugal.webp": {
+  "arquivo": "File:Rainha Santa Isabel, Milagre das Rosas (séc. XVII) - Sé Velha de Coimbra.png",
+  "foco": 0.3,
+  "titulo": "A Rainha Santa Isabel e o milagre das rosas (século XVII, Sé Velha de Coimbra)"
+ },
+ "santos/sao-bento.webp": {
+  "arquivo": "File:Fra Angelico 031.jpg",
+  "foco": 0.3,
+  "titulo": "São Bento (detalhe da Crucificação com santos, convento de São Marcos)"
+ },
+ "santos/santo-henrique.webp": {
+  "arquivo": "File:Krönungsbild Heinrichs II.jpg",
+  "foco": 0.3,
+  "recorte": [
+   0.09,
+   0.05,
+   0.9,
+   0.93
+  ],
+  "titulo": "Santo Henrique coroado por Cristo (Sacramentário de Henrique II, início do século XI)"
+ },
+ "santos/sao-camilo-de-lelis.webp": {
+  "arquivo": "File:Cristóbal Lozano - Ecstasy of Saint Camillus de Lellis - Google Art Project.jpg",
+  "foco": 0.3,
+  "titulo": "O êxtase de São Camilo de Lélis"
+ },
+ "santos/sao-boaventura.webp": {
+  "arquivo": "File:Francisco de Zurbarán 036.jpg",
+  "foco": 0.5,
+  "titulo": "São Boaventura em oração"
+ },
+ "santos/nossa-senhora-do-carmo.webp": {
+  "arquivo": "File:Onorio Marinari - Our Lady of Mount Carmel.jpg",
+  "foco": 0.2,
+  "titulo": "Nossa Senhora do Carmo"
+ },
+ "santos/sao-bartolomeu-dos-martires.webp": {
+  "arquivo": "File:Frei Bartholomeu Martyres.jpg",
+  "foco": 0.1,
+  "titulo": "Dom Frei Bartolomeu dos Mártires, arcebispo de Braga (retrato antigo)"
+ },
+ "santos/santo-elias.webp": {
+  "arquivo": "File:Elie with the firey wagon1.jpg",
+  "foco": 0.05,
+  "titulo": "O profeta Elias levado no carro de fogo (ícone do século XVI)"
+ },
+ "santos/sao-lourenco-de-brindes.webp": {
+  "arquivo": "File:Portret van Laurentius von Brindisi, RP-P-1907-130.jpg",
+  "foco": 0.2,
+  "recorte": [
+   0.05,
+   0.03,
+   0.95,
+   0.85
+  ],
+  "titulo": "São Lourenço de Brindes (gravura do século XVIII)"
+ },
+ "santos/santa-maria-madalena.webp": {
+  "arquivo": "File:María Magdalena leyendo, por Piero di Cosimo.jpg",
+  "foco": 0.3,
+  "titulo": "Santa Maria Madalena lendo"
+ },
+ "santos/santa-brigida-da-suecia.webp": {
+  "arquivo": "File:Heliga Birgitta på ett altarskåp i Salems kyrka retouched.png",
+  "foco": 0.2,
+  "titulo": "Santa Brígida da Suécia (retábulo de Hermann Rode na igreja de Salem, Suécia, c. 1480; reprodução retocada)"
+ },
+ "santos/sao-tiago-maior.webp": {
+  "arquivo": "File:Guido Reni - Saint James the Greater - Google Art Project.jpg",
+  "foco": 0.2,
+  "titulo": "São Tiago Maior"
+ },
+ "santos/sao-joaquim-e-santa-ana.webp": {
+  "arquivo": "File:Joakim og Annas gensyn uden for Jerusalems Gyldne Port.jpg",
+  "foco": 0.5,
+  "titulo": "O encontro de São Joaquim e Santa Ana na Porta Dourada"
+ },
+ "santos/sao-pantaleao.webp": {
+  "arquivo": "File:Hosios Loukas (nave, lunette on west wall of south cross arm) - S. Panteleimon.jpg",
+  "foco": 0.5,
+  "titulo": "São Pantaleão (mosaico do mosteiro de Hósios Lukás, século XI)"
+ },
+ "santos/santa-marta.webp": {
+  "arquivo": "File:Jacopo Tintoretto 008.jpg",
+  "foco": 0.4,
+  "titulo": "Cristo em casa de Marta e Maria"
+ },
+ "santos/santo-inacio-de-loyola.webp": {
+  "arquivo": "File:St. Ignatius of Loyola by Peter Paul Rubens.jpg",
+  "foco": 0.1,
+  "titulo": "Santo Inácio de Loyola"
+ },
  "santos/santos-anjos-da-guarda.webp": {
   "arquivo": "File:Franceschini, Marcantonio - The Guardian Angel - Google Art Project.jpg",
   "foco": 0.3,
