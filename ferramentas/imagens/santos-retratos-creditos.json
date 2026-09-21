@@ -7,6 +7,14 @@
     "titulo": "A apresentação de Nossa Senhora no Templo (capela Scrovegni)",
     "url": "https://commons.wikimedia.org/wiki/File:Presentation_of_the_Virgin_-_Capella_dei_Scrovegni.jpg"
   },
+  "santos/conversao-de-sao-paulo.webp": {
+    "arquivo": "File:Parmigianino 012.jpg",
+    "artista": "Parmigianino",
+    "data": "circa 1527/1528",
+    "licenca": "Public domain",
+    "titulo": "A conversão de São Paulo",
+    "url": "https://commons.wikimedia.org/wiki/File:Parmigianino_012.jpg"
+  },
   "santos/dedicacao-da-basilica-de-latrao.webp": {
     "arquivo": "File:Rome, a view of Piazza San Giovanni Laterano with figures and horse-drawn carts (by Gaspar van Wittel).jpg",
     "artista": "Gaspar van Wittel",
@@ -70,6 +78,14 @@
     "licenca": "Public domain",
     "titulo": "Nossa Senhora do Rosário (Dulwich Picture Gallery)",
     "url": "https://commons.wikimedia.org/wiki/File:Murillo,_Bartolom%C3%A9_Est%C3%A9ban_-_The_Madonna_of_the_Rosary_-_Google_Art_Project.jpg"
+  },
+  "santos/nossa-senhora-mae-de-deus.webp": {
+    "arquivo": "File:Filippo Lippi - Madonna col Bambino e due angeli - Google Art Project.jpg",
+    "artista": "Filippo Lippi",
+    "data": "between circa 1460 and circa 1465",
+    "licenca": "Public domain",
+    "titulo": "Nossa Senhora com o Menino e dois anjos",
+    "url": "https://commons.wikimedia.org/wiki/File:Filippo_Lippi_-_Madonna_col_Bambino_e_due_angeli_-_Google_Art_Project.jpg"
   },
   "santos/santa-adelaide.webp": {
     "arquivo": "File:Abel Terral - Sainte Adelaide de France, reine d'Italie, imperatrice d'Allemagne.jpg",
@@ -135,6 +151,14 @@
     "titulo": "Santa Gertrudes, a Grande",
     "url": "https://commons.wikimedia.org/wiki/File:Miguel_Cabrera_-_Saint_Gertrude_(Santa_Gertrudis)_-_2006.37_-_Dallas_Museum_of_Art.jpg"
   },
+  "santos/santa-ines.webp": {
+    "arquivo": "File:Massimo Stanzione - Saint Agnes - Google Art Project.jpg",
+    "artista": "Massimo Stanzione",
+    "data": "from 1635 until 1640",
+    "licenca": "Public domain",
+    "titulo": "Santa Inês",
+    "url": "https://commons.wikimedia.org/wiki/File:Massimo_Stanzione_-_Saint_Agnes_-_Google_Art_Project.jpg"
+  },
   "santos/santa-isabel-da-hungria.webp": {
     "arquivo": "File:Elisabet av Thüringen.jpg",
     "artista": "Edmund Blair Leighton",
@@ -151,6 +175,14 @@
     "titulo": "Santa Luzia",
     "url": "https://commons.wikimedia.org/wiki/File:Francisco_de_Zurbar%C3%A1n,_Saint_Lucy,_c._1625-1630,_NGA_12209.jpg"
   },
+  "santos/santa-sincletica.webp": {
+    "arquivo": "File:Righteous Syncletica of Alexandria (Menologion of Basil II).jpg",
+    "artista": "Authors of Menologion of Basil II (circa 985 AC, Constantinople), Byzantine manuscript illuminators[1]:\nPantoleon with Georgios, Michael the Younger, Michael of Blachernae, Symeon, Symeon of Blachernae, Menas, and Nestor \n(Online on Vatican site)",
+    "data": "0985",
+    "licenca": "Public domain",
+    "titulo": "Santa Sinclética de Alexandria (Menológio de Basílio II, c. 985)",
+    "url": "https://commons.wikimedia.org/wiki/File:Righteous_Syncletica_of_Alexandria_(Menologion_of_Basil_II).jpg"
+  },
   "santos/santa-teresa-de-avila.webp": {
     "arquivo": "File:Peter Paul Rubens - Hl. Therese von Avila - GG 7119 - Kunsthistorisches Museum.jpg",
     "artista": "Peter Paul Rubens",
@@ -166,6 +198,14 @@
     "licenca": "Public domain",
     "titulo": "Santa Úrsula com anjos e doadora",
     "url": "https://commons.wikimedia.org/wiki/File:Sant%27Orsola.jpg"
+  },
+  "santos/santissimo-nome-de-jesus.webp": {
+    "arquivo": "File:El Greco 001.jpg",
+    "artista": "El Greco",
+    "data": "between 1577 and 1580",
+    "licenca": "Public domain",
+    "titulo": "A adoração do Nome de Jesus (detalhe)",
+    "url": "https://commons.wikimedia.org/wiki/File:El_Greco_001.jpg"
   },
   "santos/santo-afonso-rodriguez.webp": {
     "arquivo": "File:Francisco de Zurbarán - Visión del Beato Alonso Rodríguez - Google Art Project.jpg",
@@ -206,6 +246,14 @@
     "licenca": "Public domain",
     "titulo": "Santo André apóstolo",
     "url": "https://commons.wikimedia.org/wiki/File:El_Greco_-_St._Andrew_-_Google_Art_Project.jpg"
+  },
+  "santos/santo-antao.webp": {
+    "arquivo": "File:San Antonio Abad, de Juan Reixac (Museo del Prado).jpg",
+    "artista": "Juan Rexach",
+    "data": "between circa 1450 and circa 1460",
+    "licenca": "Public domain",
+    "titulo": "Santo Antão, abade, de Juan Rexach (Museu do Prado, século XV)",
+    "url": "https://commons.wikimedia.org/wiki/File:San_Antonio_Abad,_de_Juan_Reixac_(Museo_del_Prado).jpg"
   },
   "santos/santo-antonio-maria-claret.webp": {
     "arquivo": "File:Antonio María Claret, c.1860.jpg",
@@ -255,6 +303,14 @@
     "titulo": "Santo Homobono dá esmola a um pobre (detalhe de A Virgem entronizada com santos, de Bartolomeo Montagna, c. 1515)",
     "url": "https://commons.wikimedia.org/wiki/File:Bode_Museum_Enthroned_madonna_with_child_and_saints_-_Bartolomeo_Montagna_-_ca._1515_1251.jpg"
   },
+  "santos/santo-ildefonso-de-toledo.webp": {
+    "arquivo": "File:El Greco 060.jpg",
+    "artista": "El Greco",
+    "data": "between 1603 and 1605",
+    "licenca": "Public domain",
+    "titulo": "Santo Ildefonso",
+    "url": "https://commons.wikimedia.org/wiki/File:El_Greco_060.jpg"
+  },
   "santos/santo-inacio-de-antioquia.webp": {
     "arquivo": "File:Hosios Loukas (south west chapel, south side) - Ignatios.jpg",
     "artista": "AnonymousUnknown author",
@@ -286,6 +342,22 @@
     "licenca": "Public domain",
     "titulo": "O triunfo dos Inocentes (detalhe)",
     "url": "https://commons.wikimedia.org/wiki/File:William_Holman_Hunt_-_The_Triumph_of_the_Innocents_-_1870-1903.jpg"
+  },
+  "santos/santos-reis-magos.webp": {
+    "arquivo": "File:Adoration of the Magi Spedale degli Innocenti.jpg",
+    "artista": "Domenico Ghirlandaio",
+    "data": "from 1488 until 1489",
+    "licenca": "Public domain",
+    "titulo": "A adoração dos Magos (Hospital dos Inocentes, Florença)",
+    "url": "https://commons.wikimedia.org/wiki/File:Adoration_of_the_Magi_Spedale_degli_Innocenti.jpg"
+  },
+  "santos/sao-basilio-magno.webp": {
+    "arquivo": "File:Francisco de Herrera (I) - St Basil Dictating His Doctrine - WGA11378.jpg",
+    "artista": "Francisco Herrera the Elder",
+    "data": "circa 1639",
+    "licenca": "Public domain",
+    "titulo": "São Basílio ditando a sua doutrina",
+    "url": "https://commons.wikimedia.org/wiki/File:Francisco_de_Herrera_(I)_-_St_Basil_Dictating_His_Doctrine_-_WGA11378.jpg"
   },
   "santos/sao-bruno.webp": {
     "arquivo": "File:Gaspar de Crayer (1584-1669) - Saint Bruno - YORAG , 803 - York Art Gallery.jpg",
@@ -367,6 +439,14 @@
     "titulo": "São Francisco ajoelhado em meditação diante do crucifixo",
     "url": "https://commons.wikimedia.org/wiki/File:El_Greco,_St_Francis_in_Prayer_before_the_Crucifix.JPG"
   },
+  "santos/sao-francisco-de-sales.webp": {
+    "arquivo": "File:Château de Bussy-Rabutin - Saint François de Sales, évêque de Genève (bgw19 0375) (cropped).jpg",
+    "artista": "Benjamin Gavaudo",
+    "data": "2019",
+    "licenca": "Public domain",
+    "titulo": "São Francisco de Sales (retrato do século XVII, castelo de Bussy-Rabutin)",
+    "url": "https://commons.wikimedia.org/wiki/File:Ch%C3%A2teau_de_Bussy-Rabutin_-_Saint_Fran%C3%A7ois_de_Sales,_%C3%A9v%C3%AAque_de_Gen%C3%A8ve_(bgw19_0375)_(cropped).jpg"
+  },
   "santos/sao-francisco-xavier.webp": {
     "arquivo": "File:Murillo-san francisco javier.jpg",
     "artista": "Bartolomé Esteban Murillo",
@@ -375,6 +455,14 @@
     "titulo": "São Francisco Xavier (segundo Murillo, c. 1675)",
     "url": "https://commons.wikimedia.org/wiki/File:Murillo-san_francisco_javier.jpg"
   },
+  "santos/sao-gregorio-de-nissa.webp": {
+    "arquivo": "File:Hosios Loukas (nave, north-west conch) - Gregory of Nyssa - detail.jpg",
+    "artista": "AnonymousUnknown author",
+    "data": "early 11th century Byzantine",
+    "licenca": "Public domain",
+    "titulo": "São Gregório de Nissa (mosaico do mosteiro de Hósios Lukás, século XI)",
+    "url": "https://commons.wikimedia.org/wiki/File:Hosios_Loukas_(nave,_north-west_conch)_-_Gregory_of_Nyssa_-_detail.jpg"
+  },
   "santos/sao-guido-maria-conforti.webp": {
     "arquivo": "File:Guido Maria Conforti Vescovo.jpg",
     "artista": "Unknown authorUnknown author",
@@ -382,6 +470,14 @@
     "licenca": "Public domain",
     "titulo": "Dom Guido Maria Conforti (fotografia de 1902)",
     "url": "https://commons.wikimedia.org/wiki/File:Guido_Maria_Conforti_Vescovo.jpg"
+  },
+  "santos/sao-joao-bosco.webp": {
+    "arquivo": "File:Galleria dei contemporanei. Don Giovanni Bosco, filantropo (morto il 31 gennaio a Torino).jpg",
+    "artista": "Ernesto Mancastroppa (1857–1909) (engraving)",
+    "data": "1888",
+    "licenca": "Public domain",
+    "titulo": "Dom Bosco (gravura de Ernesto Mancastroppa, 1888)",
+    "url": "https://commons.wikimedia.org/wiki/File:Galleria_dei_contemporanei._Don_Giovanni_Bosco,_filantropo_(morto_il_31_gennaio_a_Torino).jpg"
   },
   "santos/sao-joao-cancio.webp": {
     "arquivo": "File:Tadeusz Kuntze - Miracle of St Jan Kanty - MNK II-a-448 (377412).jpg",
@@ -439,6 +535,14 @@
     "titulo": "São Josafá, bispo e mártir (gravura de Aleksander Tarasowicz, século XVII)",
     "url": "https://commons.wikimedia.org/wiki/File:Iosaphat_Martyr_(miedzioryt)_(cropped).jpg"
   },
+  "santos/sao-jose-vaz.webp": {
+    "arquivo": "File:Padre José Vaz (BNP Inv. 14496).jpg",
+    "artista": "",
+    "data": "",
+    "licenca": "Public domain",
+    "titulo": "Padre José Vaz (retrato da galeria dos padres oratorianos, Biblioteca Nacional de Portugal)",
+    "url": "https://commons.wikimedia.org/wiki/File:Padre_Jos%C3%A9_Vaz_(BNP_Inv._14496).jpg"
+  },
   "santos/sao-leao-magno.webp": {
     "arquivo": "File:Herrera mozo San León magno Lienzo. Óvalo. 164 x 105 cm. Museo del Prado.png",
     "artista": "Francisco Herrera the Younger",
@@ -454,6 +558,14 @@
     "licenca": "Public domain",
     "titulo": "São Leonardo de Porto Maurício (1763)",
     "url": "https://commons.wikimedia.org/wiki/File:Vasini_-_Leonardo_di_porto_maurizio_1763.jpg"
+  },
+  "santos/sao-lourenco-justiniano.webp": {
+    "arquivo": "File:Gentile Bellini - Portrait of Lorenzo Giustiniani - M.Ob.629 MNW - National Museum in Warsaw.jpg",
+    "artista": "Gentile Bellini",
+    "data": "1465",
+    "licenca": "Public domain",
+    "titulo": "São Lourenço Justiniano",
+    "url": "https://commons.wikimedia.org/wiki/File:Gentile_Bellini_-_Portrait_of_Lorenzo_Giustiniani_-_M.Ob.629_MNW_-_National_Museum_in_Warsaw.jpg"
   },
   "santos/sao-lucas.webp": {
     "arquivo": "File:El Greco 035.jpg",
@@ -511,6 +623,14 @@
     "titulo": "São Sabas (afresco do século XIV)",
     "url": "https://commons.wikimedia.org/wiki/File:%D0%A1%D0%B0%D0%B2%D0%B2%D0%B0_%D0%9E%D1%81%D0%B2%D1%8F%D1%89%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9.jpg"
   },
+  "santos/sao-sebastiao.webp": {
+    "arquivo": "File:Raffael 021.jpg",
+    "artista": "Raphael",
+    "data": "1501-1502",
+    "licenca": "Public domain",
+    "titulo": "São Sebastião",
+    "url": "https://commons.wikimedia.org/wiki/File:Raffael_021.jpg"
+  },
   "santos/sao-silvestre-i.webp": {
     "arquivo": "File:Pape St Sylvestre – BnF, ms 16251, fol. 87.jpg",
     "artista": "AnonymousUnknown author",
@@ -535,6 +655,14 @@
     "titulo": "São Teófilo de Antioquia (gravura de 1677)",
     "url": "https://commons.wikimedia.org/wiki/File:Theophilus_Antiochenus.png"
   },
+  "santos/sao-timoteo.webp": {
+    "arquivo": "File:Timothy-and-Lois.jpg",
+    "artista": "Willem Drost",
+    "data": "1650s",
+    "licenca": "Public domain",
+    "titulo": "Timóteo e sua avó Loide",
+    "url": "https://commons.wikimedia.org/wiki/File:Timothy-and-Lois.jpg"
+  },
   "santos/sao-tomas-becket.webp": {
     "arquivo": "File:Meister Francke 007.jpg",
     "artista": "Master Francke",
@@ -542,6 +670,22 @@
     "licenca": "Public domain",
     "titulo": "São Tomás Becket escarnecido em viagem (retábulo de São Tomás, de Mestre Francke, 1426)",
     "url": "https://commons.wikimedia.org/wiki/File:Meister_Francke_007.jpg"
+  },
+  "santos/sao-tomas-de-aquino.webp": {
+    "arquivo": "File:Saint Thomas Aquinas (Crivelli, 15th-century).jpg",
+    "artista": "Carlo Crivelli",
+    "data": "1476",
+    "licenca": "Public domain",
+    "titulo": "São Tomás de Aquino",
+    "url": "https://commons.wikimedia.org/wiki/File:Saint_Thomas_Aquinas_(Crivelli,_15th-century).jpg"
+  },
+  "santos/sao-vicente-martir.webp": {
+    "arquivo": "File:Vicente de Zaragoza by Tomás Giner, 1462–1466.jpg",
+    "artista": "Tomás Giner",
+    "data": "between circa 1462 and circa 1466",
+    "licenca": "Public domain",
+    "titulo": "São Vicente, diácono e mártir",
+    "url": "https://commons.wikimedia.org/wiki/File:Vicente_de_Zaragoza_by_Tom%C3%A1s_Giner,_1462%E2%80%931466.jpg"
   },
   "santos/sao-vilibrordo.webp": {
     "arquivo": "File:Willibrord (Paris, BN Lat. 10510).jpg",

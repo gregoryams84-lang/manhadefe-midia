@@ -1,4 +1,118 @@
 {
+ "santos/nossa-senhora-mae-de-deus.webp": {
+  "arquivo": "File:Filippo Lippi - Madonna col Bambino e due angeli - Google Art Project.jpg",
+  "foco": 0.0,
+  "recorte": [
+   0.13,
+   0.1,
+   0.875,
+   1.0
+  ],
+  "titulo": "Nossa Senhora com o Menino e dois anjos"
+ },
+ "santos/sao-basilio-magno.webp": {
+  "arquivo": "File:Francisco de Herrera (I) - St Basil Dictating His Doctrine - WGA11378.jpg",
+  "foco": 0.3,
+  "titulo": "São Basílio ditando a sua doutrina"
+ },
+ "santos/santissimo-nome-de-jesus.webp": {
+  "arquivo": "File:El Greco 001.jpg",
+  "foco": 0.0,
+  "recorte": [
+   0.0,
+   0.0,
+   0.86,
+   0.84
+  ],
+  "titulo": "A adoração do Nome de Jesus (detalhe)"
+ },
+ "santos/santa-sincletica.webp": {
+  "arquivo": "File:Righteous Syncletica of Alexandria (Menologion of Basil II).jpg",
+  "foco": 0.5,
+  "titulo": "Santa Sinclética de Alexandria (Menológio de Basílio II, c. 985)"
+ },
+ "santos/santos-reis-magos.webp": {
+  "arquivo": "File:Adoration of the Magi Spedale degli Innocenti.jpg",
+  "foco": 0.6,
+  "titulo": "A adoração dos Magos (Hospital dos Inocentes, Florença)"
+ },
+ "santos/sao-lourenco-justiniano.webp": {
+  "arquivo": "File:Gentile Bellini - Portrait of Lorenzo Giustiniani - M.Ob.629 MNW - National Museum in Warsaw.jpg",
+  "foco": 0.3,
+  "titulo": "São Lourenço Justiniano"
+ },
+ "santos/sao-gregorio-de-nissa.webp": {
+  "arquivo": "File:Hosios Loukas (nave, north-west conch) - Gregory of Nyssa - detail.jpg",
+  "foco": 0.4,
+  "titulo": "São Gregório de Nissa (mosaico do mosteiro de Hósios Lukás, século XI)"
+ },
+ "santos/sao-jose-vaz.webp": {
+  "arquivo": "File:Padre José Vaz (BNP Inv. 14496).jpg",
+  "foco": 0.5,
+  "recorte": [
+   0.145,
+   0.108,
+   0.855,
+   0.79
+  ],
+  "titulo": "Padre José Vaz (retrato da galeria dos padres oratorianos, Biblioteca Nacional de Portugal)"
+ },
+ "santos/santo-antao.webp": {
+  "arquivo": "File:San Antonio Abad, de Juan Reixac (Museo del Prado).jpg",
+  "foco": 0.2,
+  "titulo": "Santo Antão, abade, de Juan Rexach (Museu do Prado, século XV)"
+ },
+ "santos/sao-sebastiao.webp": {
+  "arquivo": "File:Raffael 021.jpg",
+  "foco": 0.3,
+  "titulo": "São Sebastião"
+ },
+ "santos/santa-ines.webp": {
+  "arquivo": "File:Massimo Stanzione - Saint Agnes - Google Art Project.jpg",
+  "foco": 0.5,
+  "recorte": [
+   0.12,
+   0.0,
+   0.95,
+   1.0
+  ],
+  "titulo": "Santa Inês"
+ },
+ "santos/sao-vicente-martir.webp": {
+  "arquivo": "File:Vicente de Zaragoza by Tomás Giner, 1462–1466.jpg",
+  "foco": 0.1,
+  "titulo": "São Vicente, diácono e mártir"
+ },
+ "santos/santo-ildefonso-de-toledo.webp": {
+  "arquivo": "File:El Greco 060.jpg",
+  "foco": 0.2,
+  "titulo": "Santo Ildefonso"
+ },
+ "santos/sao-francisco-de-sales.webp": {
+  "arquivo": "File:Château de Bussy-Rabutin - Saint François de Sales, évêque de Genève (bgw19 0375) (cropped).jpg",
+  "foco": 0.3,
+  "titulo": "São Francisco de Sales (retrato do século XVII, castelo de Bussy-Rabutin)"
+ },
+ "santos/conversao-de-sao-paulo.webp": {
+  "arquivo": "File:Parmigianino 012.jpg",
+  "foco": 0.8,
+  "titulo": "A conversão de São Paulo"
+ },
+ "santos/sao-timoteo.webp": {
+  "arquivo": "File:Timothy-and-Lois.jpg",
+  "foco": 0.4,
+  "titulo": "Timóteo e sua avó Loide"
+ },
+ "santos/sao-tomas-de-aquino.webp": {
+  "arquivo": "File:Saint Thomas Aquinas (Crivelli, 15th-century).jpg",
+  "foco": 0.1,
+  "titulo": "São Tomás de Aquino"
+ },
+ "santos/sao-joao-bosco.webp": {
+  "arquivo": "File:Galleria dei contemporanei. Don Giovanni Bosco, filantropo (morto il 31 gennaio a Torino).jpg",
+  "foco": 0.1,
+  "titulo": "Dom Bosco (gravura de Ernesto Mancastroppa, 1888)"
+ },
  "santos/santos-anjos-da-guarda.webp": {
   "arquivo": "File:Franceschini, Marcantonio - The Guardian Angel - Google Art Project.jpg",
   "foco": 0.3,
