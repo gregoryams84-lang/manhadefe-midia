@@ -113,6 +113,129 @@
   "foco": 0.1,
   "titulo": "Dom Bosco (gravura de Ernesto Mancastroppa, 1888)"
  },
+ "santos/santa-brigida-de-kildare.webp": {
+  "arquivo": "File:John Duncan (1913) Saint Bride.jpg",
+  "foco": 0.5,
+  "recorte": [
+   0.12,
+   0.05,
+   0.8,
+   0.95
+  ],
+  "titulo": "Santa Brígida levada pelos anjos (Saint Bride), de John Duncan, 1913"
+ },
+ "santos/apresentacao-do-senhor.webp": {
+  "arquivo": "File:Vittore Carpaccio 074.jpg",
+  "foco": 0.55,
+  "titulo": "A apresentação de Jesus no Templo"
+ },
+ "santos/sao-bras.webp": {
+  "arquivo": "File:Pere Fernández - Saint Blaise - Google Art Project.jpg",
+  "foco": 0.0,
+  "titulo": "São Brás"
+ },
+ "santos/santa-agueda.webp": {
+  "arquivo": "File:IcoonAgatha.jpg",
+  "foco": 0.3,
+  "recorte": [
+   0.07,
+   0.0,
+   0.93,
+   1.0
+  ],
+  "titulo": "Santa Águeda"
+ },
+ "santos/sao-paulo-miki.webp": {
+  "arquivo": "File:Devotieprent van de martelaren van Japan Paulus Miki, Johannes Soan De Goto, Jacobus Kisai, asset SFHpVTXnZkUTJJplDQcmV2SA.tif",
+  "foco": 0.3,
+  "recorte": [
+   0.1,
+   0.12,
+   0.9,
+   0.78
+  ],
+  "titulo": "Os mártires do Japão Paulo Miki, João de Goto e Tiago Kisai (gravura do século XVIII)"
+ },
+ "santos/santa-apolonia.webp": {
+  "arquivo": "File:Sainte Apolline - Francisco de Zurbarán - Musée du Louvre Peintures MI 724.jpg",
+  "foco": 0.25,
+  "titulo": "Santa Apolônia"
+ },
+ "santos/santa-escolastica.webp": {
+  "arquivo": "File:Bernardo parentino, santa scolastica, 1496 ca.jpg",
+  "foco": 0.5,
+  "recorte": [
+   0.19,
+   0.148,
+   0.83,
+   0.773
+  ],
+  "titulo": "Santa Escolástica, de Bernardo Parentino (c. 1496)"
+ },
+ "santos/santos-cirilo-e-metodio.webp": {
+  "arquivo": "File:Sts. Cyril and Methodius Icon in Holy Trinity Church on Kozloduy, 1898.JPG",
+  "foco": 0.2,
+  "recorte": [
+   0.04,
+   0.03,
+   0.96,
+   0.93
+  ],
+  "titulo": "São Cirilo e São Metódio (ícone búlgaro, antes de 1898)"
+ },
+ "santos/sao-claudio-de-la-colombiere.webp": {
+  "arquivo": "File:Claud' La Colombiere, 8B6291049.jpg",
+  "foco": 0.3,
+  "recorte": [
+   0.1,
+   0.08,
+   0.9,
+   0.8
+  ],
+  "titulo": "São Cláudio de la Colombière (gravura do século XVII)"
+ },
+ "santos/sao-jose-allamano.webp": {
+  "arquivo": "File:Giuseppe Allamano.jpg",
+  "foco": 0.1,
+  "titulo": "São José Allamano (fotografia anterior a 1926, autor desconhecido)"
+ },
+ "santos/sete-fundadores-dos-servitas.webp": {
+  "arquivo": "File:Agostino Masucci - The Madonna with the Seven Founders of the Servite Order - 1977.485 - Art Institute of Chicago.jpg",
+  "foco": 0.4,
+  "titulo": "Nossa Senhora com os sete fundadores dos Servitas"
+ },
+ "santos/santos-francisco-e-jacinta-marto.webp": {
+  "arquivo": "File:Saints Francisco and Jacinta Marto double portrait (2).jpg",
+  "foco": 0.1,
+  "titulo": "Francisco e Jacinta Marto (fotografia de 1917, autor desconhecido)"
+ },
+ "santos/catedra-de-sao-pedro.webp": {
+  "arquivo": "File:Pope-peter pprubens.jpg",
+  "foco": 0.1,
+  "titulo": "São Pedro como papa"
+ },
+ "santos/sao-policarpo.webp": {
+  "arquivo": "File:Apostolici- or, the history of the lives, acts, death, and martyrdoms of those who were contemporary with, or immediately succeeded the Apostles Fleuron T126603-18.png",
+  "foco": 0.3,
+  "recorte": [
+   0.02,
+   0.0,
+   0.98,
+   0.9
+  ],
+  "titulo": "São Policarpo de Esmirna (gravura de 1716)"
+ },
+ "santos/santo-etelberto.webp": {
+  "arquivo": "File:Aethelbert.png",
+  "foco": 0.3,
+  "recorte": [
+   0.04,
+   0.0,
+   1.0,
+   0.96
+  ],
+  "titulo": "Santo Etelberto, rei de Kent (desenho de Matthew Paris, século XIII)"
+ },
  "santos/santos-anjos-da-guarda.webp": {
   "arquivo": "File:Franceschini, Marcantonio - The Guardian Angel - Google Art Project.jpg",
   "foco": 0.3,

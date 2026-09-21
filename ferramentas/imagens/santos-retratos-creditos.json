@@ -7,6 +7,22 @@
     "titulo": "A apresentação de Nossa Senhora no Templo (capela Scrovegni)",
     "url": "https://commons.wikimedia.org/wiki/File:Presentation_of_the_Virgin_-_Capella_dei_Scrovegni.jpg"
   },
+  "santos/apresentacao-do-senhor.webp": {
+    "arquivo": "File:Vittore Carpaccio 074.jpg",
+    "artista": "Vittore Carpaccio",
+    "data": "1510",
+    "licenca": "Public domain",
+    "titulo": "A apresentação de Jesus no Templo",
+    "url": "https://commons.wikimedia.org/wiki/File:Vittore_Carpaccio_074.jpg"
+  },
+  "santos/catedra-de-sao-pedro.webp": {
+    "arquivo": "File:Pope-peter pprubens.jpg",
+    "artista": "Peter Paul Rubens",
+    "data": "between 1610 and 1612",
+    "licenca": "Public domain",
+    "titulo": "São Pedro como papa",
+    "url": "https://commons.wikimedia.org/wiki/File:Pope-peter_pprubens.jpg"
+  },
   "santos/conversao-de-sao-paulo.webp": {
     "arquivo": "File:Parmigianino 012.jpg",
     "artista": "Parmigianino",
@@ -95,6 +111,22 @@
     "titulo": "Santa Adelaide, rainha da Itália e imperatriz (1839)",
     "url": "https://commons.wikimedia.org/wiki/File:Abel_Terral_-_Sainte_Adelaide_de_France,_reine_d%27Italie,_imperatrice_d%27Allemagne.jpg"
   },
+  "santos/santa-agueda.webp": {
+    "arquivo": "File:IcoonAgatha.jpg",
+    "artista": "Ambrogio Bergognone",
+    "data": "1510",
+    "licenca": "Public domain",
+    "titulo": "Santa Águeda",
+    "url": "https://commons.wikimedia.org/wiki/File:IcoonAgatha.jpg"
+  },
+  "santos/santa-apolonia.webp": {
+    "arquivo": "File:Sainte Apolline - Francisco de Zurbarán - Musée du Louvre Peintures MI 724.jpg",
+    "artista": "Francisco de Zurbarán",
+    "data": "between circa 1635 and circa 1640",
+    "licenca": "Public domain",
+    "titulo": "Santa Apolônia",
+    "url": "https://commons.wikimedia.org/wiki/File:Sainte_Apolline_-_Francisco_de_Zurbar%C3%A1n_-_Mus%C3%A9e_du_Louvre_Peintures_MI_724.jpg"
+  },
   "santos/santa-barbara.webp": {
     "arquivo": "File:Lucas Cranach d. Ä. - Hl. Barbara (Kassel).jpg",
     "artista": "Lucas Cranach the Elder",
@@ -102,6 +134,14 @@
     "licenca": "Public domain",
     "titulo": "Santa Bárbara",
     "url": "https://commons.wikimedia.org/wiki/File:Lucas_Cranach_d._%C3%84._-_Hl._Barbara_(Kassel).jpg"
+  },
+  "santos/santa-brigida-de-kildare.webp": {
+    "arquivo": "File:John Duncan (1913) Saint Bride.jpg",
+    "artista": "John Duncan",
+    "data": "1913",
+    "licenca": "Public domain",
+    "titulo": "Santa Brígida levada pelos anjos (Saint Bride), de John Duncan, 1913",
+    "url": "https://commons.wikimedia.org/wiki/File:John_Duncan_(1913)_Saint_Bride.jpg"
   },
   "santos/santa-catarina-de-alexandria.webp": {
     "arquivo": "File:Raffael 020.jpg",
@@ -134,6 +174,14 @@
     "licenca": "Public domain",
     "titulo": "Santa Edviges da Silésia (Códice de Santa Edviges, 1353)",
     "url": "https://commons.wikimedia.org/wiki/File:Court_workshop_of_Duke_Ludwig_I_of_Liegnitz_and_Brieg_(Polish_-_Saint_Hedwig_of_Silesia_with_Duke_Ludwig_of_Legnica_and_Brieg_and_Duchess_Agn%C3%A9s_-_Google_Art_Project.jpg"
+  },
+  "santos/santa-escolastica.webp": {
+    "arquivo": "File:Bernardo parentino, santa scolastica, 1496 ca.jpg",
+    "artista": "Sailko",
+    "data": "2017-12-30",
+    "licenca": "Public domain",
+    "titulo": "Santa Escolástica, de Bernardo Parentino (c. 1496)",
+    "url": "https://commons.wikimedia.org/wiki/File:Bernardo_parentino,_santa_scolastica,_1496_ca.jpg"
   },
   "santos/santa-francisca-xavier-cabrini.webp": {
     "arquivo": "File:Mother Cabrini.jpg",
@@ -279,6 +327,14 @@
     "titulo": "Santo Estêvão",
     "url": "https://commons.wikimedia.org/wiki/File:Giotto._saint-stephen-1320-25_Florence,_Museo_Horne.jpg"
   },
+  "santos/santo-etelberto.webp": {
+    "arquivo": "File:Aethelbert.png",
+    "artista": "Matthew Paris",
+    "data": "first half of 13th century",
+    "licenca": "Public domain",
+    "titulo": "Santo Etelberto, rei de Kent (desenho de Matthew Paris, século XIII)",
+    "url": "https://commons.wikimedia.org/wiki/File:Aethelbert.png"
+  },
   "santos/santo-evaristo.webp": {
     "arquivo": "File:Evaristus. Evaristo, santo e papa.jpg",
     "artista": "Oleografia Panigati e Meneghini Milano",
@@ -335,6 +391,22 @@
     "titulo": "A árvore de Jessé (ícone de Victor de Creta, 1674)",
     "url": "https://commons.wikimedia.org/wiki/File:Victor_(iconographer)_Tree_of_Jesse.png"
   },
+  "santos/santos-cirilo-e-metodio.webp": {
+    "arquivo": "File:Sts. Cyril and Methodius Icon in Holy Trinity Church on Kozloduy, 1898.JPG",
+    "artista": "probably Velko Iliev",
+    "data": "before 1898",
+    "licenca": "Public domain",
+    "titulo": "São Cirilo e São Metódio (ícone búlgaro, antes de 1898)",
+    "url": "https://commons.wikimedia.org/wiki/File:Sts._Cyril_and_Methodius_Icon_in_Holy_Trinity_Church_on_Kozloduy,_1898.JPG"
+  },
+  "santos/santos-francisco-e-jacinta-marto.webp": {
+    "arquivo": "File:Saints Francisco and Jacinta Marto double portrait (2).jpg",
+    "artista": "Fallaner",
+    "data": "2018-05-01 17:15:21",
+    "licenca": "Public domain",
+    "titulo": "Francisco e Jacinta Marto (fotografia de 1917, autor desconhecido)",
+    "url": "https://commons.wikimedia.org/wiki/File:Saints_Francisco_and_Jacinta_Marto_double_portrait_(2).jpg"
+  },
   "santos/santos-inocentes.webp": {
     "arquivo": "File:William Holman Hunt - The Triumph of the Innocents - 1870-1903.jpg",
     "artista": "William Holman Hunt",
@@ -358,6 +430,14 @@
     "licenca": "Public domain",
     "titulo": "São Basílio ditando a sua doutrina",
     "url": "https://commons.wikimedia.org/wiki/File:Francisco_de_Herrera_(I)_-_St_Basil_Dictating_His_Doctrine_-_WGA11378.jpg"
+  },
+  "santos/sao-bras.webp": {
+    "arquivo": "File:Pere Fernández - Saint Blaise - Google Art Project.jpg",
+    "artista": "Pere Fernández Documented in Girona 1519-1521   Born in Murcia. Details on Google Art Project",
+    "data": "circa 1517",
+    "licenca": "Public domain",
+    "titulo": "São Brás",
+    "url": "https://commons.wikimedia.org/wiki/File:Pere_Fern%C3%A1ndez_-_Saint_Blaise_-_Google_Art_Project.jpg"
   },
   "santos/sao-bruno.webp": {
     "arquivo": "File:Gaspar de Crayer (1584-1669) - Saint Bruno - YORAG , 803 - York Art Gallery.jpg",
@@ -390,6 +470,14 @@
     "licenca": "CC0",
     "titulo": "São Carlos de Foucauld em Tamanrasset (última fotografia, 1915)",
     "url": "https://commons.wikimedia.org/wiki/File:Foucauld_ultime.jpg"
+  },
+  "santos/sao-claudio-de-la-colombiere.webp": {
+    "arquivo": "File:Claud' La Colombiere, 8B6291049.jpg",
+    "artista": "Ogier, Mathieu (French painter and engraver active in Lyons, 1676-1710) (artist) (designer and graphic artist)",
+    "data": "s.d",
+    "licenca": "Public domain",
+    "titulo": "São Cláudio de la Colombière (gravura do século XVII)",
+    "url": "https://commons.wikimedia.org/wiki/File:Claud%27_La_Colombiere,_8B6291049.jpg"
   },
   "santos/sao-clemente-i.webp": {
     "arquivo": "File:San Clemente, Papa, por Juan Correa de Vivar.jpg",
@@ -527,6 +615,14 @@
     "titulo": "São Josafá, bispo e mártir (gravura de Aleksander Tarasowicz, século XVII)",
     "url": "https://commons.wikimedia.org/wiki/File:Iosaphat_Martyr_(miedzioryt)_(cropped).jpg"
   },
+  "santos/sao-jose-allamano.webp": {
+    "arquivo": "File:Giuseppe Allamano.jpg",
+    "artista": "Unknown photographer",
+    "data": "before 1926",
+    "licenca": "Public domain",
+    "titulo": "São José Allamano (fotografia anterior a 1926, autor desconhecido)",
+    "url": "https://commons.wikimedia.org/wiki/File:Giuseppe_Allamano.jpg"
+  },
   "santos/sao-jose-vaz.webp": {
     "arquivo": "File:Padre José Vaz (BNP Inv. 14496).jpg",
     "artista": "",
@@ -591,6 +687,14 @@
     "titulo": "Nuno Álvares Pereira rezando durante a batalha de Valverde (ilustração de Roque Gameiro, c. 1899)",
     "url": "https://commons.wikimedia.org/wiki/File:Nuno_%C3%81lvares,_praying_during_the_battle_of_Valverde_-_Hist%C3%B3ria_de_Portugal,_popular_e_ilustrada.jpg"
   },
+  "santos/sao-paulo-miki.webp": {
+    "arquivo": "File:Devotieprent van de martelaren van Japan Paulus Miki, Johannes Soan De Goto, Jacobus Kisai, asset SFHpVTXnZkUTJJplDQcmV2SA.tif",
+    "artista": "Unknown",
+    "data": "1757",
+    "licenca": "CC0",
+    "titulo": "Os mártires do Japão Paulo Miki, João de Goto e Tiago Kisai (gravura do século XVIII)",
+    "url": "https://commons.wikimedia.org/wiki/File:Devotieprent_van_de_martelaren_van_Japan_Paulus_Miki,_Johannes_Soan_De_Goto,_Jacobus_Kisai,_asset_SFHpVTXnZkUTJJplDQcmV2SA.tif"
+  },
   "santos/sao-pedro-canisio.webp": {
     "arquivo": "File:Petrus Canisius (1521-97). Geestelijke en schrijver te Nijmegen, SK-A-4423.jpg",
     "artista": "Rijksmuseum",
@@ -606,6 +710,14 @@
     "licenca": "Public domain",
     "titulo": "São Pedro de Alcântara, de Luis Tristán (século XVII)",
     "url": "https://commons.wikimedia.org/wiki/File:San_Pedro_de_Alc%C3%A1ntara_(Museo_de_El_Greco,_Toledo).JPG"
+  },
+  "santos/sao-policarpo.webp": {
+    "arquivo": "File:Apostolici- or, the history of the lives, acts, death, and martyrdoms of those who were contemporary with, or immediately succeeded the Apostles Fleuron T126603-18.png",
+    "artista": "Cave, William",
+    "data": "1716",
+    "licenca": "Public domain",
+    "titulo": "São Policarpo de Esmirna (gravura de 1716)",
+    "url": "https://commons.wikimedia.org/wiki/File:Apostolici-_or,_the_history_of_the_lives,_acts,_death,_and_martyrdoms_of_those_who_were_contemporary_with,_or_immediately_succeeded_the_Apostles_Fleuron_T126603-18.png"
   },
   "santos/sao-sebastiao.webp": {
     "arquivo": "File:Raffael 021.jpg",
@@ -678,6 +790,14 @@
     "licenca": "Public domain",
     "titulo": "São Vilibrordo entre dois diáconos (iluminura do século X)",
     "url": "https://commons.wikimedia.org/wiki/File:Willibrord_(Paris,_BN_Lat._10510).jpg"
+  },
+  "santos/sete-fundadores-dos-servitas.webp": {
+    "arquivo": "File:Agostino Masucci - The Madonna with the Seven Founders of the Servite Order - 1977.485 - Art Institute of Chicago.jpg",
+    "artista": "Agostino Masucci",
+    "data": "1728",
+    "licenca": "Public domain",
+    "titulo": "Nossa Senhora com os sete fundadores dos Servitas",
+    "url": "https://commons.wikimedia.org/wiki/File:Agostino_Masucci_-_The_Madonna_with_the_Seven_Founders_of_the_Servite_Order_-_1977.485_-_Art_Institute_of_Chicago.jpg"
   },
   "santos/todos-os-santos.webp": {
     "arquivo": "File:Albrecht Dürer - Adoration of the Trinity (Landauer Altar) - Google Art Project.jpg",
