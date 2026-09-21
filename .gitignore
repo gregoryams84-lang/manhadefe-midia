@@ -1,3 +1,6 @@
 ferramentas/imagens/qa/
 *.parte
 __pycache__/
+ferramentas/imagens/qa-arte/
+ferramentas/narracao/piloto/
+ferramentas/imagens/qa-arte/
