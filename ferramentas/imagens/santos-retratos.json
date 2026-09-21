@@ -21,15 +21,9 @@
   "titulo": "São Francisco ajoelhado em meditação diante do crucifixo"
  },
  "santos/sao-bruno.webp": {
-  "arquivo": "File:Carlo Sellitto, Saint Bruno.jpg",
-  "foco": 0.0,
-  "recorte": [
-   0.1,
-   0.0,
-   0.9,
-   0.8
-  ],
-  "titulo": "São Bruno em oração, de Carlo Sellitto (início do século XVII)"
+  "arquivo": "File:Gaspar de Crayer (1584-1669) - Saint Bruno - YORAG , 803 - York Art Gallery.jpg",
+  "foco": 0.5,
+  "titulo": "São Bruno em meditação diante do crucifixo"
  },
  "santos/nossa-senhora-do-rosario.webp": {
   "arquivo": "File:Murillo, Bartolomé Estéban - The Madonna of the Rosary - Google Art Project.jpg",
@@ -134,9 +128,9 @@
   "arquivo": "File:Los Apóstoles Simón, Judas y Tomás, del Maestro de la Colección Pacully (Museo del Prado).jpg",
   "foco": 0.5,
   "recorte": [
-   0.07,
+   0.081,
    0.0,
-   0.56,
+   0.572,
    1.0
   ],
   "titulo": "Os apóstolos São Simão e São Judas, do Mestre da Coleção Pacully (Museu do Prado, c. 1490)"
@@ -314,5 +308,176 @@
   "arquivo": "File:El Greco - St. Andrew - Google Art Project.jpg",
   "foco": 0.3,
   "titulo": "Santo André apóstolo"
+ },
+ "santos/sao-carlos-de-foucauld.webp": {
+  "arquivo": "File:Foucauld ultime.jpg",
+  "foco": 0.2,
+  "titulo": "São Carlos de Foucauld em Tamanrasset (última fotografia, 1915)"
+ },
+ "santos/santo-habacuc.webp": {
+  "arquivo": "File:El profeta Habacuc, de Juan Correa de Vivar (Museo del Prado).jpg",
+  "foco": 0.05,
+  "titulo": "O profeta Habacuc, de Juan Correa de Vivar (Museu do Prado, século XVI)"
+ },
+ "santos/sao-francisco-xavier.webp": {
+  "arquivo": "File:Murillo-san francisco javier.jpg",
+  "foco": 0.4,
+  "titulo": "São Francisco Xavier (segundo Murillo, c. 1675)"
+ },
+ "santos/santa-barbara.webp": {
+  "arquivo": "File:Santa Bárbara (Goya).jpg",
+  "foco": 0.0,
+  "recorte": [
+   0.2,
+   0.1,
+   0.8,
+   0.9
+  ],
+  "titulo": "Santa Bárbara (detalhe)"
+ },
+ "santos/sao-sabas.webp": {
+  "arquivo": "File:Савва Освященный.jpg",
+  "foco": 0.1,
+  "titulo": "São Sabas (afresco do século XIV)"
+ },
+ "santos/sao-nicolau.webp": {
+  "arquivo": "File:Novgorod School - Saint Nicholas - NG.M.02422 - National Museum of Art, Architecture and Design.jpg",
+  "foco": 0.2,
+  "titulo": "São Nicolau (ícone da escola de Novgorod, século XV)"
+ },
+ "santos/santo-ambrosio.webp": {
+  "arquivo": "File:Francisco de Goya - Saint Ambrose - 1969.23 - Cleveland Museum of Art.tif",
+  "foco": 0.2,
+  "titulo": "Santo Ambrósio"
+ },
+ "santos/imaculada-conceicao.webp": {
+  "arquivo": "File:Inmaculada Concepción (Murillo, El Escorial).jpg",
+  "foco": 0.3,
+  "titulo": "A Imaculada Conceição de El Escorial"
+ },
+ "santos/sao-joao-diego.webp": {
+  "arquivo": "File:Virgen de Guadalupe con Juan Diego.jpg",
+  "foco": 0.7,
+  "titulo": "Nossa Senhora de Guadalupe com São João Diego (pintura mexicana do século XVIII, Museu da Basílica de Guadalupe)"
+ },
+ "santos/sao-damaso-i.webp": {
+  "arquivo": "File:Hieronymus presents Vulgata.jpg",
+  "foco": 0.5,
+  "recorte": [
+   0.1,
+   0.27,
+   0.9,
+   0.83
+  ],
+  "titulo": "São Jerônimo entrega a Bíblia latina ao papa São Dâmaso (iluminura de um evangeliário de Lund, c. 1150)"
+ },
+ "santos/nossa-senhora-de-guadalupe.webp": {
+  "arquivo": "File:Manuel de Arellano - Virgin of Guadalupe (Virgen de Guadalupe) - Google Art Project.jpg",
+  "foco": 0.3,
+  "titulo": "Nossa Senhora de Guadalupe (1691)"
+ },
+ "santos/santa-luzia.webp": {
+  "arquivo": "File:Francisco de Zurbarán, Saint Lucy, c. 1625-1630, NGA 12209.jpg",
+  "foco": 0.2,
+  "titulo": "Santa Luzia"
+ },
+ "santos/sao-joao-da-cruz.webp": {
+  "arquivo": "File:Musée Fabre expo. Jean Ranc04 Antoine Ranc St Jean de la Croix.jpg",
+  "foco": 0.3,
+  "titulo": "São João da Cruz, de Antoine Ranc (igreja de São Mateus, Montpellier, c. 1700)"
+ },
+ "santos/santa-adelaide.webp": {
+  "arquivo": "File:Abel Terral - Sainte Adelaide de France, reine d'Italie, imperatrice d'Allemagne.jpg",
+  "foco": 0.2,
+  "titulo": "Santa Adelaide, rainha da Itália e imperatriz (1839)"
+ },
+ "santos/nossa-senhora-do-o.webp": {
+  "arquivo": "File:Piero della Francesca - Madonna del Parto - WGA17613.jpg",
+  "foco": 0.5,
+  "recorte": [
+   0.1,
+   0.14,
+   0.9,
+   0.96
+  ],
+  "titulo": "Nossa Senhora do Ó (Madonna del Parto)"
+ },
+ "santos/santo-anastasio-i.webp": {
+  "arquivo": "File:Anastasius I. Anastasio I, santo e papa.jpg",
+  "foco": 1.0,
+  "recorte": [
+   0.27,
+   0.2,
+   0.89,
+   0.833
+  ],
+  "titulo": "Santo Anastásio I, papa (cromolitografia de 1879)"
+ },
+ "santos/sao-domingos-de-silos.webp": {
+  "arquivo": "File:Santo Domingo de Silos entronizado como obispo, por Bartolomé Bermejo.jpg",
+  "foco": 0.05,
+  "titulo": "São Domingos de Silos entronizado como bispo"
+ },
+ "santos/sao-pedro-canisio.webp": {
+  "arquivo": "File:Petrus Canisius (1521-97). Geestelijke en schrijver te Nijmegen, SK-A-4423.jpg",
+  "foco": 0.5,
+  "recorte": [
+   0.22,
+   0.16,
+   0.78,
+   0.717
+  ],
+  "titulo": "São Pedro Canísio (retrato anônimo do século XVII, Rijksmuseum)"
+ },
+ "santos/santa-francisca-xavier-cabrini.webp": {
+  "arquivo": "File:Mother Cabrini.jpg",
+  "foco": 0.1,
+  "titulo": "Madre Francisca Xavier Cabrini (fotografia de c. 1900)"
+ },
+ "santos/sao-joao-cancio.webp": {
+  "arquivo": "File:Tadeusz Kuntze - Miracle of St Jan Kanty - MNK II-a-448 (377412).jpg",
+  "foco": 0.3,
+  "titulo": "O milagre de São João Câncio"
+ },
+ "santos/santos-antepassados-de-jesus.webp": {
+  "arquivo": "File:Victor (iconographer) Tree of Jesse.png",
+  "foco": 0.5,
+  "titulo": "A árvore de Jessé (ícone de Victor de Creta, 1674)"
+ },
+ "santos/natal-do-senhor.webp": {
+  "arquivo": "File:The Adoration of the Shepherds by Guido Reni.jpg",
+  "foco": 0.8,
+  "titulo": "A adoração dos pastores"
+ },
+ "santos/santo-estevao.webp": {
+  "arquivo": "File:Giotto. saint-stephen-1320-25 Florence, Museo Horne.jpg",
+  "foco": 0.1,
+  "titulo": "Santo Estêvão"
+ },
+ "santos/sao-joao-evangelista.webp": {
+  "arquivo": "File:San Juan Evangelista (El Greco, Museo del Prado).jpg",
+  "foco": 0.2,
+  "titulo": "São João Evangelista"
+ },
+ "santos/santos-inocentes.webp": {
+  "arquivo": "File:William Holman Hunt - The Triumph of the Innocents - 1870-1903.jpg",
+  "foco": 0.5,
+  "recorte": [
+   0.27,
+   0.0,
+   0.75,
+   1.0
+  ],
+  "titulo": "O triunfo dos Inocentes (detalhe)"
+ },
+ "santos/sao-tomas-becket.webp": {
+  "arquivo": "File:Meister Francke 007.jpg",
+  "foco": 0.3,
+  "titulo": "São Tomás Becket escarnecido em viagem (retábulo de São Tomás, de Mestre Francke, 1426)"
+ },
+ "santos/sao-silvestre-i.webp": {
+  "arquivo": "File:Pape St Sylvestre – BnF, ms 16251, fol. 87.jpg",
+  "foco": 0.1,
+  "titulo": "São Silvestre, papa (iluminura de c. 1285)"
  }
 }
