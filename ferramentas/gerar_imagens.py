@@ -47,6 +47,16 @@ BLOCO_FIXO = (
     'com fundo creme. Composição vertical 4:5, horizonte baixo, muito espaço '
     'respirável. Mesmo estilo, granulado de papel, luz e paleta da imagem de '
     'referência anexada.')
+# Cenas simbólicas do Santo do dia (camada católica): o mesmo estilo, mas
+# aqui cruz, terço, hábito dobrado e cálice PODEM aparecer. Continua sem
+# pessoa nenhuma: é o lugar e os objetos do santo, nunca um retrato.
+BLOCO_SANTOS = BLOCO_FIXO.replace(
+    'Sem pessoas, sem rostos, sem mãos, sem símbolos religiosos, sem texto '
+    'nem letras.',
+    'Sem pessoas, sem rostos, sem mãos, sem figuras humanas nem estátuas de '
+    'gente, sem texto nem letras. Objetos de devoção católica podem aparecer '
+    'com discrição.')
+assert BLOCO_SANTOS != BLOCO_FIXO
 
 
 def chave_api():
@@ -76,8 +86,9 @@ def chave_api():
     return k
 
 
-def prompt_de(cena):
-    return ABERTURA + cena.strip().rstrip('.') + '. ' + BLOCO_FIXO
+def prompt_de(cena, santos=False):
+    bloco = BLOCO_SANTOS if santos else BLOCO_FIXO
+    return ABERTURA + cena.strip().rstrip('.') + '. ' + bloco
 
 
 def gerar_png(chave, modelo, prompt, referencia_b64):
@@ -151,6 +162,10 @@ def main():
     ap.add_argument('--refazer', help='ids a gerar de novo mesmo existindo')
     ap.add_argument('--modelo', default=MODELO)
     ap.add_argument('--pausa', type=float, default=2.0)
+    ap.add_argument('--santos', action='store_true',
+                    help='cenas simbólicas do Santo do dia: objetos de devoção '
+                         'católica permitidos (use com --cenas .../cenas-santos.json '
+                         '--saida santos)')
     args = ap.parse_args()
 
     cenas = json.load(open(args.cenas, encoding='utf-8'))
@@ -171,7 +186,7 @@ def main():
                 pulados += 1
                 continue
             cena = cenas[id_]
-            prompt = prompt_de(cena)
+            prompt = prompt_de(cena, santos=args.santos)
             print(f'[{i}/{len(ids)}] {id_}: {cena[:70]}...')
             registro = {'id': id_, 'modelo': args.modelo, 'cena': cena,
                         'quando': time.strftime('%Y-%m-%dT%H:%M:%S')}
