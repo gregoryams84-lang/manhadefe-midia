@@ -857,6 +857,145 @@
   "foco": 0.1,
   "titulo": "Santo Inácio de Loyola"
  },
+ "santos/santo-afonso-de-ligorio.webp": {
+  "arquivo": "File:S. Alphonsus (cartouche) Maria de Liguori LCCN2003655786.jpg",
+  "foco": 0.4,
+  "recorte": [
+   0.08,
+   0.05,
+   0.92,
+   0.8
+  ],
+  "titulo": "Santo Afonso Maria de Ligório (litografia de 1868)"
+ },
+ "santos/santa-lidia.webp": {
+  "arquivo": "File:1861 Ellenrieder Die Taufe der Lydia anagoria.JPG",
+  "foco": 0.5,
+  "titulo": "O batismo de Lídia, de Marie Ellenrieder (1861)"
+ },
+ "santos/nossa-senhora-das-neves.webp": {
+  "arquivo": "File:Masolino 007.jpg",
+  "foco": 0.35,
+  "titulo": "A fundação de Santa Maria Maior (o milagre da neve)"
+ },
+ "santos/transfiguracao-do-senhor.webp": {
+  "arquivo": "File:1400-10 Theophanes the Greek Transfiguration anagoria.JPG",
+  "foco": 0.2,
+  "titulo": "A Transfiguração (ícone de Teófanes, o Grego, c. 1403)"
+ },
+ "santos/sao-caetano.webp": {
+  "arquivo": "File:Tiepolo - São Caetano de Tiene.jpg",
+  "foco": 0.3,
+  "titulo": "São Caetano de Thiene"
+ },
+ "santos/sao-domingos.webp": {
+  "arquivo": "File:SaintDominic.jpg",
+  "foco": 0.1,
+  "titulo": "São Domingos de Gusmão"
+ },
+ "santos/sao-lourenco.webp": {
+  "arquivo": "File:Angelico, niccolina 11.jpg",
+  "foco": 0.5,
+  "titulo": "São Lourenço distribui esmolas aos pobres (capela Nicolina)"
+ },
+ "santos/santa-clara.webp": {
+  "arquivo": "File:Arredondo-santa clara.jpg",
+  "foco": 0.25,
+  "titulo": "Santa Clara de Assis com o ostensório, de Isidoro Arredondo (1693)"
+ },
+ "santos/santa-joana-francisca-de-chantal.webp": {
+  "arquivo": "File:Joanna de Chantal.jpg",
+  "foco": 0.2,
+  "titulo": "Santa Joana Francisca de Chantal (segundo Philippe de Champaigne)"
+ },
+ "santos/assuncao-de-nossa-senhora.webp": {
+  "arquivo": "File:Guido Reni - Die Himmelfahrt Mariae - 446 - Bavarian State Painting Collections.jpg",
+  "foco": 0.3,
+  "titulo": "A Assunção de Nossa Senhora"
+ },
+ "santos/sao-roque.webp": {
+  "arquivo": "File:Heilige Rochus door Christus aangesteld tot patroon van de pestlijders - Peter Paul Rubens - Sint-Martinuskerk Aalst.jpg",
+  "foco": 0.0,
+  "recorte": [
+   0.08,
+   0.0,
+   0.845,
+   0.6
+  ],
+  "titulo": "Cristo confia a São Roque os doentes da peste (detalhe)"
+ },
+ "santos/santa-beatriz-da-silva.webp": {
+  "arquivo": "File:Beatrix de Silva, PA05279.jpg",
+  "foco": 0.5,
+  "recorte": [
+   0.02,
+   0.02,
+   0.98,
+   0.92
+  ],
+  "titulo": "Santa Beatriz da Silva (gravura antiga)"
+ },
+ "santos/santa-helena.webp": {
+  "arquivo": "File:Helena of Constantinople (Cima da Conegliano).jpg",
+  "foco": 0.2,
+  "titulo": "Santa Helena com a cruz"
+ },
+ "santos/sao-bernardo.webp": {
+  "arquivo": "File:Bernardo claraval filippino lippi.jpg",
+  "foco": 0.5,
+  "titulo": "A aparição de Nossa Senhora a São Bernardo"
+ },
+ "santos/sao-pio-x.webp": {
+  "arquivo": "File:Pius X, by Ernest Walter Histed (retouched).jpg",
+  "foco": 0.2,
+  "titulo": "São Pio X (fotografia de Ernest Walter Histed, antes de 1914)"
+ },
+ "santos/nossa-senhora-rainha.webp": {
+  "arquivo": "File:Gentile da Fabriano - Coronation of the Virgin.jpg",
+  "foco": 0.3,
+  "titulo": "A coroação de Nossa Senhora"
+ },
+ "santos/santa-rosa-de-lima.webp": {
+  "arquivo": "File:Bartolomé Esteban Murillo - Saint Rose of Lima - Google Art Project.jpg",
+  "foco": 0.3,
+  "titulo": "Santa Rosa de Lima com o Menino Jesus"
+ },
+ "santos/sao-bartolomeu.webp": {
+  "arquivo": "File:El Greco - St. Bartholomew - Google Art Project.jpg",
+  "foco": 0.2,
+  "titulo": "São Bartolomeu apóstolo"
+ },
+ "santos/sao-luis-ix.webp": {
+  "arquivo": "File:Saint Louis, roi de France, et un page - Le Greco - Musée du Louvre Peintures RF 1507.jpg",
+  "foco": 0.2,
+  "titulo": "São Luís, rei de França, e um pajem"
+ },
+ "santos/santa-monica.webp": {
+  "arquivo": "File:Luis Tristán de Escamilla - St Monica - WGA23069.jpg",
+  "foco": 0.5,
+  "recorte": [
+   0.24,
+   0.0,
+   1.0,
+   1.0
+  ],
+  "titulo": "Santa Mônica"
+ },
+ "santos/santo-agostinho.webp": {
+  "arquivo": "File:Saint Augustine by Philippe de Champaigne.jpg",
+  "foco": 0.3,
+  "titulo": "Santo Agostinho"
+ },
+ "santos/martirio-de-sao-joao-batista.webp": {
+  "arquivo": "File:Giovanni di Paolo - Saint John the Baptist in Prison Visited by Two Disciples - Google Art Project.jpg",
+  "foco": 0.3,
+  "titulo": "São João Batista na prisão, visitado por dois discípulos"
+ },
+ "santos/sao-raimundo-nonato.webp": {
+  "arquivo": "File:San Ramón Nonato, de Jerónimo Jacinto Espinosa (Museo del Prado).jpg",
+  "foco": 0.2,
+  "titulo": "São Raimundo Nonato"
+ },
  "santos/santos-anjos-da-guarda.webp": {
   "arquivo": "File:Franceschini, Marcantonio - The Guardian Angel - Google Art Project.jpg",
   "foco": 0.3,
