@@ -143,6 +143,14 @@
     "titulo": "Santa Bárbara",
     "url": "https://commons.wikimedia.org/wiki/File:Lucas_Cranach_d._%C3%84._-_Hl._Barbara_(Kassel).jpg"
   },
+  "santos/santa-bernadette-soubirous.webp": {
+    "arquivo": "File:Bernadette Soubirous.jpg",
+    "artista": "abbé P. Bernadou",
+    "data": "between circa 1861 and circa 1862",
+    "licenca": "Public domain",
+    "titulo": "Santa Bernadette Soubirous (fotografia do padre Bernadou, c. 1861)",
+    "url": "https://commons.wikimedia.org/wiki/File:Bernadette_Soubirous.jpg"
+  },
   "santos/santa-brigida-de-kildare.webp": {
     "arquivo": "File:John Duncan (1913) Saint Bride.jpg",
     "artista": "John Duncan",
@@ -158,6 +166,14 @@
     "licenca": "Public domain",
     "titulo": "Santa Catarina de Alexandria",
     "url": "https://commons.wikimedia.org/wiki/File:Raffael_020.jpg"
+  },
+  "santos/santa-catarina-de-sena.webp": {
+    "arquivo": "File:Giambattista Tiepolo, Kunsthistorisches Museum Wien, Gemäldegalerie - Hl. Katharina von Siena - GG 348 - Kunsthistorisches Museum.jpg",
+    "artista": "Giovanni Battista Tiepolo",
+    "data": "",
+    "licenca": "Public domain",
+    "titulo": "Santa Catarina de Sena",
+    "url": "https://commons.wikimedia.org/wiki/File:Giambattista_Tiepolo,_Kunsthistorisches_Museum_Wien,_Gem%C3%A4ldegalerie_-_Hl._Katharina_von_Siena_-_GG_348_-_Kunsthistorisches_Museum.jpg"
   },
   "santos/santa-catarina-laboure.webp": {
     "arquivo": "File:Jan Bąkowski Wizerunek św. Katarzyny Labouré.jpg",
@@ -239,6 +255,22 @@
     "titulo": "A caridade de Santa Isabel da Hungria",
     "url": "https://commons.wikimedia.org/wiki/File:Elisabet_av_Th%C3%BCringen.jpg"
   },
+  "santos/santa-kateri-tekakwitha.webp": {
+    "arquivo": "File:Kateri Tekakwitha - Claude Chauchetiere.jpg",
+    "artista": "Joseph Légaré",
+    "data": "1843",
+    "licenca": "Public domain",
+    "titulo": "Santa Kateri Tekakwitha (a partir do retrato do padre Chauchetière), de Joseph Légaré, 1843",
+    "url": "https://commons.wikimedia.org/wiki/File:Kateri_Tekakwitha_-_Claude_Chauchetiere.jpg"
+  },
+  "santos/santa-liduina-de-schiedam.webp": {
+    "arquivo": "File:Liduina ijs.jpg",
+    "artista": "Johannes Brugman, Vita Lijdwine (Schiedam 1498).",
+    "data": "1498",
+    "licenca": "Public domain",
+    "titulo": "A queda de Santa Liduína no gelo (xilogravura de 1498)",
+    "url": "https://commons.wikimedia.org/wiki/File:Liduina_ijs.jpg"
+  },
   "santos/santa-luisa-de-marillac.webp": {
     "arquivo": "File:Anonymous - Portrait de Louise Legras, née de Marillac (1591-1622). - P849 - Musée Carnavalet.jpg",
     "artista": "anonymous",
@@ -278,6 +310,14 @@
     "licenca": "Public domain",
     "titulo": "Santa Úrsula com anjos e doadora",
     "url": "https://commons.wikimedia.org/wiki/File:Sant%27Orsola.jpg"
+  },
+  "santos/santa-zita.webp": {
+    "arquivo": "File:Leon Biedroński - Święta Zyta 1889.jpg",
+    "artista": "Leon Biedroński",
+    "data": "1889",
+    "licenca": "Public domain",
+    "titulo": "Santa Zita dá de beber a um pobre, de Leon Biedroński, 1889",
+    "url": "https://commons.wikimedia.org/wiki/File:Leon_Biedro%C5%84ski_-_%C5%9Awi%C4%99ta_Zyta_1889.jpg"
   },
   "santos/santas-perpetua-e-felicidade.webp": {
     "arquivo": "File:Unknown - Sacra Conversazione Mary with the Child, St Felicity of Carthage and St Perpetua - Śr.37 - National Museum in Warsaw.jpg",
@@ -335,6 +375,14 @@
     "titulo": "Santo André apóstolo",
     "url": "https://commons.wikimedia.org/wiki/File:El_Greco_-_St._Andrew_-_Google_Art_Project.jpg"
   },
+  "santos/santo-anselmo.webp": {
+    "arquivo": "File:Anselm übergibt Mathilde sein Werk.jpg",
+    "artista": "Unknown authorUnknown author",
+    "data": "circa 1160",
+    "licenca": "Public domain",
+    "titulo": "Santo Anselmo entrega a sua obra à condessa Matilde (iluminura de c. 1160)",
+    "url": "https://commons.wikimedia.org/wiki/File:Anselm_%C3%BCbergibt_Mathilde_sein_Werk.jpg"
+  },
   "santos/santo-antao.webp": {
     "arquivo": "File:San Antonio Abad, de Juan Reixac (Museo del Prado).jpg",
     "artista": "Juan Rexach",
@@ -358,6 +406,14 @@
     "licenca": "Public domain",
     "titulo": "Santo Edmundo, rei, coroado pelos anjos (iluminura inglesa do século XII)",
     "url": "https://commons.wikimedia.org/wiki/File:Stedmundcrownedbyangelspierpontms736f42.jpg"
+  },
+  "santos/santo-estanislau.webp": {
+    "arquivo": "File:Sanctus Stanislaus.JPG",
+    "artista": "Unknown authorUnknown author",
+    "data": "ca. 1490 18 November 2006 (original upload date)",
+    "licenca": "Public domain",
+    "titulo": "Santo Estanislau, bispo de Cracóvia (pintura anônima de c. 1490)",
+    "url": "https://commons.wikimedia.org/wiki/File:Sanctus_Stanislaus.JPG"
   },
   "santos/santo-estevao.webp": {
     "arquivo": "File:Giotto. saint-stephen-1320-25 Florence, Museo Horne.jpg",
@@ -398,6 +454,14 @@
     "licenca": "Public domain",
     "titulo": "Santo Homobono dá esmola a um pobre (detalhe de A Virgem entronizada com santos, de Bartolomeo Montagna, c. 1515)",
     "url": "https://commons.wikimedia.org/wiki/File:Bode_Museum_Enthroned_madonna_with_child_and_saints_-_Bartolomeo_Montagna_-_ca._1515_1251.jpg"
+  },
+  "santos/santo-hugo-de-grenoble.webp": {
+    "arquivo": "File:Francisco de Zurbarán 024.jpg",
+    "artista": "Francisco de Zurbarán",
+    "data": "1630-1635",
+    "licenca": "Public domain",
+    "titulo": "São Hugo no refeitório dos cartuxos (detalhe)",
+    "url": "https://commons.wikimedia.org/wiki/File:Francisco_de_Zurbar%C3%A1n_024.jpg"
   },
   "santos/santo-ildefonso-de-toledo.webp": {
     "arquivo": "File:El Greco 060.jpg",
@@ -471,13 +535,13 @@
     "titulo": "São Basílio ditando a sua doutrina",
     "url": "https://commons.wikimedia.org/wiki/File:Francisco_de_Herrera_(I)_-_St_Basil_Dictating_His_Doctrine_-_WGA11378.jpg"
   },
-  "santos/sao-benjamim-diacono.webp": {
-    "arquivo": "File:Fresco - Diakon St Benjamin von Persien.jpg",
-    "artista": "Unknown authorUnknown author",
-    "data": "-",
+  "santos/sao-benedito.webp": {
+    "arquivo": "File:Rto. do B. Beneditto de S. Philadelfio (1744, Joan a Moxeno sculp.) - John Carter Brown Library.png",
+    "artista": "Joan a Moxeno, sculp.",
+    "data": "1744",
     "licenca": "Public domain",
-    "titulo": "São Benjamim, diácono (afresco bizantino)",
-    "url": "https://commons.wikimedia.org/wiki/File:Fresco_-_Diakon_St_Benjamin_von_Persien.jpg"
+    "titulo": "São Benedito recebe o Menino Jesus das mãos de Nossa Senhora (gravura portuguesa de 1744)",
+    "url": "https://commons.wikimedia.org/wiki/File:Rto._do_B._Beneditto_de_S._Philadelfio_(1744,_Joan_a_Moxeno_sculp.)_-_John_Carter_Brown_Library.png"
   },
   "santos/sao-bras.webp": {
     "arquivo": "File:Pere Fernández - Saint Blaise - Google Art Project.jpg",
@@ -559,6 +623,14 @@
     "titulo": "São Jerônimo entrega a Bíblia latina ao papa São Dâmaso (iluminura de um evangeliário de Lund, c. 1150)",
     "url": "https://commons.wikimedia.org/wiki/File:Hieronymus_presents_Vulgata.jpg"
   },
+  "santos/sao-damiao-de-molokai.webp": {
+    "arquivo": "File:Father Damien in 1878.jpg",
+    "artista": "Henry Lyman Chase",
+    "data": "between 28 May 1878 and 29 May 1878",
+    "licenca": "Public domain",
+    "titulo": "Padre Damião de Molokai (fotografia de Henry L. Chase, 1878)",
+    "url": "https://commons.wikimedia.org/wiki/File:Father_Damien_in_1878.jpg"
+  },
   "santos/sao-daniel-comboni.webp": {
     "arquivo": "File:Missionari contemporanei popolari Daniele Comboni.jpg",
     "artista": "Pessani - Gallieni",
@@ -583,6 +655,14 @@
     "titulo": "São Domingos de Silos entronizado como bispo",
     "url": "https://commons.wikimedia.org/wiki/File:Santo_Domingo_de_Silos_entronizado_como_obispo,_por_Bartolom%C3%A9_Bermejo.jpg"
   },
+  "santos/sao-fidelis-de-sigmaringa.webp": {
+    "arquivo": "File:Giambattista Tiepolo - I santi Fedele da Sigmaringen e Giuseppe da Leonessa (Parma ca.1752).jpg",
+    "artista": "Giovanni Battista Tiepolo",
+    "data": "between 1752 and 1758",
+    "licenca": "Public domain",
+    "titulo": "São Fidélis de Sigmaringa e São José de Leonessa",
+    "url": "https://commons.wikimedia.org/wiki/File:Giambattista_Tiepolo_-_I_santi_Fedele_da_Sigmaringen_e_Giuseppe_da_Leonessa_(Parma_ca.1752).jpg"
+  },
   "santos/sao-francisco-de-assis.webp": {
     "arquivo": "File:El Greco, St Francis in Prayer before the Crucifix.JPG",
     "artista": "El Greco",
@@ -590,6 +670,14 @@
     "licenca": "Public domain",
     "titulo": "São Francisco ajoelhado em meditação diante do crucifixo",
     "url": "https://commons.wikimedia.org/wiki/File:El_Greco,_St_Francis_in_Prayer_before_the_Crucifix.JPG"
+  },
+  "santos/sao-francisco-de-paula.webp": {
+    "arquivo": "File:San Francisco de Paula, de Bartolomé Esteban Murillo (Museo del Prado).jpg",
+    "artista": "Bartolomé Esteban Murillo",
+    "data": "17th century",
+    "licenca": "Public domain",
+    "titulo": "São Francisco de Paula",
+    "url": "https://commons.wikimedia.org/wiki/File:San_Francisco_de_Paula,_de_Bartolom%C3%A9_Esteban_Murillo_(Museo_del_Prado).jpg"
   },
   "santos/sao-francisco-de-sales.webp": {
     "arquivo": "File:Château de Bussy-Rabutin - Saint François de Sales, évêque de Genève (bgw19 0375) (cropped).jpg",
@@ -630,6 +718,14 @@
     "licenca": "Public domain",
     "titulo": "Dom Guido Maria Conforti (fotografia de 1902)",
     "url": "https://commons.wikimedia.org/wiki/File:Guido_Maria_Conforti_Vescovo.jpg"
+  },
+  "santos/sao-joao-batista-de-la-salle.webp": {
+    "arquivo": "File:DeLasalle Leger.jpg",
+    "artista": "Pierre Léger",
+    "data": "late 1600s",
+    "licenca": "Public domain",
+    "titulo": "São João Batista de La Salle, de Pierre Léger (retrato oficial, c. 1700)",
+    "url": "https://commons.wikimedia.org/wiki/File:DeLasalle_Leger.jpg"
   },
   "santos/sao-joao-bosco.webp": {
     "arquivo": "File:Galleria dei contemporanei. Don Giovanni Bosco, filantropo (morto il 31 gennaio a Torino).jpg",
@@ -686,6 +782,14 @@
     "licenca": "Public domain",
     "titulo": "O cardeal John Henry Newman",
     "url": "https://commons.wikimedia.org/wiki/File:John_Henry_Newman_by_Sir_John_Everett_Millais,_1st_Bt.jpg"
+  },
+  "santos/sao-jorge.webp": {
+    "arquivo": "File:Raphael, Saint George and the Dragon, c. 1506, NGA 28.jpg",
+    "artista": "Raphael",
+    "data": "circa 1506",
+    "licenca": "CC0",
+    "titulo": "São Jorge e o dragão",
+    "url": "https://commons.wikimedia.org/wiki/File:Raphael,_Saint_George_and_the_Dragon,_c._1506,_NGA_28.jpg"
   },
   "santos/sao-josafa.webp": {
     "arquivo": "File:Iosaphat Martyr (miedzioryt) (cropped).jpg",
@@ -751,6 +855,14 @@
     "titulo": "São Lucas evangelista",
     "url": "https://commons.wikimedia.org/wiki/File:El_Greco_035.jpg"
   },
+  "santos/sao-marcos-evangelista.webp": {
+    "arquivo": "File:1448 Mantegna Der Evangelist Markus Städel Museum anagoria.jpg",
+    "artista": "Andrea Mantegna",
+    "data": "between circa 1448 and circa 1451",
+    "licenca": "Public domain",
+    "titulo": "São Marcos evangelista",
+    "url": "https://commons.wikimedia.org/wiki/File:1448_Mantegna_Der_Evangelist_Markus_St%C3%A4del_Museum_anagoria.jpg"
+  },
   "santos/sao-martinho-de-tours.webp": {
     "arquivo": "File:Saint Martin Dividing His Cloak G-024841-20120502.jpg",
     "artista": "Attributed to Jan Boeckhorst",
@@ -758,6 +870,14 @@
     "licenca": "Public domain",
     "titulo": "São Martinho reparte o manto com o mendigo",
     "url": "https://commons.wikimedia.org/wiki/File:Saint_Martin_Dividing_His_Cloak_G-024841-20120502.jpg"
+  },
+  "santos/sao-martinho-i.webp": {
+    "arquivo": "File:Martinus I. Martino I, santo e papa.jpg",
+    "artista": "Oleografia Panigati e Meneghini Milano",
+    "data": "1879",
+    "licenca": "CC0",
+    "titulo": "São Martinho I, papa (cromolitografia de 1879)",
+    "url": "https://commons.wikimedia.org/wiki/File:Martinus_I._Martino_I,_santo_e_papa.jpg"
   },
   "santos/sao-nicolau-de-flue.webp": {
     "arquivo": "File:Von Flüe Schilling.jpg",
@@ -814,6 +934,14 @@
     "licenca": "Public domain",
     "titulo": "São Pedro de Alcântara, de Luis Tristán (século XVII)",
     "url": "https://commons.wikimedia.org/wiki/File:San_Pedro_de_Alc%C3%A1ntara_(Museo_de_El_Greco,_Toledo).JPG"
+  },
+  "santos/sao-pio-v.webp": {
+    "arquivo": "File:El Greco 050.jpg",
+    "artista": "El Greco",
+    "data": "1605",
+    "licenca": "Public domain",
+    "titulo": "São Pio V",
+    "url": "https://commons.wikimedia.org/wiki/File:El_Greco_050.jpg"
   },
   "santos/sao-policarpo.webp": {
     "arquivo": "File:Apostolici- or, the history of the lives, acts, death, and martyrdoms of those who were contemporary with, or immediately succeeded the Apostles Fleuron T126603-18.png",
@@ -894,6 +1022,14 @@
     "licenca": "Public domain",
     "titulo": "São Tomás de Aquino",
     "url": "https://commons.wikimedia.org/wiki/File:Saint_Thomas_Aquinas_(Crivelli,_15th-century).jpg"
+  },
+  "santos/sao-vicente-ferrer.webp": {
+    "arquivo": "File:Francesco del Cossa, St. Vincent Ferrer, 1470-73, National Gallery London.jpg",
+    "artista": "Francesco del Cossa",
+    "data": "2021-01-12",
+    "licenca": "Public domain",
+    "titulo": "São Vicente Ferrer (políptico Griffoni)",
+    "url": "https://commons.wikimedia.org/wiki/File:Francesco_del_Cossa,_St._Vincent_Ferrer,_1470-73,_National_Gallery_London.jpg"
   },
   "santos/sao-vicente-martir.webp": {
     "arquivo": "File:Vicente de Zaragoza by Tomás Giner, 1462–1466.jpg",

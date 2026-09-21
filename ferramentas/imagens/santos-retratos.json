@@ -342,10 +342,131 @@
   ],
   "titulo": "São Ruperto, com o barril de sal, e outro santo bispo (altar dos mineiros de Hallstatt, c. 1450)"
  },
- "santos/sao-benjamim-diacono.webp": {
-  "arquivo": "File:Fresco - Diakon St Benjamin von Persien.jpg",
+ "santos/santo-hugo-de-grenoble.webp": {
+  "arquivo": "File:Francisco de Zurbarán 024.jpg",
   "foco": 0.5,
-  "titulo": "São Benjamim, diácono (afresco bizantino)"
+  "recorte": [
+   0.32,
+   0.08,
+   1.0,
+   1.0
+  ],
+  "titulo": "São Hugo no refeitório dos cartuxos (detalhe)"
+ },
+ "santos/sao-francisco-de-paula.webp": {
+  "arquivo": "File:San Francisco de Paula, de Bartolomé Esteban Murillo (Museo del Prado).jpg",
+  "foco": 0.2,
+  "titulo": "São Francisco de Paula"
+ },
+ "santos/sao-benedito.webp": {
+  "arquivo": "File:Rto. do B. Beneditto de S. Philadelfio (1744, Joan a Moxeno sculp.) - John Carter Brown Library.png",
+  "foco": 0.0,
+  "recorte": [
+   0.0,
+   0.0,
+   1.0,
+   0.8
+  ],
+  "titulo": "São Benedito recebe o Menino Jesus das mãos de Nossa Senhora (gravura portuguesa de 1744)"
+ },
+ "santos/sao-vicente-ferrer.webp": {
+  "arquivo": "File:Francesco del Cossa, St. Vincent Ferrer, 1470-73, National Gallery London.jpg",
+  "foco": 0.13,
+  "titulo": "São Vicente Ferrer (políptico Griffoni)"
+ },
+ "santos/sao-joao-batista-de-la-salle.webp": {
+  "arquivo": "File:DeLasalle Leger.jpg",
+  "foco": 0.1,
+  "titulo": "São João Batista de La Salle, de Pierre Léger (retrato oficial, c. 1700)"
+ },
+ "santos/santo-estanislau.webp": {
+  "arquivo": "File:Sanctus Stanislaus.JPG",
+  "foco": 0.2,
+  "titulo": "Santo Estanislau, bispo de Cracóvia (pintura anônima de c. 1490)"
+ },
+ "santos/sao-martinho-i.webp": {
+  "arquivo": "File:Martinus I. Martino I, santo e papa.jpg",
+  "foco": 0.7,
+  "recorte": [
+   0.19,
+   0.14,
+   0.85,
+   0.83
+  ],
+  "titulo": "São Martinho I, papa (cromolitografia de 1879)"
+ },
+ "santos/santa-liduina-de-schiedam.webp": {
+  "arquivo": "File:Liduina ijs.jpg",
+  "foco": 0.5,
+  "recorte": [
+   0.1,
+   0.0,
+   0.78,
+   1.0
+  ],
+  "titulo": "A queda de Santa Liduína no gelo (xilogravura de 1498)"
+ },
+ "santos/sao-damiao-de-molokai.webp": {
+  "arquivo": "File:Father Damien in 1878.jpg",
+  "foco": 0.1,
+  "titulo": "Padre Damião de Molokai (fotografia de Henry L. Chase, 1878)"
+ },
+ "santos/santa-bernadette-soubirous.webp": {
+  "arquivo": "File:Bernadette Soubirous.jpg",
+  "foco": 0.1,
+  "titulo": "Santa Bernadette Soubirous (fotografia do padre Bernadou, c. 1861)"
+ },
+ "santos/santa-kateri-tekakwitha.webp": {
+  "arquivo": "File:Kateri Tekakwitha - Claude Chauchetiere.jpg",
+  "foco": 0.2,
+  "titulo": "Santa Kateri Tekakwitha (a partir do retrato do padre Chauchetière), de Joseph Légaré, 1843"
+ },
+ "santos/santo-anselmo.webp": {
+  "arquivo": "File:Anselm übergibt Mathilde sein Werk.jpg",
+  "foco": 0.3,
+  "titulo": "Santo Anselmo entrega a sua obra à condessa Matilde (iluminura de c. 1160)"
+ },
+ "santos/sao-jorge.webp": {
+  "arquivo": "File:Raphael, Saint George and the Dragon, c. 1506, NGA 28.jpg",
+  "foco": 0.5,
+  "titulo": "São Jorge e o dragão"
+ },
+ "santos/sao-fidelis-de-sigmaringa.webp": {
+  "arquivo": "File:Giambattista Tiepolo - I santi Fedele da Sigmaringen e Giuseppe da Leonessa (Parma ca.1752).jpg",
+  "foco": 0.1,
+  "titulo": "São Fidélis de Sigmaringa e São José de Leonessa"
+ },
+ "santos/sao-marcos-evangelista.webp": {
+  "arquivo": "File:1448 Mantegna Der Evangelist Markus Städel Museum anagoria.jpg",
+  "foco": 0.4,
+  "titulo": "São Marcos evangelista"
+ },
+ "santos/santa-zita.webp": {
+  "arquivo": "File:Leon Biedroński - Święta Zyta 1889.jpg",
+  "foco": 0.3,
+  "recorte": [
+   0.02,
+   0.03,
+   0.98,
+   0.97
+  ],
+  "titulo": "Santa Zita dá de beber a um pobre, de Leon Biedroński, 1889"
+ },
+ "santos/santa-catarina-de-sena.webp": {
+  "arquivo": "File:Giambattista Tiepolo, Kunsthistorisches Museum Wien, Gemäldegalerie - Hl. Katharina von Siena - GG 348 - Kunsthistorisches Museum.jpg",
+  "foco": 0.3,
+  "recorte": [
+   0.04,
+   0.0,
+   0.96,
+   0.965
+  ],
+  "titulo": "Santa Catarina de Sena"
+ },
+ "santos/sao-pio-v.webp": {
+  "arquivo": "File:El Greco 050.jpg",
+  "foco": 0.1,
+  "titulo": "São Pio V"
  },
  "santos/santos-anjos-da-guarda.webp": {
   "arquivo": "File:Franceschini, Marcantonio - The Guardian Angel - Google Art Project.jpg",
