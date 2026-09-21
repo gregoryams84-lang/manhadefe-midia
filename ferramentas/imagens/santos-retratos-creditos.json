@@ -96,12 +96,12 @@
     "url": "https://commons.wikimedia.org/wiki/File:Abel_Terral_-_Sainte_Adelaide_de_France,_reine_d%27Italie,_imperatrice_d%27Allemagne.jpg"
   },
   "santos/santa-barbara.webp": {
-    "arquivo": "File:Santa Bárbara (Goya).jpg",
-    "artista": "Francisco Goya",
-    "data": "circa 1772",
+    "arquivo": "File:Lucas Cranach d. Ä. - Hl. Barbara (Kassel).jpg",
+    "artista": "Lucas Cranach the Elder",
+    "data": "1510",
     "licenca": "Public domain",
-    "titulo": "Santa Bárbara (detalhe)",
-    "url": "https://commons.wikimedia.org/wiki/File:Santa_B%C3%A1rbara_(Goya).jpg"
+    "titulo": "Santa Bárbara",
+    "url": "https://commons.wikimedia.org/wiki/File:Lucas_Cranach_d._%C3%84._-_Hl._Barbara_(Kassel).jpg"
   },
   "santos/santa-catarina-de-alexandria.webp": {
     "arquivo": "File:Raffael 020.jpg",
@@ -503,14 +503,6 @@
     "titulo": "O milagre de São João de Capistrano",
     "url": "https://commons.wikimedia.org/wiki/File:Pieter_van_Lint_-_The_Miracle_of_Saint_John_of_Capestrano.jpg"
   },
-  "santos/sao-joao-diego.webp": {
-    "arquivo": "File:Virgen de Guadalupe con Juan Diego.jpg",
-    "artista": "Unknown author",
-    "data": "18th century",
-    "licenca": "Public domain",
-    "titulo": "Nossa Senhora de Guadalupe com São João Diego (pintura mexicana do século XVIII, Museu da Basílica de Guadalupe)",
-    "url": "https://commons.wikimedia.org/wiki/File:Virgen_de_Guadalupe_con_Juan_Diego.jpg"
-  },
   "santos/sao-joao-evangelista.webp": {
     "arquivo": "File:San Juan Evangelista (El Greco, Museo del Prado).jpg",
     "artista": "El Greco and workshop",
@@ -614,14 +606,6 @@
     "licenca": "Public domain",
     "titulo": "São Pedro de Alcântara, de Luis Tristán (século XVII)",
     "url": "https://commons.wikimedia.org/wiki/File:San_Pedro_de_Alc%C3%A1ntara_(Museo_de_El_Greco,_Toledo).JPG"
-  },
-  "santos/sao-sabas.webp": {
-    "arquivo": "File:Савва Освященный.jpg",
-    "artista": "Неизвестный иконописец XIV века.",
-    "data": "14th century",
-    "licenca": "Public domain",
-    "titulo": "São Sabas (afresco do século XIV)",
-    "url": "https://commons.wikimedia.org/wiki/File:%D0%A1%D0%B0%D0%B2%D0%B2%D0%B0_%D0%9E%D1%81%D0%B2%D1%8F%D1%89%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9.jpg"
   },
   "santos/sao-sebastiao.webp": {
     "arquivo": "File:Raffael 021.jpg",

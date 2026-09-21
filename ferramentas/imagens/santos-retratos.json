@@ -428,20 +428,9 @@
   "titulo": "São Francisco Xavier (segundo Murillo, c. 1675)"
  },
  "santos/santa-barbara.webp": {
-  "arquivo": "File:Santa Bárbara (Goya).jpg",
+  "arquivo": "File:Lucas Cranach d. Ä. - Hl. Barbara (Kassel).jpg",
   "foco": 0.0,
-  "recorte": [
-   0.2,
-   0.1,
-   0.8,
-   0.9
-  ],
-  "titulo": "Santa Bárbara (detalhe)"
- },
- "santos/sao-sabas.webp": {
-  "arquivo": "File:Савва Освященный.jpg",
-  "foco": 0.1,
-  "titulo": "São Sabas (afresco do século XIV)"
+  "titulo": "Santa Bárbara"
  },
  "santos/sao-nicolau.webp": {
   "arquivo": "File:Novgorod School - Saint Nicholas - NG.M.02422 - National Museum of Art, Architecture and Design.jpg",
@@ -457,11 +446,6 @@
   "arquivo": "File:Inmaculada Concepción (Murillo, El Escorial).jpg",
   "foco": 0.3,
   "titulo": "A Imaculada Conceição de El Escorial"
- },
- "santos/sao-joao-diego.webp": {
-  "arquivo": "File:Virgen de Guadalupe con Juan Diego.jpg",
-  "foco": 0.7,
-  "titulo": "Nossa Senhora de Guadalupe com São João Diego (pintura mexicana do século XVIII, Museu da Basílica de Guadalupe)"
  },
  "santos/sao-damaso-i.webp": {
   "arquivo": "File:Hieronymus presents Vulgata.jpg",
