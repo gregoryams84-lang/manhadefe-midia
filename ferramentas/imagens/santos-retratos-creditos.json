@@ -1,4 +1,12 @@
 {
+  "santos/anunciacao-do-senhor.webp": {
+    "arquivo": "File:La anunciación (Murillo, h. 1660).jpg",
+    "artista": "Bartolomé Esteban Murillo",
+    "data": "circa 1660",
+    "licenca": "Public domain",
+    "titulo": "A Anunciação",
+    "url": "https://commons.wikimedia.org/wiki/File:La_anunciaci%C3%B3n_(Murillo,_h._1660).jpg"
+  },
   "santos/apresentacao-de-nossa-senhora.webp": {
     "arquivo": "File:Presentation of the Virgin - Capella dei Scrovegni.jpg",
     "artista": "Giotto",
@@ -167,6 +175,14 @@
     "titulo": "Santa Cecília",
     "url": "https://commons.wikimedia.org/wiki/File:St._Cecilia_by_Guido_Reni.jpg"
   },
+  "santos/santa-coleta-de-corbie.webp": {
+    "arquivo": "File:Coleta Boilet (tg-uact-905).jpg",
+    "artista": "Pierre Simonau",
+    "data": "1850",
+    "licenca": "CC0",
+    "titulo": "Santa Coleta de Corbie (litografia de Pierre Simonau, 1850)",
+    "url": "https://commons.wikimedia.org/wiki/File:Coleta_Boilet_(tg-uact-905).jpg"
+  },
   "santos/santa-edviges.webp": {
     "arquivo": "File:Court workshop of Duke Ludwig I of Liegnitz and Brieg (Polish - Saint Hedwig of Silesia with Duke Ludwig of Legnica and Brieg and Duchess Agnés - Google Art Project.jpg",
     "artista": "Court workshop of Duke Ludwig I of Liegnitz and Brieg (Polish, 1364 - 1398) (1364 - 1398) – illuminator (Polish) Details on Google Art Project",
@@ -182,6 +198,14 @@
     "licenca": "Public domain",
     "titulo": "Santa Escolástica, de Bernardo Parentino (c. 1496)",
     "url": "https://commons.wikimedia.org/wiki/File:Bernardo_parentino,_santa_scolastica,_1496_ca.jpg"
+  },
+  "santos/santa-francisca-romana.webp": {
+    "arquivo": "File:Santa Francesca Romana Holding the Christ Child MET DT3071.jpg",
+    "artista": "Antonio del Massaro",
+    "data": "circa 1445",
+    "licenca": "CC0",
+    "titulo": "Santa Francisca Romana com o Menino Jesus nos braços",
+    "url": "https://commons.wikimedia.org/wiki/File:Santa_Francesca_Romana_Holding_the_Christ_Child_MET_DT3071.jpg"
   },
   "santos/santa-francisca-xavier-cabrini.webp": {
     "arquivo": "File:Mother Cabrini.jpg",
@@ -215,6 +239,14 @@
     "titulo": "A caridade de Santa Isabel da Hungria",
     "url": "https://commons.wikimedia.org/wiki/File:Elisabet_av_Th%C3%BCringen.jpg"
   },
+  "santos/santa-luisa-de-marillac.webp": {
+    "arquivo": "File:Anonymous - Portrait de Louise Legras, née de Marillac (1591-1622). - P849 - Musée Carnavalet.jpg",
+    "artista": "anonymous",
+    "data": "1660",
+    "licenca": "Public domain",
+    "titulo": "Santa Luísa de Marillac (retrato anônimo de c. 1660, Museu Carnavalet)",
+    "url": "https://commons.wikimedia.org/wiki/File:Anonymous_-_Portrait_de_Louise_Legras,_n%C3%A9e_de_Marillac_(1591-1622)._-_P849_-_Mus%C3%A9e_Carnavalet.jpg"
+  },
   "santos/santa-luzia.webp": {
     "arquivo": "File:Francisco de Zurbarán, Saint Lucy, c. 1625-1630, NGA 12209.jpg",
     "artista": "Francisco de Zurbarán",
@@ -246,6 +278,14 @@
     "licenca": "Public domain",
     "titulo": "Santa Úrsula com anjos e doadora",
     "url": "https://commons.wikimedia.org/wiki/File:Sant%27Orsola.jpg"
+  },
+  "santos/santas-perpetua-e-felicidade.webp": {
+    "arquivo": "File:Unknown - Sacra Conversazione Mary with the Child, St Felicity of Carthage and St Perpetua - Śr.37 - National Museum in Warsaw.jpg",
+    "artista": "anonymous",
+    "data": "circa from 1520",
+    "licenca": "Public domain",
+    "titulo": "Nossa Senhora com o Menino entre Santa Felicidade e Santa Perpétua (pintura polonesa de c. 1520)",
+    "url": "https://commons.wikimedia.org/wiki/File:Unknown_-_Sacra_Conversazione_Mary_with_the_Child,_St_Felicity_of_Carthage_and_St_Perpetua_-_%C5%9Ar.37_-_National_Museum_in_Warsaw.jpg"
   },
   "santos/santissimo-nome-de-jesus.webp": {
     "arquivo": "File:El Greco 001.jpg",
@@ -431,6 +471,14 @@
     "titulo": "São Basílio ditando a sua doutrina",
     "url": "https://commons.wikimedia.org/wiki/File:Francisco_de_Herrera_(I)_-_St_Basil_Dictating_His_Doctrine_-_WGA11378.jpg"
   },
+  "santos/sao-benjamim-diacono.webp": {
+    "arquivo": "File:Fresco - Diakon St Benjamin von Persien.jpg",
+    "artista": "Unknown authorUnknown author",
+    "data": "-",
+    "licenca": "Public domain",
+    "titulo": "São Benjamim, diácono (afresco bizantino)",
+    "url": "https://commons.wikimedia.org/wiki/File:Fresco_-_Diakon_St_Benjamin_von_Persien.jpg"
+  },
   "santos/sao-bras.webp": {
     "arquivo": "File:Pere Fernández - Saint Blaise - Google Art Project.jpg",
     "artista": "Pere Fernández Documented in Girona 1519-1521   Born in Murcia. Details on Google Art Project",
@@ -470,6 +518,14 @@
     "licenca": "CC0",
     "titulo": "São Carlos de Foucauld em Tamanrasset (última fotografia, 1915)",
     "url": "https://commons.wikimedia.org/wiki/File:Foucauld_ultime.jpg"
+  },
+  "santos/sao-casimiro.webp": {
+    "arquivo": "File:Šventasis Kazimieras, 1594 cropped.jpg",
+    "artista": "Unknown author",
+    "data": "1594",
+    "licenca": "Public domain",
+    "titulo": "São Casimiro (retrato anônimo de 1594)",
+    "url": "https://commons.wikimedia.org/wiki/File:%C5%A0ventasis_Kazimieras,_1594_cropped.jpg"
   },
   "santos/sao-claudio-de-la-colombiere.webp": {
     "arquivo": "File:Claud' La Colombiere, 8B6291049.jpg",
@@ -511,6 +567,14 @@
     "titulo": "Dom Daniel Comboni (gravura de 1882)",
     "url": "https://commons.wikimedia.org/wiki/File:Missionari_contemporanei_popolari_Daniele_Comboni.jpg"
   },
+  "santos/sao-davi-de-gales.webp": {
+    "arquivo": "File:Amgueddfa Cymru - Braslun ar gyfer mosaig Dewi Sant - Sketch for the St. David mosaic - 137895.jpeg",
+    "artista": "Edward Poynter",
+    "data": "19th century",
+    "licenca": "CC0",
+    "titulo": "São Davi de Gales (estudo de Edward Poynter para o mosaico de Westminster, século XIX)",
+    "url": "https://commons.wikimedia.org/wiki/File:Amgueddfa_Cymru_-_Braslun_ar_gyfer_mosaig_Dewi_Sant_-_Sketch_for_the_St._David_mosaic_-_137895.jpeg"
+  },
   "santos/sao-domingos-de-silos.webp": {
     "arquivo": "File:Santo Domingo de Silos entronizado como obispo, por Bartolomé Bermejo.jpg",
     "artista": "Bartolomé Bermejo",
@@ -542,6 +606,14 @@
     "licenca": "Public domain",
     "titulo": "São Francisco Xavier (segundo Murillo, c. 1675)",
     "url": "https://commons.wikimedia.org/wiki/File:Murillo-san_francisco_javier.jpg"
+  },
+  "santos/sao-gerasimo-do-jordao.webp": {
+    "arquivo": "File:Saint Gerasimus of Jordan with a Lion. Icon. Russia, 16th century.jpg",
+    "artista": "Unknown authorUnknown author",
+    "data": "16th century",
+    "licenca": "Public domain",
+    "titulo": "São Gerásimo do Jordão com o leão (ícone russo do século XVI)",
+    "url": "https://commons.wikimedia.org/wiki/File:Saint_Gerasimus_of_Jordan_with_a_Lion._Icon._Russia,_16th_century.jpg"
   },
   "santos/sao-gregorio-de-nissa.webp": {
     "arquivo": "File:Hosios Loukas (nave, north-west conch) - Gregory of Nyssa - detail.jpg",
@@ -591,6 +663,14 @@
     "titulo": "O milagre de São João de Capistrano",
     "url": "https://commons.wikimedia.org/wiki/File:Pieter_van_Lint_-_The_Miracle_of_Saint_John_of_Capestrano.jpg"
   },
+  "santos/sao-joao-de-deus.webp": {
+    "arquivo": "File:Spengler (Umkreis) S Ioannes de Deo Fundator FF Misericordiae.jpg",
+    "artista": "After Franz Xaver Andreas Jungwierth",
+    "data": "18th century",
+    "licenca": "Public domain",
+    "titulo": "São João de Deus recebe o Menino das mãos de Nossa Senhora (pintura sobre vidro do século XVIII)",
+    "url": "https://commons.wikimedia.org/wiki/File:Spengler_(Umkreis)_S_Ioannes_de_Deo_Fundator_FF_Misericordiae.jpg"
+  },
   "santos/sao-joao-evangelista.webp": {
     "arquivo": "File:San Juan Evangelista (El Greco, Museo del Prado).jpg",
     "artista": "El Greco and workshop",
@@ -630,6 +710,14 @@
     "licenca": "Public domain",
     "titulo": "Padre José Vaz (retrato da galeria dos padres oratorianos, Biblioteca Nacional de Portugal)",
     "url": "https://commons.wikimedia.org/wiki/File:Padre_Jos%C3%A9_Vaz_(BNP_Inv._14496).jpg"
+  },
+  "santos/sao-jose.webp": {
+    "arquivo": "File:Giovanni Battista Tiepolo - Saint Joseph and the Christ Child - 44.213 - Detroit Institute of Arts.jpg",
+    "artista": "Giovanni Battista Tiepolo",
+    "data": "1767",
+    "licenca": "Public domain",
+    "titulo": "São José com o Menino Jesus",
+    "url": "https://commons.wikimedia.org/wiki/File:Giovanni_Battista_Tiepolo_-_Saint_Joseph_and_the_Christ_Child_-_44.213_-_Detroit_Institute_of_Arts.jpg"
   },
   "santos/sao-leao-magno.webp": {
     "arquivo": "File:Herrera mozo San León magno Lienzo. Óvalo. 164 x 105 cm. Museo del Prado.png",
@@ -671,6 +759,14 @@
     "titulo": "São Martinho reparte o manto com o mendigo",
     "url": "https://commons.wikimedia.org/wiki/File:Saint_Martin_Dividing_His_Cloak_G-024841-20120502.jpg"
   },
+  "santos/sao-nicolau-de-flue.webp": {
+    "arquivo": "File:Von Flüe Schilling.jpg",
+    "artista": "Diebold Schilling, upload Adrian Michael",
+    "data": "April 2008 (upload date)",
+    "licenca": "Public domain",
+    "titulo": "São Nicolau de Flüe recebe visitantes no seu eremitério (Crônica de Lucerna, de Diebold Schilling, 1513)",
+    "url": "https://commons.wikimedia.org/wiki/File:Von_Fl%C3%BCe_Schilling.jpg"
+  },
   "santos/sao-nicolau.webp": {
     "arquivo": "File:Novgorod School - Saint Nicholas - NG.M.02422 - National Museum of Art, Architecture and Design.jpg",
     "artista": "School of Novgorod school",
@@ -686,6 +782,14 @@
     "licenca": "Public domain",
     "titulo": "Nuno Álvares Pereira rezando durante a batalha de Valverde (ilustração de Roque Gameiro, c. 1899)",
     "url": "https://commons.wikimedia.org/wiki/File:Nuno_%C3%81lvares,_praying_during_the_battle_of_Valverde_-_Hist%C3%B3ria_de_Portugal,_popular_e_ilustrada.jpg"
+  },
+  "santos/sao-patricio.webp": {
+    "arquivo": "File:Tiepolo-s.patrizio.jpg",
+    "artista": "Giovanni Battista Tiepolo",
+    "data": "1746",
+    "licenca": "Public domain",
+    "titulo": "São Patrício, bispo da Irlanda",
+    "url": "https://commons.wikimedia.org/wiki/File:Tiepolo-s.patrizio.jpg"
   },
   "santos/sao-paulo-miki.webp": {
     "arquivo": "File:Devotieprent van de martelaren van Japan Paulus Miki, Johannes Soan De Goto, Jacobus Kisai, asset SFHpVTXnZkUTJJplDQcmV2SA.tif",
@@ -719,6 +823,14 @@
     "titulo": "São Policarpo de Esmirna (gravura de 1716)",
     "url": "https://commons.wikimedia.org/wiki/File:Apostolici-_or,_the_history_of_the_lives,_acts,_death,_and_martyrdoms_of_those_who_were_contemporary_with,_or_immediately_succeeded_the_Apostles_Fleuron_T126603-18.png"
   },
+  "santos/sao-ruperto-de-salzburgo.webp": {
+    "arquivo": "File:Hallstatt kath. Kirche Knappenaltar Rupert und Bischof 01.jpg",
+    "artista": "AnonymousUnknown author",
+    "data": "around 1450",
+    "licenca": "Public domain",
+    "titulo": "São Ruperto, com o barril de sal, e outro santo bispo (altar dos mineiros de Hallstatt, c. 1450)",
+    "url": "https://commons.wikimedia.org/wiki/File:Hallstatt_kath._Kirche_Knappenaltar_Rupert_und_Bischof_01.jpg"
+  },
   "santos/sao-sebastiao.webp": {
     "arquivo": "File:Raffael 021.jpg",
     "artista": "Raphael",
@@ -742,6 +854,14 @@
     "licenca": "Public domain",
     "titulo": "Os apóstolos São Simão e São Judas, do Mestre da Coleção Pacully (Museu do Prado, c. 1490)",
     "url": "https://commons.wikimedia.org/wiki/File:Los_Ap%C3%B3stoles_Sim%C3%B3n,_Judas_y_Tom%C3%A1s,_del_Maestro_de_la_Colecci%C3%B3n_Pacully_(Museo_del_Prado).jpg"
+  },
+  "santos/sao-sofronio-de-jerusalem.webp": {
+    "arquivo": "File:Fresco Icon of Saint Sophronios of Jerusalem 2.jpg",
+    "artista": "Unknown authorUnknown author",
+    "data": "14th-15th Century",
+    "licenca": "Public domain",
+    "titulo": "São Sofrônio de Jerusalém (afresco dos séculos XIV–XV)",
+    "url": "https://commons.wikimedia.org/wiki/File:Fresco_Icon_of_Saint_Sophronios_of_Jerusalem_2.jpg"
   },
   "santos/sao-teofilo-de-antioquia.webp": {
     "arquivo": "File:Theophilus Antiochenus.png",

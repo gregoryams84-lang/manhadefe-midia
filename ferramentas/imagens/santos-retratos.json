@@ -236,6 +236,117 @@
   ],
   "titulo": "Santo Etelberto, rei de Kent (desenho de Matthew Paris, século XIII)"
  },
+ "santos/sao-davi-de-gales.webp": {
+  "arquivo": "File:Amgueddfa Cymru - Braslun ar gyfer mosaig Dewi Sant - Sketch for the St. David mosaic - 137895.jpeg",
+  "foco": 0.3,
+  "recorte": [
+   0.1,
+   0.08,
+   0.9,
+   0.85
+  ],
+  "titulo": "São Davi de Gales (estudo de Edward Poynter para o mosaico de Westminster, século XIX)"
+ },
+ "santos/sao-casimiro.webp": {
+  "arquivo": "File:Šventasis Kazimieras, 1594 cropped.jpg",
+  "foco": 0.2,
+  "titulo": "São Casimiro (retrato anônimo de 1594)"
+ },
+ "santos/sao-gerasimo-do-jordao.webp": {
+  "arquivo": "File:Saint Gerasimus of Jordan with a Lion. Icon. Russia, 16th century.jpg",
+  "foco": 0.5,
+  "titulo": "São Gerásimo do Jordão com o leão (ícone russo do século XVI)"
+ },
+ "santos/santa-coleta-de-corbie.webp": {
+  "arquivo": "File:Coleta Boilet (tg-uact-905).jpg",
+  "foco": 0.3,
+  "recorte": [
+   0.27,
+   0.15,
+   0.73,
+   0.61
+  ],
+  "titulo": "Santa Coleta de Corbie (litografia de Pierre Simonau, 1850)"
+ },
+ "santos/santas-perpetua-e-felicidade.webp": {
+  "arquivo": "File:Unknown - Sacra Conversazione Mary with the Child, St Felicity of Carthage and St Perpetua - Śr.37 - National Museum in Warsaw.jpg",
+  "foco": 0.5,
+  "recorte": [
+   0.03,
+   0.045,
+   0.97,
+   0.925
+  ],
+  "titulo": "Nossa Senhora com o Menino entre Santa Felicidade e Santa Perpétua (pintura polonesa de c. 1520)"
+ },
+ "santos/sao-joao-de-deus.webp": {
+  "arquivo": "File:Spengler (Umkreis) S Ioannes de Deo Fundator FF Misericordiae.jpg",
+  "foco": 0.1,
+  "titulo": "São João de Deus recebe o Menino das mãos de Nossa Senhora (pintura sobre vidro do século XVIII)"
+ },
+ "santos/santa-francisca-romana.webp": {
+  "arquivo": "File:Santa Francesca Romana Holding the Christ Child MET DT3071.jpg",
+  "foco": 0.9,
+  "titulo": "Santa Francisca Romana com o Menino Jesus nos braços"
+ },
+ "santos/sao-sofronio-de-jerusalem.webp": {
+  "arquivo": "File:Fresco Icon of Saint Sophronios of Jerusalem 2.jpg",
+  "foco": 0.1,
+  "titulo": "São Sofrônio de Jerusalém (afresco dos séculos XIV–XV)"
+ },
+ "santos/santa-luisa-de-marillac.webp": {
+  "arquivo": "File:Anonymous - Portrait de Louise Legras, née de Marillac (1591-1622). - P849 - Musée Carnavalet.jpg",
+  "foco": 0.2,
+  "titulo": "Santa Luísa de Marillac (retrato anônimo de c. 1660, Museu Carnavalet)"
+ },
+ "santos/sao-patricio.webp": {
+  "arquivo": "File:Tiepolo-s.patrizio.jpg",
+  "foco": 0.0,
+  "recorte": [
+   0.06,
+   0.1,
+   0.94,
+   0.68
+  ],
+  "titulo": "São Patrício, bispo da Irlanda"
+ },
+ "santos/sao-jose.webp": {
+  "arquivo": "File:Giovanni Battista Tiepolo - Saint Joseph and the Christ Child - 44.213 - Detroit Institute of Arts.jpg",
+  "foco": 0.3,
+  "titulo": "São José com o Menino Jesus"
+ },
+ "santos/sao-nicolau-de-flue.webp": {
+  "arquivo": "File:Von Flüe Schilling.jpg",
+  "foco": 0.5,
+  "recorte": [
+   0.08,
+   0.0,
+   0.88,
+   1.0
+  ],
+  "titulo": "São Nicolau de Flüe recebe visitantes no seu eremitério (Crônica de Lucerna, de Diebold Schilling, 1513)"
+ },
+ "santos/anunciacao-do-senhor.webp": {
+  "arquivo": "File:La anunciación (Murillo, h. 1660).jpg",
+  "foco": 0.6,
+  "titulo": "A Anunciação"
+ },
+ "santos/sao-ruperto-de-salzburgo.webp": {
+  "arquivo": "File:Hallstatt kath. Kirche Knappenaltar Rupert und Bischof 01.jpg",
+  "foco": 0.1,
+  "recorte": [
+   0.09,
+   0.04,
+   0.93,
+   0.96
+  ],
+  "titulo": "São Ruperto, com o barril de sal, e outro santo bispo (altar dos mineiros de Hallstatt, c. 1450)"
+ },
+ "santos/sao-benjamim-diacono.webp": {
+  "arquivo": "File:Fresco - Diakon St Benjamin von Persien.jpg",
+  "foco": 0.5,
+  "titulo": "São Benjamim, diácono (afresco bizantino)"
+ },
  "santos/santos-anjos-da-guarda.webp": {
   "arquivo": "File:Franceschini, Marcantonio - The Guardian Angel - Google Art Project.jpg",
   "foco": 0.3,
