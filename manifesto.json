@@ -1,7 +1,67 @@
 {
   "versao": 1,
-  "geradoEm": "2026-09-24T13:14:45.000Z",
+  "geradoEm": "2026-09-24T16:38:46.000Z",
   "arquivos": {
+    "hinos/ah-se-eu-tivesse-mil-vozes.m4a": {
+      "bytes": 347193,
+      "sha256": "0702f21fff1695a79c06e5dd036763ad275c85fcf80f84c810be8876900827eb"
+    },
+    "hinos/castelo-forte.m4a": {
+      "bytes": 760666,
+      "sha256": "1d662c2e4fcc32b13b5fd392b744163d56c23630e4a02224e61486591c665145"
+    },
+    "hinos/coroai.m4a": {
+      "bytes": 225038,
+      "sha256": "c06438444ec39020fbfbef1fbfc39d93e1fba408a52e178de79823312eafd14e"
+    },
+    "hinos/crer-e-observar.m4a": {
+      "bytes": 514306,
+      "sha256": "578b5849fa1ebdd0dfd0fc8925601ab8995e744f6eb491a395abe46240286131"
+    },
+    "hinos/cristo-bom-mestre.m4a": {
+      "bytes": 553520,
+      "sha256": "1679863097bb4582b56583ac349172998b0bd931ecaa51375805a0f45200d063"
+    },
+    "hinos/demos-gloria-a-deus.m4a": {
+      "bytes": 620164,
+      "sha256": "57b640831c8faee061464509777384d705b9db1a7c6a7eff50840285fb6c852c"
+    },
+    "hinos/deus-cuidara-de-ti.m4a": {
+      "bytes": 381585,
+      "sha256": "68f1b6cada664b6178f10b2c5908aad369a79dee1b2e30f1f80c7d3f9bce1413"
+    },
+    "hinos/ditoso-dia.m4a": {
+      "bytes": 404952,
+      "sha256": "cdd1675cac3d3fd27a513e92cb6dda2f190dd8474d3a495936827c0435586b0b"
+    },
+    "hinos/fonte-de-toda-bencao.m4a": {
+      "bytes": 575373,
+      "sha256": "1566a0ef0f6171c8fc70b0e48a22733de385098a43c1e11f680dd17e6f3f8731"
+    },
+    "hinos/justo-es-senhor-doxologia.m4a": {
+      "bytes": 351180,
+      "sha256": "7243608fef442a1388be8e650d22e07db5d6edc9c2de4d39e6e65ba7baae4cd8"
+    },
+    "hinos/mais-perto-meu-deus-de-ti-mais-perto-quero-estar.m4a": {
+      "bytes": 508495,
+      "sha256": "1299183ace6a6da8c86e858c56ece6e36cb7d5a3a799b5ba8ec756bd00bb471c"
+    },
+    "hinos/pao-da-vida.m4a": {
+      "bytes": 409256,
+      "sha256": "a8b58645f5cecbc2ef0e624146cbabc52dd256d7031c18a1f4f476b8e981283d"
+    },
+    "hinos/que-seguranca-blessed-assurance.m4a": {
+      "bytes": 404659,
+      "sha256": "93914be453a7aaccbf1b6036268fdd2edead51575b5d3b9a8d75db82b8e8d483"
+    },
+    "hinos/santo-santo-santo-deus-onipotente.m4a": {
+      "bytes": 499718,
+      "sha256": "5097f6b235d50377d5be8a3b9968574cddf6ecf1dddf52e84c96dba9f44ff974"
+    },
+    "hinos/tudo-entregarei.m4a": {
+      "bytes": 724229,
+      "sha256": "eaf3e1f65d923a1adae1ef65243adf5020bf776ed22b142479e4c47746ea1b93"
+    },
     "imagens/01-01-catolico.webp": {
       "bytes": 92432,
       "sha256": "4eba4f89b979ea49a0648e0655867041c747d941648761a4af0e1a9b7d2f3a26"
