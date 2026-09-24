@@ -75,10 +75,20 @@ def chave_api():
 
 
 def saldo(chave):
+    """O saldo da conta, ou None se a ElevenLabs recusar a chave.
+
+    Devolver None em vez de estourar deixa o --so-contar continuar servindo
+    para planejar o lote nos dias em que a chave esta vencida ou trocada.
+    """
     req = urllib.request.Request(f'{API}/user/subscription',
                                  headers={'xi-api-key': chave})
-    with urllib.request.urlopen(req, timeout=60) as r:
-        d = json.load(r)
+    try:
+        with urllib.request.urlopen(req, timeout=60) as r:
+            d = json.load(r)
+    except urllib.error.HTTPError as e:
+        corpo = e.read()[:200].decode('utf-8', 'replace')
+        print(f'aviso: a ElevenLabs recusou a chave (HTTP {e.code}): {corpo}')
+        return None
     return {'plano': d.get('tier'), 'usados': d.get('character_count'),
             'limite': d.get('character_limit'),
             'restam': (d.get('character_limit') or 0) - (d.get('character_count') or 0)}
@@ -210,12 +220,17 @@ def main():
         itens = itens[:args.limite]
 
     total = sum(len(i['texto']) for i in itens)
+    milhar = f'{total:,}'.replace(',', '.')
+    print(f'a gerar: {len(itens)} áudios, {milhar} caracteres')
     chave = chave_api()
     s = saldo(chave)
-    print(f'a gerar: {len(itens)} áudios, {total:,} caracteres'.replace(',', '.'))
-    print(f'plano {s["plano"]}: {s["usados"]} usados de {s["limite"]}, restam {s["restam"]}')
+    if s:
+        print(f'plano {s["plano"]}: {s["usados"]} usados de {s["limite"]}, restam {s["restam"]}')
     if args.so_contar or not itens:
         return 0
+    if s is None:
+        sys.exit(f'sem chave válida: troque a chave em {CHAVE_PADRAO.name} '
+                 '(ou em ELEVENLABS_API_KEY) e rode de novo')
     if total > s['restam'] and not args.forcar:
         sys.exit('o saldo não cobre este lote; reduza com --prefixos/--limite ou use --forcar')
 
