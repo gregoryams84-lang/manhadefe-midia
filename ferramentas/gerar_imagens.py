@@ -10,14 +10,18 @@ frase muda por cartão; o bloco de estilo é fixo e a referência aprovada vai
 anexada em toda geração. Imagem reprovada na conferência é gerada de novo
 (--refazer id,id), nunca editada à mão.
 
-A chave do Gemini vem da variável GOOGLE_AI_API_KEY ou da configuração do
-MCP nanobanana em ~/.claude.json. Nunca é impressa nem gravada.
+A chave do Gemini vem, nesta ordem: da variável GOOGLE_AI_API_KEY, do
+arquivo NUVEM GREGORY/Manhã de Fé/chave-gemini.md (conta da empresa, com
+a cobrança no CNPJ da Aurea; caminho oficial desde 24/09/2026) ou da
+configuração do MCP nanobanana em ~/.claude.json. A chave nunca é
+impressa nem gravada.
 """
 import argparse
 import base64
 import io
 import json
 import os
+import re
 import sys
 import time
 import urllib.error
@@ -59,10 +63,27 @@ BLOCO_SANTOS = BLOCO_FIXO.replace(
 assert BLOCO_SANTOS != BLOCO_FIXO
 
 
+CHAVE_DO_GREGORY = Path('C:/Users/robot/OneDrive/Área de Trabalho/NUVEM GREGORY/'
+                        'Manhã de Fé/chave-gemini.md')
+
+
 def chave_api():
+    """A chave, nesta ordem: variável de ambiente, arquivo do Gregory, MCP.
+
+    O arquivo é o caminho oficial desde 24/09/2026 (chave da conta da
+    empresa, com a cobrança no CNPJ da Aurea). Aceita o arquivo com a chave
+    sozinha ou no meio de outro texto. A chave nunca é impressa.
+    """
     k = os.environ.get('GOOGLE_AI_API_KEY')
     if k:
-        return k
+        return k.strip()
+    if CHAVE_DO_GREGORY.exists():
+        texto = CHAVE_DO_GREGORY.read_text(encoding='utf-8', errors='replace')
+        m = re.search(r'\b(AQ\.[A-Za-z0-9_\-]{20,}|AIza[A-Za-z0-9_\-]{20,})', texto)
+        if m:
+            return m.group(1)
+        print(f'aviso: {CHAVE_DO_GREGORY.name} existe mas não tem uma chave '
+              'reconhecível (deve começar com AQ. ou AIza); usando a do MCP')
     cfg = json.load(open(Path.home() / '.claude.json', encoding='utf-8'))
 
     def procurar(no):
