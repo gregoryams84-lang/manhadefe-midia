@@ -139,6 +139,22 @@ def sintetizar(chave, item, normalizacao):
     raise RuntimeError('sem resposta')
 
 
+# O formato de entrega de toda narração do app (docs/fase4/narracao-parametros.md):
+# AAC mono ~32 kbps. Fica numa constante porque narrar_trechos.py monta os
+# áudios embutidos (terço e orações) com o mesmo codec — um só lugar para mudar.
+PARAMETROS_AAC = ['-c:a', 'aac', '-b:a', '32k', '-ac', '1', '-ar', '44100',
+                  '-movflags', '+faststart']
+
+
+def duracao_segundos(caminho):
+    """A duração real do arquivo, medida pelo ffprobe (nunca estimada)."""
+    dur = subprocess.run(
+        ['ffprobe', '-v', 'error', '-show_entries', 'format=duration',
+         '-of', 'default=nw=1:nk=1', str(caminho)],
+        capture_output=True, text=True, check=True).stdout.strip()
+    return float(dur)
+
+
 def para_m4a(mp3, destino):
     destino.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.NamedTemporaryFile(suffix='.mp3', delete=False) as t:
@@ -148,25 +164,22 @@ def para_m4a(mp3, destino):
     try:
         subprocess.run(
             ['ffmpeg', '-y', '-loglevel', 'error', '-i', origem,
-             '-c:a', 'aac', '-b:a', '32k', '-ac', '1', '-ar', '44100',
-             '-movflags', '+faststart', str(parcial)],
+             *PARAMETROS_AAC, str(parcial)],
             check=True)
         parcial.replace(destino)
     finally:
         os.unlink(origem)
         if parcial.exists():
             parcial.unlink()
-    dur = subprocess.run(
-        ['ffprobe', '-v', 'error', '-show_entries', 'format=duration',
-         '-of', 'default=nw=1:nk=1', str(destino)],
-        capture_output=True, text=True, check=True).stdout.strip()
-    return float(dur), destino.stat().st_size
+    return duracao_segundos(destino), destino.stat().st_size
 
 
-def registrar(registro):
+def registrar(registro, arquivo=LOG):
+    """Uma linha de jsonl por tentativa. `arquivo` existe porque
+    narrar_trechos.py tem o próprio log, na mesma pasta."""
     with _trava_log:
-        LOG.parent.mkdir(parents=True, exist_ok=True)
-        with open(LOG, 'a', encoding='utf-8') as f:
+        arquivo.parent.mkdir(parents=True, exist_ok=True)
+        with open(arquivo, 'a', encoding='utf-8') as f:
             f.write(json.dumps(registro, ensure_ascii=False) + '\n')
 
 
