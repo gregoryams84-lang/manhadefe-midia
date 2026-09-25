@@ -68,10 +68,13 @@ def chave_api():
     if k:
         return k.strip()
     texto = CHAVE_PADRAO.read_text(encoding='utf-8', errors='replace')
-    m = re.search(r'sk_[A-Za-z0-9]+', texto)
+    # Colada num .md, a chave pode vir com o sublinhado escapado ("sk\_…"):
+    # aconteceu em 25/09/2026 e o gerador dizia "chave não encontrada".
+    # Aceita as duas formas e devolve a chave limpa; nunca a imprime.
+    m = re.search(r'sk\\?_[A-Za-z0-9]+', texto)
     if not m:
         sys.exit('chave da ElevenLabs (sk_...) não encontrada')
-    return m.group(0)
+    return m.group(0).replace('\\', '')
 
 
 def saldo(chave):
