@@ -5,11 +5,17 @@ num diretório temporário com uma cópia do conteúdo do app.
 
   python -m pytest ferramentas/teste_narrar_trechos.py
   python ferramentas/teste_narrar_trechos.py          # sem pytest
+
+Os testes leem o conteúdo real do app (manha-de-fe-app, pasta-irmã deste
+repo ou MANHA_DE_FE_APP) e copiam para um temporário; nada é escrito nele.
+O teste do catálogo inteiro (~8 min) só roda com NARRAR_TRECHOS_TESTE_LENTO=1.
 """
 import json
+import os
 import shutil
 import sys
 import tempfile
+import time
 import traceback
 from pathlib import Path
 
@@ -21,10 +27,36 @@ from narrar_trechos import Peca, Trecho  # noqa: E402
 APP_REAL = nt.APP_PADRAO
 
 
+def app_real():
+    """O repo do app, ou uma falha que diz o que falta e como apontar — sem
+    isto, num clone isolado, seis testes morreriam em FileNotFoundError."""
+    faltando = [p for p in (APP_REAL / 'pubspec.yaml',
+                            APP_REAL / 'assets' / 'content' / 'terco',
+                            APP_REAL / 'assets' / 'content' / 'oracoes')
+                if not p.exists()]
+    if faltando:
+        raise RuntimeError(
+            f'o repo do app não está em {APP_REAL} (falta {faltando[0]}). Os testes leem '
+            'assets/content/terco e assets/content/oracoes de manha-de-fe-app: clone-o como '
+            'pasta-irmã de manhadefe-midia ou aponte a raiz dele em MANHA_DE_FE_APP.')
+    return APP_REAL
+
+
+class Pulado(Exception):
+    """Teste pulado de propósito (o runner sem pytest o mostra como tal)."""
+
+
+def pular(motivo):
+    if 'pytest' in sys.modules:
+        import pytest
+        pytest.skip(motivo)
+    raise Pulado(motivo)
+
+
 def app_de_teste(tmp):
     app = Path(tmp) / 'app'
     for pasta in ('terco', 'oracoes'):
-        shutil.copytree(APP_REAL / 'assets' / 'content' / pasta,
+        shutil.copytree(app_real() / 'assets' / 'content' / pasta,
                         app / 'assets' / 'content' / pasta)
     (app / 'pubspec.yaml').write_text('name: teste', encoding='utf-8')
     return app
@@ -132,7 +164,8 @@ def teste_peca_refeita_reconstroi_todo_trecho_ja_montado_que_a_usa():
 
 
 def teste_contagem_de_marcas_bate_com_o_que_a_tela_desenha():
-    trechos = nt.catalogo(APP_REAL)
+    app = app_real()
+    trechos = nt.catalogo(app)
     assert len(trechos) == 4 * 7 + 9 + 4
     for t in trechos:
         assert t.contas == t.contas_esperadas, t.id
@@ -146,12 +179,85 @@ def teste_contagem_de_marcas_bate_com_o_que_a_tela_desenha():
     gemeas = [t for t in trechos if t.json is None]
     assert sorted(t.id for t in gemeas) == sorted(
         slug + nt.SUFIXO_EVANGELICO for slug in nt.ler_json(
-            APP_REAL / 'assets' / 'content' / 'oracoes' / 'indice.json')['comum'])
+            app / 'assets' / 'content' / 'oracoes' / 'indice.json')['comum'])
     assert all(t.tradicao == 'evangelico' for t in gemeas)
     for t in trechos:
         if 'oracoes' in t.destino.parts:
             slug = t.id[:-len(nt.SUFIXO_EVANGELICO)] if t.json is None else t.id
-            assert t.contas == len(nt.passos_da_oracao(APP_REAL, slug)), t.id
+            assert t.contas == len(nt.passos_da_oracao(app, slug)), t.id
+
+
+def _indice(app):
+    return app / 'assets' / 'content' / 'oracoes' / 'indice.json'
+
+
+def _nova_oracao(app, slug):
+    (app / 'assets' / 'content' / 'oracoes' / f'{slug}.json').write_text(json.dumps({
+        'titulo': slug, 'passos': [{'texto': 'Um.'}, {'texto': 'Dois.'}],
+        'audioAsset': f'assets/audio/oracoes/{slug}.m4a', 'marcas': [0, 5]}), encoding='utf-8')
+
+
+def _por_id(trechos, id_):
+    return next(t for t in trechos if t.id == id_)
+
+
+def teste_oracao_nova_no_indice_entra_no_catalogo_com_a_voz_da_camada():
+    with tempfile.TemporaryDirectory() as tmp:
+        app = app_de_teste(tmp)
+        indice = nt.ler_json(_indice(app))
+        _nova_oracao(app, 'oracao-nova')
+        for camada, esperados in (('catolico', ['oracao-nova']),
+                                  ('evangelico', ['oracao-nova']),
+                                  ('comum', ['oracao-nova', 'oracao-nova' + nt.SUFIXO_EVANGELICO])):
+            dados = json.loads(json.dumps(indice))
+            dados[camada].append('oracao-nova')
+            _indice(app).write_text(json.dumps(dados), encoding='utf-8')
+            trechos = nt.catalogo(app)
+            assert len(trechos) == 41 + len(esperados), camada
+            for id_ in esperados:
+                t = _por_id(trechos, id_)
+                assert t.contas == 2 and t.contas_esperadas == 2
+                assert t.tradicao == ('evangelico' if camada == 'evangelico' or id_.endswith(nt.SUFIXO_EVANGELICO)
+                                      else 'catolico'), (camada, id_)
+                assert (t.json is None) == id_.endswith(nt.SUFIXO_EVANGELICO)
+
+
+def teste_indice_que_nao_bate_com_a_pasta_para_a_ferramenta_em_vez_de_ignorar():
+    def deve_parar(app, trecho_da_mensagem):
+        try:
+            nt.catalogo(app)
+        except SystemExit as e:
+            assert trecho_da_mensagem in str(e), str(e)
+        else:
+            raise AssertionError(f'deveria ter parado por {trecho_da_mensagem!r}')
+
+    with tempfile.TemporaryDirectory() as tmp:
+        app = app_de_teste(tmp)
+        original = _indice(app).read_text(encoding='utf-8')
+        indice = json.loads(original)
+        # Citada no índice, sem arquivo.
+        dados = json.loads(original)
+        dados['catolico'].append('fantasma')
+        _indice(app).write_text(json.dumps(dados), encoding='utf-8')
+        deve_parar(app, 'fantasma')
+        # Na pasta, fora do índice.
+        _indice(app).write_text(original, encoding='utf-8')
+        _nova_oracao(app, 'sobra')
+        deve_parar(app, 'sobra')
+        (app / 'assets' / 'content' / 'oracoes' / 'sobra.json').unlink()
+        # Em duas camadas.
+        dados = json.loads(original)
+        dados['evangelico'].append(indice['catolico'][0])
+        _indice(app).write_text(json.dumps(dados), encoding='utf-8')
+        deve_parar(app, indice['catolico'][0])
+        # Camada que o app não conhece.
+        dados = json.loads(original)
+        dados['ortodoxo'] = []
+        _indice(app).write_text(json.dumps(dados), encoding='utf-8')
+        deve_parar(app, 'ortodoxo')
+        # Restaurado, volta a passar.
+        _indice(app).write_text(original, encoding='utf-8')
+        assert len(nt.catalogo(app)) == 41
 
 
 def _chaves(obj):
@@ -190,6 +296,56 @@ def teste_json_gravado_mantem_ordem_das_chaves_e_todos_os_campos():
             diff = [(a, b) for a, b in zip(texto_antes.splitlines(), texto_depois.splitlines()) if a != b]
             assert len(diff) == 1 and '"marcas"' in diff[0][0], diff
             assert texto_antes.count(chr(10)) == texto_depois.count(chr(10))
+
+
+def teste_gravar_marcas_recusa_arquivo_com_menos_marcas_que_o_esperado():
+    with tempfile.TemporaryDirectory() as tmp:
+        app = app_de_teste(tmp)
+        terco = app / 'assets' / 'content' / 'terco' / 'gozosos.json'
+        oracao = app / 'assets' / 'content' / 'oracoes' / 'ave-maria.json'
+        # Um trecho do terço sem a chave (6 "marcas" para 7 trechos) e uma
+        # oração sem nenhuma: nada é gravado, e o arquivo fica como estava.
+        for caminho, posicao, quebra in ((terco, 6, ('"marcas": []', '"marcas_": []')),
+                                         (oracao, None, ('"marcas"', '"marcas_"'))):
+            texto = caminho.read_text(encoding='utf-8')
+            assert quebra[0] in texto
+            quebrado = texto.replace(quebra[0], quebra[1], 1)
+            caminho.write_text(quebrado, encoding='utf-8')
+            try:
+                nt.gravar_marcas(trecho_de_teste(tmp, [], contas=1, json_=caminho, posicao=posicao), [0])
+            except ValueError as e:
+                assert 'marcas' in str(e)
+            else:
+                raise AssertionError('deveria ter recusado')
+            assert caminho.read_text(encoding='utf-8') == quebrado
+        try:
+            nt.substituir_marcas('{"marcas": [1]}', 1, [2])
+        except ValueError:
+            pass
+        else:
+            raise AssertionError('deveria ter recusado a 2ª ocorrência')
+
+
+def teste_gravar_marcas_no_fecho_vazio_e_de_volta_ao_vazio():
+    with tempfile.TemporaryDirectory() as tmp:
+        app = app_de_teste(tmp)
+        terco = app / 'assets' / 'content' / 'terco' / 'gozosos.json'
+        original = terco.read_text(encoding='utf-8')
+        assert json.loads(original)['trechos'][6]['marcas'] == []
+        fecho = trecho_de_teste(tmp, [], contas=0, json_=terco, posicao=6)
+        # [] sobre []: byte a byte igual.
+        nt.gravar_marcas(fecho, [])
+        assert terco.read_text(encoding='utf-8') == original
+        # Valores no fecho, e só nele.
+        nt.gravar_marcas(fecho, [1.5, 3])
+        dados = json.loads(terco.read_text(encoding='utf-8'))
+        assert dados['trechos'][6]['marcas'] == [1.5, 3]
+        assert [t['marcas'] for t in dados['trechos'][:6]] == \
+               [t['marcas'] for t in json.loads(original)['trechos'][:6]]
+        assert '"marcas": [1.5, 3] }' in terco.read_text(encoding='utf-8')
+        # E de volta ao vazio: o arquivo original, byte a byte.
+        nt.gravar_marcas(fecho, [])
+        assert terco.read_text(encoding='utf-8') == original
 
 
 def teste_formatacao_das_marcas_no_json():
@@ -253,22 +409,57 @@ def teste_simulacao_ponta_a_ponta_grava_arquivos_marcas_e_log():
         assert len(pecas) == 2 + 4 + 2 + 1  # anúncio, meditação, pai-nosso ×4, ave-maria ×2, glória
 
 
+def teste_lento_catalogo_inteiro_montado_pelo_ffmpeg_real():
+    """Os 41 arquivos, de verdade (simulados), do começo ao fim: ~8 min."""
+    if os.environ.get('NARRAR_TRECHOS_TESTE_LENTO') != '1':
+        pular('~8 min: rode com NARRAR_TRECHOS_TESTE_LENTO=1')
+    with tempfile.TemporaryDirectory() as tmp:
+        app = app_de_teste(tmp)
+        trabalho, log = Path(tmp) / 'trabalho', Path(tmp) / 'log.jsonl'
+        inicio = time.time()
+        assert nt.main(['--simular', '--app', str(app), '--trabalho', str(trabalho),
+                        '--log', str(log)]) == 0
+        minutos = (time.time() - inicio) / 60
+        trechos = nt.catalogo(app)
+        registros = {json.loads(l)['id']: json.loads(l)
+                     for l in log.read_text(encoding='utf-8').splitlines()}
+        assert len(trechos) == len(registros) == 41
+        for t in trechos:
+            r = registros[t.id]
+            assert t.destino.exists() and t.destino.stat().st_size > 0, t.id
+            assert r['simulado'] and abs(r['segundos']) > 0
+            assert len(r['marcas']) == t.contas_esperadas, (t.id, r['marcas'])
+            assert all(b > a for a, b in zip(r['marcas'], r['marcas'][1:])), (t.id, r['marcas'])
+            if t.json is None:
+                continue
+            dados = nt.ler_json(t.json)
+            gravadas = dados['marcas'] if t.posicao is None else dados['trechos'][t.posicao]['marcas']
+            assert gravadas == r['marcas'], t.id
+        for misterio in nt.MISTERIOS:
+            dados = nt.ler_json(app / 'assets' / 'content' / 'terco' / f'{misterio}.json')
+            assert [len(t['marcas']) for t in dados['trechos']] == [5, 11, 11, 11, 11, 11, 0]
+        print(f'catálogo inteiro simulado em {minutos:.1f} min')
+
+
 # ---------------------------------------------------------------------------
 
 def main():
     """Roda tudo sem pytest."""
     testes = [(nome, obj) for nome, obj in sorted(globals().items())
               if nome.startswith('teste_') and callable(obj)]
-    falhas = 0
+    falhas = pulados = 0
     for nome, teste in testes:
         try:
             teste()
             print(f'ok    {nome}')
+        except Pulado as e:
+            pulados += 1
+            print(f'pulou {nome}: {e}')
         except Exception:  # noqa: BLE001
             falhas += 1
             print(f'FALHA {nome}')
             traceback.print_exc()
-    print(f'{chr(10)}{len(testes) - falhas} ok, {falhas} falha(s)')
+    print(f'{chr(10)}{len(testes) - falhas - pulados} ok, {falhas} falha(s), {pulados} pulado(s)')
     return 1 if falhas else 0
 
 

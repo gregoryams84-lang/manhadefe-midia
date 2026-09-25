@@ -61,6 +61,7 @@ Uso:
 import argparse
 import hashlib
 import json
+import os
 import re
 import subprocess
 import sys
@@ -74,7 +75,10 @@ from narrar import (  # noqa: E402
     PARAMETROS_AAC, RAIZ, VOZES, chave_api, duracao_segundos, registrar,
     saldo, sintetizar)
 
-APP_PADRAO = RAIZ.parent / 'manha-de-fe-app'
+# O repo do app: a pasta-irmã deste, ou onde MANHA_DE_FE_APP apontar (clone
+# isolado, outra máquina); --app manda por cima dos dois.
+APP_PADRAO = (Path(os.environ['MANHA_DE_FE_APP']) if os.environ.get('MANHA_DE_FE_APP')
+              else RAIZ.parent / 'manha-de-fe-app')
 TRABALHO_PADRAO = RAIZ / 'ferramentas' / 'narracao' / 'trechos'
 # Peças simuladas nunca se misturam com as reais: outro diretório.
 TRABALHO_SIMULADO = RAIZ / 'ferramentas' / 'narracao' / 'trechos-simulado'
@@ -130,10 +134,14 @@ TRECHOS_DO_TERCO = ['abertura', 'dezena-1', 'dezena-2', 'dezena-3',
 CONTAS_POR_TRECHO = {'abertura': 5, 'dezena-1': 11, 'dezena-2': 11,
                      'dezena-3': 11, 'dezena-4': 11, 'dezena-5': 11, 'fecho': 0}
 
-# Orações de uma tradição só (as comuns vêm de indice.json, nas duas vozes).
-VOZ_DAS_ORACOES = {'pai-nosso-catolico': 'catolico', 'ave-maria': 'catolico',
-                   'creio': 'catolico', 'salve-rainha': 'catolico',
-                   'pai-nosso-evangelico': 'evangelico'}
+# Qual voz reza cada camada de assets/content/oracoes/indice.json. A lista de
+# orações NÃO é fixa aqui: vem do índice, para uma oração nova entrar sozinha
+# no catálogo — e um índice que não bate com a pasta parar a ferramenta, nunca
+# ser ignorado em silêncio. As comuns saem nas duas vozes: a católica no
+# arquivo que o JSON cita, a evangélica com o sufixo (pendência no topo).
+VOZ_DA_CAMADA = {'catolico': 'catolico', 'evangelico': 'evangelico'}
+CAMADA_COMUM = 'comum'
+CAMADAS = ('catolico', 'evangelico', CAMADA_COMUM)  # as do lint do app (camadasDeOracoes)
 SUFIXO_EVANGELICO = '-evangelico'
 
 
@@ -271,11 +279,34 @@ def _trecho_do_terco(app, misterio, dados, posicao, pecas):
                   posicao=posicao)
 
 
-def compor_oracoes(app):
-    """As 9 orações guiadas e as 4 cópias evangélicas das comuns (pendência
-    no topo do arquivo)."""
-    pasta = app / 'assets' / 'content' / 'oracoes'
+def camadas_do_indice(pasta):
+    """{slug: camada}, na ordem das CAMADAS, lido de indice.json e conferido
+    contra a pasta: cada oração numa camada só, todo slug citado com arquivo,
+    todo .json da pasta citado. Qualquer diferença para a ferramenta com a
+    mensagem do que falta (regra 6 do briefing: parar, não inventar)."""
     indice = ler_json(pasta / 'indice.json')
+    desconhecidas = sorted(set(indice) - {'topo', *CAMADAS})
+    if desconhecidas:
+        sys.exit(f'indice.json: camada(s) desconhecida(s) {desconhecidas}; só {list(CAMADAS)} (e "topo")')
+    camada_de = {}
+    for camada in CAMADAS:
+        for slug in indice.get(camada, []):
+            if slug in camada_de:
+                sys.exit(f'indice.json: "{slug}" está em "{camada_de[slug]}" e em "{camada}" — em qual voz?')
+            if not (pasta / f'{slug}.json').exists():
+                sys.exit(f'indice.json cita "{slug}" em "{camada}", mas {slug}.json não existe em {pasta}')
+            camada_de[slug] = camada
+    sem_camada = sorted(p.stem for p in pasta.glob('*.json')
+                        if p.name != 'indice.json' and p.stem not in camada_de)
+    if sem_camada:
+        sys.exit(f'{pasta} tem oração fora do indice.json: {sem_camada} — em qual camada entra?')
+    return camada_de
+
+
+def compor_oracoes(app):
+    """As orações guiadas do índice (hoje 9) e as cópias evangélicas das
+    comuns (hoje 4; pendência no topo do arquivo)."""
+    pasta = app / 'assets' / 'content' / 'oracoes'
     trechos = []
 
     def oracao(slug, tradicao, sufixo='', grava=True):
@@ -293,11 +324,12 @@ def compor_oracoes(app):
                       contas_esperadas=len(passos),
                       json=(pasta / f'{slug}.json') if grava else None, posicao=None)
 
-    for slug, tradicao in VOZ_DAS_ORACOES.items():
-        trechos.append(oracao(slug, tradicao))
-    for slug in indice['comum']:
-        trechos.append(oracao(slug, 'catolico'))
-        trechos.append(oracao(slug, 'evangelico', SUFIXO_EVANGELICO, grava=False))
+    for slug, camada in camadas_do_indice(pasta).items():
+        if camada == CAMADA_COMUM:
+            trechos.append(oracao(slug, 'catolico'))
+            trechos.append(oracao(slug, 'evangelico', SUFIXO_EVANGELICO, grava=False))
+        else:
+            trechos.append(oracao(slug, VOZ_DA_CAMADA[camada]))
     return trechos
 
 
@@ -545,7 +577,8 @@ def selecionar(trechos, args):
 
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.split(chr(10))[0])
-    ap.add_argument('--app', default=str(APP_PADRAO), help='raiz do repo manha-de-fe-app')
+    ap.add_argument('--app', default=str(APP_PADRAO),
+                    help='raiz do repo manha-de-fe-app (padrão: pasta-irmã, ou MANHA_DE_FE_APP)')
     ap.add_argument('--trabalho', help='diretório das peças (padrão: narracao/trechos; simulado: narracao/trechos-simulado)')
     ap.add_argument('--log', default=str(LOG))
     ap.add_argument('--apenas', choices=['terco', 'oracoes'])
@@ -563,7 +596,8 @@ def main(argv=None):
 
     app = Path(args.app)
     if not (app / 'pubspec.yaml').exists():
-        sys.exit(f'{app} não parece o repo do app (sem pubspec.yaml); use --app')
+        sys.exit(f'{app} não parece o repo do app (sem pubspec.yaml): aponte com --app '
+                 'ou com a variável de ambiente MANHA_DE_FE_APP')
     trabalho = Path(args.trabalho) if args.trabalho else (TRABALHO_SIMULADO if args.simular else TRABALHO_PADRAO)
     log = Path(args.log)
     reaproveitar = not args.sem_reaproveitar
