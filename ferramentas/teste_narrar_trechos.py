@@ -107,7 +107,13 @@ def teste_montagem_real_mede_com_ffprobe_e_a_marca_bate():
         marcas, total = nt.montar(trecho, wavs, trabalho)
         esperadas, previsto = nt.calcular_marcas(trecho.pecas, duracoes)
         assert marcas == esperadas, (marcas, esperadas)
-        assert abs(total - previsto) < 0.15, (total, previsto)
+        # O arquivo é as peças e os silêncios entre elas MAIS o silêncio de
+        # saída — que fica depois da última marca e não mexe em nenhuma.
+        assert abs(total - (previsto + nt.PAUSA_DE_SAIDA)) < 0.15, (total, previsto)
+        assert total > previsto + nt.PAUSA_DE_SAIDA - 0.15
+        lista = (trabalho / 'montagem' / trecho.id / 'lista.txt').read_text(encoding='utf-8').splitlines()
+        assert lista[-1].endswith(f"{nt.PAUSA_DE_SAIDA:.3f}.wav'"), lista[-1]
+        assert lista[-2].endswith(f"{wavs[-1].name}'"), lista[-2]
         assert trecho.destino.exists() and trecho.destino.stat().st_size > 0
 
 

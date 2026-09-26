@@ -108,6 +108,11 @@ TAXA = 44100  # a mesma dos .m4a de narrar.py; peças e silêncios em PCM nesta 
 PAUSA_ENTRE_PASSOS = 0.8     # entre passos de uma mesma oração (e entre as duas metades da Ave-Maria)
 PAUSA_ENTRE_CONTAS = 1.4     # entre uma oração e a seguinte (Ave-Maria → Ave-Maria, Pai-Nosso → Ave-Maria, → Glória)
 PAUSA_APOS_MEDITACAO = 2.0   # depois da meditação do mistério, antes do Pai-Nosso: um instante para guardar
+# Silêncio no FIM de todo arquivo montado (Terço e orações): sem ele a última
+# peça — a jaculatória, o Sinal da Cruz do fecho, o último passo — terminava
+# seca, cortada no "Amém". Vem depois da última peça: não mexe em marca
+# nenhuma (a marca é o começo de uma conta), só na duração final.
+PAUSA_DE_SAIDA = 0.6
 
 # --simular: ritmo de fala plausível. As vozes aprovadas rodam a ~120 palavras
 # por minuto (docs/fase4/narracao-parametros.md); em português dá por volta
@@ -484,23 +489,31 @@ def conferir_crescentes(marcas, rotulo):
                              f'({marcas[i - 1]} → {marcas[i]})')
 
 
+def _silencio(trabalho, segundos):
+    """O .wav de silêncio de `segundos`, gerado uma vez por duração."""
+    sil = trabalho / 'silencios' / f'{segundos:.3f}.wav'
+    if not sil.exists():
+        silencio_wav(sil, segundos)
+    return sil
+
+
 def montar(trecho, wavs, trabalho):
-    """Concatena peças e silêncios num .m4a só (uma codificação) e devolve
-    (marcas, duração total medida). `wavs` são os .wav das peças, na ordem."""
+    """Concatena peças e silêncios num .m4a só (uma codificação), com a
+    PAUSA_DE_SAIDA no fim, e devolve (marcas, duração total medida). `wavs`
+    são os .wav das peças, na ordem."""
     duracoes = [duracao_segundos(w) for w in wavs]
     marcas, previsto = calcular_marcas(trecho.pecas, duracoes)
     conferir_crescentes(marcas, trecho.id)
+    previsto += PAUSA_DE_SAIDA
 
     montagem = trabalho / 'montagem' / trecho.id
     montagem.mkdir(parents=True, exist_ok=True)
     linhas = []
     for peca, wav in zip(trecho.pecas, wavs):
         if peca.pausa_antes > 0:
-            sil = trabalho / 'silencios' / f'{peca.pausa_antes:.3f}.wav'
-            if not sil.exists():
-                silencio_wav(sil, peca.pausa_antes)
-            linhas.append(sil)
+            linhas.append(_silencio(trabalho, peca.pausa_antes))
         linhas.append(wav)
+    linhas.append(_silencio(trabalho, PAUSA_DE_SAIDA))
     lista = montagem / 'lista.txt'
     # Caminhos com barra normal e aspas simples: é o que o demuxer concat lê,
     # inclusive no Windows.
