@@ -8,3 +8,6 @@ ferramentas/narracao/narracoes.jsonl
 ferramentas/imagens/qa-santos/
 ferramentas/narracao/trechos/
 ferramentas/narracao/trechos-simulado/
+ferramentas/narracao/*.log.jsonl
+ferramentas/narracao/hinos-reprovados/
+ferramentas/narracao/prioridade-creator.txt
