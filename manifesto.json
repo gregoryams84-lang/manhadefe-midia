@@ -1,18 +1,118 @@
 {
   "versao": 1,
-  "geradoEm": "2026-09-24T16:38:46.000Z",
+  "geradoEm": "2026-09-26T16:31:20.000Z",
   "arquivos": {
+    "hinos/a-linda-historia.m4a": {
+      "bytes": 399269,
+      "sha256": "ec07bebf16129b7d60fadab378a6f15dfc9c3d9ac52e3e6abef87e9afce60040"
+    },
+    "hinos/a-musica-dos-salvos.m4a": {
+      "bytes": 396213,
+      "sha256": "47981a37523c7ec6601a1c68610e0d04bbdf97ccb2a0acfa115cf0487b9e5bc5"
+    },
+    "hinos/abrigo-seguro.m4a": {
+      "bytes": 211275,
+      "sha256": "1bc11f9d3302d2fcf42cd9eab87befff5b5b083a8f1624f91e11bee5ca5e16fd"
+    },
     "hinos/ah-se-eu-tivesse-mil-vozes.m4a": {
       "bytes": 347193,
       "sha256": "0702f21fff1695a79c06e5dd036763ad275c85fcf80f84c810be8876900827eb"
+    },
+    "hinos/aleluia.m4a": {
+      "bytes": 753740,
+      "sha256": "672428599cda514d79ffcf608d613564c2cde2e66f045963ca6b272cd69beb6d"
+    },
+    "hinos/altamente-os-ceus-proclamam.m4a": {
+      "bytes": 501090,
+      "sha256": "1c125c65134030bf93f97c32dbe222c233aba9e5567d6630e5c369bef22f358c"
+    },
+    "hinos/alvo-mais-que-a-neve.m4a": {
+      "bytes": 770162,
+      "sha256": "755b12fdca20e02c85a4c89a54cd64fcd68d56877ca6de535ba0ba1e45135268"
+    },
+    "hinos/amigo-eterno.m4a": {
+      "bytes": 568309,
+      "sha256": "d7513757319ce66c6413bdb78fecc82512a880a36cada94b85455ca3b62dac37"
+    },
+    "hinos/amigo-sem-igual.m4a": {
+      "bytes": 584381,
+      "sha256": "1a53a3c8c8dd34127d31af5cf7a14d6ad9e94a6f1af4e9afe1b591839b617346"
+    },
+    "hinos/amor-fraternal.m4a": {
+      "bytes": 543325,
+      "sha256": "9529aac80602d0714c3e131644c4bd49c56cc54a17147ace1a514e17f92909b7"
+    },
+    "hinos/amor-glorioso.m4a": {
+      "bytes": 540211,
+      "sha256": "f7151e080031114cfc3531e2717ac6a2f57f735afd8010d740d948f0719aafe3"
+    },
+    "hinos/antifona.m4a": {
+      "bytes": 559957,
+      "sha256": "8792a5f711e9fcfbb129018965bc1567e896c0d002037719e20dd083d2d50701"
+    },
+    "hinos/ao-deus-de-abraao-louvai.m4a": {
+      "bytes": 680402,
+      "sha256": "4520fc084911c184c5064c0d4bcb1cc1fff97b90d4e29518e5b1290b44249530"
+    },
+    "hinos/ao-deus-de-amor-e-de-imensa-bondade.m4a": {
+      "bytes": 505458,
+      "sha256": "5393dd9cfe7fbb7f1eeed35b8c9622f909248ee3a4eefb6e215e55a1b6d7bb89"
+    },
+    "hinos/avivamento.m4a": {
+      "bytes": 314541,
+      "sha256": "ee76a7d309729f0b59593d884c23cad7aa6cc8bd66d097731e294fea97e8e28b"
+    },
+    "hinos/bem-aventuranca-do-crente.m4a": {
+      "bytes": 508213,
+      "sha256": "ca765f0822f8a90428a5ceab9018940270803e1a4241599497c90ac9efd59437"
+    },
+    "hinos/bencao.m4a": {
+      "bytes": 435353,
+      "sha256": "e57cdd4edca3a36fdf1874655c9bc5b0ac06834a8d5e23dcb7cb4228bf77ef74"
+    },
+    "hinos/breve-com-jesus.m4a": {
+      "bytes": 390503,
+      "sha256": "bd0a3893a3f1ab5db4348d17ad675761ffde334e7d5a85636e822d9a6fbc0a31"
+    },
+    "hinos/cantai-louvores.m4a": {
+      "bytes": 573115,
+      "sha256": "a0a0e899729f3ee1da00f2371068a76b756d4333a129ee56d6cf1eb30afb4380"
     },
     "hinos/castelo-forte.m4a": {
       "bytes": 760666,
       "sha256": "1d662c2e4fcc32b13b5fd392b744163d56c23630e4a02224e61486591c665145"
     },
+    "hinos/certeza.m4a": {
+      "bytes": 379106,
+      "sha256": "50cfd59e4a1575cf451c28f96c3176d9c77fb5f8953ad55eda705d961df25d76"
+    },
+    "hinos/chuvas-de-bencaos.m4a": {
+      "bytes": 430437,
+      "sha256": "60e22e98ed48c3e5065edafe58fa77393e3bfb111e02b8daf0d5af9c23fec869"
+    },
+    "hinos/confianca.m4a": {
+      "bytes": 413099,
+      "sha256": "0fd73c82389d10056c19d7ec6c5605c25e016f783c3ea55af803f881e57560a2"
+    },
+    "hinos/contricao.m4a": {
+      "bytes": 262989,
+      "sha256": "ebc0053ba87f0bace830686629a20ecaf890da49ece2641f92a36195eb307659"
+    },
+    "hinos/coracao-purificado.m4a": {
+      "bytes": 282832,
+      "sha256": "481377e278476909a9e534bbd0973d9e44e9d46c47f29354603eced4a96aff34"
+    },
+    "hinos/cordeiro-divino.m4a": {
+      "bytes": 472127,
+      "sha256": "b052edcde4ff0d0755308817d0abf22e2b4c8b7f86f5f6d65500ef99bdccaec8"
+    },
     "hinos/coroai.m4a": {
       "bytes": 225038,
       "sha256": "c06438444ec39020fbfbef1fbfc39d93e1fba408a52e178de79823312eafd14e"
+    },
+    "hinos/crendo-em-cristo.m4a": {
+      "bytes": 414681,
+      "sha256": "177cfd4e854b0c79f01daeeda57eb3410b477b3bb82a53e89573e27e7bf657d0"
     },
     "hinos/crer-e-observar.m4a": {
       "bytes": 514306,
@@ -21,6 +121,10 @@
     "hinos/cristo-bom-mestre.m4a": {
       "bytes": 553520,
       "sha256": "1679863097bb4582b56583ac349172998b0bd931ecaa51375805a0f45200d063"
+    },
+    "hinos/cristo-pra-mim.m4a": {
+      "bytes": 875148,
+      "sha256": "b2fd3aedbeea2ee2062fc7d5b323019c13086c32d942d43a67cf9c708e454a41"
     },
     "hinos/demos-gloria-a-deus.m4a": {
       "bytes": 620164,
@@ -42,6 +146,10 @@
       "bytes": 351180,
       "sha256": "7243608fef442a1388be8e650d22e07db5d6edc9c2de4d39e6e65ba7baae4cd8"
     },
+    "hinos/lembrando-teu-sepulcro.m4a": {
+      "bytes": 236036,
+      "sha256": "27712c48121e3f43fa059f93ebf832110d97227874408aff9c9d6123d1d5765e"
+    },
     "hinos/mais-perto-meu-deus-de-ti-mais-perto-quero-estar.m4a": {
       "bytes": 508495,
       "sha256": "1299183ace6a6da8c86e858c56ece6e36cb7d5a3a799b5ba8ec756bd00bb471c"
@@ -50,13 +158,37 @@
       "bytes": 409256,
       "sha256": "a8b58645f5cecbc2ef0e624146cbabc52dd256d7031c18a1f4f476b8e981283d"
     },
+    "hinos/que-amigo-nos-temos-em-jesus.m4a": {
+      "bytes": 530167,
+      "sha256": "14c68044736230b46e27b9f442bb0fa7aaf29ce1e735a55da24e8ad3da9c0090"
+    },
     "hinos/que-seguranca-blessed-assurance.m4a": {
       "bytes": 404659,
       "sha256": "93914be453a7aaccbf1b6036268fdd2edead51575b5d3b9a8d75db82b8e8d483"
     },
+    "hinos/ressurgiu.m4a": {
+      "bytes": 431912,
+      "sha256": "f55a8fde560c5f0191f27e1326c885ac9971471d663f19db850514a33febbbe5"
+    },
+    "hinos/rocha-eterna.m4a": {
+      "bytes": 486715,
+      "sha256": "dbaa8b9bcdf6deadbc75fdea6446294a5f8ef4bc54f2a1b11460b28a60001e1d"
+    },
     "hinos/santo-santo-santo-deus-onipotente.m4a": {
       "bytes": 499718,
       "sha256": "5097f6b235d50377d5be8a3b9968574cddf6ecf1dddf52e84c96dba9f44ff974"
+    },
+    "hinos/sou-feliz.m4a": {
+      "bytes": 406906,
+      "sha256": "f3a4a98a6afb757bfa0073de15f51b0896267a972f27b7fc0cc15effb5dcec31"
+    },
+    "hinos/tal-qual-estou.m4a": {
+      "bytes": 489436,
+      "sha256": "21263392f4e5799fee863180125616542e146e837ffcbcb55d26a1842050bbf9"
+    },
+    "hinos/terra-feliz.m4a": {
+      "bytes": 435696,
+      "sha256": "c64c7d99411ffcf64287ec820bb81e18a49c5b15300564ca63f8234c4a580e75"
     },
     "hinos/tudo-entregarei.m4a": {
       "bytes": 724229,
