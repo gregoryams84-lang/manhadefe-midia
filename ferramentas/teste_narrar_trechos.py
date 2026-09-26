@@ -212,6 +212,45 @@ def teste_contagem_de_marcas_bate_com_o_que_a_tela_desenha():
            [t.destino for t in trechos if not nt.eh_do_terco(t)]
 
 
+def teste_composicao_do_terco_c13_jaculatoria_apos_cada_gloria_e_sinal_da_cruz_no_fecho():
+    """C13 (25/09/2026): a jaculatória de Fátima depois de CADA Glória (abertura
+    e cinco dezenas) e o Sinal da Cruz como última peça do fecho — as duas sem
+    conta, então 5/11×5/0 não muda e os JSONs do app não mudam."""
+    app = app_real()
+    creio = len(nt.passos_da_oracao(app, 'creio'))
+    pai_nosso = len(nt.passos_da_oracao(app, 'pai-nosso-catolico'))
+    ave_maria = len(nt.passos_da_oracao(app, 'ave-maria'))
+    salve_rainha = len(nt.passos_da_oracao(app, 'salve-rainha'))
+    trechos = nt.catalogo(app)
+    for misterio in nt.MISTERIOS:
+        abertura = _por_id(trechos, f'{misterio}-abertura')
+        fecho = _por_id(trechos, f'{misterio}-fecho')
+        dezenas = [_por_id(trechos, f'{misterio}-dezena-{n}') for n in range(1, 6)]
+        # Quantas peças cada trecho tem (antes da C13: uma a menos em cada).
+        assert len(abertura.pecas) == 1 + creio + pai_nosso + 3 * ave_maria + 1 + 1, misterio
+        for d in dezenas:
+            assert len(d.pecas) == 2 + pai_nosso + 10 * ave_maria + 1 + 1, d.id
+        assert len(fecho.pecas) == salve_rainha + 1 + 1, misterio
+        # Glória → jaculatória, as duas sem conta, a jaculatória com a pausa
+        # de entre contas antes dela (a mesma do Glória).
+        for t in [abertura, *dezenas]:
+            gloria, jaculatoria = t.pecas[-2], t.pecas[-1]
+            assert (gloria.texto, gloria.conta) == (nt.GLORIA, False), t.id
+            assert (jaculatoria.texto, jaculatoria.conta) == (nt.JACULATORIA_DE_FATIMA, False), t.id
+            assert jaculatoria.pausa_antes == gloria.pausa_antes == nt.PAUSA_ENTRE_CONTAS, t.id
+            assert sum(1 for p in t.pecas if p.texto == nt.JACULATORIA_DE_FATIMA) == 1, t.id
+        # O fecho termina no Sinal da Cruz (a mesma constante da abertura),
+        # sem conta, depois da oração final; nenhuma conta no fecho inteiro.
+        assert fecho.pecas[-2].texto == nt.ORACAO_FINAL
+        assert (fecho.pecas[-1].texto, fecho.pecas[-1].conta) == (nt.SINAL_DA_CRUZ, False)
+        assert fecho.pecas[-1].pausa_antes == nt.PAUSA_ENTRE_CONTAS
+        assert fecho.contas == 0 and abertura.contas == 5 and all(d.contas == 11 for d in dezenas)
+        assert abertura.pecas[0].texto == nt.SINAL_DA_CRUZ and abertura.pecas[0].conta
+    # Reaproveitando, o Sinal da Cruz do fecho e o da abertura são UMA peça.
+    assert nt.chave_da_peca(fecho.pecas[-1], 'catolico', fecho.id, len(fecho.pecas), True) == \
+           nt.chave_da_peca(abertura.pecas[0], 'catolico', abertura.id, 1, True)
+
+
 def _indice(app):
     return app / 'assets' / 'content' / 'oracoes' / 'indice.json'
 
@@ -436,7 +475,8 @@ def teste_simulacao_ponta_a_ponta_grava_arquivos_marcas_e_log():
         assert len(registros[2]['marcas']) == 6
         # A Ave-Maria da dezena e a da oração são a mesma peça: uma geração só.
         pecas = list((trabalho / 'pecas' / 'catolico').glob('*.wav'))
-        assert len(pecas) == 2 + 4 + 2 + 1  # anúncio, meditação, pai-nosso ×4, ave-maria ×2, glória
+        # anúncio, meditação, pai-nosso ×4, ave-maria ×2, glória, jaculatória (C13)
+        assert len(pecas) == 2 + 4 + 2 + 1 + 1
 
 
 def teste_lento_catalogo_inteiro_montado_pelo_ffmpeg_real():

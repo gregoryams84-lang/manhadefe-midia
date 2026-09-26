@@ -48,8 +48,11 @@ e nos metadados do diretório de trabalho — quando o app ganhar um segundo
 O texto do Terço não existe pronto em lugar nenhum: é composto aqui. As
 orações fixas (Pai-Nosso, Ave-Maria, Creio, Salve-Rainha) saem dos JSONs de
 assets/content/oracoes/ — uma versão só de cada texto no projeto. O que não
-existe lá (Sinal da Cruz, Glória, o anúncio do mistério e a oração final do
-fecho) está nas constantes logo abaixo, PARA REVISÃO HUMANA.
+existe lá (Sinal da Cruz, Glória, a jaculatória de Fátima, o anúncio do
+mistério e a oração final do fecho) está nas constantes logo abaixo, PARA
+REVISÃO HUMANA (as quatro primeiras aprovadas pelo Gregory em 25/09/2026).
+C13, 25/09/2026: jaculatória de Fátima após cada Glória e Sinal da Cruz no
+fecho, peças sem conta.
 
 Modo --simular: sem chave e sem rede, cada peça vira um silêncio com duração
 proporcional ao texto (CARACTERES_POR_SEGUNDO). Todo o resto — ffprobe,
@@ -120,6 +123,12 @@ DURACAO_MINIMA_SIMULADA = 0.6
 SINAL_DA_CRUZ = 'Em nome do Pai, e do Filho, e do Espírito Santo. Amém.'
 GLORIA = ('Glória ao Pai, e ao Filho, e ao Espírito Santo. '
           'Como era no princípio, agora e sempre. Amém.')
+# A jaculatória de Fátima ("Ó meu Jesus"), rezada depois de CADA Glória —
+# na abertura e nas cinco dezenas (C13, decisão do Gregory em 25/09/2026).
+# Sem conta, como o Glória: o texto é o do costume brasileiro corrente.
+JACULATORIA_DE_FATIMA = ('Ó meu Jesus, perdoai-nos, livrai-nos do fogo do inferno, '
+                         'levai as almas todas para o céu e socorrei principalmente '
+                         'as que mais precisarem.')
 # A oração final do Rosário, depois da Salve-Rainha (o "Rogai por nós" já é
 # o terceiro passo de salve-rainha.json).
 ORACAO_FINAL = ('Ó Deus, cujo Filho Unigênito, por sua vida, morte e '
@@ -249,10 +258,15 @@ def compor_terco(app, misterio, midia=MIDIA_PADRAO):
                                      PAUSA_ENTRE_CONTAS, conta_na_primeira=True)
         return pecas
 
-    gloria = [Peca(GLORIA, False, PAUSA_ENTRE_CONTAS, 'gloria')]
+    # Glória + jaculatória de Fátima (C13): as duas sem conta, e a
+    # jaculatória com o MESMO silêncio antes dela que o Glória tem (o de
+    # entre contas) — é a pausa que já havia entre a última Ave-Maria e o
+    # Glória, agora também entre o Glória e o "Ó meu Jesus".
+    gloria = [Peca(GLORIA, False, PAUSA_ENTRE_CONTAS, 'gloria'),
+              Peca(JACULATORIA_DE_FATIMA, False, PAUSA_ENTRE_CONTAS, 'jaculatoria')]
 
     # abertura: crucifixo (Sinal da Cruz + Creio = UMA conta), Pai-Nosso,
-    # três Ave-Marias, Glória (sem conta).
+    # três Ave-Marias, Glória e jaculatória (sem conta).
     abertura = (
         [Peca(SINAL_DA_CRUZ, True, 0.0, 'sinal-da-cruz')]
         + pecas_de_oracao(creio, 'creio', PAUSA_ENTRE_CONTAS, conta_na_primeira=False)
@@ -263,8 +277,9 @@ def compor_terco(app, misterio, midia=MIDIA_PADRAO):
     trechos = [_trecho_do_terco(app, misterio, dados, 0, abertura, midia)]
 
     # dezena-N: anúncio (título + meditação, sem conta), Pai-Nosso, dez
-    # Ave-Marias, Glória (sem conta). A primeira marca fica DEPOIS do anúncio:
-    # a conta do Pai-Nosso acende quando o Pai-Nosso começa, não no zero.
+    # Ave-Marias, Glória e jaculatória (sem conta). A primeira marca fica
+    # DEPOIS do anúncio: a conta do Pai-Nosso acende quando o Pai-Nosso
+    # começa, não no zero.
     for n in range(5):
         m = dados['misterios'][n]
         anuncio = ANUNCIO.format(ordinal=ORDINAIS[n], adjetivo=ADJETIVO[misterio],
@@ -277,9 +292,13 @@ def compor_terco(app, misterio, midia=MIDIA_PADRAO):
             + gloria)
         trechos.append(_trecho_do_terco(app, misterio, dados, n + 1, dezena, midia))
 
-    # fecho: Salve-Rainha e a oração final — nenhuma conta.
+    # fecho: Salve-Rainha, a oração final e o Sinal da Cruz (C13) — nenhuma
+    # conta. O Sinal da Cruz é a MESMA peça da abertura (mesma voz, mesmo
+    # texto: reaproveitada), só que aqui sem conta — a tela não assume nada
+    # sobre a última peça do fecho, só espera o arquivo acabar.
     fecho = (pecas_de_oracao(salve_rainha, 'salve-rainha', 0.0, conta_na_primeira=False)
-             + [Peca(ORACAO_FINAL, False, PAUSA_ENTRE_CONTAS, 'oracao-final')])
+             + [Peca(ORACAO_FINAL, False, PAUSA_ENTRE_CONTAS, 'oracao-final'),
+                Peca(SINAL_DA_CRUZ, False, PAUSA_ENTRE_CONTAS, 'sinal-da-cruz')])
     trechos.append(_trecho_do_terco(app, misterio, dados, 6, fecho, midia))
     return trechos
 
