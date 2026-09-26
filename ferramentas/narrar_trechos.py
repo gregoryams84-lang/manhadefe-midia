@@ -1,10 +1,18 @@
 #!/usr/bin/env python3
-"""Áudios EMBUTIDOS do Manhã de Fé: o Terço (28 arquivos) e as orações
-guiadas (9 + 4). Vão para o bundle do app, não para o servidor de mídia:
+"""Áudios guiados do Manhã de Fé: o Terço (28 arquivos) e as orações
+guiadas (9 + 4). Dois destinos, desde a decisão do Gregory de 25/09/2026:
 
-  manha-de-fe-app/assets/audio/terco/<misterio>-<trecho>.m4a     (4 × 7)
-  manha-de-fe-app/assets/audio/oracoes/<slug>.m4a                (9)
+  <este repo>/terco/<misterio>-<trecho>.m4a                      (4 × 7)  BAIXÁVEL
+  manha-de-fe-app/assets/audio/oracoes/<slug>.m4a                (9)      embutido
   manha-de-fe-app/assets/audio/oracoes/<slug>-evangelico.m4a     (4, ver abaixo)
+
+O Terço saiu do bundle: os 28 trechos (~92 min, ~22 MB a 32 kbps) levariam o
+app de 24 para 46 MB, e o perfil evangélico carregaria um áudio que nunca
+abre. É camada católica, como o santo do dia — gravado na pasta terco/ deste
+repo e publicado pelo servidor de mídia; depois de gerar, no repo do app:
+`dart run tool/midia/gerar_manifesto.dart ../manhadefe-midia` (os 28 entram
+no manifesto) e commit + push aqui. --midia aponta outra raiz (os testes usam
+um temporário). As nove orações continuam embutidas no app.
 
 E — a parte que mais importa — grava de volta as `marcas` reais nos JSONs de
 assets/content/terco/*.json e assets/content/oracoes/*.json. A tela do Terço
@@ -79,6 +87,10 @@ from narrar import (  # noqa: E402
 # isolado, outra máquina); --app manda por cima dos dois.
 APP_PADRAO = (Path(os.environ['MANHA_DE_FE_APP']) if os.environ.get('MANHA_DE_FE_APP')
               else RAIZ.parent / 'manha-de-fe-app')
+# Onde o Terço é gravado (terco/ na raiz do repo de mídia); --midia manda por
+# cima — os testes apontam um temporário para nunca escrever no repo real.
+MIDIA_PADRAO = RAIZ
+PASTA_DO_TERCO = 'terco'
 TRABALHO_PADRAO = RAIZ / 'ferramentas' / 'narracao' / 'trechos'
 # Peças simuladas nunca se misturam com as reais: outro diretório.
 TRABALHO_SIMULADO = RAIZ / 'ferramentas' / 'narracao' / 'trechos-simulado'
@@ -160,7 +172,10 @@ class Trecho:
     """Um arquivo final e como ele se monta. `json` + `posicao` dizem onde
     as marcas são gravadas: no terço, `posicao` é o índice do trecho em
     `trechos`; na oração é None (as marcas ficam na raiz); `json` None = as
-    marcas não vão a lugar nenhum (só ao log) — a cópia evangélica das comuns."""
+    marcas não vão a lugar nenhum (só ao log) — a cópia evangélica das comuns.
+    `arquivo` é o caminho como o app o conhece — a chave publicada do Terço
+    (`terco/<misterio>-<trecho>.m4a`) ou o asset embutido da oração — e vai
+    ao log; `destino` é onde ele fica no disco."""
     id: str
     destino: Path
     tradicao: str
@@ -168,6 +183,7 @@ class Trecho:
     contas_esperadas: int
     json: Path
     posicao: int
+    arquivo: str = ''
 
     @property
     def contas(self):
@@ -210,8 +226,9 @@ def pecas_de_oracao(passos, rotulo, pausa_antes, conta_na_primeira,
     return pecas
 
 
-def compor_terco(app, misterio):
-    """Os 7 trechos de um conjunto de mistérios, na ordem em que se reza."""
+def compor_terco(app, misterio, midia=MIDIA_PADRAO):
+    """Os 7 trechos de um conjunto de mistérios, na ordem em que se reza —
+    gravados em <midia>/terco/ (baixáveis), com as marcas no JSON do app."""
     conteudo = app / 'assets' / 'content' / 'terco' / f'{misterio}.json'
     dados = ler_json(conteudo)
     if len(dados['misterios']) != 5:
@@ -243,7 +260,7 @@ def compor_terco(app, misterio):
         + ave_marias(3)
         + gloria)
 
-    trechos = [_trecho_do_terco(app, misterio, dados, 0, abertura)]
+    trechos = [_trecho_do_terco(app, misterio, dados, 0, abertura, midia)]
 
     # dezena-N: anúncio (título + meditação, sem conta), Pai-Nosso, dez
     # Ave-Marias, Glória (sem conta). A primeira marca fica DEPOIS do anúncio:
@@ -258,25 +275,31 @@ def compor_terco(app, misterio):
             + pecas_de_oracao(pai_nosso, 'pai-nosso', PAUSA_APOS_MEDITACAO, conta_na_primeira=True)
             + ave_marias(10)
             + gloria)
-        trechos.append(_trecho_do_terco(app, misterio, dados, n + 1, dezena))
+        trechos.append(_trecho_do_terco(app, misterio, dados, n + 1, dezena, midia))
 
     # fecho: Salve-Rainha e a oração final — nenhuma conta.
     fecho = (pecas_de_oracao(salve_rainha, 'salve-rainha', 0.0, conta_na_primeira=False)
              + [Peca(ORACAO_FINAL, False, PAUSA_ENTRE_CONTAS, 'oracao-final')])
-    trechos.append(_trecho_do_terco(app, misterio, dados, 6, fecho))
+    trechos.append(_trecho_do_terco(app, misterio, dados, 6, fecho, midia))
     return trechos
 
 
-def _trecho_do_terco(app, misterio, dados, posicao, pecas):
+def _trecho_do_terco(app, misterio, dados, posicao, pecas, midia):
     id_trecho = TRECHOS_DO_TERCO[posicao]
+    nome = f'{misterio}-{id_trecho}.m4a'
+    # O audioAsset do JSON é a chave lógica (D2 do plano de 18/09 do app): o
+    # prefixo assets/audio/terco/ é histórico, o NOME é o que vira
+    # terco/<nome> no servidor — a regra 15 do lint do app prende a mesma
+    # amarra; aqui a ferramenta para antes de gravar um áudio com nome errado.
     asset = dados['trechos'][posicao]['audioAsset']
-    esperado = f'assets/audio/terco/{misterio}-{id_trecho}.m4a'
+    esperado = f'assets/audio/terco/{nome}'
     if asset != esperado:
         sys.exit(f'{misterio}.json/{id_trecho}: audioAsset "{asset}", esperado "{esperado}"')
-    return Trecho(id=f'{misterio}-{id_trecho}', destino=app / asset, tradicao='catolico',
+    return Trecho(id=f'{misterio}-{id_trecho}', destino=Path(midia) / PASTA_DO_TERCO / nome,
+                  tradicao='catolico',
                   pecas=tuple(pecas), contas_esperadas=CONTAS_POR_TRECHO[id_trecho],
                   json=app / 'assets' / 'content' / 'terco' / f'{misterio}.json',
-                  posicao=posicao)
+                  posicao=posicao, arquivo=f'{PASTA_DO_TERCO}/{nome}')
 
 
 def camadas_do_indice(pasta):
@@ -316,13 +339,14 @@ def compor_oracoes(app):
         esperado = f'assets/audio/oracoes/{slug}.m4a'
         if asset != esperado:
             sys.exit(f'{slug}.json: audioAsset "{asset}", esperado "{esperado}"')
-        destino = app / asset
+        arquivo = asset
         if sufixo:
-            destino = destino.with_name(f'{slug}{sufixo}.m4a')
-        return Trecho(id=f'{slug}{sufixo}', destino=destino, tradicao=tradicao,
+            arquivo = f'assets/audio/oracoes/{slug}{sufixo}.m4a'
+        return Trecho(id=f'{slug}{sufixo}', destino=app / arquivo, tradicao=tradicao,
                       pecas=tuple(pecas_de_oracao(passos, slug, 0.0, True, conta_em_todos=True)),
                       contas_esperadas=len(passos),
-                      json=(pasta / f'{slug}.json') if grava else None, posicao=None)
+                      json=(pasta / f'{slug}.json') if grava else None, posicao=None,
+                      arquivo=arquivo)
 
     for slug, camada in camadas_do_indice(pasta).items():
         if camada == CAMADA_COMUM:
@@ -333,11 +357,12 @@ def compor_oracoes(app):
     return trechos
 
 
-def catalogo(app):
-    """Tudo o que a ferramenta gera: 28 do Terço + 9 orações + 4 evangélicas."""
+def catalogo(app, midia=MIDIA_PADRAO):
+    """Tudo o que a ferramenta gera: 28 do Terço (em <midia>/terco/) + 9
+    orações + 4 evangélicas (no app)."""
     trechos = []
     for misterio in MISTERIOS:
-        trechos += compor_terco(app, misterio)
+        trechos += compor_terco(app, misterio, midia)
     trechos += compor_oracoes(app)
     for t in trechos:
         if t.contas != t.contas_esperadas:
@@ -550,8 +575,9 @@ def construir(trecho, trabalho, reaproveitar, log):
     simulado = any(json.loads(arquivos_da_peca(trabalho, trecho.tradicao, c)[2]
                               .read_text(encoding='utf-8')).get('simulado')
                    for _, _, c in pecas_do_trecho(trecho, reaproveitar))
-    # 'assets/audio/terco/x.m4a': o destino é <app>/assets/audio/<pasta>/x.m4a.
-    registro = {'arquivo': trecho.destino.relative_to(trecho.destino.parents[3]).as_posix(),
+    # A chave publicada ('terco/x.m4a') ou o asset embutido
+    # ('assets/audio/oracoes/x.m4a') — nunca o caminho absoluto do disco.
+    registro = {'arquivo': trecho.arquivo or trecho.destino.name,
                 'id': trecho.id, 'tradicao': trecho.tradicao, 'pecas': len(trecho.pecas),
                 'caracteres': trecho.caracteres, 'marcas': marcas,
                 'segundos': round(total, 2), 'bytes': trecho.destino.stat().st_size,
@@ -561,11 +587,15 @@ def construir(trecho, trabalho, reaproveitar, log):
     return registro
 
 
+def eh_do_terco(trecho):
+    return trecho.arquivo.startswith(PASTA_DO_TERCO + '/')
+
+
 def selecionar(trechos, args):
     if args.apenas == 'terco':
-        trechos = [t for t in trechos if 'terco' in t.destino.parts]
+        trechos = [t for t in trechos if eh_do_terco(t)]
     elif args.apenas == 'oracoes':
-        trechos = [t for t in trechos if 'oracoes' in t.destino.parts]
+        trechos = [t for t in trechos if not eh_do_terco(t)]
     if args.ids:
         quero = set(args.ids.split(','))
         desconhecidos = quero - {t.id for t in trechos}
@@ -579,6 +609,8 @@ def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.split(chr(10))[0])
     ap.add_argument('--app', default=str(APP_PADRAO),
                     help='raiz do repo manha-de-fe-app (padrão: pasta-irmã, ou MANHA_DE_FE_APP)')
+    ap.add_argument('--midia', default=str(MIDIA_PADRAO),
+                    help='raiz do repo manhadefe-midia, onde terco/ é gravado (padrão: este repo)')
     ap.add_argument('--trabalho', help='diretório das peças (padrão: narracao/trechos; simulado: narracao/trechos-simulado)')
     ap.add_argument('--log', default=str(LOG))
     ap.add_argument('--apenas', choices=['terco', 'oracoes'])
@@ -598,11 +630,12 @@ def main(argv=None):
     if not (app / 'pubspec.yaml').exists():
         sys.exit(f'{app} não parece o repo do app (sem pubspec.yaml): aponte com --app '
                  'ou com a variável de ambiente MANHA_DE_FE_APP')
+    midia = Path(args.midia)
     trabalho = Path(args.trabalho) if args.trabalho else (TRABALHO_SIMULADO if args.simular else TRABALHO_PADRAO)
     log = Path(args.log)
     reaproveitar = not args.sem_reaproveitar
 
-    todos = catalogo(app)
+    todos = catalogo(app, midia)
     if args.mostrar:
         return mostrar(todos, args.mostrar)
     escolhidos = selecionar(todos, args)
@@ -708,7 +741,7 @@ def mostrar(trechos, id_):
     if t is None:
         sys.exit(f'id desconhecido: {id_}')
     print(f'{t.id}  voz {t.tradicao}  {len(t.pecas)} peças  {t.contas} contas  '
-          f'{_milhar(t.caracteres)} caracteres  -> {t.destino}')
+          f'{_milhar(t.caracteres)} caracteres  {t.arquivo}  -> {t.destino}')
     for n, p in enumerate(t.pecas, 1):
         marca = 'CONTA' if p.conta else '     '
         print(f'{n:3} {marca} +{p.pausa_antes:.1f}s  {p.rotulo:<24} {p.texto}')

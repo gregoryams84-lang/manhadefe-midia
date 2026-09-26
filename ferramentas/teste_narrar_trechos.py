@@ -8,7 +8,9 @@ num diretório temporário com uma cópia do conteúdo do app.
 
 Os testes leem o conteúdo real do app (manha-de-fe-app, pasta-irmã deste
 repo ou MANHA_DE_FE_APP) e copiam para um temporário; nada é escrito nele.
-O teste do catálogo inteiro (~8 min) só roda com NARRAR_TRECHOS_TESTE_LENTO=1.
+O Terço (baixável desde 25/09) vai para um --midia temporário: nada é escrito
+no terco/ deste repo. O teste do catálogo inteiro (~8 min) só roda com
+NARRAR_TRECHOS_TESTE_LENTO=1.
 """
 import json
 import os
@@ -60,6 +62,17 @@ def app_de_teste(tmp):
                         app / 'assets' / 'content' / pasta)
     (app / 'pubspec.yaml').write_text('name: teste', encoding='utf-8')
     return app
+
+
+def midia_de_teste(tmp):
+    """A raiz de mídia temporária: é onde o Terço é gravado nos testes."""
+    return Path(tmp) / 'midia'
+
+
+def args_comuns(tmp, app):
+    """--simular e as três raízes temporárias que todo main() dos testes usa."""
+    return ['--simular', '--app', str(app), '--midia', str(midia_de_teste(tmp)),
+            '--trabalho', str(Path(tmp) / 'trabalho'), '--log', str(Path(tmp) / 'log.jsonl')]
 
 
 def trecho_de_teste(tmp, pecas, contas=None, json_=None, posicao=None):
@@ -117,9 +130,7 @@ def teste_um_passo_refeito_recalcula_as_marcas_do_trecho_inteiro():
 def teste_refazer_um_passo_pela_linha_de_comando_recalcula_o_trecho():
     with tempfile.TemporaryDirectory() as tmp:
         app = app_de_teste(tmp)
-        trabalho, log = Path(tmp) / 'trabalho', Path(tmp) / 'log.jsonl'
-        comuns = ['--simular', '--app', str(app), '--trabalho', str(trabalho),
-                  '--log', str(log), '--ids', 'oracao-de-entrega']
+        comuns = args_comuns(tmp, app) + ['--ids', 'oracao-de-entrega']
         assert nt.main(comuns) == 0
         antes = nt.ler_json(app / 'assets' / 'content' / 'oracoes' / 'oracao-de-entrega.json')['marcas']
         ritmo = nt.CARACTERES_POR_SEGUNDO
@@ -138,10 +149,12 @@ def teste_refazer_um_passo_pela_linha_de_comando_recalcula_o_trecho():
 def teste_peca_refeita_reconstroi_todo_trecho_ja_montado_que_a_usa():
     with tempfile.TemporaryDirectory() as tmp:
         app = app_de_teste(tmp)
-        trabalho, log = Path(tmp) / 'trabalho', Path(tmp) / 'log.jsonl'
-        comuns = ['--simular', '--app', str(app), '--trabalho', str(trabalho), '--log', str(log)]
+        log = Path(tmp) / 'log.jsonl'
+        comuns = args_comuns(tmp, app)
         # A abertura usa as mesmas duas peças da Ave-Maria que a oração.
         assert nt.main(comuns + ['--ids', 'ave-maria,gozosos-abertura']) == 0
+        assert (midia_de_teste(tmp) / 'terco' / 'gozosos-abertura.m4a').exists()
+        assert not (app / 'assets' / 'audio' / 'terco').exists(), 'o Terço não vai mais ao app'
         gozosos = app / 'assets' / 'content' / 'terco' / 'gozosos.json'
         abertura_antes = nt.ler_json(gozosos)['trechos'][0]['marcas']
         ritmo = nt.CARACTERES_POR_SEGUNDO
@@ -160,7 +173,7 @@ def teste_peca_refeita_reconstroi_todo_trecho_ja_montado_que_a_usa():
         ids = [json.loads(l)['id'] for l in log.read_text(encoding='utf-8').splitlines()]
         assert sorted(ids[:2]) == sorted(ids[2:]) == ['ave-maria', 'gozosos-abertura'], ids
         # A dezena-1 também usa a peça, mas nunca foi montada: não é puxada.
-        assert not (app / 'assets' / 'audio' / 'terco' / 'gozosos-dezena-1.m4a').exists()
+        assert not (midia_de_teste(tmp) / 'terco' / 'gozosos-dezena-1.m4a').exists()
 
 
 def teste_contagem_de_marcas_bate_com_o_que_a_tela_desenha():
@@ -182,9 +195,21 @@ def teste_contagem_de_marcas_bate_com_o_que_a_tela_desenha():
             app / 'assets' / 'content' / 'oracoes' / 'indice.json')['comum'])
     assert all(t.tradicao == 'evangelico' for t in gemeas)
     for t in trechos:
-        if 'oracoes' in t.destino.parts:
+        if not nt.eh_do_terco(t):
             slug = t.id[:-len(nt.SUFIXO_EVANGELICO)] if t.json is None else t.id
             assert t.contas == len(nt.passos_da_oracao(app, slug)), t.id
+            assert t.arquivo == f'assets/audio/oracoes/{t.id}.m4a' and t.destino == app / t.arquivo
+        else:
+            # Baixável (25/09): a chave publicada e o arquivo em <midia>/terco/.
+            assert t.arquivo == f'terco/{t.id}.m4a', t.id
+            assert t.destino == nt.MIDIA_PADRAO / 'terco' / f'{t.id}.m4a', t.id
+    assert sum(1 for t in trechos if nt.eh_do_terco(t)) == 28
+    # --midia troca a raiz de TODO o Terço, e de nada mais.
+    outra = nt.catalogo(app, Path('/outra/midia'))
+    assert all(t.destino == Path('/outra/midia') / 'terco' / f'{t.id}.m4a'
+               for t in outra if nt.eh_do_terco(t))
+    assert [t.destino for t in outra if not nt.eh_do_terco(t)] == \
+           [t.destino for t in trechos if not nt.eh_do_terco(t)]
 
 
 def _indice(app):
@@ -364,8 +389,7 @@ def teste_marcas_em_ordem_crescente():
             raise AssertionError(f'{ruins} deveria falhar')
     with tempfile.TemporaryDirectory() as tmp:
         app = app_de_teste(tmp)
-        assert nt.main(['--simular', '--app', str(app), '--trabalho', str(Path(tmp) / 'w'),
-                        '--log', str(Path(tmp) / 'log.jsonl'), '--ids', 'gozosos-abertura']) == 0
+        assert nt.main(args_comuns(tmp, app) + ['--ids', 'gozosos-abertura']) == 0
         marcas = nt.ler_json(app / 'assets' / 'content' / 'terco' / 'gozosos.json')['trechos'][0]['marcas']
         assert len(marcas) == 5 and marcas[0] == 0
         assert all(b > a for a, b in zip(marcas, marcas[1:])), marcas
@@ -387,9 +411,11 @@ def teste_simulacao_ponta_a_ponta_grava_arquivos_marcas_e_log():
         trabalho, log = Path(tmp) / 'trabalho', Path(tmp) / 'log.jsonl'
         salmo = app / 'assets' / 'content' / 'oracoes' / 'salmo-23.json'
         salmo_antes = nt.ler_json(salmo)['marcas']
-        assert nt.main(['--simular', '--app', str(app), '--trabalho', str(trabalho),
-                        '--log', str(log), '--ids', 'gozosos-dezena-1,ave-maria,salmo-23-evangelico']) == 0
-        assert (app / 'assets' / 'audio' / 'terco' / 'gozosos-dezena-1.m4a').exists()
+        assert nt.main(args_comuns(tmp, app)
+                       + ['--ids', 'gozosos-dezena-1,ave-maria,salmo-23-evangelico']) == 0
+        # O Terço vai para <midia>/terco/ (baixável); as orações, para o app.
+        assert (midia_de_teste(tmp) / 'terco' / 'gozosos-dezena-1.m4a').exists()
+        assert not (app / 'assets' / 'audio' / 'terco').exists()
         assert (app / 'assets' / 'audio' / 'oracoes' / 'ave-maria.m4a').exists()
         assert (app / 'assets' / 'audio' / 'oracoes' / 'salmo-23-evangelico.m4a').exists()
         dezena = nt.ler_json(app / 'assets' / 'content' / 'terco' / 'gozosos.json')['trechos'][1]['marcas']
@@ -403,6 +429,10 @@ def teste_simulacao_ponta_a_ponta_grava_arquivos_marcas_e_log():
         assert [r['id'] for r in registros] == ['gozosos-dezena-1', 'ave-maria', 'salmo-23-evangelico']
         assert all(r['simulado'] for r in registros)
         assert [r['gravou_json'] for r in registros] == [True, True, False]
+        # O log guarda a chave publicada / o asset — nunca o caminho do disco.
+        assert [r['arquivo'] for r in registros] == [
+            'terco/gozosos-dezena-1.m4a', 'assets/audio/oracoes/ave-maria.m4a',
+            'assets/audio/oracoes/salmo-23-evangelico.m4a']
         assert len(registros[2]['marcas']) == 6
         # A Ave-Maria da dezena e a da oração são a mesma peça: uma geração só.
         pecas = list((trabalho / 'pecas' / 'catolico').glob('*.wav'))
@@ -415,12 +445,15 @@ def teste_lento_catalogo_inteiro_montado_pelo_ffmpeg_real():
         pular('~8 min: rode com NARRAR_TRECHOS_TESTE_LENTO=1')
     with tempfile.TemporaryDirectory() as tmp:
         app = app_de_teste(tmp)
-        trabalho, log = Path(tmp) / 'trabalho', Path(tmp) / 'log.jsonl'
+        log = Path(tmp) / 'log.jsonl'
         inicio = time.time()
-        assert nt.main(['--simular', '--app', str(app), '--trabalho', str(trabalho),
-                        '--log', str(log)]) == 0
+        assert nt.main(args_comuns(tmp, app)) == 0
         minutos = (time.time() - inicio) / 60
-        trechos = nt.catalogo(app)
+        trechos = nt.catalogo(app, midia_de_teste(tmp))
+        # Os 28 do Terço em <midia>/terco/, e só eles; nada de Terço no app.
+        assert sorted(p.name for p in (midia_de_teste(tmp) / 'terco').glob('*.m4a')) == \
+               sorted(f'{t.id}.m4a' for t in trechos if nt.eh_do_terco(t))
+        assert not (app / 'assets' / 'audio' / 'terco').exists()
         registros = {json.loads(l)['id']: json.loads(l)
                      for l in log.read_text(encoding='utf-8').splitlines()}
         assert len(trechos) == len(registros) == 41
