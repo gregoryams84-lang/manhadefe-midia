@@ -1,6 +1,6 @@
 {
   "versao": 1,
-  "geradoEm": "2026-09-26T16:31:20.000Z",
+  "geradoEm": "2026-09-28T20:56:03.000Z",
   "arquivos": {
     "hinos/a-linda-historia.m4a": {
       "bytes": 399269,
@@ -9,6 +9,10 @@
     "hinos/a-musica-dos-salvos.m4a": {
       "bytes": 396213,
       "sha256": "47981a37523c7ec6601a1c68610e0d04bbdf97ccb2a0acfa115cf0487b9e5bc5"
+    },
+    "hinos/a-porta-clamo.m4a": {
+      "bytes": 450715,
+      "sha256": "c1cd1121e7cfd7533af2fb69e8b72d2ec23d1350f7f707ca4c4bdab6a750cb9d"
     },
     "hinos/abrigo-seguro.m4a": {
       "bytes": 211275,
@@ -138,9 +142,41 @@
       "bytes": 404952,
       "sha256": "cdd1675cac3d3fd27a513e92cb6dda2f190dd8474d3a495936827c0435586b0b"
     },
+    "hinos/domingo.m4a": {
+      "bytes": 488029,
+      "sha256": "ec60c82b37f7f5bc620f3b058913fb210d3a2b502739c4257f4029b0350a2a61"
+    },
+    "hinos/esperando.m4a": {
+      "bytes": 626972,
+      "sha256": "39370100850ffcca5122f97e45f2c37a8cb686611714a7aa4acfbf70fe848b5c"
+    },
+    "hinos/feliz.m4a": {
+      "bytes": 486342,
+      "sha256": "dd6f6c3954d7ae34682075e79d019c16f5307fa47cc237e3f22fb9b6ef54d11c"
+    },
+    "hinos/fiquei-curado.m4a": {
+      "bytes": 473824,
+      "sha256": "e66bffbdcd61de02f2be49ebd391031c668527e51e0565ca1f446b2704b568c9"
+    },
     "hinos/fonte-de-toda-bencao.m4a": {
       "bytes": 575373,
       "sha256": "1566a0ef0f6171c8fc70b0e48a22733de385098a43c1e11f680dd17e6f3f8731"
+    },
+    "hinos/gracas-a-jesus.m4a": {
+      "bytes": 323270,
+      "sha256": "cb81d96e9a7054e27fa4f59ab46050d62d9f6d17ddb83252964feffa489d16f2"
+    },
+    "hinos/inda-ha-lugar.m4a": {
+      "bytes": 281246,
+      "sha256": "44b8a6bb4c4a9c130e8555ab837390c28cb7fe9f4bbe1a1f0ae3acae31b8f189"
+    },
+    "hinos/jesus-me-transformou.m4a": {
+      "bytes": 580723,
+      "sha256": "255130809b5bb8d567689a9e95d9b236bfe54279f7fc7bfc27ee22369d64c9fe"
+    },
+    "hinos/joias-preciosas.m4a": {
+      "bytes": 347934,
+      "sha256": "d7657eb2bcd8f8b26bc8cba9a9da9332716511ac81ab5ca7c20f068b81ccca45"
     },
     "hinos/justo-es-senhor-doxologia.m4a": {
       "bytes": 351180,
@@ -150,13 +186,73 @@
       "bytes": 236036,
       "sha256": "27712c48121e3f43fa059f93ebf832110d97227874408aff9c9d6123d1d5765e"
     },
+    "hinos/louvor-ao-senhor.m4a": {
+      "bytes": 379499,
+      "sha256": "55761d6b59183b4e0ad85f6c5fa78f6f0926b07df96a087681da1370018d8925"
+    },
+    "hinos/luz-benigna.m4a": {
+      "bytes": 557284,
+      "sha256": "25b5df5e35011079f14c474626c5b6645ca75733938bffdb8de17f9d42b4dff5"
+    },
+    "hinos/luz-divina.m4a": {
+      "bytes": 351245,
+      "sha256": "4b0246005e3b3e2e6a54b526c15cfbf6303b54df7bad8289ca67d5be7b696694"
+    },
+    "hinos/mais-de-cristo.m4a": {
+      "bytes": 318966,
+      "sha256": "2ac4c17af5aaf6ba11d6eb5461765b9cd60d8d8cd62725dbe624997298bbb3d0"
+    },
     "hinos/mais-perto-meu-deus-de-ti-mais-perto-quero-estar.m4a": {
       "bytes": 508495,
       "sha256": "1299183ace6a6da8c86e858c56ece6e36cb7d5a3a799b5ba8ec756bd00bb471c"
     },
+    "hinos/mensagem-do-senhor.m4a": {
+      "bytes": 458747,
+      "sha256": "3dd2ba7a9ea2e6ea69acf49ac45064802fff237abd1cf96e64bd3941352dad99"
+    },
+    "hinos/meu-senhor-sou-teu.m4a": {
+      "bytes": 454348,
+      "sha256": "8185fb34320718f902b4b10afa33017691541ecd50bc577a8d5f6158f5eeb5df"
+    },
+    "hinos/nao-tardara.m4a": {
+      "bytes": 505929,
+      "sha256": "e6b4d2980252b572c544a40cc2d08dd7d6a650982e4fe70870022ba628000285"
+    },
+    "hinos/noite-de-paz-noite-de-amor.m4a": {
+      "bytes": 387361,
+      "sha256": "caf686b3847a90847b0e7e338f47c136cfd11e58dcd725ad8c175522af830a93"
+    },
+    "hinos/nome-precioso.m4a": {
+      "bytes": 451275,
+      "sha256": "0e31434b38d45f5c014d9d9f7af33ed522c0df0d00a679021759502f181f0556"
+    },
+    "hinos/o-minha-alma-sem-demora.m4a": {
+      "bytes": 362264,
+      "sha256": "c66289657953fb445ec4ba83d519b0c0774e26f9c509d9f07d0939c9414a78fa"
+    },
+    "hinos/o-poder-do-sangue.m4a": {
+      "bytes": 457509,
+      "sha256": "ec249580ba05bdbe08907db5fe5dc0b5645a3f086344681c0fff6dcda3198749"
+    },
+    "hinos/onde-os-obreiros.m4a": {
+      "bytes": 826918,
+      "sha256": "d58498f373bc6b2c3059159d39339fa6c8d5902a5b1fdce51b85fe8625cc5547"
+    },
+    "hinos/os-filhos-de-siao.m4a": {
+      "bytes": 443665,
+      "sha256": "336cbcbe7f82dcf39361729479dac0c9e4127c75a224b73ca5924bed0a26a00c"
+    },
     "hinos/pao-da-vida.m4a": {
       "bytes": 409256,
       "sha256": "a8b58645f5cecbc2ef0e624146cbabc52dd256d7031c18a1f4f476b8e981283d"
+    },
+    "hinos/por-que-nao-ja.m4a": {
+      "bytes": 454491,
+      "sha256": "6c6c10e751eeb06b30507b3d40c25fb817249d218dad0c305c115a4c45b09e9b"
+    },
+    "hinos/qual-o-adorno-desta-vida.m4a": {
+      "bytes": 718426,
+      "sha256": "b934c0512d5633cdc7b47bbdb045c6e6f07e5d38c8f9862772ba546a08d0a5d2"
     },
     "hinos/que-amigo-nos-temos-em-jesus.m4a": {
       "bytes": 530167,
@@ -166,6 +262,18 @@
       "bytes": 404659,
       "sha256": "93914be453a7aaccbf1b6036268fdd2edead51575b5d3b9a8d75db82b8e8d483"
     },
+    "hinos/refugio.m4a": {
+      "bytes": 666006,
+      "sha256": "abbf01ff0f1fd3e889b1f243cc649bc03d071ca163780b91740eb4805111905d"
+    },
+    "hinos/rei-da-gloria.m4a": {
+      "bytes": 503714,
+      "sha256": "edfb4ef70d1073a09a0dfee37484916583c6e0c487b77336c9743ab4d32eb850"
+    },
+    "hinos/reino-universal.m4a": {
+      "bytes": 560193,
+      "sha256": "2b582dc6eaa7605d3bf22b6d3c8791d539484f8f0ac4ebc4fa7630f69c8f2a7b"
+    },
     "hinos/ressurgiu.m4a": {
       "bytes": 431912,
       "sha256": "f55a8fde560c5f0191f27e1326c885ac9971471d663f19db850514a33febbbe5"
@@ -174,25 +282,69 @@
       "bytes": 486715,
       "sha256": "dbaa8b9bcdf6deadbc75fdea6446294a5f8ef4bc54f2a1b11460b28a60001e1d"
     },
+    "hinos/salvacao-perfeita.m4a": {
+      "bytes": 473288,
+      "sha256": "f92bbd6e04291ee09456554e361d945419c18febbef347b6c8bf5f7d3d02ead1"
+    },
+    "hinos/santo-espirito.m4a": {
+      "bytes": 638309,
+      "sha256": "87f7dc3194429ea64286ff08b907802c961c8b8965bcea43c2cb0184e3cd992f"
+    },
     "hinos/santo-santo-santo-deus-onipotente.m4a": {
       "bytes": 499718,
       "sha256": "5097f6b235d50377d5be8a3b9968574cddf6ecf1dddf52e84c96dba9f44ff974"
+    },
+    "hinos/se-cristo-comigo-vai.m4a": {
+      "bytes": 593549,
+      "sha256": "5c94f6c70a91cc8a4222c528e081868b44ba39738f4246a2e90b82329ef22ab1"
+    },
+    "hinos/segue-me.m4a": {
+      "bytes": 625709,
+      "sha256": "5b987a6bb4f20911ef68164e368f5b57970fb4e80c9b034292382fc1eac61f7d"
+    },
+    "hinos/sossegai.m4a": {
+      "bytes": 717429,
+      "sha256": "e5f3b25402d2a7a1121c0dabe76cc41476fe702b1b791072ff3f64524636a581"
     },
     "hinos/sou-feliz.m4a": {
       "bytes": 406906,
       "sha256": "f3a4a98a6afb757bfa0073de15f51b0896267a972f27b7fc0cc15effb5dcec31"
     },
+    "hinos/substituicao-wright.m4a": {
+      "bytes": 511436,
+      "sha256": "03426492f40319bb5e8c2c81424a6555f7c03851d9f42ca4a5ee640bb6792712"
+    },
     "hinos/tal-qual-estou.m4a": {
       "bytes": 489436,
       "sha256": "21263392f4e5799fee863180125616542e146e837ffcbcb55d26a1842050bbf9"
+    },
+    "hinos/tempo-de-ser-santo.m4a": {
+      "bytes": 506098,
+      "sha256": "43539492433418159e056604b963f686265fcbf12ed80a672a53683263b65c87"
     },
     "hinos/terra-feliz.m4a": {
       "bytes": 435696,
       "sha256": "c64c7d99411ffcf64287ec820bb81e18a49c5b15300564ca63f8234c4a580e75"
     },
+    "hinos/teu-santo-livro.m4a": {
+      "bytes": 390917,
+      "sha256": "f52fe9ada7c51c5cfbd6500aa6b4f701c04332233a2564cfe0efa33c8f8607aa"
+    },
     "hinos/tudo-entregarei.m4a": {
       "bytes": 724229,
       "sha256": "eaf3e1f65d923a1adae1ef65243adf5020bf776ed22b142479e4c47746ea1b93"
+    },
+    "hinos/um-vaso-de-bencao.m4a": {
+      "bytes": 443445,
+      "sha256": "d860f828b9e4a9854571d60002fe91758dce3dfa35f3f3290c4953ffbb8afda1"
+    },
+    "hinos/vinde-fieis.m4a": {
+      "bytes": 693052,
+      "sha256": "a3b30ac2e4038d3c885e8291a489bb226542c087e50fb3d3518d61f4f56516a2"
+    },
+    "hinos/vivifica-nos-senhor.m4a": {
+      "bytes": 330996,
+      "sha256": "18e0eb49a95b256dcbb008c1e65b40b51216218441e6e317cc0a697297bb3659"
     },
     "imagens/01-01-catolico.webp": {
       "bytes": 92432,
