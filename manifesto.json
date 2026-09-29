@@ -1,6 +1,6 @@
 {
   "versao": 1,
-  "geradoEm": "2026-09-29T17:40:51.000Z",
+  "geradoEm": "2026-09-29T18:00:17.000Z",
   "arquivos": {
     "hinos/a-linda-historia.m4a": {
       "bytes": 399269,
@@ -178,6 +178,10 @@
       "bytes": 626972,
       "sha256": "39370100850ffcca5122f97e45f2c37a8cb686611714a7aa4acfbf70fe848b5c"
     },
+    "hinos/estudo-biblico.m4a": {
+      "bytes": 480860,
+      "sha256": "df76e5d07d6ab4cac8eb15e2028b6718d0cf7008ab1164be9e5b56acbce5e5e8"
+    },
     "hinos/eu-creio-sim.m4a": {
       "bytes": 507831,
       "sha256": "c366cde421c9d3aa4e74a353e2a8a3c792b6deb3e3bd85b7b502e6392cae4433"
@@ -205,6 +209,14 @@
     "hinos/inda-ha-lugar.m4a": {
       "bytes": 281246,
       "sha256": "44b8a6bb4c4a9c130e8555ab837390c28cb7fe9f4bbe1a1f0ae3acae31b8f189"
+    },
+    "hinos/ja-achei-uma-flor-gloriosa.m4a": {
+      "bytes": 696455,
+      "sha256": "937d9d52ec28c8b02af70a922df2fc7bbd940201a118ece9fae00f537c27d635"
+    },
+    "hinos/ja-estou-certo.m4a": {
+      "bytes": 368941,
+      "sha256": "cb0f29432ce4237a43a5d5f779a2022ddf351fe746b0f9c8b7b23de8cf52e571"
     },
     "hinos/jesus-me-transformou.m4a": {
       "bytes": 580723,
@@ -242,6 +254,10 @@
       "bytes": 508495,
       "sha256": "1299183ace6a6da8c86e858c56ece6e36cb7d5a3a799b5ba8ec756bd00bb471c"
     },
+    "hinos/maravilhoso-e-jesus.m4a": {
+      "bytes": 363657,
+      "sha256": "5c3e0b9a6725d74267055d66f4e6be0673172418bb1d2bbf1104b8519225570b"
+    },
     "hinos/mensagem-do-senhor.m4a": {
       "bytes": 458747,
       "sha256": "3dd2ba7a9ea2e6ea69acf49ac45064802fff237abd1cf96e64bd3941352dad99"
@@ -277,6 +293,10 @@
     "hinos/o-salvador-me-achou.m4a": {
       "bytes": 605076,
       "sha256": "7b068f145424d87420f023144a19b4f65bf5f5cc6293f343e7cf71a3f86a5bf2"
+    },
+    "hinos/o-segredo-do-viver.m4a": {
+      "bytes": 360546,
+      "sha256": "5887b60395c63876f380c910119ed00ba35abe92195b6cbca490c32f66a098a8"
     },
     "hinos/onde-os-obreiros.m4a": {
       "bytes": 826918,
@@ -346,6 +366,10 @@
       "bytes": 486715,
       "sha256": "dbaa8b9bcdf6deadbc75fdea6446294a5f8ef4bc54f2a1b11460b28a60001e1d"
     },
+    "hinos/salvacao-pela-fe.m4a": {
+      "bytes": 415941,
+      "sha256": "3079d73d3e94f6be8fef17caa4e1c228f38443a1a444209094dfa2f234a06d33"
+    },
     "hinos/salvacao-perfeita.m4a": {
       "bytes": 473288,
       "sha256": "f92bbd6e04291ee09456554e361d945419c18febbef347b6c8bf5f7d3d02ead1"
@@ -353,6 +377,10 @@
     "hinos/salvo-estou.m4a": {
       "bytes": 342839,
       "sha256": "de0aa3e12f91a78aa2b9ebad3ea9d4da61ce0c3d420c289444fd027eee71c60f"
+    },
+    "hinos/sangue-de-jesus.m4a": {
+      "bytes": 421266,
+      "sha256": "a29c456b4c1a0b63f1591edd0b16d4082201342ced8e8044f12b56586a1c570e"
     },
     "hinos/santo-espirito.m4a": {
       "bytes": 638309,
@@ -369,6 +397,10 @@
     "hinos/segue-me.m4a": {
       "bytes": 625709,
       "sha256": "5b987a6bb4f20911ef68164e368f5b57970fb4e80c9b034292382fc1eac61f7d"
+    },
+    "hinos/seguir-a-cristo.m4a": {
+      "bytes": 333415,
+      "sha256": "b23205e9bb8c6f66371c95cc2db457091ffd8876f28b3b88ddaf6fa7997fdf89"
     },
     "hinos/sossegai.m4a": {
       "bytes": 717429,
@@ -405,6 +437,10 @@
     "hinos/tudo-entregarei.m4a": {
       "bytes": 724229,
       "sha256": "eaf3e1f65d923a1adae1ef65243adf5020bf776ed22b142479e4c47746ea1b93"
+    },
+    "hinos/um-coracao-bondoso.m4a": {
+      "bytes": 583652,
+      "sha256": "5a98fcc4779ad8a130b59ff113649cfef5674a01ffde147f75fe3c709a9db031"
     },
     "hinos/um-vaso-de-bencao.m4a": {
       "bytes": 443445,
