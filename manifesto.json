@@ -1,6 +1,6 @@
 {
   "versao": 1,
-  "geradoEm": "2026-09-28T20:56:03.000Z",
+  "geradoEm": "2026-09-29T14:43:48.000Z",
   "arquivos": {
     "hinos/a-linda-historia.m4a": {
       "bytes": 399269,
@@ -66,6 +66,10 @@
       "bytes": 314541,
       "sha256": "ee76a7d309729f0b59593d884c23cad7aa6cc8bd66d097731e294fea97e8e28b"
     },
+    "hinos/batismo.m4a": {
+      "bytes": 378286,
+      "sha256": "4cb5710c5d5ee0759b4c61ae2fb9562b4d57e8e8f7b10237a2f4de95d692ce65"
+    },
     "hinos/bem-aventuranca-do-crente.m4a": {
       "bytes": 508213,
       "sha256": "ca765f0822f8a90428a5ceab9018940270803e1a4241599497c90ac9efd59437"
@@ -130,13 +134,37 @@
       "bytes": 875148,
       "sha256": "b2fd3aedbeea2ee2062fc7d5b323019c13086c32d942d43a67cf9c708e454a41"
     },
+    "hinos/deixai-entrar-o-espirito-santo.m4a": {
+      "bytes": 478012,
+      "sha256": "df3773df32affccd7aacf96c98d15bd2bab3750aaedc9acc99ab2b93abe83a39"
+    },
     "hinos/demos-gloria-a-deus.m4a": {
       "bytes": 620164,
       "sha256": "57b640831c8faee061464509777384d705b9db1a7c6a7eff50840285fb6c852c"
     },
+    "hinos/descanso-verdadeiro.m4a": {
+      "bytes": 402544,
+      "sha256": "6d086d4299cfeccdc07bf3a00e11a36d53049d5f4becba669e674d50d5632f78"
+    },
+    "hinos/desejos.m4a": {
+      "bytes": 363569,
+      "sha256": "d9a59a8638db251d78832d725eba8a6e6abcb873da142bac44e18043ff3562ad"
+    },
+    "hinos/deus-chamando.m4a": {
+      "bytes": 417270,
+      "sha256": "785fb2a3ee8c0525b4650b1b88f7efd20064a91e74d59999c3d0a871adce419f"
+    },
     "hinos/deus-cuidara-de-ti.m4a": {
       "bytes": 381585,
       "sha256": "68f1b6cada664b6178f10b2c5908aad369a79dee1b2e30f1f80c7d3f9bce1413"
+    },
+    "hinos/deus-e-por-mim.m4a": {
+      "bytes": 1016760,
+      "sha256": "bd180b55389d7bcf3cc33bc56821fe7c8e3beec2b2a377883c620084377e7abc"
+    },
+    "hinos/direcao-divina.m4a": {
+      "bytes": 892515,
+      "sha256": "fa553f18cca099b5ad6d1ea13cb9f7c0a495221f73d3a025b0212766a02b8df0"
     },
     "hinos/ditoso-dia.m4a": {
       "bytes": 404952,
@@ -225,6 +253,10 @@
     "hinos/nome-precioso.m4a": {
       "bytes": 451275,
       "sha256": "0e31434b38d45f5c014d9d9f7af33ed522c0df0d00a679021759502f181f0556"
+    },
+    "hinos/o-culto-findou.m4a": {
+      "bytes": 696563,
+      "sha256": "8bc17134e9326ddc7eec4a9780ba3e98f8cc69c5debca874bdd1c1d3b3b26e89"
     },
     "hinos/o-minha-alma-sem-demora.m4a": {
       "bytes": 362264,
