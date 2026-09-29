@@ -1,6 +1,6 @@
 {
   "versao": 1,
-  "geradoEm": "2026-09-29T14:43:48.000Z",
+  "geradoEm": "2026-09-29T16:01:35.000Z",
   "arquivos": {
     "hinos/a-linda-historia.m4a": {
       "bytes": 399269,
@@ -266,6 +266,10 @@
       "bytes": 457509,
       "sha256": "ec249580ba05bdbe08907db5fe5dc0b5645a3f086344681c0fff6dcda3198749"
     },
+    "hinos/o-salvador-me-achou.m4a": {
+      "bytes": 605076,
+      "sha256": "7b068f145424d87420f023144a19b4f65bf5f5cc6293f343e7cf71a3f86a5bf2"
+    },
     "hinos/onde-os-obreiros.m4a": {
       "bytes": 826918,
       "sha256": "d58498f373bc6b2c3059159d39339fa6c8d5902a5b1fdce51b85fe8625cc5547"
@@ -277,6 +281,10 @@
     "hinos/pao-da-vida.m4a": {
       "bytes": 409256,
       "sha256": "a8b58645f5cecbc2ef0e624146cbabc52dd256d7031c18a1f4f476b8e981283d"
+    },
+    "hinos/plena-paz.m4a": {
+      "bytes": 385196,
+      "sha256": "97a0bbf1c49c46942bcee064775aa788973472cff636ab22ce9ea62b3f1b2825"
     },
     "hinos/por-que-nao-ja.m4a": {
       "bytes": 454491,
@@ -290,9 +298,17 @@
       "bytes": 530167,
       "sha256": "14c68044736230b46e27b9f442bb0fa7aaf29ce1e735a55da24e8ad3da9c0090"
     },
+    "hinos/que-faras-de-jesus-cristo.m4a": {
+      "bytes": 418937,
+      "sha256": "4bd3f6a2682a3d14dea20601d26fb578cc3c827211a579d63ad7fe66b8a8544f"
+    },
     "hinos/que-seguranca-blessed-assurance.m4a": {
       "bytes": 404659,
       "sha256": "93914be453a7aaccbf1b6036268fdd2edead51575b5d3b9a8d75db82b8e8d483"
+    },
+    "hinos/quem-sua-mao-no-arado-ja-pos.m4a": {
+      "bytes": 673011,
+      "sha256": "29bb2cd63911289ae5d0161f0e0e3ddeb8e0d1030b9381b91edd7a2f121a55fa"
     },
     "hinos/refugio.m4a": {
       "bytes": 666006,
@@ -306,6 +322,10 @@
       "bytes": 560193,
       "sha256": "2b582dc6eaa7605d3bf22b6d3c8791d539484f8f0ac4ebc4fa7630f69c8f2a7b"
     },
+    "hinos/resgatado-com-o-sangue-de-cristo.m4a": {
+      "bytes": 488991,
+      "sha256": "58a5bd6803777e415e4132e922943a0b6be2896e626b0f89dd1682c177bba060"
+    },
     "hinos/ressurgiu.m4a": {
       "bytes": 431912,
       "sha256": "f55a8fde560c5f0191f27e1326c885ac9971471d663f19db850514a33febbbe5"
@@ -317,6 +337,10 @@
     "hinos/salvacao-perfeita.m4a": {
       "bytes": 473288,
       "sha256": "f92bbd6e04291ee09456554e361d945419c18febbef347b6c8bf5f7d3d02ead1"
+    },
+    "hinos/salvo-estou.m4a": {
+      "bytes": 342839,
+      "sha256": "de0aa3e12f91a78aa2b9ebad3ea9d4da61ce0c3d420c289444fd027eee71c60f"
     },
     "hinos/santo-espirito.m4a": {
       "bytes": 638309,
@@ -361,6 +385,10 @@
     "hinos/teu-santo-livro.m4a": {
       "bytes": 390917,
       "sha256": "f52fe9ada7c51c5cfbd6500aa6b4f701c04332233a2564cfe0efa33c8f8607aa"
+    },
+    "hinos/tudo-de-graca.m4a": {
+      "bytes": 381947,
+      "sha256": "0ec895ea89e735172a81acbf3fbcad6998ff2bec68fc629568910abf91ffadfb"
     },
     "hinos/tudo-entregarei.m4a": {
       "bytes": 724229,
