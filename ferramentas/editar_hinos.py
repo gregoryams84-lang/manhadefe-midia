@@ -107,6 +107,10 @@ ALVO_LUFS = -20.0         # o mesmo alvo das outras faixas do app
 ALVO_TP = -1.5            # teto do loudnorm (dBTP)
 ALVO_LRA = 11
 LIMITE_DO_LIMITADOR = 0.84  # ~ -1,5 dBFS, linear; segura o transiente que o loudnorm linear deixa passar
+# Se o pico verdadeiro ainda passa de PICO_MAXIMO depois do AAC (ataque de
+# piano muito seco: "Plena Paz", 29/09, ficou em -0,06 dBTP), refaz com o
+# limitador mais firme. Só o pico decide: LUFS fora não ganha nova tentativa.
+LIMITES_DE_NOVA_TENTATIVA = (0.75, 0.67)
 FADE_ENTRADA = 0.25
 FADE_SAIDA = 1.2
 PARAMETROS_AAC_HINO = ['-c:a', 'aac', '-b:a', '96k', '-ac', '1', '-ar', '48000',
@@ -361,7 +365,7 @@ def analisar(caminho):
 # Edição
 # ---------------------------------------------------------------------------
 
-def filtro_de_edicao(medida, segundos):
+def filtro_de_edicao(medida, segundos, limite=LIMITE_DO_LIMITADOR):
     """A cadeia do 2º passe, a partir da medição do 1º. A ordem importa:
     loudnorm (linear) -> limitador -> fades. O fade de saída começa em
     duração - 1,2 s (o loudnorm linear não muda a duração)."""
@@ -370,18 +374,18 @@ def filtro_de_edicao(medida, segundos):
             f':measured_I={medida["input_i"]}:measured_TP={medida["input_tp"]}'
             f':measured_LRA={medida["input_lra"]}:measured_thresh={medida["input_thresh"]}'
             f':offset={medida["target_offset"]}:linear=true:print_format=json'
-            f',alimiter=limit={LIMITE_DO_LIMITADOR}:level=disabled'
+            f',alimiter=limit={limite}:level=disabled'
             f',afade=t=in:st=0:d={FADE_ENTRADA}'
             f',afade=t=out:st={inicio_do_fade:.3f}:d={FADE_SAIDA}')
 
 
-def editar(bruto, saida, medida, segundos):
+def editar(bruto, saida, medida, segundos, limite=LIMITE_DO_LIMITADOR):
     """2º passe: grava `saida` e devolve o JSON que o loudnorm imprime ao
     aplicar (normalization_type diz se o linear valeu ou se o ffmpeg caiu
     para o dinâmico — vai ao log)."""
     saida.parent.mkdir(parents=True, exist_ok=True)
     try:
-        stderr = _ffmpeg(['-y', '-i', str(bruto), '-af', filtro_de_edicao(medida, segundos),
+        stderr = _ffmpeg(['-y', '-i', str(bruto), '-af', filtro_de_edicao(medida, segundos, limite),
                           *PARAMETROS_AAC_HINO, str(saida)], 'edição')
     except Exception:
         if saida.exists():
@@ -462,6 +466,12 @@ def processar(item, indice, conferir, log, reprovados):
                 registro['voz'] = {'erro': str(e)[:300]}
         aplicado = editar(item.bruto, parcial, medida, duracao)
         depois = medir(parcial)
+        for limite in LIMITES_DE_NOVA_TENTATIVA:
+            if aprovado(depois) or abs(depois['input_i'] - ALVO_LUFS) > TOLERANCIA_LUFS:
+                break
+            aplicado = editar(item.bruto, parcial, medida, duracao, limite)
+            depois = medir(parcial)
+            registro['limitador'] = limite
         registro['depois'] = {'lufs': depois['input_i'], 'pico': depois['input_tp'],
                               'bytes': parcial.stat().st_size,
                               'segundos': round(duracao_segundos(parcial), 2),

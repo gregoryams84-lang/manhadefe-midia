@@ -144,8 +144,9 @@ def teste_normalizar_tira_acento_pontuacao_e_caixa_nos_dois_lados():
 def teste_os_15_de_24_09_casam_com_os_15_slugs_certos():
     slugs = eh.catalogo(app_real())
     assert len(slugs) == 113, len(slugs)
-    no_ar = sorted(p.stem for p in HINOS_NO_AR.glob('*.m4a'))
-    assert sorted(OS_15_DE_24_09.values()) == no_ar, 'a lista do teste não bate com hinos/'
+    # Os 15 de 24/09 continuam no ar (hinos/ cresceu com os lotes seguintes).
+    no_ar = {p.stem for p in HINOS_NO_AR.glob('*.m4a')}
+    assert set(OS_15_DE_24_09.values()) <= no_ar, 'a lista do teste não bate com hinos/'
     for nome, esperado in OS_15_DE_24_09.items():
         for forma in ('NFC', 'NFD'):
             candidatos, regra = eh.casar(unicodedata.normalize(forma, Path(nome).stem), slugs)
@@ -257,7 +258,9 @@ def teste_os_15_no_ar_nao_sao_tocados_sem_refazer():
     o log acusaria). Sem --refazer, nada muda: nem bytes, nem log."""
     with tempfile.TemporaryDirectory() as tmp:
         entrada, midia, log = pastas(tmp)
-        shutil.copytree(HINOS_NO_AR, midia / 'hinos', ignore=shutil.ignore_patterns('.gitkeep'))
+        (midia / 'hinos').mkdir(parents=True)
+        for slug in OS_15_DE_24_09.values():
+            shutil.copy2(HINOS_NO_AR / f'{slug}.m4a', midia / 'hinos' / f'{slug}.m4a')
         antes = {p.name: sha(p) for p in (midia / 'hinos').glob('*.m4a')}
         assert len(antes) == 15
         for nome in OS_15_DE_24_09:
@@ -432,3 +435,11 @@ if __name__ == '__main__':
         if hasattr(fluxo, 'reconfigure'):
             fluxo.reconfigure(encoding='utf-8', errors='replace')
     sys.exit(main())
+
+
+def test_filtro_com_limitador_mais_firme_so_troca_o_limite():
+    medida = {'input_i': -21.0, 'input_tp': -0.5, 'input_lra': 5.0, 'input_thresh': -31.0, 'target_offset': 0.1}
+    padrao = eh.filtro_de_edicao(medida, 30.0)
+    firme = eh.filtro_de_edicao(medida, 30.0, 0.75)
+    assert 'alimiter=limit=0.84:' in padrao
+    assert firme == padrao.replace('alimiter=limit=0.84:', 'alimiter=limit=0.75:')
