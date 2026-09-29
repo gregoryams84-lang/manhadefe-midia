@@ -1,6 +1,6 @@
 {
   "versao": 1,
-  "geradoEm": "2026-09-29T16:01:35.000Z",
+  "geradoEm": "2026-09-29T17:40:51.000Z",
   "arquivos": {
     "hinos/a-linda-historia.m4a": {
       "bytes": 399269,
@@ -178,6 +178,10 @@
       "bytes": 626972,
       "sha256": "39370100850ffcca5122f97e45f2c37a8cb686611714a7aa4acfbf70fe848b5c"
     },
+    "hinos/eu-creio-sim.m4a": {
+      "bytes": 507831,
+      "sha256": "c366cde421c9d3aa4e74a353e2a8a3c792b6deb3e3bd85b7b502e6392cae4433"
+    },
     "hinos/feliz.m4a": {
       "bytes": 486342,
       "sha256": "dd6f6c3954d7ae34682075e79d019c16f5307fa47cc237e3f22fb9b6ef54d11c"
@@ -193,6 +197,10 @@
     "hinos/gracas-a-jesus.m4a": {
       "bytes": 323270,
       "sha256": "cb81d96e9a7054e27fa4f59ab46050d62d9f6d17ddb83252964feffa489d16f2"
+    },
+    "hinos/ha-um-caminho-santo.m4a": {
+      "bytes": 493134,
+      "sha256": "a9fe0d4569a2fd0123db5e531ed628e1fac1ada40cef94b670674e72c6b4cc1f"
     },
     "hinos/inda-ha-lugar.m4a": {
       "bytes": 281246,
@@ -329,6 +337,10 @@
     "hinos/ressurgiu.m4a": {
       "bytes": 431912,
       "sha256": "f55a8fde560c5f0191f27e1326c885ac9971471d663f19db850514a33febbbe5"
+    },
+    "hinos/revivificacao.m4a": {
+      "bytes": 435564,
+      "sha256": "253bf4cca61dbb0aaa46a08666c900d3674c9c85749ad235dfcd4ff945553cb8"
     },
     "hinos/rocha-eterna.m4a": {
       "bytes": 486715,
