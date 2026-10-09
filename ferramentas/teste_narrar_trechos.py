@@ -11,8 +11,9 @@ repo ou MANHA_DE_FE_APP) e copiam para um temporário; nada é escrito nele.
 O Terço (baixável desde 25/09) e as 9 orações (baixáveis desde 09/10, D3)
 vão para um --midia temporário: nada é escrito no terco/ nem no oracoes/
 deste repo; as 4 cópias evangélicas das comuns vão para o --trabalho
-temporário. O teste do catálogo inteiro (~8 min) só roda com
-NARRAR_TRECHOS_TESTE_LENTO=1.
+temporário. A ferramenta RECUSA --simular sem --midia e --app temporários
+(R6-E, 09/10) — há um teste só disso. O teste do catálogo inteiro (~8 min)
+só roda com NARRAR_TRECHOS_TESTE_LENTO=1.
 """
 import json
 import os
@@ -511,6 +512,58 @@ def teste_simulacao_ponta_a_ponta_grava_arquivos_marcas_e_log():
         pecas = list((trabalho / 'pecas' / 'catolico').glob('*.wav'))
         # anúncio, meditação, pai-nosso ×4, ave-maria ×2, glória, jaculatória (C13)
         assert len(pecas) == 2 + 4 + 2 + 1 + 1
+
+
+def teste_simular_exige_midia_e_app_temporarios_e_nao_escreve_nada():
+    """R6-E (09/10): --simular grava de verdade — silêncio em <midia>/terco/ e
+    <midia>/oracoes/ e marcas de mentira nos JSONs de <app>. Sem --midia, sem
+    --app, ou com um dos dois apontando o repositório real, a ferramenta sai
+    com a mensagem ANTES de escrever qualquer arquivo (e antes de qualquer
+    outra conferência)."""
+    with tempfile.TemporaryDirectory() as tmp:
+        app = app_de_teste(tmp)
+        midia, trabalho = midia_de_teste(tmp), trabalho_de_teste(tmp)
+        log = Path(tmp) / 'log.jsonl'
+        ave_maria = app / 'assets' / 'content' / 'oracoes' / 'ave-maria.json'
+        marcas_antes = ave_maria.read_text(encoding='utf-8')
+        # "Repositórios reais" de mentira (vazios): a ferramenta compara o que
+        # recebeu com os padrões — e um padrão deste teste nunca é o real.
+        midia_real, app_real_ = Path(tmp) / 'midia-real', Path(tmp) / 'app-real'
+        midia_real.mkdir()
+        app_real_.mkdir()
+        resto = ['--trabalho', str(trabalho), '--log', str(log), '--ids', 'ave-maria']
+
+        def deve_recusar(argv, trecho_da_mensagem):
+            try:
+                nt.main(argv)
+            except SystemExit as e:
+                assert e.code != 0 and trecho_da_mensagem in str(e), str(e)
+            else:
+                raise AssertionError(f'deveria ter parado por {trecho_da_mensagem!r}')
+
+        padroes = nt.MIDIA_PADRAO, nt.APP_PADRAO
+        nt.MIDIA_PADRAO, nt.APP_PADRAO = midia_real, app_real_
+        try:
+            deve_recusar(['--simular', '--app', str(app)] + resto, '--midia')
+            deve_recusar(['--simular', '--midia', str(midia)] + resto, '--app')
+            deve_recusar(['--simular'] + resto, '--midia')
+            deve_recusar(['--simular', '--app', str(app), '--midia', str(midia_real)] + resto,
+                         'repositório real')
+            # O app "real" nem tem pubspec: a recusa vem antes dessa conferência.
+            deve_recusar(['--simular', '--app', str(app_real_), '--midia', str(midia)] + resto,
+                         'repositório real')
+        finally:
+            nt.MIDIA_PADRAO, nt.APP_PADRAO = padroes
+        # Nada foi escrito em lugar nenhum: nem nas temporárias, nem nas
+        # "reais", nem no app (as marcas continuam as de antes).
+        assert not midia.exists() and not trabalho.exists() and not log.exists()
+        assert not any(midia_real.iterdir()) and not any(app_real_.iterdir())
+        assert not (app / 'assets' / 'audio').exists()
+        assert ave_maria.read_text(encoding='utf-8') == marcas_antes
+        # Com as duas temporárias, a mesma chamada roda e grava onde deve.
+        assert nt.main(['--simular', '--app', str(app), '--midia', str(midia)] + resto) == 0
+        assert (midia / 'oracoes' / 'ave-maria.m4a').exists()
+        assert ave_maria.read_text(encoding='utf-8') != marcas_antes
 
 
 def teste_lento_catalogo_inteiro_montado_pelo_ffmpeg_real():

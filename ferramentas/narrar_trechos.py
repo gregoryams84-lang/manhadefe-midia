@@ -15,8 +15,9 @@ dois são gravados nas pastas terco/ e oracoes/ deste repo e publicados pelo
 servidor de mídia; depois de gerar, no repo do app:
 `dart run tool/midia/gerar_manifesto.dart ../manhadefe-midia` (os 28 + 9
 entram no manifesto) e commit + push aqui. --midia aponta outra raiz (os
-testes usam um temporário). O app não embute áudio de oração nenhum
-(assets/audio/oracoes/ saiu do pubspec em 09/10).
+testes usam um temporário; com --simular é obrigatório, ver abaixo). O app
+não embute áudio de oração nenhum (assets/audio/oracoes/ saiu do pubspec em
+09/10).
 
 E — a parte que mais importa — grava de volta as `marcas` reais nos JSONs de
 assets/content/terco/*.json e assets/content/oracoes/*.json. A tela do Terço
@@ -64,14 +65,19 @@ fecho, peças sem conta.
 Modo --simular: sem chave e sem rede, cada peça vira um silêncio com duração
 proporcional ao texto (CARACTERES_POR_SEGUNDO). Todo o resto — ffprobe,
 ffmpeg, concat, marcas, gravação nos JSONs — roda de verdade. Só a fonte do
-áudio muda. Serve para provar o caminho antes de gastar caractere.
+áudio muda. Serve para provar o caminho antes de gastar caractere. Por isso
+mesmo EXIGE --midia e --app apontando pastas temporárias, e nenhum dos dois
+pode ser o repositório real (R6-E, 09/10): o silêncio iria para o terco/ e o
+oracoes/ publicados — um gerar_manifesto depois o levaria ao app — e as
+marcas de mentira para os JSONs do app. A ferramenta para, com a mensagem,
+antes de escrever qualquer arquivo.
 
 Voz, chave, chamada da API, codec e log vêm de narrar.py (mesma pasta).
 
 Uso:
   python ferramentas/narrar_trechos.py --so-contar
   python ferramentas/narrar_trechos.py --mostrar gozosos-dezena-1      # o texto, peça a peça
-  python ferramentas/narrar_trechos.py --simular                       # prova ponta a ponta
+  python ferramentas/narrar_trechos.py --simular --midia /tmp/midia --app /tmp/app   # prova ponta a ponta
   python ferramentas/narrar_trechos.py                                 # tudo o que falta
   python ferramentas/narrar_trechos.py --ids gozosos-dezena-1 --refazer
   python ferramentas/narrar_trechos.py --ids gozosos-dezena-1 --refazer --passos 3
@@ -99,7 +105,8 @@ APP_PADRAO = (Path(os.environ['MANHA_DE_FE_APP']) if os.environ.get('MANHA_DE_FE
               else RAIZ.parent / 'manha-de-fe-app')
 # Onde o Terço e as orações são gravados (terco/ e oracoes/ na raiz do repo
 # de mídia); --midia manda por cima — os testes apontam um temporário para
-# nunca escrever no repo real.
+# nunca escrever no repo real, e --simular exige isso (ver
+# conferir_raizes_da_simulacao).
 MIDIA_PADRAO = RAIZ
 PASTA_DO_TERCO = 'terco'
 PASTA_DAS_ORACOES = 'oracoes'
@@ -665,12 +672,38 @@ def selecionar(trechos, args):
     return trechos
 
 
+def mesma_pasta(a, b):
+    """As duas apontam a mesma pasta no disco (resolvidas; no Windows sem
+    distinguir maiúsculas)."""
+    return os.path.normcase(str(Path(a).resolve())) == os.path.normcase(str(Path(b).resolve()))
+
+
+def conferir_raizes_da_simulacao(app, midia):
+    """--simular escreve de verdade: silêncio em <midia>/terco/ e
+    <midia>/oracoes/ e marcas de mentira nos JSONs de <app>. Por isso exige
+    --midia e --app, e nenhum dos dois pode ser o repositório real — um
+    gerar_manifesto depois levaria o silêncio ao app (R6-E, 09/10). Roda
+    ANTES de qualquer outra conferência e de qualquer escrita; `app` e
+    `midia` são o que veio na linha de comando (None = não veio)."""
+    faltam = [nome for nome, valor in (('--midia', midia), ('--app', app)) if not valor]
+    if faltam:
+        sys.exit(f'--simular exige {" e ".join(faltam)} apontando pastas temporárias: a '
+                 'simulação grava silêncio em <midia>/terco/ e <midia>/oracoes/ e marcas de '
+                 'mentira nos JSONs de <app>, e nunca pode fazer isso nos repositórios reais')
+    for nome, valor, real in (('--midia', midia, MIDIA_PADRAO), ('--app', app, APP_PADRAO)):
+        if mesma_pasta(valor, real):
+            sys.exit(f'--simular com {nome} apontando o repositório real ({real}): aponte uma '
+                     'pasta temporária — a simulação grava silêncio e marcas de mentira')
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.split(chr(10))[0])
-    ap.add_argument('--app', default=str(APP_PADRAO),
-                    help='raiz do repo manha-de-fe-app (padrão: pasta-irmã, ou MANHA_DE_FE_APP)')
-    ap.add_argument('--midia', default=str(MIDIA_PADRAO),
-                    help='raiz do repo manhadefe-midia, onde terco/ e oracoes/ são gravados (padrão: este repo)')
+    ap.add_argument('--app', help='raiz do repo manha-de-fe-app (padrão: pasta-irmã, ou '
+                                  'MANHA_DE_FE_APP; com --simular é obrigatório e tem de ser '
+                                  'uma cópia temporária)')
+    ap.add_argument('--midia', help='raiz do repo manhadefe-midia, onde terco/ e oracoes/ são '
+                                    'gravados (padrão: este repo; com --simular é obrigatório e '
+                                    'tem de ser uma pasta temporária)')
     ap.add_argument('--trabalho', help='diretório das peças e das cópias evangélicas das comuns '
                                        '(padrão: narracao/trechos; simulado: narracao/trechos-simulado)')
     ap.add_argument('--log', default=str(LOG))
@@ -687,11 +720,14 @@ def main(argv=None):
     ap.add_argument('--forcar', action='store_true', help='segue mesmo se o saldo não cobrir tudo')
     args = ap.parse_args(argv)
 
-    app = Path(args.app)
+    # Antes de tudo: a simulação nunca toca os repositórios reais.
+    if args.simular:
+        conferir_raizes_da_simulacao(args.app, args.midia)
+    app = Path(args.app) if args.app else APP_PADRAO
     if not (app / 'pubspec.yaml').exists():
         sys.exit(f'{app} não parece o repo do app (sem pubspec.yaml): aponte com --app '
                  'ou com a variável de ambiente MANHA_DE_FE_APP')
-    midia = Path(args.midia)
+    midia = Path(args.midia) if args.midia else MIDIA_PADRAO
     trabalho = Path(args.trabalho) if args.trabalho else (TRABALHO_SIMULADO if args.simular else TRABALHO_PADRAO)
     log = Path(args.log)
     reaproveitar = not args.sem_reaproveitar
