@@ -1,18 +1,22 @@
 #!/usr/bin/env python3
 """Áudios guiados do Manhã de Fé: o Terço (28 arquivos) e as orações
-guiadas (9 + 4). Dois destinos, desde a decisão do Gregory de 25/09/2026:
+guiadas (9 + 4). Tudo BAIXÁVEL — o Terço desde a decisão do Gregory de
+25/09/2026, as orações desde a decisão D3 de 09/10/2026 (versão 3 do app):
 
   <este repo>/terco/<misterio>-<trecho>.m4a                      (4 × 7)  BAIXÁVEL
-  manha-de-fe-app/assets/audio/oracoes/<slug>.m4a                (9)      embutido
-  manha-de-fe-app/assets/audio/oracoes/<slug>-evangelico.m4a     (4, ver abaixo)
+  <este repo>/oracoes/<slug>.m4a                                 (9)      BAIXÁVEL
+  <trabalho>/oracoes-evangelico/<slug>-evangelico.m4a            (4, ver abaixo — fora da pasta publicada)
 
 O Terço saiu do bundle: os 28 trechos (~92 min, ~22 MB a 32 kbps) levariam o
 app de 24 para 46 MB, e o perfil evangélico carregaria um áudio que nunca
-abre. É camada católica, como o santo do dia — gravado na pasta terco/ deste
-repo e publicado pelo servidor de mídia; depois de gerar, no repo do app:
-`dart run tool/midia/gerar_manifesto.dart ../manhadefe-midia` (os 28 entram
-no manifesto) e commit + push aqui. --midia aponta outra raiz (os testes usam
-um temporário). As nove orações continuam embutidas no app.
+abre. É camada católica, como o santo do dia; as orações seguiram o mesmo
+desenho, como camada da tradição (as comuns e as da tradição da pessoa). Os
+dois são gravados nas pastas terco/ e oracoes/ deste repo e publicados pelo
+servidor de mídia; depois de gerar, no repo do app:
+`dart run tool/midia/gerar_manifesto.dart ../manhadefe-midia` (os 28 + 9
+entram no manifesto) e commit + push aqui. --midia aponta outra raiz (os
+testes usam um temporário). O app não embute áudio de oração nenhum
+(assets/audio/oracoes/ saiu do pubspec em 09/10).
 
 E — a parte que mais importa — grava de volta as `marcas` reais nos JSONs de
 assets/content/terco/*.json e assets/content/oracoes/*.json. A tela do Terço
@@ -38,12 +42,15 @@ mostra os dois números.
 PENDÊNCIA (decisão do Gregory): salmo-23, oracao-da-manha, oracao-da-noite e
 oracao-de-entrega são comuns às duas tradições (indice.json), mas o JSON só
 tem UM `audioAsset`. Esta ferramenta gera as quatro nas DUAS vozes — a
-católica em <slug>.m4a (a que o JSON cita) e a evangélica em
-<slug>-evangelico.m4a. O segundo arquivo ainda não é usado por código nenhum;
-existe para a decisão de "ouvir a voz da própria tradição" não custar uma
-rodada nova de geração. As marcas dele ficam só no log (narrar_trechos.log.jsonl)
-e nos metadados do diretório de trabalho — quando o app ganhar um segundo
-`audioAsset`, é só reconstruir (sem chamar a API) e gravar.
+católica em oracoes/<slug>.m4a (a que o JSON cita, publicada) e a evangélica
+em <slug>-evangelico.m4a, no diretório de trabalho
+(<trabalho>/oracoes-evangelico/), FORA da pasta publicada: o app não a pede,
+o gerar_manifesto só varre as pastas publicadas e o lint acusaria uma órfã.
+O segundo arquivo ainda não é usado por código nenhum; existe para a decisão
+de "ouvir a voz da própria tradição" não custar uma rodada nova de geração.
+As marcas dele ficam só no log (narrar_trechos.log.jsonl) e nos metadados do
+diretório de trabalho — quando o app ganhar um segundo `audioAsset`, é só
+reconstruir (sem chamar a API), mover para oracoes/ e gravar.
 
 O texto do Terço não existe pronto em lugar nenhum: é composto aqui. As
 orações fixas (Pai-Nosso, Ave-Maria, Creio, Salve-Rainha) saem dos JSONs de
@@ -90,10 +97,16 @@ from narrar import (  # noqa: E402
 # isolado, outra máquina); --app manda por cima dos dois.
 APP_PADRAO = (Path(os.environ['MANHA_DE_FE_APP']) if os.environ.get('MANHA_DE_FE_APP')
               else RAIZ.parent / 'manha-de-fe-app')
-# Onde o Terço é gravado (terco/ na raiz do repo de mídia); --midia manda por
-# cima — os testes apontam um temporário para nunca escrever no repo real.
+# Onde o Terço e as orações são gravados (terco/ e oracoes/ na raiz do repo
+# de mídia); --midia manda por cima — os testes apontam um temporário para
+# nunca escrever no repo real.
 MIDIA_PADRAO = RAIZ
 PASTA_DO_TERCO = 'terco'
+PASTA_DAS_ORACOES = 'oracoes'
+# As cópias evangélicas das orações comuns (pendência no topo) ficam no
+# diretório de trabalho, nesta subpasta — nunca em <midia>/oracoes/: o app
+# não as pede, e o manifesto não as lista.
+PASTA_EVANGELICO_NO_TRABALHO = 'oracoes-evangelico'
 TRABALHO_PADRAO = RAIZ / 'ferramentas' / 'narracao' / 'trechos'
 # Peças simuladas nunca se misturam com as reais: outro diretório.
 TRABALHO_SIMULADO = RAIZ / 'ferramentas' / 'narracao' / 'trechos-simulado'
@@ -187,9 +200,11 @@ class Trecho:
     as marcas são gravadas: no terço, `posicao` é o índice do trecho em
     `trechos`; na oração é None (as marcas ficam na raiz); `json` None = as
     marcas não vão a lugar nenhum (só ao log) — a cópia evangélica das comuns.
-    `arquivo` é o caminho como o app o conhece — a chave publicada do Terço
-    (`terco/<misterio>-<trecho>.m4a`) ou o asset embutido da oração — e vai
-    ao log; `destino` é onde ele fica no disco."""
+    `arquivo` é o caminho como o app o conhece — a chave publicada
+    (`terco/<misterio>-<trecho>.m4a`, `oracoes/<slug>.m4a`) ou, na cópia
+    evangélica, o caminho dela dentro do trabalho
+    (`oracoes-evangelico/<slug>-evangelico.m4a`) — e vai ao log; `destino` é
+    onde ele fica no disco."""
     id: str
     destino: Path
     tradicao: str
@@ -350,23 +365,34 @@ def camadas_do_indice(pasta):
     return camada_de
 
 
-def compor_oracoes(app):
-    """As orações guiadas do índice (hoje 9) e as cópias evangélicas das
-    comuns (hoje 4; pendência no topo do arquivo)."""
+def compor_oracoes(app, midia=MIDIA_PADRAO, trabalho=TRABALHO_PADRAO):
+    """As orações guiadas do índice (hoje 9) — gravadas em <midia>/oracoes/
+    (baixáveis, D3 de 09/10), com as marcas no JSON do app — e as cópias
+    evangélicas das comuns (hoje 4; pendência no topo do arquivo), em
+    <trabalho>/oracoes-evangelico/, fora da pasta publicada."""
     pasta = app / 'assets' / 'content' / 'oracoes'
     trechos = []
 
     def oracao(slug, tradicao, sufixo='', grava=True):
         dados = ler_json(pasta / f'{slug}.json')
         passos = [p['texto'] for p in dados['passos']]
+        # O audioAsset do JSON é a chave lógica (D2 do plano de 18/09 do app):
+        # o prefixo assets/audio/oracoes/ é histórico, o NOME é o que vira
+        # oracoes/<nome> no servidor — a regra 15 do lint do app prende a
+        # mesma amarra (<id>.m4a); aqui a ferramenta para antes de gravar um
+        # áudio com nome errado.
         asset = dados['audioAsset']
         esperado = f'assets/audio/oracoes/{slug}.m4a'
         if asset != esperado:
             sys.exit(f'{slug}.json: audioAsset "{asset}", esperado "{esperado}"')
-        arquivo = asset
+        nome = f'{slug}{sufixo}.m4a'
         if sufixo:
-            arquivo = f'assets/audio/oracoes/{slug}{sufixo}.m4a'
-        return Trecho(id=f'{slug}{sufixo}', destino=app / arquivo, tradicao=tradicao,
+            arquivo = f'{PASTA_EVANGELICO_NO_TRABALHO}/{nome}'
+            destino = Path(trabalho) / PASTA_EVANGELICO_NO_TRABALHO / nome
+        else:
+            arquivo = f'{PASTA_DAS_ORACOES}/{nome}'
+            destino = Path(midia) / PASTA_DAS_ORACOES / nome
+        return Trecho(id=f'{slug}{sufixo}', destino=destino, tradicao=tradicao,
                       pecas=tuple(pecas_de_oracao(passos, slug, 0.0, True, conta_em_todos=True)),
                       contas_esperadas=len(passos),
                       json=(pasta / f'{slug}.json') if grava else None, posicao=None,
@@ -381,13 +407,14 @@ def compor_oracoes(app):
     return trechos
 
 
-def catalogo(app, midia=MIDIA_PADRAO):
+def catalogo(app, midia=MIDIA_PADRAO, trabalho=TRABALHO_PADRAO):
     """Tudo o que a ferramenta gera: 28 do Terço (em <midia>/terco/) + 9
-    orações + 4 evangélicas (no app)."""
+    orações (em <midia>/oracoes/) + 4 cópias evangélicas (em
+    <trabalho>/oracoes-evangelico/)."""
     trechos = []
     for misterio in MISTERIOS:
         trechos += compor_terco(app, misterio, midia)
-    trechos += compor_oracoes(app)
+    trechos += compor_oracoes(app, midia, trabalho)
     for t in trechos:
         if t.contas != t.contas_esperadas:
             sys.exit(f'{t.id}: a composição dá {t.contas} contas, a tela espera '
@@ -607,8 +634,9 @@ def construir(trecho, trabalho, reaproveitar, log):
     simulado = any(json.loads(arquivos_da_peca(trabalho, trecho.tradicao, c)[2]
                               .read_text(encoding='utf-8')).get('simulado')
                    for _, _, c in pecas_do_trecho(trecho, reaproveitar))
-    # A chave publicada ('terco/x.m4a') ou o asset embutido
-    # ('assets/audio/oracoes/x.m4a') — nunca o caminho absoluto do disco.
+    # A chave publicada ('terco/x.m4a', 'oracoes/x.m4a') ou, na cópia
+    # evangélica, o caminho dentro do trabalho — nunca o caminho absoluto
+    # do disco.
     registro = {'arquivo': trecho.arquivo or trecho.destino.name,
                 'id': trecho.id, 'tradicao': trecho.tradicao, 'pecas': len(trecho.pecas),
                 'caracteres': trecho.caracteres, 'marcas': marcas,
@@ -642,8 +670,9 @@ def main(argv=None):
     ap.add_argument('--app', default=str(APP_PADRAO),
                     help='raiz do repo manha-de-fe-app (padrão: pasta-irmã, ou MANHA_DE_FE_APP)')
     ap.add_argument('--midia', default=str(MIDIA_PADRAO),
-                    help='raiz do repo manhadefe-midia, onde terco/ é gravado (padrão: este repo)')
-    ap.add_argument('--trabalho', help='diretório das peças (padrão: narracao/trechos; simulado: narracao/trechos-simulado)')
+                    help='raiz do repo manhadefe-midia, onde terco/ e oracoes/ são gravados (padrão: este repo)')
+    ap.add_argument('--trabalho', help='diretório das peças e das cópias evangélicas das comuns '
+                                       '(padrão: narracao/trechos; simulado: narracao/trechos-simulado)')
     ap.add_argument('--log', default=str(LOG))
     ap.add_argument('--apenas', choices=['terco', 'oracoes'])
     ap.add_argument('--ids', help='ids exatos, separados por vírgula: gozosos-dezena-1,ave-maria,salmo-23-evangelico')
@@ -667,7 +696,7 @@ def main(argv=None):
     log = Path(args.log)
     reaproveitar = not args.sem_reaproveitar
 
-    todos = catalogo(app, midia)
+    todos = catalogo(app, midia, trabalho)
     if args.mostrar:
         return mostrar(todos, args.mostrar)
     escolhidos = selecionar(todos, args)

@@ -1,7 +1,7 @@
 # Manhã de Fé — mídia
 
 Arquivos públicos que o aplicativo **Manhã de Fé** baixa em segundo plano
-(narrações, imagens e o áudio do Terço), servidos em `https://midia.manhadefe.com.br/` pelo
+(narrações, imagens, o áudio do Terço e o das orações guiadas), servidos em `https://midia.manhadefe.com.br/` pelo
 GitHub Pages. Nenhum dado pessoal passa por aqui: são arquivos iguais para
 todo mundo.
 
@@ -15,6 +15,7 @@ todo mundo.
 | `santos/` | narração e retrato do santo do dia | `<MM-DD>.m4a` e `<slug>.webp` |
 | `hinos/` | gravação do hino do dia | `<slug>.m4a` |
 | `terco/` | áudio do Terço, camada católica (os 4 conjuntos de mistérios × 7 trechos; baixável desde 25/09/2026) | `<misterio>-<trecho>.m4a` (ex.: `gozosos-abertura.m4a`, `dolorosos-dezena-3.m4a`, `luminosos-fecho.m4a`) |
+| `oracoes/` | áudio das orações guiadas, camada da tradição (as 4 comuns e as de cada tradição; baixável desde 09/10/2026, decisão D3) | `<id>.m4a` (ex.: `salmo-23.m4a`, `ave-maria.m4a`, `pai-nosso-evangelico.m4a`) |
 | `ferramentas/` | scripts de produção (não são publicados pelo app) | |
 
 Formatos: áudio AAC mono ~32 kbps (`.m4a`); imagens WebP 1080 × 1350.

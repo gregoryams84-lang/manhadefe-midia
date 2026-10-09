@@ -8,8 +8,10 @@ num diretório temporário com uma cópia do conteúdo do app.
 
 Os testes leem o conteúdo real do app (manha-de-fe-app, pasta-irmã deste
 repo ou MANHA_DE_FE_APP) e copiam para um temporário; nada é escrito nele.
-O Terço (baixável desde 25/09) vai para um --midia temporário: nada é escrito
-no terco/ deste repo. O teste do catálogo inteiro (~8 min) só roda com
+O Terço (baixável desde 25/09) e as 9 orações (baixáveis desde 09/10, D3)
+vão para um --midia temporário: nada é escrito no terco/ nem no oracoes/
+deste repo; as 4 cópias evangélicas das comuns vão para o --trabalho
+temporário. O teste do catálogo inteiro (~8 min) só roda com
 NARRAR_TRECHOS_TESTE_LENTO=1.
 """
 import json
@@ -65,14 +67,21 @@ def app_de_teste(tmp):
 
 
 def midia_de_teste(tmp):
-    """A raiz de mídia temporária: é onde o Terço é gravado nos testes."""
+    """A raiz de mídia temporária: é onde o Terço e as orações são gravados
+    nos testes."""
     return Path(tmp) / 'midia'
+
+
+def trabalho_de_teste(tmp):
+    """O diretório de trabalho temporário: as peças e, fora da pasta
+    publicada, as cópias evangélicas das orações comuns."""
+    return Path(tmp) / 'trabalho'
 
 
 def args_comuns(tmp, app):
     """--simular e as três raízes temporárias que todo main() dos testes usa."""
     return ['--simular', '--app', str(app), '--midia', str(midia_de_teste(tmp)),
-            '--trabalho', str(Path(tmp) / 'trabalho'), '--log', str(Path(tmp) / 'log.jsonl')]
+            '--trabalho', str(trabalho_de_teste(tmp)), '--log', str(Path(tmp) / 'log.jsonl')]
 
 
 def trecho_de_teste(tmp, pecas, contas=None, json_=None, posicao=None):
@@ -160,7 +169,8 @@ def teste_peca_refeita_reconstroi_todo_trecho_ja_montado_que_a_usa():
         # A abertura usa as mesmas duas peças da Ave-Maria que a oração.
         assert nt.main(comuns + ['--ids', 'ave-maria,gozosos-abertura']) == 0
         assert (midia_de_teste(tmp) / 'terco' / 'gozosos-abertura.m4a').exists()
-        assert not (app / 'assets' / 'audio' / 'terco').exists(), 'o Terço não vai mais ao app'
+        assert (midia_de_teste(tmp) / 'oracoes' / 'ave-maria.m4a').exists()
+        assert not (app / 'assets' / 'audio').exists(), 'nem o Terço nem as orações vão ao app'
         gozosos = app / 'assets' / 'content' / 'terco' / 'gozosos.json'
         abertura_antes = nt.ler_json(gozosos)['trechos'][0]['marcas']
         ritmo = nt.CARACTERES_POR_SEGUNDO
@@ -201,21 +211,35 @@ def teste_contagem_de_marcas_bate_com_o_que_a_tela_desenha():
             app / 'assets' / 'content' / 'oracoes' / 'indice.json')['comum'])
     assert all(t.tradicao == 'evangelico' for t in gemeas)
     for t in trechos:
-        if not nt.eh_do_terco(t):
-            slug = t.id[:-len(nt.SUFIXO_EVANGELICO)] if t.json is None else t.id
-            assert t.contas == len(nt.passos_da_oracao(app, slug)), t.id
-            assert t.arquivo == f'assets/audio/oracoes/{t.id}.m4a' and t.destino == app / t.arquivo
-        else:
+        if nt.eh_do_terco(t):
             # Baixável (25/09): a chave publicada e o arquivo em <midia>/terco/.
             assert t.arquivo == f'terco/{t.id}.m4a', t.id
             assert t.destino == nt.MIDIA_PADRAO / 'terco' / f'{t.id}.m4a', t.id
+        elif t.json is None:
+            # A cópia evangélica da comum: no diretório de trabalho, FORA da
+            # pasta publicada — o app não a pede e o manifesto não a lista.
+            slug = t.id[:-len(nt.SUFIXO_EVANGELICO)]
+            assert t.contas == len(nt.passos_da_oracao(app, slug)), t.id
+            assert t.arquivo == f'{nt.PASTA_EVANGELICO_NO_TRABALHO}/{t.id}.m4a', t.id
+            assert t.destino == nt.TRABALHO_PADRAO / nt.PASTA_EVANGELICO_NO_TRABALHO / f'{t.id}.m4a', t.id
+        else:
+            # Baixável (09/10, D3): a chave publicada e o arquivo em <midia>/oracoes/.
+            assert t.contas == len(nt.passos_da_oracao(app, t.id)), t.id
+            assert t.arquivo == f'oracoes/{t.id}.m4a', t.id
+            assert t.destino == nt.MIDIA_PADRAO / 'oracoes' / f'{t.id}.m4a', t.id
     assert sum(1 for t in trechos if nt.eh_do_terco(t)) == 28
-    # --midia troca a raiz de TODO o Terço, e de nada mais.
-    outra = nt.catalogo(app, Path('/outra/midia'))
+    assert sum(1 for t in trechos if t.arquivo.startswith('oracoes/')) == 9
+    # --midia troca a raiz do Terço E das 9 orações; --trabalho, a das cópias
+    # evangélicas; o log (`arquivo`) não muda com nenhum dos dois.
+    outra = nt.catalogo(app, Path('/outra/midia'), Path('/outro/trabalho'))
     assert all(t.destino == Path('/outra/midia') / 'terco' / f'{t.id}.m4a'
                for t in outra if nt.eh_do_terco(t))
-    assert [t.destino for t in outra if not nt.eh_do_terco(t)] == \
-           [t.destino for t in trechos if not nt.eh_do_terco(t)]
+    assert all(t.destino == Path('/outra/midia') / 'oracoes' / f'{t.id}.m4a'
+               for t in outra if t.arquivo.startswith('oracoes/'))
+    assert all(t.destino == Path('/outro/trabalho') / nt.PASTA_EVANGELICO_NO_TRABALHO / f'{t.id}.m4a'
+               for t in outra if t.json is None)
+    assert [t.arquivo for t in outra] == [t.arquivo for t in trechos]
+    assert not any(str(t.destino).startswith(str(app)) for t in outra), 'nada vai ao app'
 
 
 def teste_composicao_do_terco_c13_jaculatoria_apos_cada_gloria_e_sinal_da_cruz_no_fecho():
@@ -458,11 +482,14 @@ def teste_simulacao_ponta_a_ponta_grava_arquivos_marcas_e_log():
         salmo_antes = nt.ler_json(salmo)['marcas']
         assert nt.main(args_comuns(tmp, app)
                        + ['--ids', 'gozosos-dezena-1,ave-maria,salmo-23-evangelico']) == 0
-        # O Terço vai para <midia>/terco/ (baixável); as orações, para o app.
+        # O Terço vai para <midia>/terco/ e a oração para <midia>/oracoes/
+        # (baixáveis); a cópia evangélica da comum fica no trabalho, fora da
+        # pasta publicada; nada vai ao app.
         assert (midia_de_teste(tmp) / 'terco' / 'gozosos-dezena-1.m4a').exists()
-        assert not (app / 'assets' / 'audio' / 'terco').exists()
-        assert (app / 'assets' / 'audio' / 'oracoes' / 'ave-maria.m4a').exists()
-        assert (app / 'assets' / 'audio' / 'oracoes' / 'salmo-23-evangelico.m4a').exists()
+        assert (midia_de_teste(tmp) / 'oracoes' / 'ave-maria.m4a').exists()
+        assert not (midia_de_teste(tmp) / 'oracoes' / 'salmo-23-evangelico.m4a').exists()
+        assert (trabalho / nt.PASTA_EVANGELICO_NO_TRABALHO / 'salmo-23-evangelico.m4a').exists()
+        assert not (app / 'assets' / 'audio').exists()
         dezena = nt.ler_json(app / 'assets' / 'content' / 'terco' / 'gozosos.json')['trechos'][1]['marcas']
         assert len(dezena) == 11
         assert dezena[0] > 0, 'a conta do Pai-Nosso acende depois do anúncio, não no zero'
@@ -474,10 +501,11 @@ def teste_simulacao_ponta_a_ponta_grava_arquivos_marcas_e_log():
         assert [r['id'] for r in registros] == ['gozosos-dezena-1', 'ave-maria', 'salmo-23-evangelico']
         assert all(r['simulado'] for r in registros)
         assert [r['gravou_json'] for r in registros] == [True, True, False]
-        # O log guarda a chave publicada / o asset — nunca o caminho do disco.
+        # O log guarda a chave publicada (ou, na cópia evangélica, o caminho
+        # dela dentro do trabalho) — nunca o caminho absoluto do disco.
         assert [r['arquivo'] for r in registros] == [
-            'terco/gozosos-dezena-1.m4a', 'assets/audio/oracoes/ave-maria.m4a',
-            'assets/audio/oracoes/salmo-23-evangelico.m4a']
+            'terco/gozosos-dezena-1.m4a', 'oracoes/ave-maria.m4a',
+            'oracoes-evangelico/salmo-23-evangelico.m4a']
         assert len(registros[2]['marcas']) == 6
         # A Ave-Maria da dezena e a da oração são a mesma peça: uma geração só.
         pecas = list((trabalho / 'pecas' / 'catolico').glob('*.wav'))
@@ -495,11 +523,16 @@ def teste_lento_catalogo_inteiro_montado_pelo_ffmpeg_real():
         inicio = time.time()
         assert nt.main(args_comuns(tmp, app)) == 0
         minutos = (time.time() - inicio) / 60
-        trechos = nt.catalogo(app, midia_de_teste(tmp))
-        # Os 28 do Terço em <midia>/terco/, e só eles; nada de Terço no app.
+        trechos = nt.catalogo(app, midia_de_teste(tmp), trabalho_de_teste(tmp))
+        # Os 28 do Terço em <midia>/terco/ e as 9 orações em <midia>/oracoes/,
+        # e só eles; as 4 cópias evangélicas no trabalho; nada no app.
         assert sorted(p.name for p in (midia_de_teste(tmp) / 'terco').glob('*.m4a')) == \
                sorted(f'{t.id}.m4a' for t in trechos if nt.eh_do_terco(t))
-        assert not (app / 'assets' / 'audio' / 'terco').exists()
+        assert sorted(p.name for p in (midia_de_teste(tmp) / 'oracoes').glob('*.m4a')) == \
+               sorted(f'{t.id}.m4a' for t in trechos if t.arquivo.startswith('oracoes/'))
+        assert sorted(p.name for p in (trabalho_de_teste(tmp) / nt.PASTA_EVANGELICO_NO_TRABALHO).glob('*.m4a')) == \
+               sorted(f'{t.id}.m4a' for t in trechos if t.json is None)
+        assert not (app / 'assets' / 'audio').exists()
         registros = {json.loads(l)['id']: json.loads(l)
                      for l in log.read_text(encoding='utf-8').splitlines()}
         assert len(trechos) == len(registros) == 41
