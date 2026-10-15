@@ -88,7 +88,9 @@ CENTENAS = {'cem': 100, 'cento': 100}
 
 OUTROS_NUMEROS = {'e', 'mil', 'duzentos', 'trezentos', 'quatrocentos',
                   'quinhentos', 'seiscentos', 'setecentos', 'oitocentos',
-                  'novecentos', 'primeiro', 'primeira', 'segundo', 'segunda',
+                  'novecentos', 'duzentas', 'trezentas', 'quatrocentas',
+                  'quinhentas', 'seiscentas', 'setecentas', 'oitocentas',
+                  'novecentas', 'primeiro', 'primeira', 'segundo', 'segunda',
                   'terceiro', 'terceira', 'quarto', 'quarta', 'quinto',
                   'quinta', 'sexto', 'sexta', 'setimo', 'setima', 'oitavo',
                   'oitava', 'nono', 'nona', 'decimo', 'decima', 'vigesimo',
@@ -172,8 +174,28 @@ def numeros_em_algarismos(toks):
     return saida
 
 
+# O ouvido escreve "a.C." e "d.C." para "antes de Cristo" e "depois de
+# Cristo" (santos do século IX a.C.): os dois lados viram a abreviatura.
+_ABREVIATURAS = {('antes', 'de', 'cristo'): ('a', 'c'),
+                 ('depois', 'de', 'cristo'): ('d', 'c')}
+
+
+def abreviar(toks):
+    saida, i = [], 0
+    while i < len(toks):
+        for longa, curta in _ABREVIATURAS.items():
+            if tuple(toks[i:i + len(longa)]) == longa:
+                saida.extend(curta)
+                i += len(longa)
+                break
+        else:
+            saida.append(toks[i])
+            i += 1
+    return saida
+
+
 def normalizar(texto):
-    return numeros_em_algarismos(palavras(texto))
+    return abreviar(numeros_em_algarismos(palavras(texto)))
 
 
 def transcrever(chave, arquivo):
@@ -247,9 +269,20 @@ PALAVRAS_NO_MAXIMO = 3
 LETRAS_DA_PALAVRA_CURTA = 3
 
 
+_MESMO_SOM = (('qu', 'c'), ('ss', 's'), ('z', 's'), ('h', ''))
+# Palavras de função de 4 letras que o ouvido engole sem o áudio estar
+# errado ("Assim lhes falámos" → "Assim falámos"); as de até 3 letras já
+# passam por `palavras_curtas`.
+FUNCIONAIS = {'lhes', 'pela', 'pelo', 'pelas', 'pelos', 'seus', 'suas'}
+
+
 def _som(toks):
-    """O que se ouve: sem espaços, sem o h mudo."""
-    return ''.join(toks).replace('h', '')
+    """O que se ouve: sem espaços, com as grafias de mesmo som juntadas
+    ("fica"/"fique", "face"/"fez-se", "há"/"a")."""
+    s = ''.join(toks)
+    for grafia, som in _MESMO_SOM:
+        s = s.replace(grafia, som)
+    return s
 
 
 def soa_igual(ta, tb):
@@ -267,7 +300,8 @@ def palavras_curtas(ta, tb):
     outro: o artigo e a preposição que o ouvido engole, troca ou acrescenta
     ("um"/"o", "a" a menos, "de" a mais, "poe"/"ponha")."""
     curto = ta if ta else tb
-    return (len(curto) <= 2 and all(len(t) <= LETRAS_DA_PALAVRA_CURTA for t in curto)
+    return (len(curto) <= 2
+            and all(len(t) <= LETRAS_DA_PALAVRA_CURTA or t in FUNCIONAIS for t in curto)
             and len(ta) <= 2 and len(tb) <= 2)
 
 

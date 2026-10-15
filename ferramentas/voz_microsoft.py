@@ -117,34 +117,72 @@ def pcm_de_audio(audio):
 
 
 async def _pedir(texto, voz, velocidade):
+    """(mp3, limites): o áudio e os limites de palavra que o Edge manda
+    junto — `(texto da palavra, fim em segundos)`, na ordem."""
     import edge_tts  # só aqui: o resto do módulo (segmentar, aparar) não precisa dele
-    partes = []
-    async for parte in edge_tts.Communicate(texto, voz, rate=velocidade).stream():
+    partes, limites = [], []
+    comunicado = edge_tts.Communicate(texto, voz, rate=velocidade, boundary='WordBoundary')
+    async for parte in comunicado.stream():
         if parte['type'] == 'audio':
             partes.append(parte['data'])
-    return b''.join(partes)
+        elif parte['type'] == 'WordBoundary':
+            limites.append((parte['text'], (parte['offset'] + parte['duration']) / 1e7))
+    return b''.join(partes), limites
 
 
-def sintetizar_mp3(texto, voz, velocidade=VELOCIDADE):
-    """O mp3 de um trecho, pedido ao Edge; tenta de novo em falha de rede ou
-    resposta vazia. Pode rodar em várias threads (cada chamada tem o seu
-    event loop)."""
+_PALAVRA = re.compile(r'[^\W_]+', re.UNICODE)
+
+
+def _miolo(palavra):
+    """Só letras e algarismos, minúsculos: "puseram-lhe." e "puseram-lhe"
+    são a mesma palavra."""
+    return ''.join(_PALAVRA.findall(palavra)).lower()
+
+
+# A Microsoft às vezes corta a resposta no meio e não avisa: em 14/10, três
+# de 1.185 áudios vieram com 1 a 15 s a menos, sem erro nenhum — a
+# conferência por voz é que pegou. Os limites de palavra denunciam o corte:
+# a última palavra do texto tem de ter chegado, e o áudio tem de durar até
+# o fim dela.
+FOLGA_DO_FIM = 0.3  # segundos: o fim do último limite pode passar um pouco do áudio decodificado
+
+
+def incompleto(texto, limites, segundos):
+    """None se a resposta está inteira; senão, o motivo. Função pura — os
+    testes a conferem com limites inventados."""
+    palavras = [p for p in (_miolo(p) for p in texto.split()) if p]
+    if not palavras:
+        return None
+    if not limites:
+        return 'sem limites de palavra na resposta'
+    ultima, fim = limites[-1]
+    if _miolo(ultima) != palavras[-1]:
+        return f'a resposta parou em "{ultima}" (a última palavra é "{palavras[-1]}")'
+    if segundos + FOLGA_DO_FIM < fim:
+        return f'o áudio tem {segundos:.2f} s e a última palavra termina em {fim:.2f} s'
+    return None
+
+
+def sintetizar_pcm(texto, voz, velocidade=VELOCIDADE):
+    """O PCM de um trecho, pedido ao Edge e conferido inteiro ([incompleto]);
+    tenta de novo em falha de rede, resposta vazia ou cortada. Pode rodar
+    em várias threads (cada chamada tem o seu event loop)."""
     erro = None
     for tentativa in range(1, TENTATIVAS + 1):
         try:
-            mp3 = asyncio.run(asyncio.wait_for(_pedir(texto, voz, velocidade), TEMPO_LIMITE))
-            if mp3:
-                return mp3
-            erro = 'resposta sem áudio'
+            mp3, limites = asyncio.run(asyncio.wait_for(_pedir(texto, voz, velocidade), TEMPO_LIMITE))
+            if not mp3:
+                erro = 'resposta sem áudio'
+            else:
+                pcm = pcm_de_audio(mp3)
+                erro = incompleto(texto, limites, segundos_de(pcm))
+                if erro is None:
+                    return pcm
         except Exception as e:  # noqa: BLE001 — rede, serviço, tempo esgotado
             erro = f'{type(e).__name__}: {str(e)[:200]}'
         if tentativa < TENTATIVAS:
             time.sleep(5 * tentativa)
-    raise RuntimeError(f'Microsoft ({voz}) não entregou "{texto[:40]}…": {erro}')
-
-
-def sintetizar_pcm(texto, voz, velocidade=VELOCIDADE):
-    return pcm_de_audio(sintetizar_mp3(texto, voz, velocidade))
+    raise RuntimeError(f'Microsoft ({voz}) não entregou "{texto[:40]}…" inteiro: {erro}')
 
 
 def narrar(texto, tradicao, velocidade=VELOCIDADE, silencio_final=SILENCIO_FINAL,

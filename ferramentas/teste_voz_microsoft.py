@@ -89,6 +89,19 @@ def teste_narrar_recusa_trecho_que_voltou_so_silencio():
         raise AssertionError('aceitou silêncio no lugar da voz')
 
 
+def teste_incompleto_pega_a_resposta_cortada_pela_ultima_palavra_ou_pela_duracao():
+    texto = 'Tomaram um certo Simão, cireneu, e puseram-lhe a cruz às costas.'
+    inteiro = [('Tomaram', 0.5), ('um', 0.7), ('certo', 1.1), ('Simão', 1.6), ('cireneu', 2.3),
+               ('e', 2.4), ('puseram-lhe', 3.1), ('a', 3.2), ('cruz', 3.6), ('às', 3.8), ('costas', 4.3)]
+    assert vm.incompleto(texto, inteiro, 4.5) is None
+    assert vm.incompleto(texto, inteiro, 4.1) is None  # a folga do fim
+    assert 'parou em "cruz"' in vm.incompleto(texto, inteiro[:-2], 4.5)
+    assert 'tem 2.00 s' in vm.incompleto(texto, inteiro, 2.0)
+    assert 'sem limites' in vm.incompleto(texto, [], 4.5)
+    assert vm.incompleto('Amém.', [('Amém', 0.6)], 1.0) is None
+    assert vm.incompleto('   ', [], 0.0) is None
+
+
 def teste_wav_e_m4a_gravados_tem_a_duracao_do_pcm():
     pcm = tom(2.0)
     with tempfile.TemporaryDirectory() as tmp:
