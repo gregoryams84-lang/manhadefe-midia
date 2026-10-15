@@ -28,3 +28,4 @@ santos/10-06.m4a | nome estrangeiro: Reims ouvido como "hans"
 santos/10-19.m4a | "de vida austera e" ouvido como "divido aos tere" (mesmo som, 4 palavras); duração igual à regeneração
 santos/11-12.m4a | nome estrangeiro: Kuncewicz ouvido como "comcevix"
 santos/12-16.m4a | nome estrangeiro: Selz ouvido como "ceus"
+terco/gozosos-abertura.m4a | registro do piloto de 14/10 (arquivo inteiro, 162 s): o Terço passou a ser conferido PEÇA a peça (--pecas), e as 82 peças de 15/10 foram aprovadas; a montagem é provada pela duração em narrar_trechos.montar
