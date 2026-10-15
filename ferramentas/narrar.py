@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
-"""Narração em massa do Manhã de Fé (ElevenLabs, eleven_multilingual_v2).
+"""Narração em massa do Manhã de Fé (ElevenLabs, eleven_multilingual_v2 — ou,
+com --motor microsoft, a voz gratuita da Microsoft, ver voz_microsoft.py).
+
+FASE ATUAL (14/10/2026): tudo sai com --motor microsoft (Antonio, as duas
+tradições) até as vozes do bispo e do pastor entrarem em novembro. Com o
+motor da Microsoft, o mesmo texto na mesma voz é gerado UMA vez e copiado
+para os outros caminhos (o cartão católico e o evangélico): metade dos
+pedidos. Cada cópia vai ao log com `copiado_de`.
 
 Entrada: ferramentas/narracao/narracoes.jsonl, gerado no repo do app por
          `dart run tool/midia/texto_narrado.dart`; uma linha por áudio:
@@ -22,11 +29,13 @@ Uso:
   python ferramentas/narrar.py --so-contar                 # caracteres e saldo
   python ferramentas/narrar.py --prefixos comum,advento,natal --paralelo 4
   python ferramentas/narrar.py --ids comum-001 --refazer
+  python ferramentas/narrar.py --motor microsoft --paralelo 3     # a fase atual
 """
 import argparse
 import json
 import os
 import re
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -37,7 +46,11 @@ import urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import voz_microsoft  # noqa: E402
+
 RAIZ = Path(__file__).resolve().parents[1]
+MOTORES = ('elevenlabs', voz_microsoft.MOTOR)
 ENTRADA = RAIZ / 'ferramentas' / 'narracao' / 'narracoes.jsonl'
 LOG = RAIZ / 'ferramentas' / 'narracao' / 'narrar.log.jsonl'
 CHAVE_PADRAO = Path('C:/Users/robot/OneDrive/Área de Trabalho/NUVEM GREGORY/'
@@ -186,20 +199,66 @@ def registrar(registro, arquivo=LOG):
             f.write(json.dumps(registro, ensure_ascii=False) + '\n')
 
 
-def fazer(chave, item, normalizacao):
+def _registro_de(item, motor):
+    return {'caminho': item['caminho'], 'id': item['id'],
+            'tradicao': item['tradicao'], 'caracteres': len(item['texto']),
+            'motor': motor, 'quando': time.strftime('%Y-%m-%dT%H:%M:%S')}
+
+
+def fazer(chave, item, normalizacao, motor='elevenlabs'):
     destino = RAIZ / item['caminho']
-    registro = {'caminho': item['caminho'], 'id': item['id'],
-                'tradicao': item['tradicao'], 'caracteres': len(item['texto']),
-                'quando': time.strftime('%Y-%m-%dT%H:%M:%S')}
+    registro = _registro_de(item, motor)
     try:
-        mp3, pedido = sintetizar(chave, item, normalizacao)
-        segundos, tamanho = para_m4a(mp3, destino)
-        registro.update(ok=True, segundos=round(segundos, 2), bytes=tamanho,
-                        pedido=pedido)
+        if motor == voz_microsoft.MOTOR:
+            pcm, trechos = voz_microsoft.narrar(item['texto'], item['tradicao'])
+            voz_microsoft.gravar_m4a(pcm, destino, PARAMETROS_AAC)
+            segundos, tamanho = duracao_segundos(destino), destino.stat().st_size
+            registro.update(voz=voz_microsoft.VOZES[item['tradicao']],
+                            velocidade=voz_microsoft.VELOCIDADE, trechos=len(trechos))
+        else:
+            mp3, pedido = sintetizar(chave, item, normalizacao)
+            segundos, tamanho = para_m4a(mp3, destino)
+            registro['pedido'] = pedido
+        registro.update(ok=True, segundos=round(segundos, 2), bytes=tamanho)
     except Exception as e:  # noqa: BLE001
         registro.update(ok=False, erro=str(e)[:300])
     registrar(registro)
     return registro
+
+
+def voz_de(item, motor):
+    """O identificador da voz que lê o item neste motor: itens com a mesma
+    voz e o mesmo texto viram um grupo (uma geração, o resto cópia)."""
+    if motor == voz_microsoft.MOTOR:
+        return voz_microsoft.VOZES[item['tradicao']]
+    return VOZES[item['tradicao']]['voice_id']
+
+
+def agrupar(itens, motor):
+    grupos = {}
+    for item in itens:
+        grupos.setdefault((voz_de(item, motor), item['texto']), []).append(item)
+    return list(grupos.values())
+
+
+def fazer_grupo(chave, grupo, normalizacao, motor):
+    """Gera o primeiro item do grupo e copia o arquivo para os outros; uma
+    linha de log por item. Se a geração falhar, as cópias falham com ela."""
+    primeiro, copias = grupo[0], grupo[1:]
+    registros = [fazer(chave, primeiro, normalizacao, motor)]
+    for item in copias:
+        registro = _registro_de(item, motor)
+        if registros[0]['ok']:
+            destino = RAIZ / item['caminho']
+            destino.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(RAIZ / primeiro['caminho'], destino)
+            registro.update(ok=True, segundos=registros[0]['segundos'],
+                            bytes=registros[0]['bytes'], copiado_de=primeiro['caminho'])
+        else:
+            registro.update(ok=False, erro=f'a geração de {primeiro["caminho"]} falhou')
+        registrar(registro)
+        registros.append(registro)
+    return registros
 
 
 def main():
@@ -216,6 +275,9 @@ def main():
     ap.add_argument('--so-contar', action='store_true')
     ap.add_argument('--forcar', action='store_true',
                     help='segue mesmo se o saldo não cobrir tudo')
+    ap.add_argument('--motor', choices=MOTORES, default='elevenlabs',
+                    help='elevenlabs (padre e pastor, pago) ou microsoft (Antonio, '
+                         'gratuito — a fase atual, ver voz_microsoft.py)')
     args = ap.parse_args()
 
     itens = ler_entrada(args.entrada)
@@ -235,33 +297,46 @@ def main():
     if args.limite:
         itens = itens[:args.limite]
 
-    total = sum(len(i['texto']) for i in itens)
+    grupos = agrupar(itens, args.motor)
+    total = sum(len(g[0]['texto']) for g in grupos)
     milhar = f'{total:,}'.replace(',', '.')
-    print(f'a gerar: {len(itens)} áudios, {milhar} caracteres')
-    chave = chave_api()
-    s = saldo(chave)
-    if s:
-        print(f'plano {s["plano"]}: {s["usados"]} usados de {s["limite"]}, restam {s["restam"]}')
-    if args.so_contar or not itens:
-        return 0
-    if s is None:
-        sys.exit(f'sem chave válida: troque a chave em {CHAVE_PADRAO.name} '
-                 '(ou em ELEVENLABS_API_KEY) e rode de novo')
-    if total > s['restam'] and not args.forcar:
-        sys.exit('o saldo não cobre este lote; reduza com --prefixos/--limite ou use --forcar')
+    print(f'a gerar: {len(itens)} áudios ({len(grupos)} gerações, {len(itens) - len(grupos)} '
+          f'cópias do mesmo texto na mesma voz), {milhar} caracteres')
+    chave = None
+    if args.motor == voz_microsoft.MOTOR:
+        print(f'motor Microsoft: {sorted(set(voz_microsoft.VOZES.values()))}, '
+              f'velocidade {voz_microsoft.VELOCIDADE}, sem chave e sem saldo')
+        if args.so_contar or not itens:
+            return 0
+    else:
+        chave = chave_api()
+        s = saldo(chave)
+        if s:
+            print(f'plano {s["plano"]}: {s["usados"]} usados de {s["limite"]}, restam {s["restam"]}')
+        if args.so_contar or not itens:
+            return 0
+        if s is None:
+            sys.exit(f'sem chave válida: troque a chave em {CHAVE_PADRAO.name} '
+                     '(ou em ELEVENLABS_API_KEY) e rode de novo')
+        if total > s['restam'] and not args.forcar:
+            sys.exit('o saldo não cobre este lote; reduza com --prefixos/--limite ou use --forcar')
 
-    feitos = erros = 0
+    feitos = erros = n = 0
     inicio = time.time()
     with ThreadPoolExecutor(max_workers=max(1, args.paralelo)) as pool:
-        futuros = {pool.submit(fazer, chave, i, args.normalizacao): i for i in itens}
-        for n, fut in enumerate(as_completed(futuros), 1):
-            r = fut.result()
-            if r['ok']:
-                feitos += 1
-                print(f'[{n}/{len(itens)}] ok   {r["caminho"]}  {r["segundos"]}s  {r["bytes"] // 1024} KB')
-            else:
-                erros += 1
-                print(f'[{n}/{len(itens)}] ERRO {r["caminho"]}  {r["erro"]}')
+        futuros = [pool.submit(fazer_grupo, chave, g, args.normalizacao, args.motor)
+                   for g in grupos]
+        for fut in as_completed(futuros):
+            for r in fut.result():
+                n += 1
+                if r['ok']:
+                    feitos += 1
+                    copia = '  (cópia)' if r.get('copiado_de') else ''
+                    print(f'[{n}/{len(itens)}] ok   {r["caminho"]}  {r["segundos"]}s  '
+                          f'{r["bytes"] // 1024} KB{copia}')
+                else:
+                    erros += 1
+                    print(f'[{n}/{len(itens)}] ERRO {r["caminho"]}  {r["erro"]}')
     minutos = (time.time() - inicio) / 60
     print(f'\ngerados {feitos} - erros {erros} - {minutos:.1f} min')
     return 1 if erros else 0

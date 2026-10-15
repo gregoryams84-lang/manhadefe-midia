@@ -74,8 +74,21 @@ antes de escrever qualquer arquivo.
 
 Voz, chave, chamada da API, codec e log vêm de narrar.py (mesma pasta).
 
+FASE ATUAL (14/10/2026): --motor microsoft — a voz gratuita da Microsoft
+(voz_microsoft.py, Antonio nas duas tradições) no lugar da ElevenLabs, sem
+chave e sem saldo, até as vozes do bispo e do pastor entrarem em novembro.
+As peças desse motor ficam em outro diretório de trabalho
+(narracao/trechos-microsoft) para nunca se misturarem com as da ElevenLabs:
+a peça é identificada por (tradição, texto), não pela voz. As marcas são
+medidas do mesmo jeito; cada peça já vem aparada (bordas curtas), e os
+silêncios entre elas são os daqui. --exportar-textos grava o texto de cada
+arquivo publicado no formato do narracoes.jsonl, para o conferir_stt.py
+ouvir o Terço e as orações também.
+
 Uso:
   python ferramentas/narrar_trechos.py --so-contar
+  python ferramentas/narrar_trechos.py --motor microsoft                 # a fase atual
+  python ferramentas/narrar_trechos.py --exportar-textos ferramentas/narracao/trechos.jsonl
   python ferramentas/narrar_trechos.py --mostrar gozosos-dezena-1      # o texto, peça a peça
   python ferramentas/narrar_trechos.py --simular --midia /tmp/midia --app /tmp/app   # prova ponta a ponta
   python ferramentas/narrar_trechos.py                                 # tudo o que falta
@@ -95,8 +108,9 @@ from dataclasses import dataclass
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import voz_microsoft  # noqa: E402
 from narrar import (  # noqa: E402
-    PARAMETROS_AAC, RAIZ, VOZES, chave_api, duracao_segundos, registrar,
+    MOTORES, PARAMETROS_AAC, RAIZ, VOZES, chave_api, duracao_segundos, registrar,
     saldo, sintetizar)
 
 # O repo do app: a pasta-irmã deste, ou onde MANHA_DE_FE_APP apontar (clone
@@ -115,8 +129,10 @@ PASTA_DAS_ORACOES = 'oracoes'
 # não as pede, e o manifesto não as lista.
 PASTA_EVANGELICO_NO_TRABALHO = 'oracoes-evangelico'
 TRABALHO_PADRAO = RAIZ / 'ferramentas' / 'narracao' / 'trechos'
-# Peças simuladas nunca se misturam com as reais: outro diretório.
+# Peças simuladas nunca se misturam com as reais: outro diretório. As da
+# Microsoft idem (a chave da peça não leva a voz).
 TRABALHO_SIMULADO = RAIZ / 'ferramentas' / 'narracao' / 'trechos-simulado'
+TRABALHO_MICROSOFT = RAIZ / 'ferramentas' / 'narracao' / 'trechos-microsoft'
 LOG = RAIZ / 'ferramentas' / 'narracao' / 'narrar_trechos.log.jsonl'
 TAXA = 44100  # a mesma dos .m4a de narrar.py; peças e silêncios em PCM nesta taxa
 
@@ -475,16 +491,23 @@ def duracao_simulada(texto):
 
 
 def gerar_peca(peca, tradicao, chave, trabalho, simular, chave_api_=None,
-               normalizacao='auto'):
+               normalizacao='auto', motor='elevenlabs'):
     """Produz o .wav medido da peça (e o .mp3 bruto da API, no modo real) e
     grava o .json de metadados ao lado. Devolve a duração em segundos."""
     wav, mp3, meta = arquivos_da_peca(trabalho, tradicao, chave)
     wav.parent.mkdir(parents=True, exist_ok=True)
     registro = {'chave': chave, 'tradicao': tradicao, 'texto': peca.texto,
                 'caracteres': len(peca.texto), 'simulado': simular,
+                'motor': None if simular else motor,
                 'quando': time.strftime('%Y-%m-%dT%H:%M:%S')}
     if simular:
         silencio_wav(wav, duracao_simulada(peca.texto))
+    elif motor == voz_microsoft.MOTOR:
+        # Já aparada nas bordas; sem silêncio final — o de entre as peças e
+        # a PAUSA_DE_SAIDA são os daqui.
+        pcm, _ = voz_microsoft.narrar(peca.texto, tradicao, silencio_final=0.0)
+        wav.write_bytes(voz_microsoft.wav_de(pcm))
+        registro.update(voz=voz_microsoft.VOZES[tradicao], velocidade=voz_microsoft.VELOCIDADE)
     else:
         audio, pedido = sintetizar(chave_api_, {'tradicao': tradicao, 'texto': peca.texto},
                                    normalizacao)
@@ -718,6 +741,12 @@ def main(argv=None):
     ap.add_argument('--normalizacao', default='auto', choices=['auto', 'on', 'off'])
     ap.add_argument('--paralelo', type=int, default=3)
     ap.add_argument('--forcar', action='store_true', help='segue mesmo se o saldo não cobrir tudo')
+    ap.add_argument('--motor', choices=MOTORES, default='elevenlabs',
+                    help='elevenlabs (padre e pastor, pago) ou microsoft (Antonio, gratuito — '
+                         'a fase atual; peças em narracao/trechos-microsoft)')
+    ap.add_argument('--exportar-textos', metavar='ARQUIVO',
+                    help='grava o texto de cada arquivo publicado (terco/, oracoes/) no formato '
+                         'do narracoes.jsonl, para o conferir_stt.py, e sai')
     args = ap.parse_args(argv)
 
     # Antes de tudo: a simulação nunca toca os repositórios reais.
@@ -728,13 +757,22 @@ def main(argv=None):
         sys.exit(f'{app} não parece o repo do app (sem pubspec.yaml): aponte com --app '
                  'ou com a variável de ambiente MANHA_DE_FE_APP')
     midia = Path(args.midia) if args.midia else MIDIA_PADRAO
-    trabalho = Path(args.trabalho) if args.trabalho else (TRABALHO_SIMULADO if args.simular else TRABALHO_PADRAO)
+    if args.trabalho:
+        trabalho = Path(args.trabalho)
+    elif args.simular:
+        trabalho = TRABALHO_SIMULADO
+    elif args.motor == voz_microsoft.MOTOR:
+        trabalho = TRABALHO_MICROSOFT
+    else:
+        trabalho = TRABALHO_PADRAO
     log = Path(args.log)
     reaproveitar = not args.sem_reaproveitar
 
     todos = catalogo(app, midia, trabalho)
     if args.mostrar:
         return mostrar(todos, args.mostrar)
+    if args.exportar_textos:
+        return exportar_textos(todos, Path(args.exportar_textos))
     escolhidos = selecionar(todos, args)
     if not args.refazer:
         escolhidos = [t for t in escolhidos if not t.destino.exists()]
@@ -782,7 +820,10 @@ def main(argv=None):
         print(f'modo SIMULADO: silêncio no lugar da voz, peças em {trabalho}')
 
     chave = None
-    if not args.simular:
+    if not args.simular and args.motor == voz_microsoft.MOTOR:
+        print(f'motor Microsoft: {sorted(set(voz_microsoft.VOZES.values()))}, '
+              f'velocidade {voz_microsoft.VELOCIDADE}, sem chave e sem saldo; peças em {trabalho}')
+    elif not args.simular:
         try:
             chave = chave_api()
         except SystemExit as e:
@@ -806,7 +847,7 @@ def main(argv=None):
     if pendentes:
         with ThreadPoolExecutor(max_workers=max(1, args.paralelo)) as pool:
             futuros = {pool.submit(gerar_peca, peca, trad, ch, trabalho, args.simular,
-                                   chave, args.normalizacao): (ch, peca)
+                                   chave, args.normalizacao, args.motor): (ch, peca)
                        for ch, (peca, trad) in pendentes.items()}
             for n, fut in enumerate(as_completed(futuros), 1):
                 ch, peca = futuros[fut]
@@ -842,6 +883,23 @@ def mostrar(trechos, id_):
     for n, p in enumerate(t.pecas, 1):
         marca = 'CONTA' if p.conta else '     '
         print(f'{n:3} {marca} +{p.pausa_antes:.1f}s  {p.rotulo:<24} {p.texto}')
+    return 0
+
+
+def exportar_textos(trechos, destino):
+    """Uma linha `{id, tradicao, caminho, texto}` por arquivo PUBLICADO (a
+    chave `terco/…` ou `oracoes/…`), com o texto das peças em ordem — o
+    que o conferir_stt.py compara com o que ouviu. As cópias evangélicas
+    (no diretório de trabalho) ficam de fora: não são publicadas."""
+    publicados = [t for t in trechos
+                  if t.arquivo.startswith((PASTA_DO_TERCO + '/', PASTA_DAS_ORACOES + '/'))]
+    destino.parent.mkdir(parents=True, exist_ok=True)
+    with open(destino, 'w', encoding='utf-8') as f:
+        for t in publicados:
+            f.write(json.dumps({'id': t.id, 'tradicao': t.tradicao, 'caminho': t.arquivo,
+                                'texto': ' '.join(p.texto for p in t.pecas)},
+                               ensure_ascii=False) + chr(10))
+    print(f'{len(publicados)} textos em {destino}')
     return 0
 
 
