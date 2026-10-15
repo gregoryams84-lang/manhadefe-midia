@@ -1,3 +1,30 @@
 # Reprovações do conferir_stt.py aceitas à mão (ouvidas e decididas), uma por linha: caminho | motivo
+# Regra do aceite (15/10): só entra aqui o arquivo cuja DURAÇÃO bate com a regeneração (reconferir_duracao.py: a
+# Microsoft não cortou) e cuja diferença é do ouvido, provada por um teste à parte (a palavra sozinha, ou a cauda
+# do arquivo sozinha, é ouvida certa) ou é um nome estrangeiro que o ouvido não conhece.
 narracao/catolico/comum-032.m4a | "ninguém" depois de "rosto de" sai como "Lindin" nos dois ouvidos; o mesmo "ninguém" sozinho é ouvido certo nos dois (teste de 15/10): viés do ouvido, não do áudio
 narracao/evangelico/comum-032.m4a | cópia byte a byte do católico (mesmo motivo)
+narracao/catolico/comum-143.m4a | o ouvido engole "minha" em "aquieta a minha pressa"; duração igual à regeneração (áudio inteiro)
+narracao/evangelico/comum-143.m4a | cópia byte a byte do católico (mesmo motivo)
+narracao/catolico/comum-148.m4a | o ouvido escreve "primeira" deslocado para "leve-a primeiro à oração"; duração igual à regeneração
+narracao/evangelico/comum-148.m4a | cópia byte a byte do católico (mesmo motivo)
+narracao/catolico/comum-198.m4a | o ouvido acrescenta "a sua espera" (não há palavra a menos no áudio); duração igual à regeneração
+narracao/evangelico/comum-198.m4a | cópia byte a byte do católico (mesmo motivo)
+narracao/catolico/comum-225.m4a | no arquivo inteiro os dois ouvidos pulam a oração depois de "Oração."; os últimos 25 s sozinhos saem certos nos dois (teste de 15/10); duração igual à regeneração
+narracao/evangelico/comum-225.m4a | cópia byte a byte do católico (mesmo motivo)
+narracao/catolico/pascoa-015.m4a | no arquivo inteiro os dois ouvidos pulam a oração depois de "Oração."; os últimos 25 s sozinhos saem certos nos dois (teste de 15/10); duração igual à regeneração
+narracao/evangelico/pascoa-015.m4a | cópia byte a byte do católico (mesmo motivo)
+narracao/catolico/quaresma-001.m4a | "e peça a" ouvido como "dessa" (mesmo som, 3 palavras curtas); duração igual à regeneração
+narracao/evangelico/quaresma-001.m4a | cópia byte a byte do católico (mesmo motivo)
+santos/01-15.m4a | nome estrangeiro: Steyl (Holanda) ouvido como "seio"
+santos/02-13.m4a | nome estrangeiro: Ricci ouvido como "risse"
+santos/02-29.m4a | nome estrangeiro: Ramsey ouvido como "hansi"
+santos/04-28.m4a | nome estrangeiro: Saint-Laurent-sur-Sèvre ouvido como "lawrenceur severin"
+santos/05-20.m4a | nome: Áquila ouvido como "atlin"; e "com o seu esplendor" ouvido como "com seus plendores" (a cauda sozinha mostra as palavras lá)
+santos/06-05.m4a | nome estrangeiro: Wessex ouvido como "v6"
+santos/06-14.m4a | "curou da lepra o sírio Naamã" ouvido como "curou o dalé para o sírio na aman" (mesmo som, nome bíblico); a cauda sozinha confirma
+santos/07-13.m4a | "o coroou imperador": o ouvido desloca "coroou" (a palavra está lá, só muda de lugar na transcrição)
+santos/10-06.m4a | nome estrangeiro: Reims ouvido como "hans"
+santos/10-19.m4a | "de vida austera e" ouvido como "divido aos tere" (mesmo som, 4 palavras); duração igual à regeneração
+santos/11-12.m4a | nome estrangeiro: Kuncewicz ouvido como "comcevix"
+santos/12-16.m4a | nome estrangeiro: Selz ouvido como "ceus"

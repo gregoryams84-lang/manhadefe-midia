@@ -185,6 +185,8 @@ def teste_comparar_tolera_o_que_soa_igual_e_as_palavras_curtas_mas_nao_o_trecho_
         ('venha visitar-me a mãe do meu Senhor', 'venha visitar minha mãe do meu Senhor', 'som'),
         ('a casa de Nazaré', 'a casa Nazaré', 'curta'),
         ('bendita sois vós entre as mulheres', 'bendita suas voz entre as mulheres', 'som'),
+        ('a Moisés face a face, como', 'a Moisés fez se a face, como', 'som'),
+        ('foge, cala-te, fica em paz.', 'foge, cala-te, fique em paz.', 'som'),
     ]
     for esperado, ouvido, tipo in casos_leves:
         _, duras, leves = conferir_stt.comparar(esperado, ouvido)

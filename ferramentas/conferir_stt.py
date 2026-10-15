@@ -269,7 +269,10 @@ PALAVRAS_NO_MAXIMO = 3
 LETRAS_DA_PALAVRA_CURTA = 3
 
 
-_MESMO_SOM = (('qu', 'c'), ('ss', 's'), ('z', 's'), ('h', ''))
+# Na ordem: o z vira s ANTES de ss virar s ("fez-se" → "fesse" → "fese"); o
+# c antes de e/i soa s ("face" → "fase" — o ç já chegou aqui como c, sem
+# acento).
+_MESMO_SOM = (('qu', 'c'), ('z', 's'), ('ce', 'se'), ('ci', 'si'), ('ss', 's'), ('h', ''))
 # Palavras de função de 4 letras que o ouvido engole sem o áudio estar
 # errado ("Assim lhes falámos" → "Assim falámos"); as de até 3 letras já
 # passam por `palavras_curtas`.
