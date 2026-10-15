@@ -149,15 +149,22 @@ FOLGA_DO_FIM = 0.3  # segundos: o fim do último limite pode passar um pouco do 
 
 def incompleto(texto, limites, segundos):
     """None se a resposta está inteira; senão, o motivo. Função pura — os
-    testes a conferem com limites inventados."""
+    testes a conferem com limites inventados.
+
+    Um limite costuma ser uma palavra, mas data, número e numeral romano
+    chegam num limite só ("em 5 de setembro de 1997", "João XXIII"): por
+    isso a prova é o FIM do que chegou, juntando todos os limites, contra a
+    última palavra do texto — e não o texto do último limite sozinho (em
+    15/10 isso recusou 125 santos inteiros)."""
     palavras = [p for p in (_miolo(p) for p in texto.split()) if p]
     if not palavras:
         return None
     if not limites:
         return 'sem limites de palavra na resposta'
-    ultima, fim = limites[-1]
-    if _miolo(ultima) != palavras[-1]:
-        return f'a resposta parou em "{ultima}" (a última palavra é "{palavras[-1]}")'
+    chegou = ''.join(_miolo(t) for t, _ in limites)
+    if not chegou.endswith(palavras[-1]):
+        return f'a resposta parou em "{limites[-1][0]}" (a última palavra é "{palavras[-1]}")'
+    fim = limites[-1][1]
     if segundos + FOLGA_DO_FIM < fim:
         return f'o áudio tem {segundos:.2f} s e a última palavra termina em {fim:.2f} s'
     return None

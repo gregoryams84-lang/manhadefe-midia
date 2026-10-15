@@ -99,6 +99,10 @@ def teste_incompleto_pega_a_resposta_cortada_pela_ultima_palavra_ou_pela_duracao
     assert 'tem 2.00 s' in vm.incompleto(texto, inteiro, 2.0)
     assert 'sem limites' in vm.incompleto(texto, [], 4.5)
     assert vm.incompleto('Amém.', [('Amém', 0.6)], 1.0) is None
+    # Data, número e numeral romano chegam num limite só (15/10).
+    assert vm.incompleto('Morreu em 5 de setembro de 1997.', [('Morreu', 0.4), ('em 5 de setembro de 1997', 2.2)], 2.5) is None
+    assert vm.incompleto('São João XXIII.', [('São', 0.3), ('João XXIII', 1.1)], 1.3) is None
+    assert 'parou em' in vm.incompleto('Morreu em 5 de setembro de 1997.', [('Morreu', 0.4), ('em 5 de setembro', 1.5)], 2.5)
     assert vm.incompleto('   ', [], 0.0) is None
 
 
