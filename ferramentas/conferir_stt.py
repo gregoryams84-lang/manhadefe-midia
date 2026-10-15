@@ -438,6 +438,32 @@ def ultimo_por_caminho():
     return vistos
 
 
+# Reprovações aceitas À MÃO, com o motivo, uma por linha: `caminho | motivo`.
+# É o registro de quem ouviu e decidiu — fica no git. Caso de 15/10: em
+# comum-032 os dois ouvidos escrevem "Lindin" para "ninguém" depois de
+# "rosto de" (um nome depois de "de"), e o mesmo "ninguém" sozinho é ouvido
+# certo nos dois: o viés é do ouvido, não do áudio.
+ACEITOS = RAIZ / 'ferramentas' / 'narracao' / 'stt-aceitos.txt'
+
+
+def aceitos_a_mao(arquivo=ACEITOS):
+    """{caminho: motivo} das reprovações aceitas à mão; linha vazia ou com #
+    é comentário; linha sem ` | ` ou sem motivo é erro (um aceite sem motivo
+    não é um aceite)."""
+    aceitos = {}
+    if not Path(arquivo).exists():
+        return aceitos
+    for n, linha in enumerate(Path(arquivo).read_text(encoding='utf-8').splitlines(), 1):
+        linha = linha.strip()
+        if not linha or linha.startswith('#'):
+            continue
+        caminho, sep, motivo = linha.partition(' | ')
+        if not sep or not motivo.strip():
+            sys.exit(f'{arquivo}:{n}: esperado "caminho | motivo"')
+        aceitos[caminho.strip()] = motivo.strip()
+    return aceitos
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--entrada', default=str(ENTRADA))
@@ -455,11 +481,15 @@ def main():
     args = ap.parse_args()
 
     vistos = ultimo_por_caminho()
+    aceitos = aceitos_a_mao()
     if args.so_listar:
-        ruins = [r for r in vistos.values() if not r.get('aprovado')]
+        ruins = [r for r in vistos.values() if not r.get('aprovado') and r['caminho'] not in aceitos]
         for r in ruins:
             print(r['caminho'], r.get('semelhanca'), r.get('diferencas') or r.get('erro'))
-        print(f'{len(ruins)} reprovados de {len(vistos)} conferidos')
+        a_mao = [c for c in aceitos if c in vistos and not vistos[c].get('aprovado')]
+        for c in a_mao:
+            print(f'{c}  aceito à mão: {aceitos[c]}')
+        print(f'{len(ruins)} reprovados de {len(vistos)} conferidos ({len(a_mao)} aceitos à mão)')
         return 1 if ruins else 0
 
     itens = itens_das_pecas(args.pecas) if args.pecas else ler_entrada(args.entrada)
@@ -501,8 +531,12 @@ def main():
                       f'{r.get("semelhanca", r.get("erro"))}{modelo}{duvidas}{igual}', flush=True)
                 if not r['aprovado']:
                     reprovados.append(r)
-    print(f'\naprovados {len(itens) - len(reprovados)} - reprovados {len(reprovados)} - '
-          f'{(time.time() - inicio) / 60:.1f} min')
+    a_mao = [r for r in reprovados if r['caminho'] in aceitos]
+    reprovados = [r for r in reprovados if r['caminho'] not in aceitos]
+    print(f'\naprovados {len(itens) - len(reprovados) - len(a_mao)} - reprovados {len(reprovados)} - '
+          f'aceitos à mão {len(a_mao)} - {(time.time() - inicio) / 60:.1f} min')
+    for r in a_mao:
+        print(f'  {r["id"]} aceito à mão: {aceitos[r["caminho"]]}')
     for r in reprovados:
         print(' ', r['id'], r.get('diferencas') or r.get('erro'))
     if reprovados:

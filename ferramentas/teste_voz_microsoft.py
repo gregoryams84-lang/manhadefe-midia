@@ -187,6 +187,22 @@ def teste_comparar_tolera_o_que_soa_igual_e_as_palavras_curtas_mas_nao_o_trecho_
     assert duras, 'nome trocado tem de reprovar'
 
 
+def teste_aceitos_a_mao_exige_caminho_e_motivo():
+    with tempfile.TemporaryDirectory() as tmp:
+        arq = Path(tmp) / 'aceitos.txt'
+        arq.write_text(chr(10).join(['# comentário', '', 'narracao/catolico/x.m4a | o ouvido troca a palavra', '']),
+                       encoding='utf-8')
+        assert conferir_stt.aceitos_a_mao(arq) == {'narracao/catolico/x.m4a': 'o ouvido troca a palavra'}
+        assert conferir_stt.aceitos_a_mao(Path(tmp) / 'nao-existe.txt') == {}
+        arq.write_text('narracao/catolico/x.m4a |   ' + chr(10), encoding='utf-8')
+        try:
+            conferir_stt.aceitos_a_mao(arq)
+        except SystemExit as e:
+            assert 'motivo' in str(e)
+        else:
+            raise AssertionError('aceitou um aceite sem motivo')
+
+
 def main():
     """Roda tudo sem pytest."""
     testes = [(n, o) for n, o in sorted(globals().items()) if n.startswith('teste_') and callable(o)]

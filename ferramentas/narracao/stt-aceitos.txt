@@ -1,0 +1,3 @@
+# Reprovações do conferir_stt.py aceitas à mão (ouvidas e decididas), uma por linha: caminho | motivo
+narracao/catolico/comum-032.m4a | "ninguém" depois de "rosto de" sai como "Lindin" nos dois ouvidos; o mesmo "ninguém" sozinho é ouvido certo nos dois (teste de 15/10): viés do ouvido, não do áudio
+narracao/evangelico/comum-032.m4a | cópia byte a byte do católico (mesmo motivo)
