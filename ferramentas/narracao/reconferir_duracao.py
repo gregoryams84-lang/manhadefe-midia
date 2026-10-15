@@ -10,6 +10,9 @@ import voz_microsoft as vm
 from narrar import PARAMETROS_AAC, duracao_segundos, RAIZ
 sys.stdout.reconfigure(encoding='utf-8')
 itens = [json.loads(l) for l in io.open('ferramentas/narracao/narracoes.jsonl', encoding='utf-8')]
+# argv[1] = prefixo do caminho ('santos/') para reconferir só uma pasta.
+if len(sys.argv) > 1:
+    itens = [i for i in itens if i['caminho'].startswith(sys.argv[1])]
 grupos = {}
 for i in itens:
     grupos.setdefault((vm.VOZES[i['tradicao']], i['texto']), []).append(i)
@@ -48,8 +51,8 @@ print(f'cartões/santos: {len(diferentes)} texto(s) trocado(s) de {len(futs)} em
 for cam, a, b in diferentes:
     print('  ', cam, f'{a:.2f} -> {b:.2f}')
 
-# Peças do Terço e das orações: só compara.
-pecas = sorted((RAIZ / 'ferramentas/narracao/trechos-microsoft/pecas').glob('*/*.json'))
+# Peças do Terço e das orações: só compara (não com um prefixo de pasta).
+pecas = [] if len(sys.argv) > 1 else sorted((RAIZ / 'ferramentas/narracao/trechos-microsoft/pecas').glob('*/*.json'))
 dif_pecas = []
 def peca(meta):
     d = json.loads(meta.read_text(encoding='utf-8'))

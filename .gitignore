@@ -13,3 +13,5 @@ ferramentas/narracao/hinos-reprovados/
 ferramentas/narracao/prioridade-creator.txt
 ferramentas/narracao/trechos-microsoft/
 ferramentas/narracao/trechos.jsonl
+ferramentas/narracao/regerados/
+ferramentas/narracao/*.out

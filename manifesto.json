@@ -1,6 +1,6 @@
 {
   "versao": 1,
-  "geradoEm": "2026-09-29T18:00:17.000Z",
+  "geradoEm": "2026-10-15T10:52:03.000Z",
   "arquivos": {
     "hinos/a-linda-historia.m4a": {
       "bytes": 399269,
@@ -3590,6 +3590,4642 @@
       "bytes": 105514,
       "sha256": "825a7f5c80f9dd5e4e7797633b1039ce17ae1148b939d498d2dd085e25df726f"
     },
+    "narracao/catolico/01-01.m4a": {
+      "bytes": 247384,
+      "sha256": "216969974c769f8e535887535289e9b5d877a10b3a833c16dc418254ba156072"
+    },
+    "narracao/catolico/01-06.m4a": {
+      "bytes": 248487,
+      "sha256": "e90227dbf9975decd93ad344bc1b95a24ca7f51e88690edabb306a704e01e289"
+    },
+    "narracao/catolico/12-24.m4a": {
+      "bytes": 247596,
+      "sha256": "577b340f2a9d11c4054dbde48905f59d9928ea5654e0b179cf318e4fd4d0a5d7"
+    },
+    "narracao/catolico/12-25.m4a": {
+      "bytes": 242877,
+      "sha256": "a2c584b04fb7c7d6a8293d49bd5283bcea07420bbd0d9a2db8d83a6ae6e297cb"
+    },
+    "narracao/catolico/12-31.m4a": {
+      "bytes": 255026,
+      "sha256": "4af15514cab4abc8f7f73a8d4c6b9d2261d1db1147e045008664f0844f894551"
+    },
+    "narracao/catolico/advento-001.m4a": {
+      "bytes": 244368,
+      "sha256": "3c44767d946e24d1fa3404d79037d6faa11724259d5a5f4cf552fffdd2c05014"
+    },
+    "narracao/catolico/advento-002.m4a": {
+      "bytes": 240055,
+      "sha256": "d6305ac819bb76a587ecd87db41276ce33b261d52c6561ef7a3c8020658328b2"
+    },
+    "narracao/catolico/advento-003.m4a": {
+      "bytes": 235644,
+      "sha256": "ccdf5fd6b59f61b860a6d386451375719cf00237bbb3e06c1e5b23ea8bb6df41"
+    },
+    "narracao/catolico/advento-004.m4a": {
+      "bytes": 237893,
+      "sha256": "72d2b5eafe6d67eba97f3ac51ec5b24a25cbf3021a190a00f42a0ac8d3d49bb7"
+    },
+    "narracao/catolico/advento-005.m4a": {
+      "bytes": 243348,
+      "sha256": "5444169e6dd274ca895f8228f5527a661ad070eaa78d0c373e7f36f485634f7c"
+    },
+    "narracao/catolico/advento-006.m4a": {
+      "bytes": 258848,
+      "sha256": "f117defdb33b5d98e5fc535c817723420a6eedc59519ee726b0ef62c4cec5459"
+    },
+    "narracao/catolico/advento-007.m4a": {
+      "bytes": 238276,
+      "sha256": "740844a55a41f88b1d9ea90e33810d7cfa72d7bfc237bedd798b5f788a52212a"
+    },
+    "narracao/catolico/advento-008.m4a": {
+      "bytes": 234995,
+      "sha256": "729164bf9f9a7825102b2557aeaced9c1849c379953ca2832320f8ae02124348"
+    },
+    "narracao/catolico/advento-009.m4a": {
+      "bytes": 258892,
+      "sha256": "82a37c24ea3f32f4ad6d899c61e322eed6bd6be0905d0eae812eb7c8dfe3d5d3"
+    },
+    "narracao/catolico/advento-010.m4a": {
+      "bytes": 247063,
+      "sha256": "4b64eb466a19878e48e596085e0b18a12a63f61478b1c6b4f500dea1e2f3dfad"
+    },
+    "narracao/catolico/advento-011.m4a": {
+      "bytes": 260888,
+      "sha256": "cef35e05d2acd43a7b5259d8ef70a7f50d7690f93510673c147498a45144ee47"
+    },
+    "narracao/catolico/advento-012.m4a": {
+      "bytes": 238805,
+      "sha256": "ac5134af002a35aa4488f1fb41c99cbc1765df502df0ebdac1fd5e09c1aaec2f"
+    },
+    "narracao/catolico/advento-013.m4a": {
+      "bytes": 264364,
+      "sha256": "e45d461669b746bb1f8407fdda55a14e007a39fff303742c54c40553f9588b60"
+    },
+    "narracao/catolico/advento-014.m4a": {
+      "bytes": 218814,
+      "sha256": "201a9ea64fa259d3b9b739b36231f59aae19eb8bddc77d193e3825c4dede7e52"
+    },
+    "narracao/catolico/advento-015.m4a": {
+      "bytes": 244798,
+      "sha256": "02f0a8d02d7dc80bc27a1caac7fba7b8460e046199a6f9aef09f05712cb5cb90"
+    },
+    "narracao/catolico/advento-016.m4a": {
+      "bytes": 238830,
+      "sha256": "460930cd694db88af5632a585c7ea1e9965d72be4510226e4ff3c31dd3b6e0d8"
+    },
+    "narracao/catolico/advento-017.m4a": {
+      "bytes": 225787,
+      "sha256": "7652d8edd5d8f10634cf97022ad6777dbd3edf878c5c6e6fb68de723e628f49f"
+    },
+    "narracao/catolico/advento-018.m4a": {
+      "bytes": 251574,
+      "sha256": "b63630358eded5958826fe48e4b5b7037bcfdc608ec6e716f9065a66e88bf10c"
+    },
+    "narracao/catolico/advento-019.m4a": {
+      "bytes": 275337,
+      "sha256": "059752a0e68a09562313f21cb014cc5b72bc8caf1dcc6a395bef502e53989398"
+    },
+    "narracao/catolico/advento-020.m4a": {
+      "bytes": 244924,
+      "sha256": "8c705e3097497ecf9f0e873b451b569145724951ff6ff102ea12efb2b38cb7a4"
+    },
+    "narracao/catolico/advento-021.m4a": {
+      "bytes": 243843,
+      "sha256": "f12e3ac903b3ca32132102d0bd573c713ba177e50406087da6152a567d1b8cb8"
+    },
+    "narracao/catolico/advento-022.m4a": {
+      "bytes": 277778,
+      "sha256": "5d81f7998b77d67106f241df0141bab55a6f9141c7e5cc6fb195e9c2373dfd40"
+    },
+    "narracao/catolico/advento-023.m4a": {
+      "bytes": 267509,
+      "sha256": "255d02d9eb71c171d2d9ae32a534515d974e53011da4fbf56e6cd2509184efa2"
+    },
+    "narracao/catolico/advento-024.m4a": {
+      "bytes": 252011,
+      "sha256": "13119c1c386cbc7dd5bc1dc2dfe6d32bee8d65a6deb8661544b09aa6295f5ca5"
+    },
+    "narracao/catolico/advento-025.m4a": {
+      "bytes": 232657,
+      "sha256": "37e3c84a471eb84494b0cb99e3a2a150e01e2c0cb835c37ad6de868d9e4c669b"
+    },
+    "narracao/catolico/advento-026.m4a": {
+      "bytes": 234300,
+      "sha256": "0bac06c1056bf8414dcc545fe6db0a70c6db59e69c6694600493cc457c738ae4"
+    },
+    "narracao/catolico/advento-027.m4a": {
+      "bytes": 240463,
+      "sha256": "55d9eb00249a47e36823607635fb8db76991e0ebd867739d076b9a059fee1091"
+    },
+    "narracao/catolico/advento-028.m4a": {
+      "bytes": 248888,
+      "sha256": "21bac59c8a2a8c403e39b3985ad1175913bd62f07e6012fb8ae963b595168c20"
+    },
+    "narracao/catolico/comum-001.m4a": {
+      "bytes": 140606,
+      "sha256": "dc24459bb75cc66266f96a997b6f80a9d2ba3eb771bae4d3438c0091b430e50a"
+    },
+    "narracao/catolico/comum-002.m4a": {
+      "bytes": 213062,
+      "sha256": "4c498cbafc87ee2c4401a495fccd9fd485853f1df187f6905b0863b52bedb3c1"
+    },
+    "narracao/catolico/comum-003.m4a": {
+      "bytes": 202789,
+      "sha256": "7c7506b1b4dca65bf904b371c4d41ba756acbf15936e96520b3655bfc8bea4ae"
+    },
+    "narracao/catolico/comum-004.m4a": {
+      "bytes": 196195,
+      "sha256": "48fa6d197a4153ddd48a44e11efca7d11316fa8b8e5a32875849bce2d7b664aa"
+    },
+    "narracao/catolico/comum-005.m4a": {
+      "bytes": 202306,
+      "sha256": "cc981679893851374a188bff565c183965e19b4f4a163938533230dd32f22e53"
+    },
+    "narracao/catolico/comum-006.m4a": {
+      "bytes": 196841,
+      "sha256": "241ad94aa16f87dbe07de9f540e31f07bc964e968696624ca85b9b528893d9c1"
+    },
+    "narracao/catolico/comum-007.m4a": {
+      "bytes": 213182,
+      "sha256": "2279742e6941ea3072de02323d6a358c0c0bc367038f35b0683b7de5f419d9f8"
+    },
+    "narracao/catolico/comum-008.m4a": {
+      "bytes": 215952,
+      "sha256": "c8ec33555275ec68576691e18197239c3faeef6b058d1af9ef2c29d693840618"
+    },
+    "narracao/catolico/comum-009.m4a": {
+      "bytes": 197858,
+      "sha256": "fb27df260bbeb2cefa91aa43cd880c386445969b74a5ba0abdcd8e1f82f3cc3a"
+    },
+    "narracao/catolico/comum-010.m4a": {
+      "bytes": 190306,
+      "sha256": "5620a0f92851306e31056326f5f152f445ab87e55691d23e51a88349fcd637d9"
+    },
+    "narracao/catolico/comum-011.m4a": {
+      "bytes": 193693,
+      "sha256": "2b20b385472546a33486e9b4bb9194a368ecddc8220c9688a7b6c4b30f25b7d8"
+    },
+    "narracao/catolico/comum-012.m4a": {
+      "bytes": 190613,
+      "sha256": "69ee255fe116ed66489ab52f5ab09e605ed2c5d6d2380df4ef50905fe9311b2c"
+    },
+    "narracao/catolico/comum-013.m4a": {
+      "bytes": 204775,
+      "sha256": "cc9312526628cab237e7a71b7a3b8581e5164991ccfdb8daa4870f8924166e51"
+    },
+    "narracao/catolico/comum-014.m4a": {
+      "bytes": 207332,
+      "sha256": "2168ee87089db5b1f2d0c7125be90c988650b76065484df630fc23b6dbb11027"
+    },
+    "narracao/catolico/comum-015.m4a": {
+      "bytes": 228956,
+      "sha256": "cb80aa6fb2dea7d0eff973241d5c4a2d47c61260ec3438ee3aea33d418b949ad"
+    },
+    "narracao/catolico/comum-016.m4a": {
+      "bytes": 206826,
+      "sha256": "9fdd6857bdabad1a6be05521ac5427c4f5d7c080e6bfb97c26d8ff2cfcab5b30"
+    },
+    "narracao/catolico/comum-017.m4a": {
+      "bytes": 209790,
+      "sha256": "3ef35b3b2764ae50b00c9cae937181317f27874199b30591089b23b408ddc3ff"
+    },
+    "narracao/catolico/comum-018.m4a": {
+      "bytes": 202863,
+      "sha256": "1c3afc1cf217fe454524ebe777c349260ca37b2e666913cc26357c1dbac02563"
+    },
+    "narracao/catolico/comum-019.m4a": {
+      "bytes": 198735,
+      "sha256": "61899434f261ba0f55250a134523e5c5c659b56039484f086d401c1a4ee8da2e"
+    },
+    "narracao/catolico/comum-020.m4a": {
+      "bytes": 203903,
+      "sha256": "4424c420c47f051bb823bff525a090b6d1602fa9c354619b85830bdee37c676a"
+    },
+    "narracao/catolico/comum-021.m4a": {
+      "bytes": 210483,
+      "sha256": "6fb559fec70647d902bb71a507252e4d762923c9ec2b027254bd7a4799f4ceb8"
+    },
+    "narracao/catolico/comum-022.m4a": {
+      "bytes": 198802,
+      "sha256": "d67505c06bbc944aa490af1669fb962ac5f437579db3ee94df4def6c4e4b51ea"
+    },
+    "narracao/catolico/comum-023.m4a": {
+      "bytes": 218186,
+      "sha256": "5cb473168410070e6d9952a45fbae3c6bb6bd8fab2b0c49070b2067c8ff5932b"
+    },
+    "narracao/catolico/comum-024.m4a": {
+      "bytes": 181921,
+      "sha256": "104947a894f2f35223306c59e8aceaf3b0a2906d320f568894f6f4707e10fa2b"
+    },
+    "narracao/catolico/comum-025.m4a": {
+      "bytes": 228620,
+      "sha256": "19e83c699e67299736e442b255ddcd45e015aecdfceef2146ed009a329bfa63b"
+    },
+    "narracao/catolico/comum-026.m4a": {
+      "bytes": 203110,
+      "sha256": "2e8d0e1e2d649c3a5371782f35a379bee8f1c07d11d2cc9442ad9226585f73e7"
+    },
+    "narracao/catolico/comum-027.m4a": {
+      "bytes": 220765,
+      "sha256": "a4dae9bd1504e99f3e63aabcecf00b411c026d54cc7080b67e98479a11e5da4f"
+    },
+    "narracao/catolico/comum-028.m4a": {
+      "bytes": 197751,
+      "sha256": "9fb8002299cbdd0bfae953224dfcb9be51deae0c7efd3fd0c93a1fa49eaa2abd"
+    },
+    "narracao/catolico/comum-029.m4a": {
+      "bytes": 224853,
+      "sha256": "8a40a7a83f8c5eb66cd43ac1dc2a27810ec417a51b055e339769efd4a2034fed"
+    },
+    "narracao/catolico/comum-030.m4a": {
+      "bytes": 223862,
+      "sha256": "584c6b1826add5878ad8a85f9b1ed9197a81b3e42a191270641761968118cf7c"
+    },
+    "narracao/catolico/comum-031.m4a": {
+      "bytes": 199599,
+      "sha256": "2dd2b20f9ff823c0aa1bec90e286131645e9b5da56e2a540760ba0beb0f74051"
+    },
+    "narracao/catolico/comum-032.m4a": {
+      "bytes": 224022,
+      "sha256": "bf709ca3067951e96a9887937f9ac545cc6c5e23061a52102d585266e07fb12a"
+    },
+    "narracao/catolico/comum-033.m4a": {
+      "bytes": 225185,
+      "sha256": "8ea1d0288bb78fac4b93f1cfe1338c62b3cd7c780fa50a680c49f6824db99278"
+    },
+    "narracao/catolico/comum-034.m4a": {
+      "bytes": 232102,
+      "sha256": "a434f16c66d51740b11b714572092e3e3b5b7202d801231f09bbd9b62651aeb2"
+    },
+    "narracao/catolico/comum-035.m4a": {
+      "bytes": 235588,
+      "sha256": "15394929b40596a514804e33888f7538dc8c1b57571d0e248f4f27081b92bc61"
+    },
+    "narracao/catolico/comum-036.m4a": {
+      "bytes": 232856,
+      "sha256": "057b3df583d0ecfd8f1bd45eb2adddbbf3d7eccac6600d32efa858492af279c2"
+    },
+    "narracao/catolico/comum-037.m4a": {
+      "bytes": 231605,
+      "sha256": "56b0e5dda844619326353caf5bc5278a48027b376023d7fb5037def5235b7935"
+    },
+    "narracao/catolico/comum-038.m4a": {
+      "bytes": 212112,
+      "sha256": "adf534b32167db087ceec51b39629c4736eac120b7febbe04022c80b9dc24fe4"
+    },
+    "narracao/catolico/comum-039.m4a": {
+      "bytes": 218095,
+      "sha256": "aa555f2081e17d2da9d774f0ca49ad1d4673e9c8eab017133c15f171276b2dc6"
+    },
+    "narracao/catolico/comum-040.m4a": {
+      "bytes": 214252,
+      "sha256": "d2ea371f9d95530aef16a8a7c1a500598468e86a657800da11e645bb717ad2e1"
+    },
+    "narracao/catolico/comum-041.m4a": {
+      "bytes": 221305,
+      "sha256": "c064642380cf03d593e67536ec34ebc5c8a45451c51f3909c6196dfff56c0cea"
+    },
+    "narracao/catolico/comum-042.m4a": {
+      "bytes": 212642,
+      "sha256": "fde086437c2688829c1f3540de691ecd1c48429c579ba2023212744e5d15dd68"
+    },
+    "narracao/catolico/comum-043.m4a": {
+      "bytes": 198731,
+      "sha256": "eb49b698a73506609934c32ead27e751e7e734c9c0bc11fda0fa9b8586046b0e"
+    },
+    "narracao/catolico/comum-044.m4a": {
+      "bytes": 222207,
+      "sha256": "265ff0e8ee3e32112df919c92244229ba1926dc741c966219c58faf9ba95e1ca"
+    },
+    "narracao/catolico/comum-045.m4a": {
+      "bytes": 213502,
+      "sha256": "adf7e2fdbe9ab52e399406367a063c752ba8387b68ed5fa564598b04fa23102c"
+    },
+    "narracao/catolico/comum-046.m4a": {
+      "bytes": 234756,
+      "sha256": "b5dae3ac12bf8866be6d19c9c16f93fc59b0a224f30b19a7685949f174874f5a"
+    },
+    "narracao/catolico/comum-047.m4a": {
+      "bytes": 211365,
+      "sha256": "6c4bbd1d908d46e882c7494da9791117328495fc1f2c379b6b6a417bbddfac25"
+    },
+    "narracao/catolico/comum-048.m4a": {
+      "bytes": 225609,
+      "sha256": "dbf504145b32ad213a11676050d30bfc5c33636ece21e684ae03c6af9f4385c0"
+    },
+    "narracao/catolico/comum-049.m4a": {
+      "bytes": 199996,
+      "sha256": "6f2e6463fdcf711a2a482e0d59e03dfabb203b891faf5d7bd595f46a706d88e5"
+    },
+    "narracao/catolico/comum-050.m4a": {
+      "bytes": 248445,
+      "sha256": "3f5ab5d69a786ee8905cb7f2cbf9b7b4d806522250ef49625fc7f12c036294a8"
+    },
+    "narracao/catolico/comum-051.m4a": {
+      "bytes": 211493,
+      "sha256": "2b89544c43565640eb512b77e53ade0398a608546f76067130512b6fff69c72a"
+    },
+    "narracao/catolico/comum-052.m4a": {
+      "bytes": 222587,
+      "sha256": "31b3759bebd8bad68d6a42d63474831cf828ee5736b148929ee08004129e85c4"
+    },
+    "narracao/catolico/comum-053.m4a": {
+      "bytes": 244452,
+      "sha256": "fb2c8d3b204dd8bbd94e8e176986a057f1ca41924a71fba923bbf69f1828b262"
+    },
+    "narracao/catolico/comum-054.m4a": {
+      "bytes": 224896,
+      "sha256": "e2577ece4fbea6370f6b2fbd2225816fcc5001e589d6e4e1234b2172c201704e"
+    },
+    "narracao/catolico/comum-055.m4a": {
+      "bytes": 214530,
+      "sha256": "f07477f3ae43d2f66c05b9536c4801fd11009c372757d55a522909c53fe72bfd"
+    },
+    "narracao/catolico/comum-056.m4a": {
+      "bytes": 236564,
+      "sha256": "656fcf9a66d8b795869f3d179c879a6488b9cff1b5c9ade13f5801745b22b961"
+    },
+    "narracao/catolico/comum-057.m4a": {
+      "bytes": 245187,
+      "sha256": "7d17522783e4444ddc0affc1b629076fa68deb3b43760c3192c7bd09b61568fb"
+    },
+    "narracao/catolico/comum-058.m4a": {
+      "bytes": 226840,
+      "sha256": "5e7f99075f5667769b791dc353bff81c67d744b83e091e2de0caad116b12c2f9"
+    },
+    "narracao/catolico/comum-059.m4a": {
+      "bytes": 229350,
+      "sha256": "3c89586590b3cbb8a3b029c2af074d53218c554b0c6a65341d2d5ab627f744dc"
+    },
+    "narracao/catolico/comum-060.m4a": {
+      "bytes": 226293,
+      "sha256": "f2bdb760b377a7888b1eb6c172ad3e160e0444731fafa3c51ebe90f39aeb577a"
+    },
+    "narracao/catolico/comum-061.m4a": {
+      "bytes": 219864,
+      "sha256": "ceed881bfbd281dabaea8bdd9077976fca39db4d6730d9b40eaeac5271c2aac7"
+    },
+    "narracao/catolico/comum-062.m4a": {
+      "bytes": 217107,
+      "sha256": "e1b133977ae09ac251f56f7a87a18fc0506d0ae8e464930354c6baa2d4d906c1"
+    },
+    "narracao/catolico/comum-063.m4a": {
+      "bytes": 225959,
+      "sha256": "f34a1eb3531ff7f5c7aa2c0ec538b7476adda2c41cd854ab8da850f303c7f2da"
+    },
+    "narracao/catolico/comum-064.m4a": {
+      "bytes": 223995,
+      "sha256": "390a75484a8bd27380f0816ae98503db1e75469343900fcec8d131e3738a82af"
+    },
+    "narracao/catolico/comum-065.m4a": {
+      "bytes": 211932,
+      "sha256": "c94443a4aa3a827a92a67e4c86fd32b3d289dbb886620fb53e51239d7a606067"
+    },
+    "narracao/catolico/comum-066.m4a": {
+      "bytes": 246134,
+      "sha256": "2c57d1dcbde14188458378d376dc0ccdf11d43cbd1978881b9b943ad6c271533"
+    },
+    "narracao/catolico/comum-067.m4a": {
+      "bytes": 199711,
+      "sha256": "e06eee2d054fd198cf11b0e9a4f080d4ed54536c97dd778f5c3be83e965ed0db"
+    },
+    "narracao/catolico/comum-068.m4a": {
+      "bytes": 260555,
+      "sha256": "f8b06288bf71471ca0d72163e4cac96a9bdc33f532425647b23696d2aa456a24"
+    },
+    "narracao/catolico/comum-069.m4a": {
+      "bytes": 256746,
+      "sha256": "bfc6a8bc677f01501a20509416872afea65bb494e5e53c104592c4eba687a36b"
+    },
+    "narracao/catolico/comum-070.m4a": {
+      "bytes": 233277,
+      "sha256": "3e9fb9d49ab18c5f452a268f3b566d2ce9f62656d573e90502dd1e48a6613024"
+    },
+    "narracao/catolico/comum-071.m4a": {
+      "bytes": 252743,
+      "sha256": "e4f59e11d020e9f9ec8ff5f3c8becc843556d9f339ce52bdd77c2a0041fbfa7c"
+    },
+    "narracao/catolico/comum-072.m4a": {
+      "bytes": 232237,
+      "sha256": "24444ea78855ab186f2bb9044a9e24dd30e25d948eeff33b17b50efb1472b081"
+    },
+    "narracao/catolico/comum-073.m4a": {
+      "bytes": 227114,
+      "sha256": "d4da4c4546cbcf0b69577cbd98761ee6062cb4bf4f301c4a0d91a2f1509787be"
+    },
+    "narracao/catolico/comum-074.m4a": {
+      "bytes": 235929,
+      "sha256": "b66e35fd07f0108619923803a55559fa6e32e4dcf33f4ed6d04cad1f5a3605a7"
+    },
+    "narracao/catolico/comum-075.m4a": {
+      "bytes": 226266,
+      "sha256": "8f5e0160138ecbe845057645b7d2129e97763b8727af238db88c5afac049a958"
+    },
+    "narracao/catolico/comum-076.m4a": {
+      "bytes": 254151,
+      "sha256": "c73b778faf52a7ca37d97f8ff7baeadde819af9eeacfa7e350fe5a12ad795006"
+    },
+    "narracao/catolico/comum-077.m4a": {
+      "bytes": 210225,
+      "sha256": "5c298221f2da59ea4a670340c12a85fb73bb3bc36f6ea5ee85d1b092dca2b946"
+    },
+    "narracao/catolico/comum-078.m4a": {
+      "bytes": 243870,
+      "sha256": "7e7eab1793ea4cf1fe2766501b122b539ee1cdee4bd474be402742ed0252b38a"
+    },
+    "narracao/catolico/comum-079.m4a": {
+      "bytes": 237257,
+      "sha256": "a8bce18f89549f96d10e373d25bd52dc2673d468d9dbc347b6ac94d9a17e9776"
+    },
+    "narracao/catolico/comum-080.m4a": {
+      "bytes": 219899,
+      "sha256": "6a2be05b544504f69fb2ae2d19d654cea40fbf0af682881c00d676ea13ce7deb"
+    },
+    "narracao/catolico/comum-081.m4a": {
+      "bytes": 239271,
+      "sha256": "f1aef4779c5bf8dc81370642ad0b8b72dc2f02331e075218ec8b18ba028dd921"
+    },
+    "narracao/catolico/comum-082.m4a": {
+      "bytes": 240788,
+      "sha256": "164ce6c25913476598eb4ea3c6fb9d0a06b3c3689f452d877076e35730cf9b2c"
+    },
+    "narracao/catolico/comum-083.m4a": {
+      "bytes": 237652,
+      "sha256": "351ac93ba1cd0c78048b7e5b5f6d65c648c37d986a3982fd2d197e79bb68ae05"
+    },
+    "narracao/catolico/comum-084.m4a": {
+      "bytes": 220684,
+      "sha256": "dba5f5dda6f6977b5d44fca98b82e5fe9acd8d7aa8e964e695afd138999a1e3c"
+    },
+    "narracao/catolico/comum-085.m4a": {
+      "bytes": 237071,
+      "sha256": "5fed09db27981dd90262de043ee1a8cbbb38959e03302181ce7920daff598bdb"
+    },
+    "narracao/catolico/comum-086.m4a": {
+      "bytes": 243037,
+      "sha256": "11473167366f74ba479daac3b3829fd0b52269902643c361f7ad126035ec77c0"
+    },
+    "narracao/catolico/comum-087.m4a": {
+      "bytes": 264923,
+      "sha256": "6e73633869a3ccb8f1c7a301d2f5986eb71a2f6572dd47434344454a1ff98a2b"
+    },
+    "narracao/catolico/comum-088.m4a": {
+      "bytes": 234523,
+      "sha256": "788031c655a1f7e19ba5936fcda0a5d7528f55c0ddbb8517335a6d12bb6ad3b1"
+    },
+    "narracao/catolico/comum-089.m4a": {
+      "bytes": 240773,
+      "sha256": "87e3280b5555b1d208cc2da7175b997080d1f6577c789650fb7cd283780d18a3"
+    },
+    "narracao/catolico/comum-090.m4a": {
+      "bytes": 260301,
+      "sha256": "d526500aa0813c819383eb6ace4a6e74914d1371ca64c80a734b92508e182ed4"
+    },
+    "narracao/catolico/comum-091.m4a": {
+      "bytes": 222135,
+      "sha256": "b765a5bbd0f6448b03a3b5071a6f2216ff2ef5a088e5d996ae56931fdf3568c0"
+    },
+    "narracao/catolico/comum-092.m4a": {
+      "bytes": 259896,
+      "sha256": "07838c61349311621cd7692a7bfdbd5128672abf24f22d36947a829c88db1219"
+    },
+    "narracao/catolico/comum-093.m4a": {
+      "bytes": 235520,
+      "sha256": "5280d17ffa9b6d2d4a5bf958ec04e1000af2344e63f26a38aebeb2d5fa2cdca8"
+    },
+    "narracao/catolico/comum-094.m4a": {
+      "bytes": 241372,
+      "sha256": "7664c16b5046bf8f0c1579538c8f211ca6d98d27beb5b8534bc2afc182202dcf"
+    },
+    "narracao/catolico/comum-095.m4a": {
+      "bytes": 259842,
+      "sha256": "d7ac890175dfbfae810a0d3f08a21c67d15692afa78e8a1972106421d5d58fcb"
+    },
+    "narracao/catolico/comum-096.m4a": {
+      "bytes": 268117,
+      "sha256": "556a293b5c5b8655726e53a00e4bd73229dbec41c336f13d0e13732cc682e998"
+    },
+    "narracao/catolico/comum-097.m4a": {
+      "bytes": 239402,
+      "sha256": "ac3659a9e81e4bd7e775cd08162a0dfceb164668845eead83f029a3e1d32da06"
+    },
+    "narracao/catolico/comum-098.m4a": {
+      "bytes": 240111,
+      "sha256": "4949163505fef3f15e54c41aea3ba7d4a0fb0a44adb760ecdf8a654096a9851f"
+    },
+    "narracao/catolico/comum-099.m4a": {
+      "bytes": 257738,
+      "sha256": "11759bec235ebc514a2bf3180098378a45b02d88989e648ecb9c48f4793bbbe4"
+    },
+    "narracao/catolico/comum-100.m4a": {
+      "bytes": 239498,
+      "sha256": "3fdf3837c2470981d86f3914dacd88e4249d3292e7abd22dc1cb3665f2d47080"
+    },
+    "narracao/catolico/comum-101.m4a": {
+      "bytes": 268246,
+      "sha256": "d82c79e593a75a5e487a2b58f734a739ccee7d38dd90340363c73d18451f39b6"
+    },
+    "narracao/catolico/comum-102.m4a": {
+      "bytes": 227649,
+      "sha256": "5d2c74f735081540bf2d9e9f4797d430d767861b6b05b38bd21d292b281ed038"
+    },
+    "narracao/catolico/comum-103.m4a": {
+      "bytes": 231913,
+      "sha256": "370290647903aca6b04dc4f59de5234051add6548c64e126bf6f2f74d7a15b40"
+    },
+    "narracao/catolico/comum-104.m4a": {
+      "bytes": 248540,
+      "sha256": "1cb48f9ef40abc686635c861c2fe3e8296fb12cfe0946e47ae8abe25a4af5ab5"
+    },
+    "narracao/catolico/comum-105.m4a": {
+      "bytes": 263281,
+      "sha256": "3d43951ec3db38a678995b25d993f1376cbd3727aee5d8b962d62b4e593f072a"
+    },
+    "narracao/catolico/comum-106.m4a": {
+      "bytes": 226156,
+      "sha256": "61fbf96061ea756f63be2555562655c2cafc857fe631f34ae6c6ff8b3e59593e"
+    },
+    "narracao/catolico/comum-107.m4a": {
+      "bytes": 254831,
+      "sha256": "a8e392fb36cec5a328455d1d6f98e8026176e227ca997f0521877f91038cf0a4"
+    },
+    "narracao/catolico/comum-108.m4a": {
+      "bytes": 249514,
+      "sha256": "3334a23fe2804f219c4a57f208ffbbc121b2fe8e475e70ee53156cf43bd991c4"
+    },
+    "narracao/catolico/comum-109.m4a": {
+      "bytes": 227424,
+      "sha256": "b2617926aefca6c730a1a99abf1c14545bb2971b2c1f05bcb59779ee41ab223b"
+    },
+    "narracao/catolico/comum-110.m4a": {
+      "bytes": 216337,
+      "sha256": "b22a543c91c9481e61fcc2a587f769c958211999ffe2d9e394231e72f95892fa"
+    },
+    "narracao/catolico/comum-111.m4a": {
+      "bytes": 223433,
+      "sha256": "fc224c5a5bfdcf6b37b2235442a8a7d8286ee3db49bd1ca91fcdc2af82b13fc6"
+    },
+    "narracao/catolico/comum-112.m4a": {
+      "bytes": 233266,
+      "sha256": "8db3138c0108a0f7f328a866508247e4124d342169be688c08668fe029916e18"
+    },
+    "narracao/catolico/comum-113.m4a": {
+      "bytes": 249125,
+      "sha256": "bdc8e57348ba6013027a459598afc60051642a3c2ca53f7d19cf5d32d2ba8f2f"
+    },
+    "narracao/catolico/comum-114.m4a": {
+      "bytes": 243534,
+      "sha256": "a2489d5f6bc3b06b5c6a6f144dae89444dbb9bb1cd6b6e95d555dcd548c4e78e"
+    },
+    "narracao/catolico/comum-115.m4a": {
+      "bytes": 219855,
+      "sha256": "b9cc1dd34d9ce1ed739c6d142f65b481124c1ed54937306a716471679305f8f9"
+    },
+    "narracao/catolico/comum-116.m4a": {
+      "bytes": 224870,
+      "sha256": "f1ed83e873c836cd27b50c90465443ac892ee9e0d2918963806003e418e12898"
+    },
+    "narracao/catolico/comum-117.m4a": {
+      "bytes": 259121,
+      "sha256": "f760d44211ef3742f020013a23ffb9651d4b4571e6bb4dc0e651438f184b66bc"
+    },
+    "narracao/catolico/comum-118.m4a": {
+      "bytes": 249071,
+      "sha256": "03c3575d6ecc59a15f759ce9e240d046e71703afe299415a20bafcf41f2859b1"
+    },
+    "narracao/catolico/comum-119.m4a": {
+      "bytes": 231564,
+      "sha256": "9107d0c8d245e9c1f1a30e8058d81b35a077cbee4004d727ed0e0cff4d6a1d7e"
+    },
+    "narracao/catolico/comum-120.m4a": {
+      "bytes": 240526,
+      "sha256": "64921420a728558c13f8d792a6ac6305deddf4576a16448473e1ea349b20476d"
+    },
+    "narracao/catolico/comum-121.m4a": {
+      "bytes": 230855,
+      "sha256": "c8e2862d3002a49a410a05101313cff6c00eef94c4aaa0d03d8da91af3a1d9c6"
+    },
+    "narracao/catolico/comum-122.m4a": {
+      "bytes": 217927,
+      "sha256": "2c0b42283821f58290feb735e2f69d14ca41cd25826faf6693237f3804eb4d97"
+    },
+    "narracao/catolico/comum-123.m4a": {
+      "bytes": 229686,
+      "sha256": "f77409086bc5a2f57b3880acdea494d62341a86b5b3b4a013d84d81bff089a81"
+    },
+    "narracao/catolico/comum-124.m4a": {
+      "bytes": 259758,
+      "sha256": "b242b971e99627e5f9915244f4c7960cb3f4f8573863331544ae0fffc479849f"
+    },
+    "narracao/catolico/comum-125.m4a": {
+      "bytes": 210697,
+      "sha256": "9c3c2e33a2ff3fef8d60e0912962b58eeffca72d6a26ff5e4432a1038fd09bd2"
+    },
+    "narracao/catolico/comum-126.m4a": {
+      "bytes": 248036,
+      "sha256": "df1ac9eb58fc7bd445c1c063dda85df59132763a048b0d38461c22a6c4038fe9"
+    },
+    "narracao/catolico/comum-127.m4a": {
+      "bytes": 235295,
+      "sha256": "292642f42d6d1d14c36bca39b729cb0d2f4bd7104e8b39831dff4eb008a30b82"
+    },
+    "narracao/catolico/comum-128.m4a": {
+      "bytes": 244888,
+      "sha256": "9a1a971410346ce65180ce45c18a774e30cbd97185586a622b14227499ac92cd"
+    },
+    "narracao/catolico/comum-129.m4a": {
+      "bytes": 262912,
+      "sha256": "f7c6950949ba834b2c474835dbb510c6303071092adf5e338535e94560a67958"
+    },
+    "narracao/catolico/comum-130.m4a": {
+      "bytes": 226459,
+      "sha256": "e84fc25a1022f6f8ea1ef336b8c3b729823c979b753143f0dca258e331aba907"
+    },
+    "narracao/catolico/comum-131.m4a": {
+      "bytes": 221220,
+      "sha256": "a16dee3dd90a273908d4ee7d67d311b622d515079297a033e73b73bc4371e922"
+    },
+    "narracao/catolico/comum-132.m4a": {
+      "bytes": 230308,
+      "sha256": "a149849c69c4bbc8b18a3926d97c9b75b711693261f89e21da470d666668399f"
+    },
+    "narracao/catolico/comum-133.m4a": {
+      "bytes": 222813,
+      "sha256": "c31cb4833ae59abd3e8dea873b409468e3d7fcaabc74bf6b69cd24018526152c"
+    },
+    "narracao/catolico/comum-134.m4a": {
+      "bytes": 235236,
+      "sha256": "0f93a74de99b7d0626ab6b4789d4623a6617d2d2489dd62dfabbbd11d5dac43f"
+    },
+    "narracao/catolico/comum-135.m4a": {
+      "bytes": 229424,
+      "sha256": "e4eab517e245caebb679c4b9bf43c5f15eb42a46dd7283aa0d50239ccea7e328"
+    },
+    "narracao/catolico/comum-136.m4a": {
+      "bytes": 234884,
+      "sha256": "b514e05ac3e178d950634285629db06997e37e57ffc3456b6af04a8fed2b43d5"
+    },
+    "narracao/catolico/comum-137.m4a": {
+      "bytes": 258302,
+      "sha256": "08a203167d9f3a1e4429d86014d772063cf59141c45f80106e9f6d2a50f2700b"
+    },
+    "narracao/catolico/comum-138.m4a": {
+      "bytes": 233189,
+      "sha256": "49e63c79f57addf2c5b72a1e5ff04c3038a1dd64f0cccca72c7eb752e5b5b401"
+    },
+    "narracao/catolico/comum-139.m4a": {
+      "bytes": 220389,
+      "sha256": "197c6845aac4563e78b594e3a91d846889763d4b162d44a89383f97c9e4238d3"
+    },
+    "narracao/catolico/comum-140.m4a": {
+      "bytes": 241019,
+      "sha256": "2ded0f2887cb9ba05a8e74e17678494ed5fb892f0ffdf90424168e1e2a506c62"
+    },
+    "narracao/catolico/comum-141.m4a": {
+      "bytes": 231012,
+      "sha256": "f4713d970aa318df8edd00a0feb404c90fd9f76c09dff932208611c034640376"
+    },
+    "narracao/catolico/comum-142.m4a": {
+      "bytes": 256291,
+      "sha256": "a3d72c6e9cd490b89d43d877ad372909f7333e2b9113ad3d5813134450247495"
+    },
+    "narracao/catolico/comum-143.m4a": {
+      "bytes": 217090,
+      "sha256": "4a494e8cfc4faf287aaf1dffb7704d97a57cf34346d4d80a52643be4283c5458"
+    },
+    "narracao/catolico/comum-144.m4a": {
+      "bytes": 227352,
+      "sha256": "0eebad9c2e936604157d19b7ded177215e59ee381c7d94c960aef263ebcaa53f"
+    },
+    "narracao/catolico/comum-145.m4a": {
+      "bytes": 224890,
+      "sha256": "1d2c5e40c25beeeadc39a7d4963fc22e66383e777baefaaca7f99d59cdeeb828"
+    },
+    "narracao/catolico/comum-146.m4a": {
+      "bytes": 243563,
+      "sha256": "3c6c5fe279bb21b5be7d7fb0500680730aa6420c945f2bcd48a8b35431f7d2bf"
+    },
+    "narracao/catolico/comum-147.m4a": {
+      "bytes": 239830,
+      "sha256": "70d02d9b1c1af3c26ff2353e6b959ec52e46643508da76e2f1b86dc10d1074cf"
+    },
+    "narracao/catolico/comum-148.m4a": {
+      "bytes": 220871,
+      "sha256": "33c371366e824c08dd2eee1a2eceff43c469902472bb3230e20f17608141c382"
+    },
+    "narracao/catolico/comum-149.m4a": {
+      "bytes": 240193,
+      "sha256": "d1cc11ac5eb452de73f30c04d7b8bacb3adf87ce6fab2c926d41f7237cb33939"
+    },
+    "narracao/catolico/comum-150.m4a": {
+      "bytes": 264994,
+      "sha256": "c11737e15d2fc3aab52e818859779c8f6cd08261bb3bddd57cfc8909cc5a093c"
+    },
+    "narracao/catolico/comum-151.m4a": {
+      "bytes": 249601,
+      "sha256": "37cc506d91609a45995cecbece8eebbab2c39362d1a2e73064273884b2b52260"
+    },
+    "narracao/catolico/comum-152.m4a": {
+      "bytes": 242398,
+      "sha256": "4164d8f1ff2cbc56707e896f6f9ac1e66d6d3db71f7c07cc28dcb17d9c379390"
+    },
+    "narracao/catolico/comum-153.m4a": {
+      "bytes": 210421,
+      "sha256": "a79e1363e504474d193afd1f08571ae6e33bc239ccca146b785a79b5953ef906"
+    },
+    "narracao/catolico/comum-154.m4a": {
+      "bytes": 235894,
+      "sha256": "f614b0d5b4141188f4df828e6d35e18b12fb83002abb70f440a62412a667e0d2"
+    },
+    "narracao/catolico/comum-155.m4a": {
+      "bytes": 246148,
+      "sha256": "253a507afd7c2c3171590908d3bbc72c777081d4594e3606e57c6e63b95406bf"
+    },
+    "narracao/catolico/comum-156.m4a": {
+      "bytes": 253133,
+      "sha256": "64a40932658e074e9bb9beeb25b23e57edd60117150cdc96c9bdd24673ea7e4f"
+    },
+    "narracao/catolico/comum-157.m4a": {
+      "bytes": 236947,
+      "sha256": "abc4d776fe9a41c0d14d6c182e733d29bde2862e609c3d553c6697b8583ed60d"
+    },
+    "narracao/catolico/comum-158.m4a": {
+      "bytes": 226942,
+      "sha256": "4ed04c0326cbe4facf97feab954028a04589461d59f79467e942fb407f18cf29"
+    },
+    "narracao/catolico/comum-159.m4a": {
+      "bytes": 234074,
+      "sha256": "79e5af720298120d9bc08d42c383e29fdd98b518b96573f298541d54eb51f194"
+    },
+    "narracao/catolico/comum-160.m4a": {
+      "bytes": 227339,
+      "sha256": "632711de4a060cf2c0dfa039c3a875f6506c18d28eae918d2cf439dba93667ce"
+    },
+    "narracao/catolico/comum-161.m4a": {
+      "bytes": 241112,
+      "sha256": "f3eebc5c79bb3dbe6473b848e42c0309e398734c3d1df126f32e98cf02fa3e56"
+    },
+    "narracao/catolico/comum-162.m4a": {
+      "bytes": 249510,
+      "sha256": "baab956634c1c6d750f675d900b263ccbdaa7120d4e5c2307c17916d18321dcd"
+    },
+    "narracao/catolico/comum-163.m4a": {
+      "bytes": 219089,
+      "sha256": "56e595e4680a28df29ddc6e7927333dc8e91d96e45c6ead859167780755cc1ae"
+    },
+    "narracao/catolico/comum-164.m4a": {
+      "bytes": 216601,
+      "sha256": "29c1564a192e4f0a3cb9c0920c4c9cd02c8a54c46b197755870df6890ec061b7"
+    },
+    "narracao/catolico/comum-165.m4a": {
+      "bytes": 254623,
+      "sha256": "057b3d512a2eceecc96b0cf795f488f0f76a16344ba3967f28d0a4166a47daa7"
+    },
+    "narracao/catolico/comum-166.m4a": {
+      "bytes": 238046,
+      "sha256": "d33dc2544e259cc3d226a5d5649cc703d26dc4841405318417fe21284161c16f"
+    },
+    "narracao/catolico/comum-167.m4a": {
+      "bytes": 255346,
+      "sha256": "d6200eae6c7137deeb29540714ff326ed93cdd1cf5e3326232f4a790f566a080"
+    },
+    "narracao/catolico/comum-168.m4a": {
+      "bytes": 225112,
+      "sha256": "3b6dc9f0e2d197e5581b0107860bc7a275d6acdf9f1f42a197da38b33ccf134d"
+    },
+    "narracao/catolico/comum-169.m4a": {
+      "bytes": 229748,
+      "sha256": "6aad86b1cf615ebb8b516a32b8ad15c3b7d84e13dd453a9ddb42384853bb4cba"
+    },
+    "narracao/catolico/comum-170.m4a": {
+      "bytes": 244378,
+      "sha256": "0dd4fcce5b36d246c584861bd5bd976f4de9b7b5e59117f8bb5b9f330fa373c1"
+    },
+    "narracao/catolico/comum-171.m4a": {
+      "bytes": 232192,
+      "sha256": "0ea704acfa0e15f6108b8117dcf5a279ca30a2ab61cccf56f23d45373c66217f"
+    },
+    "narracao/catolico/comum-172.m4a": {
+      "bytes": 233829,
+      "sha256": "d155923a15a5b5e3364e4586fbd8e96114986cc7cd17fe0f17743e4f5953f7f0"
+    },
+    "narracao/catolico/comum-173.m4a": {
+      "bytes": 226634,
+      "sha256": "85410810c8926775b65ce81f923e624e4acf05939a3d9cf4af693162a27f13b0"
+    },
+    "narracao/catolico/comum-174.m4a": {
+      "bytes": 236554,
+      "sha256": "6ee95d57e1c2d08f628d74e5bd72c4f97e254c251033ed14a4e65f7b4bfbd218"
+    },
+    "narracao/catolico/comum-175.m4a": {
+      "bytes": 257446,
+      "sha256": "bf5642a9874e4d772deddda5eaada5b796db1372d08c612cfecc9b860206aa7d"
+    },
+    "narracao/catolico/comum-176.m4a": {
+      "bytes": 253741,
+      "sha256": "9361d3cf009bf0069a19f0a4b966dfe573caefcff2a0da82d7c3681164a92e7b"
+    },
+    "narracao/catolico/comum-177.m4a": {
+      "bytes": 232042,
+      "sha256": "b7076e413511f5dba6c0f29a69da631aa821f4bdb0abf4b57401c9e57dc2a317"
+    },
+    "narracao/catolico/comum-178.m4a": {
+      "bytes": 262473,
+      "sha256": "a83a442d601a57f86e1b5e40b7df5e49fd94f693eab4c87fbbb4e741a83b93b2"
+    },
+    "narracao/catolico/comum-179.m4a": {
+      "bytes": 255197,
+      "sha256": "60f7ee0ce6169053be1278382d5d7dc808c93e868eb1c30f6175d8be7b447548"
+    },
+    "narracao/catolico/comum-180.m4a": {
+      "bytes": 249082,
+      "sha256": "c4770ac8613781a745be8bffde2454f8c8479a776699d2ff61a1ab7098002440"
+    },
+    "narracao/catolico/comum-181.m4a": {
+      "bytes": 224990,
+      "sha256": "ad9be7f9423898a2f0d5dbda12146505c1dda65627e68023508f2ce76e4af73e"
+    },
+    "narracao/catolico/comum-182.m4a": {
+      "bytes": 228238,
+      "sha256": "12e9a6b9c65ff849d743ef8d23375e92ab30d049f933e8712b106e83cf839cb5"
+    },
+    "narracao/catolico/comum-183.m4a": {
+      "bytes": 218644,
+      "sha256": "d5e5a1b16c734a78bfafe3f53990f8813a3b281c695df34a54bcd7759bae596a"
+    },
+    "narracao/catolico/comum-184.m4a": {
+      "bytes": 224786,
+      "sha256": "ab965d4ec029e30b316c7edcdffc1a1191c14094bb3441a2812e237f37652081"
+    },
+    "narracao/catolico/comum-185.m4a": {
+      "bytes": 239139,
+      "sha256": "9504c7e15945c711d37d0afff8f0c784e28c4d1d5077bd26f0ebe902aaeb2fdf"
+    },
+    "narracao/catolico/comum-186.m4a": {
+      "bytes": 263497,
+      "sha256": "e5bd79bc6bb8a5597238ea6a4082eb8dafe676ea6bc81b859ccb39f79cbf018c"
+    },
+    "narracao/catolico/comum-187.m4a": {
+      "bytes": 228012,
+      "sha256": "aa7a7322bdc2d0d4fa7ee9e11b4246c3b318dc756a5f61df828d027da769b56e"
+    },
+    "narracao/catolico/comum-188.m4a": {
+      "bytes": 232544,
+      "sha256": "dd2b61356f8d0751d7f839d1b9807f414d9a5c93cdec3928e968738f2e64ca85"
+    },
+    "narracao/catolico/comum-189.m4a": {
+      "bytes": 246964,
+      "sha256": "ce2b89132f4fa77036ec28422b3fcd32a0b7dc8c3c8b07357cbe606b86844bdd"
+    },
+    "narracao/catolico/comum-190.m4a": {
+      "bytes": 237757,
+      "sha256": "0432362f2c6eb356aaaefbce7a823f9a80daf9729033fddb3e896935e64fcfbf"
+    },
+    "narracao/catolico/comum-191.m4a": {
+      "bytes": 229981,
+      "sha256": "9ff30b63b2667f3d4eff8d930517cd18e9ac00cdbe04d4962e71ee57545435bc"
+    },
+    "narracao/catolico/comum-192.m4a": {
+      "bytes": 239095,
+      "sha256": "b74f24772a74a40afc76f9ae11b2f7a644c4d1b54b2278fd9c1005d4ad5f30de"
+    },
+    "narracao/catolico/comum-193.m4a": {
+      "bytes": 226561,
+      "sha256": "600ada2b8ec1d5483691d5a4fd01f91b8c7771567a456e2a2662480329271281"
+    },
+    "narracao/catolico/comum-194.m4a": {
+      "bytes": 250852,
+      "sha256": "27b1aae7513549f47e5d1719021fd6780b49652e01784a0ede6a7d6eb1c44b32"
+    },
+    "narracao/catolico/comum-195.m4a": {
+      "bytes": 245773,
+      "sha256": "f8ebc6fdf0d8b420b435ab673c27d156ac84ff447c26ab63eb8c6731372480c7"
+    },
+    "narracao/catolico/comum-196.m4a": {
+      "bytes": 246803,
+      "sha256": "a3e8f378d4e3ac825e7028dfffe70fe5e882a1cb2aec04b6950ccae788d3174e"
+    },
+    "narracao/catolico/comum-197.m4a": {
+      "bytes": 241750,
+      "sha256": "8eef5b122475dfa80acd8d5772fc0db7d5b740b9594c02a9b23c76156563f79f"
+    },
+    "narracao/catolico/comum-198.m4a": {
+      "bytes": 217621,
+      "sha256": "0149463cb795357b4e96068b29adb3d51ffbf97760439cf7c9c6131bab3d2612"
+    },
+    "narracao/catolico/comum-199.m4a": {
+      "bytes": 224362,
+      "sha256": "a49e26e1be26610a803095cef1ad77c111ecca8c10ad45413b4d0ad00b6cccf2"
+    },
+    "narracao/catolico/comum-200.m4a": {
+      "bytes": 266341,
+      "sha256": "529abf3de0ded9583af1e313ff135c2e65616fa47c91d5f97fc138166970827c"
+    },
+    "narracao/catolico/comum-201.m4a": {
+      "bytes": 257444,
+      "sha256": "7d5a68ddf3c1196949a3ede2fae47e751dd25d3dc0a39731770ef614c0e998b9"
+    },
+    "narracao/catolico/comum-202.m4a": {
+      "bytes": 263934,
+      "sha256": "182d40a2b40998e8abdda38517a8bcb4c8e43f2ffcda7d596a7d45a213ae8cbd"
+    },
+    "narracao/catolico/comum-203.m4a": {
+      "bytes": 245105,
+      "sha256": "cf7368572d2d205d11dd1c31755eaf6a812db261b5877c7a59a8c726ae4c15de"
+    },
+    "narracao/catolico/comum-204.m4a": {
+      "bytes": 255990,
+      "sha256": "023b539a82e59435618ea49bb012271bbc75076bbc2f0ede4c7b59c852d40087"
+    },
+    "narracao/catolico/comum-205.m4a": {
+      "bytes": 257208,
+      "sha256": "e83f515f0b41d6cf9534478292a88e9cbe094eefc0376e6af85838f0f8fee844"
+    },
+    "narracao/catolico/comum-206.m4a": {
+      "bytes": 235331,
+      "sha256": "766c7d21817895c1afbb7a524ff60e61a3f9db1b7b4c015214cda570d17fc9dc"
+    },
+    "narracao/catolico/comum-207.m4a": {
+      "bytes": 237149,
+      "sha256": "66eb962fda12c7d0cc9a8524ea42c5da58cfeeb94011ade94fb64f982d3fde23"
+    },
+    "narracao/catolico/comum-208.m4a": {
+      "bytes": 249126,
+      "sha256": "c3e105746d380a7a4236d2e489c68608b6901c981286e0f70b0276a22f8aae50"
+    },
+    "narracao/catolico/comum-209.m4a": {
+      "bytes": 260547,
+      "sha256": "334923ef4f2503b41de20cb14c068f0b32d378c6ebcfea9ecb03c74954ff1605"
+    },
+    "narracao/catolico/comum-210.m4a": {
+      "bytes": 242994,
+      "sha256": "3a41606bdc40f5d11ac2188c5977ab375845c637fa1477fd9ebc5383e8b4356d"
+    },
+    "narracao/catolico/comum-211.m4a": {
+      "bytes": 247131,
+      "sha256": "ee7551878fe123bd11d73ac0e003d73c371f6822100cb9cd9b89d29ec89dca5e"
+    },
+    "narracao/catolico/comum-212.m4a": {
+      "bytes": 229517,
+      "sha256": "5199ce60b04c964644d45dbb5c4500c117ad4806348cfa9cc70363fe80b907ba"
+    },
+    "narracao/catolico/comum-213.m4a": {
+      "bytes": 267218,
+      "sha256": "b57e1e2a195a47b6c09de32f2e70923e2475bbe85cc435e5ef29259da224a8c9"
+    },
+    "narracao/catolico/comum-214.m4a": {
+      "bytes": 211355,
+      "sha256": "415eb8f153b616b2d35315f2b450b217c68ebaeed6fcc566af96bb3f8bb84dc5"
+    },
+    "narracao/catolico/comum-215.m4a": {
+      "bytes": 223491,
+      "sha256": "553ace90593ac7a7906a8dc195e93f45d5603dd53e08ad10af35bffbb163c27e"
+    },
+    "narracao/catolico/comum-216.m4a": {
+      "bytes": 197697,
+      "sha256": "e17b3fff74ecd328f8c279a51dc9806fc8e1f36248dfb2628e8697b42e1ff80d"
+    },
+    "narracao/catolico/comum-217.m4a": {
+      "bytes": 225750,
+      "sha256": "6a4022010d4cf2abc6c0ce0f7be54e351238022e65bb07dc83e4e1864d39e063"
+    },
+    "narracao/catolico/comum-218.m4a": {
+      "bytes": 210617,
+      "sha256": "2815efb1feafe73e887e35dd9bd87bc915e7d43ed0b6fe3b363c7897d4910bb3"
+    },
+    "narracao/catolico/comum-219.m4a": {
+      "bytes": 225701,
+      "sha256": "e83544d911ef3254ac1184489cdd5f87faf77ba750f4584557e8bb40b1802487"
+    },
+    "narracao/catolico/comum-220.m4a": {
+      "bytes": 248877,
+      "sha256": "1f496a7d087338add5210101f74991f7fecca415d104a34d899b846b767c8674"
+    },
+    "narracao/catolico/comum-221.m4a": {
+      "bytes": 227328,
+      "sha256": "e07bafbb428a608a27f1d4f5020f9765f92087842f70a6a1b6486d8623d5f928"
+    },
+    "narracao/catolico/comum-222.m4a": {
+      "bytes": 213464,
+      "sha256": "ed15052e16380dab15ffd4d22fd226f7f82fe6cf412d30de09e69bcb462e8198"
+    },
+    "narracao/catolico/comum-223.m4a": {
+      "bytes": 205458,
+      "sha256": "0e9bfbfc52e01b63d1d963b2e5889622cb4d3b81d8a90fc4abb43e557721fcfc"
+    },
+    "narracao/catolico/comum-224.m4a": {
+      "bytes": 222322,
+      "sha256": "2fbb9a29aaf6969069225eb9908bf211f1a03bb00ea22cda42594a8d5a9b9ff4"
+    },
+    "narracao/catolico/comum-225.m4a": {
+      "bytes": 248988,
+      "sha256": "c3bddb9f3ea0e62d768298e59578a0ba2323a394db0f95b32e0cd8885ded078c"
+    },
+    "narracao/catolico/comum-226.m4a": {
+      "bytes": 227343,
+      "sha256": "cf9bc3a4ec95fbcfcdbdeb886cf88c19140c5c0c35649b26849228a9e356358d"
+    },
+    "narracao/catolico/comum-227.m4a": {
+      "bytes": 229425,
+      "sha256": "fcf2ec1da7fd4a16dfc616431dd2e9a517f43a060f251d0634310613fc48a7eb"
+    },
+    "narracao/catolico/comum-228.m4a": {
+      "bytes": 241410,
+      "sha256": "1959882384051f0f20a699858493bdf22cc7e514de7a1e6c9658ab5401e8037d"
+    },
+    "narracao/catolico/comum-229.m4a": {
+      "bytes": 216544,
+      "sha256": "facb862e0e1d675d9d2420ce909b28a6f666ae6df7a8a297e3ab5cc5411c0d24"
+    },
+    "narracao/catolico/comum-230.m4a": {
+      "bytes": 221542,
+      "sha256": "abc905fa5cb2d0cf6ee6b39f8549635714025fed1226f99dcc1035e1c8139a22"
+    },
+    "narracao/catolico/comum-231.m4a": {
+      "bytes": 233621,
+      "sha256": "8aaa4702083e49e87654ad1769f0d86afe91c7c4fdddb962d04f25b262f2d6df"
+    },
+    "narracao/catolico/comum-232.m4a": {
+      "bytes": 228746,
+      "sha256": "ce17b3f8839b6f044fdb5436847c3b15f81c5ca2560f610542bdb87a84a51145"
+    },
+    "narracao/catolico/comum-233.m4a": {
+      "bytes": 221355,
+      "sha256": "44be6da75c193ad016b35c45a77bc6f9f50ae7e561ecf71ef8900f52a3d4c14c"
+    },
+    "narracao/catolico/comum-234.m4a": {
+      "bytes": 228093,
+      "sha256": "605675800b153158cd3480c3151c42a82a17f9aadd5eb5c9d962dc62f1ab99ca"
+    },
+    "narracao/catolico/comum-235.m4a": {
+      "bytes": 240739,
+      "sha256": "137ba1ef9ee9ad1bf02e5c9c925eb920426bed7f70c0d3a11fc168c0548fe1de"
+    },
+    "narracao/catolico/comum-236.m4a": {
+      "bytes": 226873,
+      "sha256": "1fd710ab8eb5be9a3e51a4e666af3b016028a38285f7c4f95563a1a06ea8e149"
+    },
+    "narracao/catolico/comum-237.m4a": {
+      "bytes": 236908,
+      "sha256": "ca8be3f889cd14dbc45ea789ae9d56e9f59d402342d54776fbf176323aebc47b"
+    },
+    "narracao/catolico/comum-238.m4a": {
+      "bytes": 243079,
+      "sha256": "b8248ef64e23ff8c9dbf624327e2d4379ae56d98af3253d683f4485ccd6a92c1"
+    },
+    "narracao/catolico/comum-239.m4a": {
+      "bytes": 225111,
+      "sha256": "e431a739da37d3d07a256fc4ecf23506132502a333773f4470d7bb17ccae2056"
+    },
+    "narracao/catolico/comum-240.m4a": {
+      "bytes": 204976,
+      "sha256": "3465b1dce4dab1af60e1ca917258265063bb349669968e2adfbc763f3c95ff54"
+    },
+    "narracao/catolico/comum-241.m4a": {
+      "bytes": 231895,
+      "sha256": "ca7c10524621683e40ce95246f4c3ab5cf5894d35dfc7cf4391bc35f72598889"
+    },
+    "narracao/catolico/comum-242.m4a": {
+      "bytes": 236819,
+      "sha256": "b4dc99d05e4e99d470a883932e0668fc0d5dd0e280df69fa791938870be1aea9"
+    },
+    "narracao/catolico/comum-243.m4a": {
+      "bytes": 228486,
+      "sha256": "c0122a94ba3e42981ee6bb873c0c69200efefc0af55dc6ce4305301462d94700"
+    },
+    "narracao/catolico/movel-ascensao.m4a": {
+      "bytes": 259867,
+      "sha256": "89a2de84817473677e1e5aae684619995647a7ce1e9734194f4836b73c7dd6a4"
+    },
+    "narracao/catolico/movel-dia-das-maes.m4a": {
+      "bytes": 235754,
+      "sha256": "f3f510fc88996aa46f573f4725eb6277223b6fb54a1932bde6fb243535921247"
+    },
+    "narracao/catolico/movel-dia-dos-pais.m4a": {
+      "bytes": 231147,
+      "sha256": "74ed83a952555d944acfd6174fc3f17d7137cc96a398e801bd6955ccb90ac541"
+    },
+    "narracao/catolico/movel-pascoa.m4a": {
+      "bytes": 259173,
+      "sha256": "93613c1ba0c93c201dd54b9d8517cc736d3563f106ff5233e3451c3440991629"
+    },
+    "narracao/catolico/movel-pentecostes.m4a": {
+      "bytes": 255617,
+      "sha256": "299dd817931949ffd73730a62e8c515ad8eeed99e399bb79362495921c4b5373"
+    },
+    "narracao/catolico/movel-quinta-santa.m4a": {
+      "bytes": 269711,
+      "sha256": "417f10f1eb56c10d76b75823e438b36cc1de0604d2acc8fee071d542d27221cd"
+    },
+    "narracao/catolico/movel-ramos.m4a": {
+      "bytes": 274975,
+      "sha256": "3e4261311970facaef371b9dfed5fa5b9ee0bd48811f62a09a0308d48b4848d7"
+    },
+    "narracao/catolico/movel-sexta-santa.m4a": {
+      "bytes": 273025,
+      "sha256": "74fb285363520eaa2162cfcafbb18d4decf0ced4951bf54806fc591a06d87264"
+    },
+    "narracao/catolico/natal-001.m4a": {
+      "bytes": 254105,
+      "sha256": "b603ff3f2de069da8348285a32a41bb126c00e249cadb8707a47b2c830137266"
+    },
+    "narracao/catolico/natal-002.m4a": {
+      "bytes": 237284,
+      "sha256": "b0430db88798e105f085d8b0803bef47d8fd3e14be3f14e4d4c3908fb47ecb46"
+    },
+    "narracao/catolico/natal-003.m4a": {
+      "bytes": 241864,
+      "sha256": "2d5fa6a0541a18b326044a220fb84ab7f1622b9e669ba81c87c4977ff642bdeb"
+    },
+    "narracao/catolico/natal-004.m4a": {
+      "bytes": 236676,
+      "sha256": "1a3fd7d6109f526ee6fde0782db188903910a462ac175749e9e064c1b25f45d8"
+    },
+    "narracao/catolico/natal-005.m4a": {
+      "bytes": 232388,
+      "sha256": "5ea49520146be32c2ac45b6663c2b5f4a9bf1e8f47f600505427973db772e109"
+    },
+    "narracao/catolico/natal-006.m4a": {
+      "bytes": 253334,
+      "sha256": "659e69abc85349a4c23764d60cef8a581f64a7b0cd08eab68447f3a84a24bef1"
+    },
+    "narracao/catolico/natal-007.m4a": {
+      "bytes": 256727,
+      "sha256": "eda717ee0594e3dfc1c7389280b1707a004843e0a670ab4b1970ad97160ba3e7"
+    },
+    "narracao/catolico/natal-008.m4a": {
+      "bytes": 239361,
+      "sha256": "064a1a7baa2e8f83aca39cccff1b4a5047dd6f65116d5d2bf842183ff764efcc"
+    },
+    "narracao/catolico/natal-009.m4a": {
+      "bytes": 246032,
+      "sha256": "cd2fa1e1d41cfbb7b4118120f2cbf6d6e346ddfeeac160b53c50620006d8bcff"
+    },
+    "narracao/catolico/natal-010.m4a": {
+      "bytes": 239931,
+      "sha256": "ac61da871a97abf7ff26fdbc4d589536ac3855216d90e6613202e6f97c278cdb"
+    },
+    "narracao/catolico/natal-011.m4a": {
+      "bytes": 252470,
+      "sha256": "7b135d21a0de5068727b1720b3f79d32dbf1bb2073eefc2ad5e847614e9cc3df"
+    },
+    "narracao/catolico/natal-012.m4a": {
+      "bytes": 267236,
+      "sha256": "c360c661d9f2b177842557e0cc199616f11167e2624bca0a574b0905283ddd7b"
+    },
+    "narracao/catolico/pascoa-001.m4a": {
+      "bytes": 265078,
+      "sha256": "436c37c5cdfdf001a2f0adbcb520c1b66f0d4faeac2cc169dfa57d5df5bf8ba7"
+    },
+    "narracao/catolico/pascoa-002.m4a": {
+      "bytes": 238183,
+      "sha256": "8da45605f28b7505efbb37f83aca1cea4feb95a2197f87ffe543882d8761adb6"
+    },
+    "narracao/catolico/pascoa-003.m4a": {
+      "bytes": 231514,
+      "sha256": "2f3052454860941cf4b5f73a2a6a51ed47896cf4628edd24d96dd5f9a7c333e1"
+    },
+    "narracao/catolico/pascoa-004.m4a": {
+      "bytes": 245813,
+      "sha256": "10ae24fcde92feb7d25a4ac923b6bc552bd8cca2a48f9a592b205719a1541ccc"
+    },
+    "narracao/catolico/pascoa-005.m4a": {
+      "bytes": 228701,
+      "sha256": "d42560959b3ce73fc6e99e156e8da52eeca01a07d8f3f2c65d9685934dee4aff"
+    },
+    "narracao/catolico/pascoa-006.m4a": {
+      "bytes": 231110,
+      "sha256": "da31bb9f59ea90d534f9125e8b49717e54cb1c2fa96cd0bdc75c993058f32bef"
+    },
+    "narracao/catolico/pascoa-007.m4a": {
+      "bytes": 255526,
+      "sha256": "33ad14848a0e9fa322fdafc514568d6cf8aefcae543b2b8a687b998d36120cfd"
+    },
+    "narracao/catolico/pascoa-008.m4a": {
+      "bytes": 244893,
+      "sha256": "ab5d02d19b602100db4d816ed4fbf8ec9696ad0dc5056e4a836de58787276842"
+    },
+    "narracao/catolico/pascoa-009.m4a": {
+      "bytes": 228038,
+      "sha256": "e116272ec105833ca630f3b4fb24b70b6b6f27903ea5fcedf934891f07ce94b0"
+    },
+    "narracao/catolico/pascoa-010.m4a": {
+      "bytes": 286145,
+      "sha256": "5e72d8c58f1d8786558dfef9a79c93eee11190c4dbcfbcd0a81a7f848ba63832"
+    },
+    "narracao/catolico/pascoa-011.m4a": {
+      "bytes": 267082,
+      "sha256": "180738144139652fab0a0c08f0b9e47b7018262ac470220abb770c4b56e3ae92"
+    },
+    "narracao/catolico/pascoa-012.m4a": {
+      "bytes": 245851,
+      "sha256": "5da02a5db42dec13d45c7947ed66f1e180398b1ad17a4ea00dca2872369b5ec5"
+    },
+    "narracao/catolico/pascoa-013.m4a": {
+      "bytes": 231904,
+      "sha256": "3993b86e13c07bc93da422be73de5c5a2162817f90322e8b0fcaa5e8ae1220dc"
+    },
+    "narracao/catolico/pascoa-014.m4a": {
+      "bytes": 230716,
+      "sha256": "9c20c35568cec60fc2eed6f10344cbcaaa16f952df205daba1d085338e2133d7"
+    },
+    "narracao/catolico/pascoa-015.m4a": {
+      "bytes": 241030,
+      "sha256": "204b3745cebed26f829c18710fa186227703d82220eea3d29258f1932602d977"
+    },
+    "narracao/catolico/pascoa-016.m4a": {
+      "bytes": 240025,
+      "sha256": "894f84c643183e97ea4aaf467823c96cfde9e467cac58bce166fbc10c5928f67"
+    },
+    "narracao/catolico/pascoa-017.m4a": {
+      "bytes": 242063,
+      "sha256": "099e87b419093d92551c3f5f6b9ab5fce10460a4d2e1b05d1cf322b2e983eb4e"
+    },
+    "narracao/catolico/pascoa-018.m4a": {
+      "bytes": 257021,
+      "sha256": "3b039842b54f364b4fbf23edf97a51de131e635cab9a1e7438785af6d0969e15"
+    },
+    "narracao/catolico/pascoa-019.m4a": {
+      "bytes": 245919,
+      "sha256": "5634e8a6ed560e5944acaa570bb8de5b2f1a0c124433095c701eba5aefa42909"
+    },
+    "narracao/catolico/pascoa-020.m4a": {
+      "bytes": 239892,
+      "sha256": "6f854ad1881c2542aedc23659a3fb7da94007808473f68357f671749040bbe0e"
+    },
+    "narracao/catolico/pascoa-021.m4a": {
+      "bytes": 253118,
+      "sha256": "5b4bf6497f897421cfd8c8796fd847b84994d91bb559b02a2589325bec6bf5c6"
+    },
+    "narracao/catolico/pascoa-022.m4a": {
+      "bytes": 248063,
+      "sha256": "432551928b108b9dcc3f75703fa77482f6fa0d8048cb41ad90f5ec2be58ea805"
+    },
+    "narracao/catolico/pascoa-023.m4a": {
+      "bytes": 253509,
+      "sha256": "009d324fc2b8bb8aa6f2e3dd8b1391a4c4f80511a8f76de2f8f94f31fed097c2"
+    },
+    "narracao/catolico/pascoa-024.m4a": {
+      "bytes": 247989,
+      "sha256": "b379d1a5919394c24d8e5862f3fe21ea95223b94728b18037f1a522681315b09"
+    },
+    "narracao/catolico/pascoa-025.m4a": {
+      "bytes": 238518,
+      "sha256": "715e24a22dfff182137332263f68dc68cc30bf423131e903b22b076d9dd728d3"
+    },
+    "narracao/catolico/pascoa-026.m4a": {
+      "bytes": 244454,
+      "sha256": "6c558282d18733da8c472652b2d33fca77c819b62818bdc6fe04b6e52de3964d"
+    },
+    "narracao/catolico/pascoa-027.m4a": {
+      "bytes": 254315,
+      "sha256": "be2c178b7ba71bce465c63043dd62b71df2ba5cfc1d728560d02dccd4b489a82"
+    },
+    "narracao/catolico/pascoa-028.m4a": {
+      "bytes": 220934,
+      "sha256": "6e6d81667dde68cb75ee158aa95fa60f4a1601b5ec6e1dfcc8b820b2214c8820"
+    },
+    "narracao/catolico/pascoa-029.m4a": {
+      "bytes": 247964,
+      "sha256": "3ed83e12fc522202af7ebce3ca23fa575fd92d1854b514445d5c46d835437aa1"
+    },
+    "narracao/catolico/pascoa-030.m4a": {
+      "bytes": 253988,
+      "sha256": "aaeee7b981050c324cb1c13433a82ee40fcf75939e58f35d771d185c39c8c8eb"
+    },
+    "narracao/catolico/pascoa-031.m4a": {
+      "bytes": 252795,
+      "sha256": "a8809bc394e47e97b1e3640e0e0253383f3f5ddfa9547e5ec91bd913491f6e93"
+    },
+    "narracao/catolico/pascoa-032.m4a": {
+      "bytes": 257730,
+      "sha256": "6d4bd5b74395f2b663e945f097c00b8a1de801c6a110ad169d1672a319b69fd9"
+    },
+    "narracao/catolico/pascoa-033.m4a": {
+      "bytes": 253892,
+      "sha256": "4574f61554e742e3ee636437b31fb86fb23a90601250d8a980ca1a1a32b0c917"
+    },
+    "narracao/catolico/pascoa-034.m4a": {
+      "bytes": 237850,
+      "sha256": "8e027dc7479e1b6182d16ffc2f9b535f442ef683c6078bd916b5fdc9c7a34fce"
+    },
+    "narracao/catolico/pascoa-035.m4a": {
+      "bytes": 248684,
+      "sha256": "9dcf82c441099ca5438aaf4b130885b9bb56ca8a4bde709b28fecb2e8cf5282e"
+    },
+    "narracao/catolico/pascoa-036.m4a": {
+      "bytes": 244895,
+      "sha256": "a5945a08fbb782af29cce36d6549a959b5efdff96e85c910919e14c4cfc74976"
+    },
+    "narracao/catolico/pascoa-037.m4a": {
+      "bytes": 251039,
+      "sha256": "b26f8291779034d55cfec0d85ea9274c6bcac6e28a92e0850f83a2d89202139d"
+    },
+    "narracao/catolico/pascoa-038.m4a": {
+      "bytes": 249397,
+      "sha256": "b655e6727a1e01046b7634b56bcc3239f084f24cfcffa2381f0baac5332e9689"
+    },
+    "narracao/catolico/pascoa-039.m4a": {
+      "bytes": 239157,
+      "sha256": "7ba51690d8092cf981e06faa5681f6ce1076a0d9a5c90f203b7c2582cbd85363"
+    },
+    "narracao/catolico/pascoa-040.m4a": {
+      "bytes": 269251,
+      "sha256": "fad44d5f0ad129ebbebba188bef7f4c01cb2dc70f49d821cb80e2fd28c0913b4"
+    },
+    "narracao/catolico/pascoa-041.m4a": {
+      "bytes": 253614,
+      "sha256": "0766971b1970071898b273215019bf98df7a57b5058d1c9eb1bfc9858a477b96"
+    },
+    "narracao/catolico/pascoa-042.m4a": {
+      "bytes": 247009,
+      "sha256": "6bc39e1086f6e5c37076448036e37e07a08b3bdad9235618ce19ff14d8242759"
+    },
+    "narracao/catolico/pascoa-043.m4a": {
+      "bytes": 236893,
+      "sha256": "91a3a8e7f5a83ee69b22a36e48d16dd8ce68966c5dbec0a55e31ac8ff75949b3"
+    },
+    "narracao/catolico/pascoa-044.m4a": {
+      "bytes": 248093,
+      "sha256": "63f0e1be9d84d04f534e2501c6f93d9d198b414e0f398df6a5ada6f3d2fbb3ad"
+    },
+    "narracao/catolico/pascoa-045.m4a": {
+      "bytes": 242866,
+      "sha256": "e514adf3e30c4687ae55df970f5d4a61667f362315705644e625f69614ac9364"
+    },
+    "narracao/catolico/pascoa-046.m4a": {
+      "bytes": 250610,
+      "sha256": "9909e7573d1f75808b4ad4ec28201583fe528b3dd904b3db161c147746d0fd74"
+    },
+    "narracao/catolico/pascoa-047.m4a": {
+      "bytes": 239732,
+      "sha256": "397a32574af803f4834ac8f762bc3d58e8950419bab565f6f1caf072823e0526"
+    },
+    "narracao/catolico/pascoa-048.m4a": {
+      "bytes": 247838,
+      "sha256": "20662d2fe82f9f885ccbebad2ebe69de0df37095e74f5aca9e8e53e608a6a59c"
+    },
+    "narracao/catolico/pascoa-049.m4a": {
+      "bytes": 245254,
+      "sha256": "0a8c193e93942c7227c001c695408916984587674d1f4607bb8adf7e09b2681a"
+    },
+    "narracao/catolico/pascoa-050.m4a": {
+      "bytes": 272734,
+      "sha256": "2c785533adb61f12c60ec953afd367cd814f7f8e3fee85237c6e34ae6fb4871f"
+    },
+    "narracao/catolico/quaresma-001.m4a": {
+      "bytes": 213009,
+      "sha256": "2bee04b467118b25da41ef9f6363998878a8435a8afb7e48d8dee5b8f024d21a"
+    },
+    "narracao/catolico/quaresma-002.m4a": {
+      "bytes": 216076,
+      "sha256": "d151babf02fd832259ea993f1e9fed0d4236db1881a4009e5e5353d6fc897839"
+    },
+    "narracao/catolico/quaresma-003.m4a": {
+      "bytes": 259689,
+      "sha256": "cd1dfc505d748bf4f38900ceece828f7fea3aaa612692ce73ce7a336938b7a92"
+    },
+    "narracao/catolico/quaresma-004.m4a": {
+      "bytes": 236253,
+      "sha256": "320058af47c609c017e5743bf3db0abfdeeaca356183f7bf06a85b7c4a3d07f3"
+    },
+    "narracao/catolico/quaresma-005.m4a": {
+      "bytes": 225558,
+      "sha256": "490600c75d74d424bd2e9a934576289461f8e37141ffd152208508a3334b35e2"
+    },
+    "narracao/catolico/quaresma-006.m4a": {
+      "bytes": 238966,
+      "sha256": "d7a89a97e1c306c343d400343ebe56f09eb0c8cdd7da4b9c4b38f4ed4ddaac51"
+    },
+    "narracao/catolico/quaresma-007.m4a": {
+      "bytes": 245394,
+      "sha256": "7978272658a19be59b588ddd138ea6e5322242b1063f32339b4e72df7aab05f4"
+    },
+    "narracao/catolico/quaresma-008.m4a": {
+      "bytes": 240334,
+      "sha256": "32aca4b33906aa66b5288113c7f2c259f621455f3042d07d0541db0c5f6750c5"
+    },
+    "narracao/catolico/quaresma-009.m4a": {
+      "bytes": 259185,
+      "sha256": "39a8c96c9377ec6f38cebb7fc6c4d5a4409f05ea085f8d0908e007a6ec1f76a1"
+    },
+    "narracao/catolico/quaresma-010.m4a": {
+      "bytes": 210446,
+      "sha256": "09c495a88cf7d69a741cf8e272a81b8f0f59729a504e2a93c17f1e4fe66993e8"
+    },
+    "narracao/catolico/quaresma-011.m4a": {
+      "bytes": 254201,
+      "sha256": "edabb2647bfcdaca871bc3f74ee0ca92ae39126fc320683ee03ced4493b532b1"
+    },
+    "narracao/catolico/quaresma-012.m4a": {
+      "bytes": 230443,
+      "sha256": "668b8afac8bb3866c677ba5d5b5cefc816dce6839c728ab0c7c1b9a482b845f3"
+    },
+    "narracao/catolico/quaresma-013.m4a": {
+      "bytes": 222099,
+      "sha256": "64fc1d6bda94fb88f8e2ce8b83e86a32c2470e6b8297434e829687ec4fe93def"
+    },
+    "narracao/catolico/quaresma-014.m4a": {
+      "bytes": 258254,
+      "sha256": "c46dbd0e20b2bbfa4190e2a2af7fb0d076f89ea02ff52d36a72e7b5e3764ddbf"
+    },
+    "narracao/catolico/quaresma-015.m4a": {
+      "bytes": 233393,
+      "sha256": "3eae8e5854a19cbcc571b66d8083ce1ec470f585a5e7691fbc7bdc8fb0dfe266"
+    },
+    "narracao/catolico/quaresma-016.m4a": {
+      "bytes": 224301,
+      "sha256": "e25ade97681623d341e709456178b38ecf40258afb1aca095f36ac578b6d181a"
+    },
+    "narracao/catolico/quaresma-017.m4a": {
+      "bytes": 242499,
+      "sha256": "785e17dc7638314db0acca337c79a7f4a5dd9bba684da282fbaaf974998d4e74"
+    },
+    "narracao/catolico/quaresma-018.m4a": {
+      "bytes": 242806,
+      "sha256": "efcc7e4399ac13f8ffc86a8aeec64820b4783eeab2e0078724c28e901e51b9a7"
+    },
+    "narracao/catolico/quaresma-019.m4a": {
+      "bytes": 221734,
+      "sha256": "017612a4cb5c25a5b00d7b87bde9060cfb6a4411c8ca0bf2c607970adec5e05d"
+    },
+    "narracao/catolico/quaresma-020.m4a": {
+      "bytes": 233840,
+      "sha256": "5997b6b6ba74b0c9d9cdaf5a439272fdb51b8d9fccc49d66addfae5d847655ac"
+    },
+    "narracao/catolico/quaresma-021.m4a": {
+      "bytes": 231297,
+      "sha256": "38796ba34ffc0b76477cafab4ef67cddeaa8e474583a7efab36c422bf3037452"
+    },
+    "narracao/catolico/quaresma-022.m4a": {
+      "bytes": 221971,
+      "sha256": "a53565dda99f93aea1bfbc3018bc86ad73821983da242c3f803ae76a42070c66"
+    },
+    "narracao/catolico/quaresma-023.m4a": {
+      "bytes": 221667,
+      "sha256": "35781594bdab169d45ac7dc381eadb09a3f2323c656c3b9aa9a4cf9a6e265939"
+    },
+    "narracao/catolico/quaresma-024.m4a": {
+      "bytes": 217722,
+      "sha256": "fc603f44d70ce3269c0e8bdc93d5d5255421fd66e235a2d2048eb094b03023f2"
+    },
+    "narracao/catolico/quaresma-025.m4a": {
+      "bytes": 233271,
+      "sha256": "df7d54fed4538e3c9b6a1a9076ded01eb0abaec415dbee2391b02e64e02ae187"
+    },
+    "narracao/catolico/quaresma-026.m4a": {
+      "bytes": 242511,
+      "sha256": "2cd012c1b248657ce559c6e36ebfbfe202f1ab89fbd8be692148c564c36d44bf"
+    },
+    "narracao/catolico/quaresma-027.m4a": {
+      "bytes": 224023,
+      "sha256": "06108a1ad5573be25d9ea7e613dec73e8260fe179a9ddd9c1d3d381e7a40ee02"
+    },
+    "narracao/catolico/quaresma-028.m4a": {
+      "bytes": 249761,
+      "sha256": "c5c8c51975e53cf8e7e0d11c1952efd7bb0004adf617945074d4684efa1fa848"
+    },
+    "narracao/catolico/quaresma-029.m4a": {
+      "bytes": 239696,
+      "sha256": "6240ee27044932b4992eb0c44b2258f25ef6dfe3ff2a4d3208ac5770a64fc407"
+    },
+    "narracao/catolico/quaresma-030.m4a": {
+      "bytes": 239313,
+      "sha256": "4444564defda6aee18e7bc8d77b8fbf9367fbec367951cf59f136aa0119bbd1c"
+    },
+    "narracao/catolico/quaresma-031.m4a": {
+      "bytes": 244260,
+      "sha256": "579d7e120a3253e1431ebe5f7b78b6142e662624afed67d0ddef643ad26cddd1"
+    },
+    "narracao/catolico/quaresma-032.m4a": {
+      "bytes": 221822,
+      "sha256": "7bb0ffb872c240b9bae6c88e11f4abdb0e5b8d006100d211c897f0ea7fe17d58"
+    },
+    "narracao/catolico/quaresma-033.m4a": {
+      "bytes": 265900,
+      "sha256": "126a9cd684d74ab334d10843809b760d0359965963e2ceb28ee09e6c797467e3"
+    },
+    "narracao/catolico/quaresma-034.m4a": {
+      "bytes": 235922,
+      "sha256": "a0b7f1e11301bc5f4e232ff60165fbd60fb1ea2481e0a28eaeb4fe65e2b50ee8"
+    },
+    "narracao/catolico/quaresma-035.m4a": {
+      "bytes": 257788,
+      "sha256": "1e805efaa2618485a2e41fe3924a263be99273207ea4f478e8b44193faf38baf"
+    },
+    "narracao/catolico/quaresma-036.m4a": {
+      "bytes": 260915,
+      "sha256": "0d575bf613bd2ef4d950e6ada3e64a20f3a0d03e3337c1de79615a5384f91b9e"
+    },
+    "narracao/catolico/quaresma-037.m4a": {
+      "bytes": 242678,
+      "sha256": "395e0db7ed65c9be3c3c7ef462f87dcae5410a2b4de2138c7743b4dde54ca35d"
+    },
+    "narracao/catolico/quaresma-038.m4a": {
+      "bytes": 233858,
+      "sha256": "f2c7884982412b18fb21e7d4f19240908fca84058c5821878135b40cd98dc23c"
+    },
+    "narracao/catolico/quaresma-039.m4a": {
+      "bytes": 256837,
+      "sha256": "fba70e28504e0ba2ec29396f3a1b8ad958c61a3d167dd556054299edfd7c716e"
+    },
+    "narracao/catolico/quaresma-040.m4a": {
+      "bytes": 250111,
+      "sha256": "e4589be3daa777711faf5957c70ceae0fd65745f381c07b41deee9f67bfb7d42"
+    },
+    "narracao/catolico/quaresma-041.m4a": {
+      "bytes": 263367,
+      "sha256": "2da11960c2315f2c6e06247e33b59f951aca263a265fabd5292ed1d44f57d706"
+    },
+    "narracao/catolico/quaresma-042.m4a": {
+      "bytes": 229425,
+      "sha256": "33f947d032eeb3b3c6d8ebbe9e0f00b841c976cfb2c22220f1fbc59c07825e66"
+    },
+    "narracao/catolico/quaresma-043.m4a": {
+      "bytes": 254846,
+      "sha256": "4a07936913f152a666bd37ee690d5f1b12e3b33662798eb543f960dfcd0b8711"
+    },
+    "narracao/catolico/quaresma-044.m4a": {
+      "bytes": 238215,
+      "sha256": "2d743009a9d803dd33574ab152264fa9a25a902394971d7b24e99ed8519dfd11"
+    },
+    "narracao/catolico/quaresma-045.m4a": {
+      "bytes": 249384,
+      "sha256": "493db8a243bca711f459862b8174a401c47762781259dde3c0788d1b472c5fde"
+    },
+    "narracao/catolico/quaresma-046.m4a": {
+      "bytes": 218995,
+      "sha256": "b23917c4c14df7bcaf49b57b931b7ff1034b9df8a914e09a59086464a8b07d7e"
+    },
+    "narracao/evangelico/01-01.m4a": {
+      "bytes": 247384,
+      "sha256": "216969974c769f8e535887535289e9b5d877a10b3a833c16dc418254ba156072"
+    },
+    "narracao/evangelico/01-06.m4a": {
+      "bytes": 248487,
+      "sha256": "e90227dbf9975decd93ad344bc1b95a24ca7f51e88690edabb306a704e01e289"
+    },
+    "narracao/evangelico/12-24.m4a": {
+      "bytes": 247596,
+      "sha256": "577b340f2a9d11c4054dbde48905f59d9928ea5654e0b179cf318e4fd4d0a5d7"
+    },
+    "narracao/evangelico/12-25.m4a": {
+      "bytes": 242877,
+      "sha256": "a2c584b04fb7c7d6a8293d49bd5283bcea07420bbd0d9a2db8d83a6ae6e297cb"
+    },
+    "narracao/evangelico/12-31.m4a": {
+      "bytes": 255026,
+      "sha256": "4af15514cab4abc8f7f73a8d4c6b9d2261d1db1147e045008664f0844f894551"
+    },
+    "narracao/evangelico/advento-001.m4a": {
+      "bytes": 244368,
+      "sha256": "3c44767d946e24d1fa3404d79037d6faa11724259d5a5f4cf552fffdd2c05014"
+    },
+    "narracao/evangelico/advento-002.m4a": {
+      "bytes": 240055,
+      "sha256": "d6305ac819bb76a587ecd87db41276ce33b261d52c6561ef7a3c8020658328b2"
+    },
+    "narracao/evangelico/advento-003.m4a": {
+      "bytes": 235644,
+      "sha256": "ccdf5fd6b59f61b860a6d386451375719cf00237bbb3e06c1e5b23ea8bb6df41"
+    },
+    "narracao/evangelico/advento-004.m4a": {
+      "bytes": 237893,
+      "sha256": "72d2b5eafe6d67eba97f3ac51ec5b24a25cbf3021a190a00f42a0ac8d3d49bb7"
+    },
+    "narracao/evangelico/advento-005.m4a": {
+      "bytes": 243348,
+      "sha256": "5444169e6dd274ca895f8228f5527a661ad070eaa78d0c373e7f36f485634f7c"
+    },
+    "narracao/evangelico/advento-006.m4a": {
+      "bytes": 258848,
+      "sha256": "f117defdb33b5d98e5fc535c817723420a6eedc59519ee726b0ef62c4cec5459"
+    },
+    "narracao/evangelico/advento-007.m4a": {
+      "bytes": 238276,
+      "sha256": "740844a55a41f88b1d9ea90e33810d7cfa72d7bfc237bedd798b5f788a52212a"
+    },
+    "narracao/evangelico/advento-008.m4a": {
+      "bytes": 234995,
+      "sha256": "729164bf9f9a7825102b2557aeaced9c1849c379953ca2832320f8ae02124348"
+    },
+    "narracao/evangelico/advento-009.m4a": {
+      "bytes": 258892,
+      "sha256": "82a37c24ea3f32f4ad6d899c61e322eed6bd6be0905d0eae812eb7c8dfe3d5d3"
+    },
+    "narracao/evangelico/advento-010.m4a": {
+      "bytes": 247063,
+      "sha256": "4b64eb466a19878e48e596085e0b18a12a63f61478b1c6b4f500dea1e2f3dfad"
+    },
+    "narracao/evangelico/advento-011.m4a": {
+      "bytes": 260888,
+      "sha256": "cef35e05d2acd43a7b5259d8ef70a7f50d7690f93510673c147498a45144ee47"
+    },
+    "narracao/evangelico/advento-012.m4a": {
+      "bytes": 238805,
+      "sha256": "ac5134af002a35aa4488f1fb41c99cbc1765df502df0ebdac1fd5e09c1aaec2f"
+    },
+    "narracao/evangelico/advento-013.m4a": {
+      "bytes": 264364,
+      "sha256": "e45d461669b746bb1f8407fdda55a14e007a39fff303742c54c40553f9588b60"
+    },
+    "narracao/evangelico/advento-014.m4a": {
+      "bytes": 218814,
+      "sha256": "201a9ea64fa259d3b9b739b36231f59aae19eb8bddc77d193e3825c4dede7e52"
+    },
+    "narracao/evangelico/advento-015.m4a": {
+      "bytes": 244798,
+      "sha256": "02f0a8d02d7dc80bc27a1caac7fba7b8460e046199a6f9aef09f05712cb5cb90"
+    },
+    "narracao/evangelico/advento-016.m4a": {
+      "bytes": 238830,
+      "sha256": "460930cd694db88af5632a585c7ea1e9965d72be4510226e4ff3c31dd3b6e0d8"
+    },
+    "narracao/evangelico/advento-017.m4a": {
+      "bytes": 225787,
+      "sha256": "7652d8edd5d8f10634cf97022ad6777dbd3edf878c5c6e6fb68de723e628f49f"
+    },
+    "narracao/evangelico/advento-018.m4a": {
+      "bytes": 251574,
+      "sha256": "b63630358eded5958826fe48e4b5b7037bcfdc608ec6e716f9065a66e88bf10c"
+    },
+    "narracao/evangelico/advento-019.m4a": {
+      "bytes": 275337,
+      "sha256": "059752a0e68a09562313f21cb014cc5b72bc8caf1dcc6a395bef502e53989398"
+    },
+    "narracao/evangelico/advento-020.m4a": {
+      "bytes": 244924,
+      "sha256": "8c705e3097497ecf9f0e873b451b569145724951ff6ff102ea12efb2b38cb7a4"
+    },
+    "narracao/evangelico/advento-021.m4a": {
+      "bytes": 243843,
+      "sha256": "f12e3ac903b3ca32132102d0bd573c713ba177e50406087da6152a567d1b8cb8"
+    },
+    "narracao/evangelico/advento-022.m4a": {
+      "bytes": 277778,
+      "sha256": "5d81f7998b77d67106f241df0141bab55a6f9141c7e5cc6fb195e9c2373dfd40"
+    },
+    "narracao/evangelico/advento-023.m4a": {
+      "bytes": 267509,
+      "sha256": "255d02d9eb71c171d2d9ae32a534515d974e53011da4fbf56e6cd2509184efa2"
+    },
+    "narracao/evangelico/advento-024.m4a": {
+      "bytes": 252011,
+      "sha256": "13119c1c386cbc7dd5bc1dc2dfe6d32bee8d65a6deb8661544b09aa6295f5ca5"
+    },
+    "narracao/evangelico/advento-025.m4a": {
+      "bytes": 232657,
+      "sha256": "37e3c84a471eb84494b0cb99e3a2a150e01e2c0cb835c37ad6de868d9e4c669b"
+    },
+    "narracao/evangelico/advento-026.m4a": {
+      "bytes": 234300,
+      "sha256": "0bac06c1056bf8414dcc545fe6db0a70c6db59e69c6694600493cc457c738ae4"
+    },
+    "narracao/evangelico/advento-027.m4a": {
+      "bytes": 240463,
+      "sha256": "55d9eb00249a47e36823607635fb8db76991e0ebd867739d076b9a059fee1091"
+    },
+    "narracao/evangelico/advento-028.m4a": {
+      "bytes": 248888,
+      "sha256": "21bac59c8a2a8c403e39b3985ad1175913bd62f07e6012fb8ae963b595168c20"
+    },
+    "narracao/evangelico/comum-001.m4a": {
+      "bytes": 140606,
+      "sha256": "dc24459bb75cc66266f96a997b6f80a9d2ba3eb771bae4d3438c0091b430e50a"
+    },
+    "narracao/evangelico/comum-002.m4a": {
+      "bytes": 213062,
+      "sha256": "4c498cbafc87ee2c4401a495fccd9fd485853f1df187f6905b0863b52bedb3c1"
+    },
+    "narracao/evangelico/comum-003.m4a": {
+      "bytes": 202789,
+      "sha256": "7c7506b1b4dca65bf904b371c4d41ba756acbf15936e96520b3655bfc8bea4ae"
+    },
+    "narracao/evangelico/comum-004.m4a": {
+      "bytes": 196195,
+      "sha256": "48fa6d197a4153ddd48a44e11efca7d11316fa8b8e5a32875849bce2d7b664aa"
+    },
+    "narracao/evangelico/comum-005.m4a": {
+      "bytes": 202306,
+      "sha256": "cc981679893851374a188bff565c183965e19b4f4a163938533230dd32f22e53"
+    },
+    "narracao/evangelico/comum-006.m4a": {
+      "bytes": 196841,
+      "sha256": "241ad94aa16f87dbe07de9f540e31f07bc964e968696624ca85b9b528893d9c1"
+    },
+    "narracao/evangelico/comum-007.m4a": {
+      "bytes": 213182,
+      "sha256": "2279742e6941ea3072de02323d6a358c0c0bc367038f35b0683b7de5f419d9f8"
+    },
+    "narracao/evangelico/comum-008.m4a": {
+      "bytes": 215952,
+      "sha256": "c8ec33555275ec68576691e18197239c3faeef6b058d1af9ef2c29d693840618"
+    },
+    "narracao/evangelico/comum-009.m4a": {
+      "bytes": 197858,
+      "sha256": "fb27df260bbeb2cefa91aa43cd880c386445969b74a5ba0abdcd8e1f82f3cc3a"
+    },
+    "narracao/evangelico/comum-010.m4a": {
+      "bytes": 190306,
+      "sha256": "5620a0f92851306e31056326f5f152f445ab87e55691d23e51a88349fcd637d9"
+    },
+    "narracao/evangelico/comum-011.m4a": {
+      "bytes": 193693,
+      "sha256": "2b20b385472546a33486e9b4bb9194a368ecddc8220c9688a7b6c4b30f25b7d8"
+    },
+    "narracao/evangelico/comum-012.m4a": {
+      "bytes": 190613,
+      "sha256": "69ee255fe116ed66489ab52f5ab09e605ed2c5d6d2380df4ef50905fe9311b2c"
+    },
+    "narracao/evangelico/comum-013.m4a": {
+      "bytes": 204775,
+      "sha256": "cc9312526628cab237e7a71b7a3b8581e5164991ccfdb8daa4870f8924166e51"
+    },
+    "narracao/evangelico/comum-014.m4a": {
+      "bytes": 207332,
+      "sha256": "2168ee87089db5b1f2d0c7125be90c988650b76065484df630fc23b6dbb11027"
+    },
+    "narracao/evangelico/comum-015.m4a": {
+      "bytes": 228956,
+      "sha256": "cb80aa6fb2dea7d0eff973241d5c4a2d47c61260ec3438ee3aea33d418b949ad"
+    },
+    "narracao/evangelico/comum-016.m4a": {
+      "bytes": 206826,
+      "sha256": "9fdd6857bdabad1a6be05521ac5427c4f5d7c080e6bfb97c26d8ff2cfcab5b30"
+    },
+    "narracao/evangelico/comum-017.m4a": {
+      "bytes": 209790,
+      "sha256": "3ef35b3b2764ae50b00c9cae937181317f27874199b30591089b23b408ddc3ff"
+    },
+    "narracao/evangelico/comum-018.m4a": {
+      "bytes": 202863,
+      "sha256": "1c3afc1cf217fe454524ebe777c349260ca37b2e666913cc26357c1dbac02563"
+    },
+    "narracao/evangelico/comum-019.m4a": {
+      "bytes": 198735,
+      "sha256": "61899434f261ba0f55250a134523e5c5c659b56039484f086d401c1a4ee8da2e"
+    },
+    "narracao/evangelico/comum-020.m4a": {
+      "bytes": 203903,
+      "sha256": "4424c420c47f051bb823bff525a090b6d1602fa9c354619b85830bdee37c676a"
+    },
+    "narracao/evangelico/comum-021.m4a": {
+      "bytes": 210483,
+      "sha256": "6fb559fec70647d902bb71a507252e4d762923c9ec2b027254bd7a4799f4ceb8"
+    },
+    "narracao/evangelico/comum-022.m4a": {
+      "bytes": 198802,
+      "sha256": "d67505c06bbc944aa490af1669fb962ac5f437579db3ee94df4def6c4e4b51ea"
+    },
+    "narracao/evangelico/comum-023.m4a": {
+      "bytes": 218186,
+      "sha256": "5cb473168410070e6d9952a45fbae3c6bb6bd8fab2b0c49070b2067c8ff5932b"
+    },
+    "narracao/evangelico/comum-024.m4a": {
+      "bytes": 181921,
+      "sha256": "104947a894f2f35223306c59e8aceaf3b0a2906d320f568894f6f4707e10fa2b"
+    },
+    "narracao/evangelico/comum-025.m4a": {
+      "bytes": 228620,
+      "sha256": "19e83c699e67299736e442b255ddcd45e015aecdfceef2146ed009a329bfa63b"
+    },
+    "narracao/evangelico/comum-026.m4a": {
+      "bytes": 203110,
+      "sha256": "2e8d0e1e2d649c3a5371782f35a379bee8f1c07d11d2cc9442ad9226585f73e7"
+    },
+    "narracao/evangelico/comum-027.m4a": {
+      "bytes": 220765,
+      "sha256": "a4dae9bd1504e99f3e63aabcecf00b411c026d54cc7080b67e98479a11e5da4f"
+    },
+    "narracao/evangelico/comum-028.m4a": {
+      "bytes": 197751,
+      "sha256": "9fb8002299cbdd0bfae953224dfcb9be51deae0c7efd3fd0c93a1fa49eaa2abd"
+    },
+    "narracao/evangelico/comum-029.m4a": {
+      "bytes": 224853,
+      "sha256": "8a40a7a83f8c5eb66cd43ac1dc2a27810ec417a51b055e339769efd4a2034fed"
+    },
+    "narracao/evangelico/comum-030.m4a": {
+      "bytes": 223862,
+      "sha256": "584c6b1826add5878ad8a85f9b1ed9197a81b3e42a191270641761968118cf7c"
+    },
+    "narracao/evangelico/comum-031.m4a": {
+      "bytes": 199599,
+      "sha256": "2dd2b20f9ff823c0aa1bec90e286131645e9b5da56e2a540760ba0beb0f74051"
+    },
+    "narracao/evangelico/comum-032.m4a": {
+      "bytes": 224022,
+      "sha256": "bf709ca3067951e96a9887937f9ac545cc6c5e23061a52102d585266e07fb12a"
+    },
+    "narracao/evangelico/comum-033.m4a": {
+      "bytes": 225185,
+      "sha256": "8ea1d0288bb78fac4b93f1cfe1338c62b3cd7c780fa50a680c49f6824db99278"
+    },
+    "narracao/evangelico/comum-034.m4a": {
+      "bytes": 232102,
+      "sha256": "a434f16c66d51740b11b714572092e3e3b5b7202d801231f09bbd9b62651aeb2"
+    },
+    "narracao/evangelico/comum-035.m4a": {
+      "bytes": 235588,
+      "sha256": "15394929b40596a514804e33888f7538dc8c1b57571d0e248f4f27081b92bc61"
+    },
+    "narracao/evangelico/comum-036.m4a": {
+      "bytes": 232856,
+      "sha256": "057b3df583d0ecfd8f1bd45eb2adddbbf3d7eccac6600d32efa858492af279c2"
+    },
+    "narracao/evangelico/comum-037.m4a": {
+      "bytes": 231605,
+      "sha256": "56b0e5dda844619326353caf5bc5278a48027b376023d7fb5037def5235b7935"
+    },
+    "narracao/evangelico/comum-038.m4a": {
+      "bytes": 212112,
+      "sha256": "adf534b32167db087ceec51b39629c4736eac120b7febbe04022c80b9dc24fe4"
+    },
+    "narracao/evangelico/comum-039.m4a": {
+      "bytes": 218095,
+      "sha256": "aa555f2081e17d2da9d774f0ca49ad1d4673e9c8eab017133c15f171276b2dc6"
+    },
+    "narracao/evangelico/comum-040.m4a": {
+      "bytes": 214252,
+      "sha256": "d2ea371f9d95530aef16a8a7c1a500598468e86a657800da11e645bb717ad2e1"
+    },
+    "narracao/evangelico/comum-041.m4a": {
+      "bytes": 221305,
+      "sha256": "c064642380cf03d593e67536ec34ebc5c8a45451c51f3909c6196dfff56c0cea"
+    },
+    "narracao/evangelico/comum-042.m4a": {
+      "bytes": 212642,
+      "sha256": "fde086437c2688829c1f3540de691ecd1c48429c579ba2023212744e5d15dd68"
+    },
+    "narracao/evangelico/comum-043.m4a": {
+      "bytes": 198731,
+      "sha256": "eb49b698a73506609934c32ead27e751e7e734c9c0bc11fda0fa9b8586046b0e"
+    },
+    "narracao/evangelico/comum-044.m4a": {
+      "bytes": 222207,
+      "sha256": "265ff0e8ee3e32112df919c92244229ba1926dc741c966219c58faf9ba95e1ca"
+    },
+    "narracao/evangelico/comum-045.m4a": {
+      "bytes": 213502,
+      "sha256": "adf7e2fdbe9ab52e399406367a063c752ba8387b68ed5fa564598b04fa23102c"
+    },
+    "narracao/evangelico/comum-046.m4a": {
+      "bytes": 234756,
+      "sha256": "b5dae3ac12bf8866be6d19c9c16f93fc59b0a224f30b19a7685949f174874f5a"
+    },
+    "narracao/evangelico/comum-047.m4a": {
+      "bytes": 211365,
+      "sha256": "6c4bbd1d908d46e882c7494da9791117328495fc1f2c379b6b6a417bbddfac25"
+    },
+    "narracao/evangelico/comum-048.m4a": {
+      "bytes": 225609,
+      "sha256": "dbf504145b32ad213a11676050d30bfc5c33636ece21e684ae03c6af9f4385c0"
+    },
+    "narracao/evangelico/comum-049.m4a": {
+      "bytes": 199996,
+      "sha256": "6f2e6463fdcf711a2a482e0d59e03dfabb203b891faf5d7bd595f46a706d88e5"
+    },
+    "narracao/evangelico/comum-050.m4a": {
+      "bytes": 248445,
+      "sha256": "3f5ab5d69a786ee8905cb7f2cbf9b7b4d806522250ef49625fc7f12c036294a8"
+    },
+    "narracao/evangelico/comum-051.m4a": {
+      "bytes": 211493,
+      "sha256": "2b89544c43565640eb512b77e53ade0398a608546f76067130512b6fff69c72a"
+    },
+    "narracao/evangelico/comum-052.m4a": {
+      "bytes": 222587,
+      "sha256": "31b3759bebd8bad68d6a42d63474831cf828ee5736b148929ee08004129e85c4"
+    },
+    "narracao/evangelico/comum-053.m4a": {
+      "bytes": 244452,
+      "sha256": "fb2c8d3b204dd8bbd94e8e176986a057f1ca41924a71fba923bbf69f1828b262"
+    },
+    "narracao/evangelico/comum-054.m4a": {
+      "bytes": 224896,
+      "sha256": "e2577ece4fbea6370f6b2fbd2225816fcc5001e589d6e4e1234b2172c201704e"
+    },
+    "narracao/evangelico/comum-055.m4a": {
+      "bytes": 214530,
+      "sha256": "f07477f3ae43d2f66c05b9536c4801fd11009c372757d55a522909c53fe72bfd"
+    },
+    "narracao/evangelico/comum-056.m4a": {
+      "bytes": 236564,
+      "sha256": "656fcf9a66d8b795869f3d179c879a6488b9cff1b5c9ade13f5801745b22b961"
+    },
+    "narracao/evangelico/comum-057.m4a": {
+      "bytes": 245187,
+      "sha256": "7d17522783e4444ddc0affc1b629076fa68deb3b43760c3192c7bd09b61568fb"
+    },
+    "narracao/evangelico/comum-058.m4a": {
+      "bytes": 226840,
+      "sha256": "5e7f99075f5667769b791dc353bff81c67d744b83e091e2de0caad116b12c2f9"
+    },
+    "narracao/evangelico/comum-059.m4a": {
+      "bytes": 229350,
+      "sha256": "3c89586590b3cbb8a3b029c2af074d53218c554b0c6a65341d2d5ab627f744dc"
+    },
+    "narracao/evangelico/comum-060.m4a": {
+      "bytes": 226293,
+      "sha256": "f2bdb760b377a7888b1eb6c172ad3e160e0444731fafa3c51ebe90f39aeb577a"
+    },
+    "narracao/evangelico/comum-061.m4a": {
+      "bytes": 219864,
+      "sha256": "ceed881bfbd281dabaea8bdd9077976fca39db4d6730d9b40eaeac5271c2aac7"
+    },
+    "narracao/evangelico/comum-062.m4a": {
+      "bytes": 217107,
+      "sha256": "e1b133977ae09ac251f56f7a87a18fc0506d0ae8e464930354c6baa2d4d906c1"
+    },
+    "narracao/evangelico/comum-063.m4a": {
+      "bytes": 225959,
+      "sha256": "f34a1eb3531ff7f5c7aa2c0ec538b7476adda2c41cd854ab8da850f303c7f2da"
+    },
+    "narracao/evangelico/comum-064.m4a": {
+      "bytes": 223995,
+      "sha256": "390a75484a8bd27380f0816ae98503db1e75469343900fcec8d131e3738a82af"
+    },
+    "narracao/evangelico/comum-065.m4a": {
+      "bytes": 211932,
+      "sha256": "c94443a4aa3a827a92a67e4c86fd32b3d289dbb886620fb53e51239d7a606067"
+    },
+    "narracao/evangelico/comum-066.m4a": {
+      "bytes": 246134,
+      "sha256": "2c57d1dcbde14188458378d376dc0ccdf11d43cbd1978881b9b943ad6c271533"
+    },
+    "narracao/evangelico/comum-067.m4a": {
+      "bytes": 199711,
+      "sha256": "e06eee2d054fd198cf11b0e9a4f080d4ed54536c97dd778f5c3be83e965ed0db"
+    },
+    "narracao/evangelico/comum-068.m4a": {
+      "bytes": 260555,
+      "sha256": "f8b06288bf71471ca0d72163e4cac96a9bdc33f532425647b23696d2aa456a24"
+    },
+    "narracao/evangelico/comum-069.m4a": {
+      "bytes": 256746,
+      "sha256": "bfc6a8bc677f01501a20509416872afea65bb494e5e53c104592c4eba687a36b"
+    },
+    "narracao/evangelico/comum-070.m4a": {
+      "bytes": 233277,
+      "sha256": "3e9fb9d49ab18c5f452a268f3b566d2ce9f62656d573e90502dd1e48a6613024"
+    },
+    "narracao/evangelico/comum-071.m4a": {
+      "bytes": 252743,
+      "sha256": "e4f59e11d020e9f9ec8ff5f3c8becc843556d9f339ce52bdd77c2a0041fbfa7c"
+    },
+    "narracao/evangelico/comum-072.m4a": {
+      "bytes": 232237,
+      "sha256": "24444ea78855ab186f2bb9044a9e24dd30e25d948eeff33b17b50efb1472b081"
+    },
+    "narracao/evangelico/comum-073.m4a": {
+      "bytes": 227114,
+      "sha256": "d4da4c4546cbcf0b69577cbd98761ee6062cb4bf4f301c4a0d91a2f1509787be"
+    },
+    "narracao/evangelico/comum-074.m4a": {
+      "bytes": 235929,
+      "sha256": "b66e35fd07f0108619923803a55559fa6e32e4dcf33f4ed6d04cad1f5a3605a7"
+    },
+    "narracao/evangelico/comum-075.m4a": {
+      "bytes": 226266,
+      "sha256": "8f5e0160138ecbe845057645b7d2129e97763b8727af238db88c5afac049a958"
+    },
+    "narracao/evangelico/comum-076.m4a": {
+      "bytes": 254151,
+      "sha256": "c73b778faf52a7ca37d97f8ff7baeadde819af9eeacfa7e350fe5a12ad795006"
+    },
+    "narracao/evangelico/comum-077.m4a": {
+      "bytes": 210225,
+      "sha256": "5c298221f2da59ea4a670340c12a85fb73bb3bc36f6ea5ee85d1b092dca2b946"
+    },
+    "narracao/evangelico/comum-078.m4a": {
+      "bytes": 243870,
+      "sha256": "7e7eab1793ea4cf1fe2766501b122b539ee1cdee4bd474be402742ed0252b38a"
+    },
+    "narracao/evangelico/comum-079.m4a": {
+      "bytes": 237257,
+      "sha256": "a8bce18f89549f96d10e373d25bd52dc2673d468d9dbc347b6ac94d9a17e9776"
+    },
+    "narracao/evangelico/comum-080.m4a": {
+      "bytes": 219899,
+      "sha256": "6a2be05b544504f69fb2ae2d19d654cea40fbf0af682881c00d676ea13ce7deb"
+    },
+    "narracao/evangelico/comum-081.m4a": {
+      "bytes": 239271,
+      "sha256": "f1aef4779c5bf8dc81370642ad0b8b72dc2f02331e075218ec8b18ba028dd921"
+    },
+    "narracao/evangelico/comum-082.m4a": {
+      "bytes": 240788,
+      "sha256": "164ce6c25913476598eb4ea3c6fb9d0a06b3c3689f452d877076e35730cf9b2c"
+    },
+    "narracao/evangelico/comum-083.m4a": {
+      "bytes": 237652,
+      "sha256": "351ac93ba1cd0c78048b7e5b5f6d65c648c37d986a3982fd2d197e79bb68ae05"
+    },
+    "narracao/evangelico/comum-084.m4a": {
+      "bytes": 220684,
+      "sha256": "dba5f5dda6f6977b5d44fca98b82e5fe9acd8d7aa8e964e695afd138999a1e3c"
+    },
+    "narracao/evangelico/comum-085.m4a": {
+      "bytes": 237071,
+      "sha256": "5fed09db27981dd90262de043ee1a8cbbb38959e03302181ce7920daff598bdb"
+    },
+    "narracao/evangelico/comum-086.m4a": {
+      "bytes": 243037,
+      "sha256": "11473167366f74ba479daac3b3829fd0b52269902643c361f7ad126035ec77c0"
+    },
+    "narracao/evangelico/comum-087.m4a": {
+      "bytes": 264923,
+      "sha256": "6e73633869a3ccb8f1c7a301d2f5986eb71a2f6572dd47434344454a1ff98a2b"
+    },
+    "narracao/evangelico/comum-088.m4a": {
+      "bytes": 234523,
+      "sha256": "788031c655a1f7e19ba5936fcda0a5d7528f55c0ddbb8517335a6d12bb6ad3b1"
+    },
+    "narracao/evangelico/comum-089.m4a": {
+      "bytes": 240773,
+      "sha256": "87e3280b5555b1d208cc2da7175b997080d1f6577c789650fb7cd283780d18a3"
+    },
+    "narracao/evangelico/comum-090.m4a": {
+      "bytes": 260301,
+      "sha256": "d526500aa0813c819383eb6ace4a6e74914d1371ca64c80a734b92508e182ed4"
+    },
+    "narracao/evangelico/comum-091.m4a": {
+      "bytes": 222135,
+      "sha256": "b765a5bbd0f6448b03a3b5071a6f2216ff2ef5a088e5d996ae56931fdf3568c0"
+    },
+    "narracao/evangelico/comum-092.m4a": {
+      "bytes": 259896,
+      "sha256": "07838c61349311621cd7692a7bfdbd5128672abf24f22d36947a829c88db1219"
+    },
+    "narracao/evangelico/comum-093.m4a": {
+      "bytes": 235520,
+      "sha256": "5280d17ffa9b6d2d4a5bf958ec04e1000af2344e63f26a38aebeb2d5fa2cdca8"
+    },
+    "narracao/evangelico/comum-094.m4a": {
+      "bytes": 241372,
+      "sha256": "7664c16b5046bf8f0c1579538c8f211ca6d98d27beb5b8534bc2afc182202dcf"
+    },
+    "narracao/evangelico/comum-095.m4a": {
+      "bytes": 259842,
+      "sha256": "d7ac890175dfbfae810a0d3f08a21c67d15692afa78e8a1972106421d5d58fcb"
+    },
+    "narracao/evangelico/comum-096.m4a": {
+      "bytes": 268117,
+      "sha256": "556a293b5c5b8655726e53a00e4bd73229dbec41c336f13d0e13732cc682e998"
+    },
+    "narracao/evangelico/comum-097.m4a": {
+      "bytes": 239402,
+      "sha256": "ac3659a9e81e4bd7e775cd08162a0dfceb164668845eead83f029a3e1d32da06"
+    },
+    "narracao/evangelico/comum-098.m4a": {
+      "bytes": 240111,
+      "sha256": "4949163505fef3f15e54c41aea3ba7d4a0fb0a44adb760ecdf8a654096a9851f"
+    },
+    "narracao/evangelico/comum-099.m4a": {
+      "bytes": 257738,
+      "sha256": "11759bec235ebc514a2bf3180098378a45b02d88989e648ecb9c48f4793bbbe4"
+    },
+    "narracao/evangelico/comum-100.m4a": {
+      "bytes": 239498,
+      "sha256": "3fdf3837c2470981d86f3914dacd88e4249d3292e7abd22dc1cb3665f2d47080"
+    },
+    "narracao/evangelico/comum-101.m4a": {
+      "bytes": 268246,
+      "sha256": "d82c79e593a75a5e487a2b58f734a739ccee7d38dd90340363c73d18451f39b6"
+    },
+    "narracao/evangelico/comum-102.m4a": {
+      "bytes": 227649,
+      "sha256": "5d2c74f735081540bf2d9e9f4797d430d767861b6b05b38bd21d292b281ed038"
+    },
+    "narracao/evangelico/comum-103.m4a": {
+      "bytes": 231913,
+      "sha256": "370290647903aca6b04dc4f59de5234051add6548c64e126bf6f2f74d7a15b40"
+    },
+    "narracao/evangelico/comum-104.m4a": {
+      "bytes": 248540,
+      "sha256": "1cb48f9ef40abc686635c861c2fe3e8296fb12cfe0946e47ae8abe25a4af5ab5"
+    },
+    "narracao/evangelico/comum-105.m4a": {
+      "bytes": 263281,
+      "sha256": "3d43951ec3db38a678995b25d993f1376cbd3727aee5d8b962d62b4e593f072a"
+    },
+    "narracao/evangelico/comum-106.m4a": {
+      "bytes": 226156,
+      "sha256": "61fbf96061ea756f63be2555562655c2cafc857fe631f34ae6c6ff8b3e59593e"
+    },
+    "narracao/evangelico/comum-107.m4a": {
+      "bytes": 254831,
+      "sha256": "a8e392fb36cec5a328455d1d6f98e8026176e227ca997f0521877f91038cf0a4"
+    },
+    "narracao/evangelico/comum-108.m4a": {
+      "bytes": 249514,
+      "sha256": "3334a23fe2804f219c4a57f208ffbbc121b2fe8e475e70ee53156cf43bd991c4"
+    },
+    "narracao/evangelico/comum-109.m4a": {
+      "bytes": 227424,
+      "sha256": "b2617926aefca6c730a1a99abf1c14545bb2971b2c1f05bcb59779ee41ab223b"
+    },
+    "narracao/evangelico/comum-110.m4a": {
+      "bytes": 216337,
+      "sha256": "b22a543c91c9481e61fcc2a587f769c958211999ffe2d9e394231e72f95892fa"
+    },
+    "narracao/evangelico/comum-111.m4a": {
+      "bytes": 223433,
+      "sha256": "fc224c5a5bfdcf6b37b2235442a8a7d8286ee3db49bd1ca91fcdc2af82b13fc6"
+    },
+    "narracao/evangelico/comum-112.m4a": {
+      "bytes": 233266,
+      "sha256": "8db3138c0108a0f7f328a866508247e4124d342169be688c08668fe029916e18"
+    },
+    "narracao/evangelico/comum-113.m4a": {
+      "bytes": 249125,
+      "sha256": "bdc8e57348ba6013027a459598afc60051642a3c2ca53f7d19cf5d32d2ba8f2f"
+    },
+    "narracao/evangelico/comum-114.m4a": {
+      "bytes": 243534,
+      "sha256": "a2489d5f6bc3b06b5c6a6f144dae89444dbb9bb1cd6b6e95d555dcd548c4e78e"
+    },
+    "narracao/evangelico/comum-115.m4a": {
+      "bytes": 219855,
+      "sha256": "b9cc1dd34d9ce1ed739c6d142f65b481124c1ed54937306a716471679305f8f9"
+    },
+    "narracao/evangelico/comum-116.m4a": {
+      "bytes": 224870,
+      "sha256": "f1ed83e873c836cd27b50c90465443ac892ee9e0d2918963806003e418e12898"
+    },
+    "narracao/evangelico/comum-117.m4a": {
+      "bytes": 259121,
+      "sha256": "f760d44211ef3742f020013a23ffb9651d4b4571e6bb4dc0e651438f184b66bc"
+    },
+    "narracao/evangelico/comum-118.m4a": {
+      "bytes": 249071,
+      "sha256": "03c3575d6ecc59a15f759ce9e240d046e71703afe299415a20bafcf41f2859b1"
+    },
+    "narracao/evangelico/comum-119.m4a": {
+      "bytes": 231564,
+      "sha256": "9107d0c8d245e9c1f1a30e8058d81b35a077cbee4004d727ed0e0cff4d6a1d7e"
+    },
+    "narracao/evangelico/comum-120.m4a": {
+      "bytes": 240526,
+      "sha256": "64921420a728558c13f8d792a6ac6305deddf4576a16448473e1ea349b20476d"
+    },
+    "narracao/evangelico/comum-121.m4a": {
+      "bytes": 230855,
+      "sha256": "c8e2862d3002a49a410a05101313cff6c00eef94c4aaa0d03d8da91af3a1d9c6"
+    },
+    "narracao/evangelico/comum-122.m4a": {
+      "bytes": 217927,
+      "sha256": "2c0b42283821f58290feb735e2f69d14ca41cd25826faf6693237f3804eb4d97"
+    },
+    "narracao/evangelico/comum-123.m4a": {
+      "bytes": 229686,
+      "sha256": "f77409086bc5a2f57b3880acdea494d62341a86b5b3b4a013d84d81bff089a81"
+    },
+    "narracao/evangelico/comum-124.m4a": {
+      "bytes": 259758,
+      "sha256": "b242b971e99627e5f9915244f4c7960cb3f4f8573863331544ae0fffc479849f"
+    },
+    "narracao/evangelico/comum-125.m4a": {
+      "bytes": 210697,
+      "sha256": "9c3c2e33a2ff3fef8d60e0912962b58eeffca72d6a26ff5e4432a1038fd09bd2"
+    },
+    "narracao/evangelico/comum-126.m4a": {
+      "bytes": 248036,
+      "sha256": "df1ac9eb58fc7bd445c1c063dda85df59132763a048b0d38461c22a6c4038fe9"
+    },
+    "narracao/evangelico/comum-127.m4a": {
+      "bytes": 235295,
+      "sha256": "292642f42d6d1d14c36bca39b729cb0d2f4bd7104e8b39831dff4eb008a30b82"
+    },
+    "narracao/evangelico/comum-128.m4a": {
+      "bytes": 244888,
+      "sha256": "9a1a971410346ce65180ce45c18a774e30cbd97185586a622b14227499ac92cd"
+    },
+    "narracao/evangelico/comum-129.m4a": {
+      "bytes": 262912,
+      "sha256": "f7c6950949ba834b2c474835dbb510c6303071092adf5e338535e94560a67958"
+    },
+    "narracao/evangelico/comum-130.m4a": {
+      "bytes": 226459,
+      "sha256": "e84fc25a1022f6f8ea1ef336b8c3b729823c979b753143f0dca258e331aba907"
+    },
+    "narracao/evangelico/comum-131.m4a": {
+      "bytes": 221220,
+      "sha256": "a16dee3dd90a273908d4ee7d67d311b622d515079297a033e73b73bc4371e922"
+    },
+    "narracao/evangelico/comum-132.m4a": {
+      "bytes": 230308,
+      "sha256": "a149849c69c4bbc8b18a3926d97c9b75b711693261f89e21da470d666668399f"
+    },
+    "narracao/evangelico/comum-133.m4a": {
+      "bytes": 222813,
+      "sha256": "c31cb4833ae59abd3e8dea873b409468e3d7fcaabc74bf6b69cd24018526152c"
+    },
+    "narracao/evangelico/comum-134.m4a": {
+      "bytes": 235236,
+      "sha256": "0f93a74de99b7d0626ab6b4789d4623a6617d2d2489dd62dfabbbd11d5dac43f"
+    },
+    "narracao/evangelico/comum-135.m4a": {
+      "bytes": 229424,
+      "sha256": "e4eab517e245caebb679c4b9bf43c5f15eb42a46dd7283aa0d50239ccea7e328"
+    },
+    "narracao/evangelico/comum-136.m4a": {
+      "bytes": 234884,
+      "sha256": "b514e05ac3e178d950634285629db06997e37e57ffc3456b6af04a8fed2b43d5"
+    },
+    "narracao/evangelico/comum-137.m4a": {
+      "bytes": 258302,
+      "sha256": "08a203167d9f3a1e4429d86014d772063cf59141c45f80106e9f6d2a50f2700b"
+    },
+    "narracao/evangelico/comum-138.m4a": {
+      "bytes": 233189,
+      "sha256": "49e63c79f57addf2c5b72a1e5ff04c3038a1dd64f0cccca72c7eb752e5b5b401"
+    },
+    "narracao/evangelico/comum-139.m4a": {
+      "bytes": 220389,
+      "sha256": "197c6845aac4563e78b594e3a91d846889763d4b162d44a89383f97c9e4238d3"
+    },
+    "narracao/evangelico/comum-140.m4a": {
+      "bytes": 241019,
+      "sha256": "2ded0f2887cb9ba05a8e74e17678494ed5fb892f0ffdf90424168e1e2a506c62"
+    },
+    "narracao/evangelico/comum-141.m4a": {
+      "bytes": 231012,
+      "sha256": "f4713d970aa318df8edd00a0feb404c90fd9f76c09dff932208611c034640376"
+    },
+    "narracao/evangelico/comum-142.m4a": {
+      "bytes": 256291,
+      "sha256": "a3d72c6e9cd490b89d43d877ad372909f7333e2b9113ad3d5813134450247495"
+    },
+    "narracao/evangelico/comum-143.m4a": {
+      "bytes": 217090,
+      "sha256": "4a494e8cfc4faf287aaf1dffb7704d97a57cf34346d4d80a52643be4283c5458"
+    },
+    "narracao/evangelico/comum-144.m4a": {
+      "bytes": 227352,
+      "sha256": "0eebad9c2e936604157d19b7ded177215e59ee381c7d94c960aef263ebcaa53f"
+    },
+    "narracao/evangelico/comum-145.m4a": {
+      "bytes": 224890,
+      "sha256": "1d2c5e40c25beeeadc39a7d4963fc22e66383e777baefaaca7f99d59cdeeb828"
+    },
+    "narracao/evangelico/comum-146.m4a": {
+      "bytes": 243563,
+      "sha256": "3c6c5fe279bb21b5be7d7fb0500680730aa6420c945f2bcd48a8b35431f7d2bf"
+    },
+    "narracao/evangelico/comum-147.m4a": {
+      "bytes": 239830,
+      "sha256": "70d02d9b1c1af3c26ff2353e6b959ec52e46643508da76e2f1b86dc10d1074cf"
+    },
+    "narracao/evangelico/comum-148.m4a": {
+      "bytes": 220871,
+      "sha256": "33c371366e824c08dd2eee1a2eceff43c469902472bb3230e20f17608141c382"
+    },
+    "narracao/evangelico/comum-149.m4a": {
+      "bytes": 240193,
+      "sha256": "d1cc11ac5eb452de73f30c04d7b8bacb3adf87ce6fab2c926d41f7237cb33939"
+    },
+    "narracao/evangelico/comum-150.m4a": {
+      "bytes": 264994,
+      "sha256": "c11737e15d2fc3aab52e818859779c8f6cd08261bb3bddd57cfc8909cc5a093c"
+    },
+    "narracao/evangelico/comum-151.m4a": {
+      "bytes": 249601,
+      "sha256": "37cc506d91609a45995cecbece8eebbab2c39362d1a2e73064273884b2b52260"
+    },
+    "narracao/evangelico/comum-152.m4a": {
+      "bytes": 242398,
+      "sha256": "4164d8f1ff2cbc56707e896f6f9ac1e66d6d3db71f7c07cc28dcb17d9c379390"
+    },
+    "narracao/evangelico/comum-153.m4a": {
+      "bytes": 210421,
+      "sha256": "a79e1363e504474d193afd1f08571ae6e33bc239ccca146b785a79b5953ef906"
+    },
+    "narracao/evangelico/comum-154.m4a": {
+      "bytes": 235894,
+      "sha256": "f614b0d5b4141188f4df828e6d35e18b12fb83002abb70f440a62412a667e0d2"
+    },
+    "narracao/evangelico/comum-155.m4a": {
+      "bytes": 246148,
+      "sha256": "253a507afd7c2c3171590908d3bbc72c777081d4594e3606e57c6e63b95406bf"
+    },
+    "narracao/evangelico/comum-156.m4a": {
+      "bytes": 253133,
+      "sha256": "64a40932658e074e9bb9beeb25b23e57edd60117150cdc96c9bdd24673ea7e4f"
+    },
+    "narracao/evangelico/comum-157.m4a": {
+      "bytes": 236947,
+      "sha256": "abc4d776fe9a41c0d14d6c182e733d29bde2862e609c3d553c6697b8583ed60d"
+    },
+    "narracao/evangelico/comum-158.m4a": {
+      "bytes": 226942,
+      "sha256": "4ed04c0326cbe4facf97feab954028a04589461d59f79467e942fb407f18cf29"
+    },
+    "narracao/evangelico/comum-159.m4a": {
+      "bytes": 234074,
+      "sha256": "79e5af720298120d9bc08d42c383e29fdd98b518b96573f298541d54eb51f194"
+    },
+    "narracao/evangelico/comum-160.m4a": {
+      "bytes": 227339,
+      "sha256": "632711de4a060cf2c0dfa039c3a875f6506c18d28eae918d2cf439dba93667ce"
+    },
+    "narracao/evangelico/comum-161.m4a": {
+      "bytes": 241112,
+      "sha256": "f3eebc5c79bb3dbe6473b848e42c0309e398734c3d1df126f32e98cf02fa3e56"
+    },
+    "narracao/evangelico/comum-162.m4a": {
+      "bytes": 249510,
+      "sha256": "baab956634c1c6d750f675d900b263ccbdaa7120d4e5c2307c17916d18321dcd"
+    },
+    "narracao/evangelico/comum-163.m4a": {
+      "bytes": 219089,
+      "sha256": "56e595e4680a28df29ddc6e7927333dc8e91d96e45c6ead859167780755cc1ae"
+    },
+    "narracao/evangelico/comum-164.m4a": {
+      "bytes": 216601,
+      "sha256": "29c1564a192e4f0a3cb9c0920c4c9cd02c8a54c46b197755870df6890ec061b7"
+    },
+    "narracao/evangelico/comum-165.m4a": {
+      "bytes": 254623,
+      "sha256": "057b3d512a2eceecc96b0cf795f488f0f76a16344ba3967f28d0a4166a47daa7"
+    },
+    "narracao/evangelico/comum-166.m4a": {
+      "bytes": 238046,
+      "sha256": "d33dc2544e259cc3d226a5d5649cc703d26dc4841405318417fe21284161c16f"
+    },
+    "narracao/evangelico/comum-167.m4a": {
+      "bytes": 255346,
+      "sha256": "d6200eae6c7137deeb29540714ff326ed93cdd1cf5e3326232f4a790f566a080"
+    },
+    "narracao/evangelico/comum-168.m4a": {
+      "bytes": 225112,
+      "sha256": "3b6dc9f0e2d197e5581b0107860bc7a275d6acdf9f1f42a197da38b33ccf134d"
+    },
+    "narracao/evangelico/comum-169.m4a": {
+      "bytes": 229748,
+      "sha256": "6aad86b1cf615ebb8b516a32b8ad15c3b7d84e13dd453a9ddb42384853bb4cba"
+    },
+    "narracao/evangelico/comum-170.m4a": {
+      "bytes": 244378,
+      "sha256": "0dd4fcce5b36d246c584861bd5bd976f4de9b7b5e59117f8bb5b9f330fa373c1"
+    },
+    "narracao/evangelico/comum-171.m4a": {
+      "bytes": 232192,
+      "sha256": "0ea704acfa0e15f6108b8117dcf5a279ca30a2ab61cccf56f23d45373c66217f"
+    },
+    "narracao/evangelico/comum-172.m4a": {
+      "bytes": 233829,
+      "sha256": "d155923a15a5b5e3364e4586fbd8e96114986cc7cd17fe0f17743e4f5953f7f0"
+    },
+    "narracao/evangelico/comum-173.m4a": {
+      "bytes": 226634,
+      "sha256": "85410810c8926775b65ce81f923e624e4acf05939a3d9cf4af693162a27f13b0"
+    },
+    "narracao/evangelico/comum-174.m4a": {
+      "bytes": 236554,
+      "sha256": "6ee95d57e1c2d08f628d74e5bd72c4f97e254c251033ed14a4e65f7b4bfbd218"
+    },
+    "narracao/evangelico/comum-175.m4a": {
+      "bytes": 257446,
+      "sha256": "bf5642a9874e4d772deddda5eaada5b796db1372d08c612cfecc9b860206aa7d"
+    },
+    "narracao/evangelico/comum-176.m4a": {
+      "bytes": 253741,
+      "sha256": "9361d3cf009bf0069a19f0a4b966dfe573caefcff2a0da82d7c3681164a92e7b"
+    },
+    "narracao/evangelico/comum-177.m4a": {
+      "bytes": 232042,
+      "sha256": "b7076e413511f5dba6c0f29a69da631aa821f4bdb0abf4b57401c9e57dc2a317"
+    },
+    "narracao/evangelico/comum-178.m4a": {
+      "bytes": 262473,
+      "sha256": "a83a442d601a57f86e1b5e40b7df5e49fd94f693eab4c87fbbb4e741a83b93b2"
+    },
+    "narracao/evangelico/comum-179.m4a": {
+      "bytes": 255197,
+      "sha256": "60f7ee0ce6169053be1278382d5d7dc808c93e868eb1c30f6175d8be7b447548"
+    },
+    "narracao/evangelico/comum-180.m4a": {
+      "bytes": 249082,
+      "sha256": "c4770ac8613781a745be8bffde2454f8c8479a776699d2ff61a1ab7098002440"
+    },
+    "narracao/evangelico/comum-181.m4a": {
+      "bytes": 224990,
+      "sha256": "ad9be7f9423898a2f0d5dbda12146505c1dda65627e68023508f2ce76e4af73e"
+    },
+    "narracao/evangelico/comum-182.m4a": {
+      "bytes": 228238,
+      "sha256": "12e9a6b9c65ff849d743ef8d23375e92ab30d049f933e8712b106e83cf839cb5"
+    },
+    "narracao/evangelico/comum-183.m4a": {
+      "bytes": 218644,
+      "sha256": "d5e5a1b16c734a78bfafe3f53990f8813a3b281c695df34a54bcd7759bae596a"
+    },
+    "narracao/evangelico/comum-184.m4a": {
+      "bytes": 224786,
+      "sha256": "ab965d4ec029e30b316c7edcdffc1a1191c14094bb3441a2812e237f37652081"
+    },
+    "narracao/evangelico/comum-185.m4a": {
+      "bytes": 239139,
+      "sha256": "9504c7e15945c711d37d0afff8f0c784e28c4d1d5077bd26f0ebe902aaeb2fdf"
+    },
+    "narracao/evangelico/comum-186.m4a": {
+      "bytes": 263497,
+      "sha256": "e5bd79bc6bb8a5597238ea6a4082eb8dafe676ea6bc81b859ccb39f79cbf018c"
+    },
+    "narracao/evangelico/comum-187.m4a": {
+      "bytes": 228012,
+      "sha256": "aa7a7322bdc2d0d4fa7ee9e11b4246c3b318dc756a5f61df828d027da769b56e"
+    },
+    "narracao/evangelico/comum-188.m4a": {
+      "bytes": 232544,
+      "sha256": "dd2b61356f8d0751d7f839d1b9807f414d9a5c93cdec3928e968738f2e64ca85"
+    },
+    "narracao/evangelico/comum-189.m4a": {
+      "bytes": 246964,
+      "sha256": "ce2b89132f4fa77036ec28422b3fcd32a0b7dc8c3c8b07357cbe606b86844bdd"
+    },
+    "narracao/evangelico/comum-190.m4a": {
+      "bytes": 237757,
+      "sha256": "0432362f2c6eb356aaaefbce7a823f9a80daf9729033fddb3e896935e64fcfbf"
+    },
+    "narracao/evangelico/comum-191.m4a": {
+      "bytes": 229981,
+      "sha256": "9ff30b63b2667f3d4eff8d930517cd18e9ac00cdbe04d4962e71ee57545435bc"
+    },
+    "narracao/evangelico/comum-192.m4a": {
+      "bytes": 239095,
+      "sha256": "b74f24772a74a40afc76f9ae11b2f7a644c4d1b54b2278fd9c1005d4ad5f30de"
+    },
+    "narracao/evangelico/comum-193.m4a": {
+      "bytes": 226561,
+      "sha256": "600ada2b8ec1d5483691d5a4fd01f91b8c7771567a456e2a2662480329271281"
+    },
+    "narracao/evangelico/comum-194.m4a": {
+      "bytes": 250852,
+      "sha256": "27b1aae7513549f47e5d1719021fd6780b49652e01784a0ede6a7d6eb1c44b32"
+    },
+    "narracao/evangelico/comum-195.m4a": {
+      "bytes": 245773,
+      "sha256": "f8ebc6fdf0d8b420b435ab673c27d156ac84ff447c26ab63eb8c6731372480c7"
+    },
+    "narracao/evangelico/comum-196.m4a": {
+      "bytes": 246803,
+      "sha256": "a3e8f378d4e3ac825e7028dfffe70fe5e882a1cb2aec04b6950ccae788d3174e"
+    },
+    "narracao/evangelico/comum-197.m4a": {
+      "bytes": 241750,
+      "sha256": "8eef5b122475dfa80acd8d5772fc0db7d5b740b9594c02a9b23c76156563f79f"
+    },
+    "narracao/evangelico/comum-198.m4a": {
+      "bytes": 217621,
+      "sha256": "0149463cb795357b4e96068b29adb3d51ffbf97760439cf7c9c6131bab3d2612"
+    },
+    "narracao/evangelico/comum-199.m4a": {
+      "bytes": 224362,
+      "sha256": "a49e26e1be26610a803095cef1ad77c111ecca8c10ad45413b4d0ad00b6cccf2"
+    },
+    "narracao/evangelico/comum-200.m4a": {
+      "bytes": 266341,
+      "sha256": "529abf3de0ded9583af1e313ff135c2e65616fa47c91d5f97fc138166970827c"
+    },
+    "narracao/evangelico/comum-201.m4a": {
+      "bytes": 257444,
+      "sha256": "7d5a68ddf3c1196949a3ede2fae47e751dd25d3dc0a39731770ef614c0e998b9"
+    },
+    "narracao/evangelico/comum-202.m4a": {
+      "bytes": 263934,
+      "sha256": "182d40a2b40998e8abdda38517a8bcb4c8e43f2ffcda7d596a7d45a213ae8cbd"
+    },
+    "narracao/evangelico/comum-203.m4a": {
+      "bytes": 245105,
+      "sha256": "cf7368572d2d205d11dd1c31755eaf6a812db261b5877c7a59a8c726ae4c15de"
+    },
+    "narracao/evangelico/comum-204.m4a": {
+      "bytes": 255990,
+      "sha256": "023b539a82e59435618ea49bb012271bbc75076bbc2f0ede4c7b59c852d40087"
+    },
+    "narracao/evangelico/comum-205.m4a": {
+      "bytes": 257208,
+      "sha256": "e83f515f0b41d6cf9534478292a88e9cbe094eefc0376e6af85838f0f8fee844"
+    },
+    "narracao/evangelico/comum-206.m4a": {
+      "bytes": 235331,
+      "sha256": "766c7d21817895c1afbb7a524ff60e61a3f9db1b7b4c015214cda570d17fc9dc"
+    },
+    "narracao/evangelico/comum-207.m4a": {
+      "bytes": 237149,
+      "sha256": "66eb962fda12c7d0cc9a8524ea42c5da58cfeeb94011ade94fb64f982d3fde23"
+    },
+    "narracao/evangelico/comum-208.m4a": {
+      "bytes": 249126,
+      "sha256": "c3e105746d380a7a4236d2e489c68608b6901c981286e0f70b0276a22f8aae50"
+    },
+    "narracao/evangelico/comum-209.m4a": {
+      "bytes": 260547,
+      "sha256": "334923ef4f2503b41de20cb14c068f0b32d378c6ebcfea9ecb03c74954ff1605"
+    },
+    "narracao/evangelico/comum-210.m4a": {
+      "bytes": 242994,
+      "sha256": "3a41606bdc40f5d11ac2188c5977ab375845c637fa1477fd9ebc5383e8b4356d"
+    },
+    "narracao/evangelico/comum-211.m4a": {
+      "bytes": 247131,
+      "sha256": "ee7551878fe123bd11d73ac0e003d73c371f6822100cb9cd9b89d29ec89dca5e"
+    },
+    "narracao/evangelico/comum-212.m4a": {
+      "bytes": 229517,
+      "sha256": "5199ce60b04c964644d45dbb5c4500c117ad4806348cfa9cc70363fe80b907ba"
+    },
+    "narracao/evangelico/comum-213.m4a": {
+      "bytes": 267218,
+      "sha256": "b57e1e2a195a47b6c09de32f2e70923e2475bbe85cc435e5ef29259da224a8c9"
+    },
+    "narracao/evangelico/comum-214.m4a": {
+      "bytes": 211355,
+      "sha256": "415eb8f153b616b2d35315f2b450b217c68ebaeed6fcc566af96bb3f8bb84dc5"
+    },
+    "narracao/evangelico/comum-215.m4a": {
+      "bytes": 223491,
+      "sha256": "553ace90593ac7a7906a8dc195e93f45d5603dd53e08ad10af35bffbb163c27e"
+    },
+    "narracao/evangelico/comum-216.m4a": {
+      "bytes": 197697,
+      "sha256": "e17b3fff74ecd328f8c279a51dc9806fc8e1f36248dfb2628e8697b42e1ff80d"
+    },
+    "narracao/evangelico/comum-217.m4a": {
+      "bytes": 225750,
+      "sha256": "6a4022010d4cf2abc6c0ce0f7be54e351238022e65bb07dc83e4e1864d39e063"
+    },
+    "narracao/evangelico/comum-218.m4a": {
+      "bytes": 210617,
+      "sha256": "2815efb1feafe73e887e35dd9bd87bc915e7d43ed0b6fe3b363c7897d4910bb3"
+    },
+    "narracao/evangelico/comum-219.m4a": {
+      "bytes": 225701,
+      "sha256": "e83544d911ef3254ac1184489cdd5f87faf77ba750f4584557e8bb40b1802487"
+    },
+    "narracao/evangelico/comum-220.m4a": {
+      "bytes": 248877,
+      "sha256": "1f496a7d087338add5210101f74991f7fecca415d104a34d899b846b767c8674"
+    },
+    "narracao/evangelico/comum-221.m4a": {
+      "bytes": 227328,
+      "sha256": "e07bafbb428a608a27f1d4f5020f9765f92087842f70a6a1b6486d8623d5f928"
+    },
+    "narracao/evangelico/comum-222.m4a": {
+      "bytes": 213464,
+      "sha256": "ed15052e16380dab15ffd4d22fd226f7f82fe6cf412d30de09e69bcb462e8198"
+    },
+    "narracao/evangelico/comum-223.m4a": {
+      "bytes": 205458,
+      "sha256": "0e9bfbfc52e01b63d1d963b2e5889622cb4d3b81d8a90fc4abb43e557721fcfc"
+    },
+    "narracao/evangelico/comum-224.m4a": {
+      "bytes": 222322,
+      "sha256": "2fbb9a29aaf6969069225eb9908bf211f1a03bb00ea22cda42594a8d5a9b9ff4"
+    },
+    "narracao/evangelico/comum-225.m4a": {
+      "bytes": 248988,
+      "sha256": "c3bddb9f3ea0e62d768298e59578a0ba2323a394db0f95b32e0cd8885ded078c"
+    },
+    "narracao/evangelico/comum-226.m4a": {
+      "bytes": 227343,
+      "sha256": "cf9bc3a4ec95fbcfcdbdeb886cf88c19140c5c0c35649b26849228a9e356358d"
+    },
+    "narracao/evangelico/comum-227.m4a": {
+      "bytes": 229425,
+      "sha256": "fcf2ec1da7fd4a16dfc616431dd2e9a517f43a060f251d0634310613fc48a7eb"
+    },
+    "narracao/evangelico/comum-228.m4a": {
+      "bytes": 241410,
+      "sha256": "1959882384051f0f20a699858493bdf22cc7e514de7a1e6c9658ab5401e8037d"
+    },
+    "narracao/evangelico/comum-229.m4a": {
+      "bytes": 216544,
+      "sha256": "facb862e0e1d675d9d2420ce909b28a6f666ae6df7a8a297e3ab5cc5411c0d24"
+    },
+    "narracao/evangelico/comum-230.m4a": {
+      "bytes": 221542,
+      "sha256": "abc905fa5cb2d0cf6ee6b39f8549635714025fed1226f99dcc1035e1c8139a22"
+    },
+    "narracao/evangelico/comum-231.m4a": {
+      "bytes": 233621,
+      "sha256": "8aaa4702083e49e87654ad1769f0d86afe91c7c4fdddb962d04f25b262f2d6df"
+    },
+    "narracao/evangelico/comum-232.m4a": {
+      "bytes": 228746,
+      "sha256": "ce17b3f8839b6f044fdb5436847c3b15f81c5ca2560f610542bdb87a84a51145"
+    },
+    "narracao/evangelico/comum-233.m4a": {
+      "bytes": 221355,
+      "sha256": "44be6da75c193ad016b35c45a77bc6f9f50ae7e561ecf71ef8900f52a3d4c14c"
+    },
+    "narracao/evangelico/comum-234.m4a": {
+      "bytes": 228093,
+      "sha256": "605675800b153158cd3480c3151c42a82a17f9aadd5eb5c9d962dc62f1ab99ca"
+    },
+    "narracao/evangelico/comum-235.m4a": {
+      "bytes": 240739,
+      "sha256": "137ba1ef9ee9ad1bf02e5c9c925eb920426bed7f70c0d3a11fc168c0548fe1de"
+    },
+    "narracao/evangelico/comum-236.m4a": {
+      "bytes": 226873,
+      "sha256": "1fd710ab8eb5be9a3e51a4e666af3b016028a38285f7c4f95563a1a06ea8e149"
+    },
+    "narracao/evangelico/comum-237.m4a": {
+      "bytes": 236908,
+      "sha256": "ca8be3f889cd14dbc45ea789ae9d56e9f59d402342d54776fbf176323aebc47b"
+    },
+    "narracao/evangelico/comum-238.m4a": {
+      "bytes": 243079,
+      "sha256": "b8248ef64e23ff8c9dbf624327e2d4379ae56d98af3253d683f4485ccd6a92c1"
+    },
+    "narracao/evangelico/comum-239.m4a": {
+      "bytes": 225111,
+      "sha256": "e431a739da37d3d07a256fc4ecf23506132502a333773f4470d7bb17ccae2056"
+    },
+    "narracao/evangelico/comum-240.m4a": {
+      "bytes": 204976,
+      "sha256": "3465b1dce4dab1af60e1ca917258265063bb349669968e2adfbc763f3c95ff54"
+    },
+    "narracao/evangelico/comum-241.m4a": {
+      "bytes": 231895,
+      "sha256": "ca7c10524621683e40ce95246f4c3ab5cf5894d35dfc7cf4391bc35f72598889"
+    },
+    "narracao/evangelico/comum-242.m4a": {
+      "bytes": 236819,
+      "sha256": "b4dc99d05e4e99d470a883932e0668fc0d5dd0e280df69fa791938870be1aea9"
+    },
+    "narracao/evangelico/comum-243.m4a": {
+      "bytes": 228486,
+      "sha256": "c0122a94ba3e42981ee6bb873c0c69200efefc0af55dc6ce4305301462d94700"
+    },
+    "narracao/evangelico/movel-ascensao.m4a": {
+      "bytes": 259867,
+      "sha256": "89a2de84817473677e1e5aae684619995647a7ce1e9734194f4836b73c7dd6a4"
+    },
+    "narracao/evangelico/movel-dia-das-maes.m4a": {
+      "bytes": 235754,
+      "sha256": "f3f510fc88996aa46f573f4725eb6277223b6fb54a1932bde6fb243535921247"
+    },
+    "narracao/evangelico/movel-dia-dos-pais.m4a": {
+      "bytes": 231147,
+      "sha256": "74ed83a952555d944acfd6174fc3f17d7137cc96a398e801bd6955ccb90ac541"
+    },
+    "narracao/evangelico/movel-pascoa.m4a": {
+      "bytes": 259173,
+      "sha256": "93613c1ba0c93c201dd54b9d8517cc736d3563f106ff5233e3451c3440991629"
+    },
+    "narracao/evangelico/movel-pentecostes.m4a": {
+      "bytes": 255617,
+      "sha256": "299dd817931949ffd73730a62e8c515ad8eeed99e399bb79362495921c4b5373"
+    },
+    "narracao/evangelico/movel-quinta-santa.m4a": {
+      "bytes": 269711,
+      "sha256": "417f10f1eb56c10d76b75823e438b36cc1de0604d2acc8fee071d542d27221cd"
+    },
+    "narracao/evangelico/movel-ramos.m4a": {
+      "bytes": 274975,
+      "sha256": "3e4261311970facaef371b9dfed5fa5b9ee0bd48811f62a09a0308d48b4848d7"
+    },
+    "narracao/evangelico/movel-sexta-santa.m4a": {
+      "bytes": 273025,
+      "sha256": "74fb285363520eaa2162cfcafbb18d4decf0ced4951bf54806fc591a06d87264"
+    },
+    "narracao/evangelico/natal-001.m4a": {
+      "bytes": 254105,
+      "sha256": "b603ff3f2de069da8348285a32a41bb126c00e249cadb8707a47b2c830137266"
+    },
+    "narracao/evangelico/natal-002.m4a": {
+      "bytes": 237284,
+      "sha256": "b0430db88798e105f085d8b0803bef47d8fd3e14be3f14e4d4c3908fb47ecb46"
+    },
+    "narracao/evangelico/natal-003.m4a": {
+      "bytes": 241864,
+      "sha256": "2d5fa6a0541a18b326044a220fb84ab7f1622b9e669ba81c87c4977ff642bdeb"
+    },
+    "narracao/evangelico/natal-004.m4a": {
+      "bytes": 236676,
+      "sha256": "1a3fd7d6109f526ee6fde0782db188903910a462ac175749e9e064c1b25f45d8"
+    },
+    "narracao/evangelico/natal-005.m4a": {
+      "bytes": 232388,
+      "sha256": "5ea49520146be32c2ac45b6663c2b5f4a9bf1e8f47f600505427973db772e109"
+    },
+    "narracao/evangelico/natal-006.m4a": {
+      "bytes": 253334,
+      "sha256": "659e69abc85349a4c23764d60cef8a581f64a7b0cd08eab68447f3a84a24bef1"
+    },
+    "narracao/evangelico/natal-007.m4a": {
+      "bytes": 256727,
+      "sha256": "eda717ee0594e3dfc1c7389280b1707a004843e0a670ab4b1970ad97160ba3e7"
+    },
+    "narracao/evangelico/natal-008.m4a": {
+      "bytes": 239361,
+      "sha256": "064a1a7baa2e8f83aca39cccff1b4a5047dd6f65116d5d2bf842183ff764efcc"
+    },
+    "narracao/evangelico/natal-009.m4a": {
+      "bytes": 246032,
+      "sha256": "cd2fa1e1d41cfbb7b4118120f2cbf6d6e346ddfeeac160b53c50620006d8bcff"
+    },
+    "narracao/evangelico/natal-010.m4a": {
+      "bytes": 239931,
+      "sha256": "ac61da871a97abf7ff26fdbc4d589536ac3855216d90e6613202e6f97c278cdb"
+    },
+    "narracao/evangelico/natal-011.m4a": {
+      "bytes": 252470,
+      "sha256": "7b135d21a0de5068727b1720b3f79d32dbf1bb2073eefc2ad5e847614e9cc3df"
+    },
+    "narracao/evangelico/natal-012.m4a": {
+      "bytes": 267236,
+      "sha256": "c360c661d9f2b177842557e0cc199616f11167e2624bca0a574b0905283ddd7b"
+    },
+    "narracao/evangelico/pascoa-001.m4a": {
+      "bytes": 265078,
+      "sha256": "436c37c5cdfdf001a2f0adbcb520c1b66f0d4faeac2cc169dfa57d5df5bf8ba7"
+    },
+    "narracao/evangelico/pascoa-002.m4a": {
+      "bytes": 238183,
+      "sha256": "8da45605f28b7505efbb37f83aca1cea4feb95a2197f87ffe543882d8761adb6"
+    },
+    "narracao/evangelico/pascoa-003.m4a": {
+      "bytes": 231514,
+      "sha256": "2f3052454860941cf4b5f73a2a6a51ed47896cf4628edd24d96dd5f9a7c333e1"
+    },
+    "narracao/evangelico/pascoa-004.m4a": {
+      "bytes": 245813,
+      "sha256": "10ae24fcde92feb7d25a4ac923b6bc552bd8cca2a48f9a592b205719a1541ccc"
+    },
+    "narracao/evangelico/pascoa-005.m4a": {
+      "bytes": 228701,
+      "sha256": "d42560959b3ce73fc6e99e156e8da52eeca01a07d8f3f2c65d9685934dee4aff"
+    },
+    "narracao/evangelico/pascoa-006.m4a": {
+      "bytes": 231110,
+      "sha256": "da31bb9f59ea90d534f9125e8b49717e54cb1c2fa96cd0bdc75c993058f32bef"
+    },
+    "narracao/evangelico/pascoa-007.m4a": {
+      "bytes": 255526,
+      "sha256": "33ad14848a0e9fa322fdafc514568d6cf8aefcae543b2b8a687b998d36120cfd"
+    },
+    "narracao/evangelico/pascoa-008.m4a": {
+      "bytes": 244893,
+      "sha256": "ab5d02d19b602100db4d816ed4fbf8ec9696ad0dc5056e4a836de58787276842"
+    },
+    "narracao/evangelico/pascoa-009.m4a": {
+      "bytes": 228038,
+      "sha256": "e116272ec105833ca630f3b4fb24b70b6b6f27903ea5fcedf934891f07ce94b0"
+    },
+    "narracao/evangelico/pascoa-010.m4a": {
+      "bytes": 286145,
+      "sha256": "5e72d8c58f1d8786558dfef9a79c93eee11190c4dbcfbcd0a81a7f848ba63832"
+    },
+    "narracao/evangelico/pascoa-011.m4a": {
+      "bytes": 267082,
+      "sha256": "180738144139652fab0a0c08f0b9e47b7018262ac470220abb770c4b56e3ae92"
+    },
+    "narracao/evangelico/pascoa-012.m4a": {
+      "bytes": 245851,
+      "sha256": "5da02a5db42dec13d45c7947ed66f1e180398b1ad17a4ea00dca2872369b5ec5"
+    },
+    "narracao/evangelico/pascoa-013.m4a": {
+      "bytes": 231904,
+      "sha256": "3993b86e13c07bc93da422be73de5c5a2162817f90322e8b0fcaa5e8ae1220dc"
+    },
+    "narracao/evangelico/pascoa-014.m4a": {
+      "bytes": 230716,
+      "sha256": "9c20c35568cec60fc2eed6f10344cbcaaa16f952df205daba1d085338e2133d7"
+    },
+    "narracao/evangelico/pascoa-015.m4a": {
+      "bytes": 241030,
+      "sha256": "204b3745cebed26f829c18710fa186227703d82220eea3d29258f1932602d977"
+    },
+    "narracao/evangelico/pascoa-016.m4a": {
+      "bytes": 240025,
+      "sha256": "894f84c643183e97ea4aaf467823c96cfde9e467cac58bce166fbc10c5928f67"
+    },
+    "narracao/evangelico/pascoa-017.m4a": {
+      "bytes": 242063,
+      "sha256": "099e87b419093d92551c3f5f6b9ab5fce10460a4d2e1b05d1cf322b2e983eb4e"
+    },
+    "narracao/evangelico/pascoa-018.m4a": {
+      "bytes": 257021,
+      "sha256": "3b039842b54f364b4fbf23edf97a51de131e635cab9a1e7438785af6d0969e15"
+    },
+    "narracao/evangelico/pascoa-019.m4a": {
+      "bytes": 245919,
+      "sha256": "5634e8a6ed560e5944acaa570bb8de5b2f1a0c124433095c701eba5aefa42909"
+    },
+    "narracao/evangelico/pascoa-020.m4a": {
+      "bytes": 239892,
+      "sha256": "6f854ad1881c2542aedc23659a3fb7da94007808473f68357f671749040bbe0e"
+    },
+    "narracao/evangelico/pascoa-021.m4a": {
+      "bytes": 253118,
+      "sha256": "5b4bf6497f897421cfd8c8796fd847b84994d91bb559b02a2589325bec6bf5c6"
+    },
+    "narracao/evangelico/pascoa-022.m4a": {
+      "bytes": 248063,
+      "sha256": "432551928b108b9dcc3f75703fa77482f6fa0d8048cb41ad90f5ec2be58ea805"
+    },
+    "narracao/evangelico/pascoa-023.m4a": {
+      "bytes": 253509,
+      "sha256": "009d324fc2b8bb8aa6f2e3dd8b1391a4c4f80511a8f76de2f8f94f31fed097c2"
+    },
+    "narracao/evangelico/pascoa-024.m4a": {
+      "bytes": 247989,
+      "sha256": "b379d1a5919394c24d8e5862f3fe21ea95223b94728b18037f1a522681315b09"
+    },
+    "narracao/evangelico/pascoa-025.m4a": {
+      "bytes": 238518,
+      "sha256": "715e24a22dfff182137332263f68dc68cc30bf423131e903b22b076d9dd728d3"
+    },
+    "narracao/evangelico/pascoa-026.m4a": {
+      "bytes": 244454,
+      "sha256": "6c558282d18733da8c472652b2d33fca77c819b62818bdc6fe04b6e52de3964d"
+    },
+    "narracao/evangelico/pascoa-027.m4a": {
+      "bytes": 254315,
+      "sha256": "be2c178b7ba71bce465c63043dd62b71df2ba5cfc1d728560d02dccd4b489a82"
+    },
+    "narracao/evangelico/pascoa-028.m4a": {
+      "bytes": 220934,
+      "sha256": "6e6d81667dde68cb75ee158aa95fa60f4a1601b5ec6e1dfcc8b820b2214c8820"
+    },
+    "narracao/evangelico/pascoa-029.m4a": {
+      "bytes": 247964,
+      "sha256": "3ed83e12fc522202af7ebce3ca23fa575fd92d1854b514445d5c46d835437aa1"
+    },
+    "narracao/evangelico/pascoa-030.m4a": {
+      "bytes": 253988,
+      "sha256": "aaeee7b981050c324cb1c13433a82ee40fcf75939e58f35d771d185c39c8c8eb"
+    },
+    "narracao/evangelico/pascoa-031.m4a": {
+      "bytes": 252795,
+      "sha256": "a8809bc394e47e97b1e3640e0e0253383f3f5ddfa9547e5ec91bd913491f6e93"
+    },
+    "narracao/evangelico/pascoa-032.m4a": {
+      "bytes": 257730,
+      "sha256": "6d4bd5b74395f2b663e945f097c00b8a1de801c6a110ad169d1672a319b69fd9"
+    },
+    "narracao/evangelico/pascoa-033.m4a": {
+      "bytes": 253892,
+      "sha256": "4574f61554e742e3ee636437b31fb86fb23a90601250d8a980ca1a1a32b0c917"
+    },
+    "narracao/evangelico/pascoa-034.m4a": {
+      "bytes": 237850,
+      "sha256": "8e027dc7479e1b6182d16ffc2f9b535f442ef683c6078bd916b5fdc9c7a34fce"
+    },
+    "narracao/evangelico/pascoa-035.m4a": {
+      "bytes": 248684,
+      "sha256": "9dcf82c441099ca5438aaf4b130885b9bb56ca8a4bde709b28fecb2e8cf5282e"
+    },
+    "narracao/evangelico/pascoa-036.m4a": {
+      "bytes": 244895,
+      "sha256": "a5945a08fbb782af29cce36d6549a959b5efdff96e85c910919e14c4cfc74976"
+    },
+    "narracao/evangelico/pascoa-037.m4a": {
+      "bytes": 251039,
+      "sha256": "b26f8291779034d55cfec0d85ea9274c6bcac6e28a92e0850f83a2d89202139d"
+    },
+    "narracao/evangelico/pascoa-038.m4a": {
+      "bytes": 249397,
+      "sha256": "b655e6727a1e01046b7634b56bcc3239f084f24cfcffa2381f0baac5332e9689"
+    },
+    "narracao/evangelico/pascoa-039.m4a": {
+      "bytes": 239157,
+      "sha256": "7ba51690d8092cf981e06faa5681f6ce1076a0d9a5c90f203b7c2582cbd85363"
+    },
+    "narracao/evangelico/pascoa-040.m4a": {
+      "bytes": 269251,
+      "sha256": "fad44d5f0ad129ebbebba188bef7f4c01cb2dc70f49d821cb80e2fd28c0913b4"
+    },
+    "narracao/evangelico/pascoa-041.m4a": {
+      "bytes": 253614,
+      "sha256": "0766971b1970071898b273215019bf98df7a57b5058d1c9eb1bfc9858a477b96"
+    },
+    "narracao/evangelico/pascoa-042.m4a": {
+      "bytes": 247009,
+      "sha256": "6bc39e1086f6e5c37076448036e37e07a08b3bdad9235618ce19ff14d8242759"
+    },
+    "narracao/evangelico/pascoa-043.m4a": {
+      "bytes": 236893,
+      "sha256": "91a3a8e7f5a83ee69b22a36e48d16dd8ce68966c5dbec0a55e31ac8ff75949b3"
+    },
+    "narracao/evangelico/pascoa-044.m4a": {
+      "bytes": 248093,
+      "sha256": "63f0e1be9d84d04f534e2501c6f93d9d198b414e0f398df6a5ada6f3d2fbb3ad"
+    },
+    "narracao/evangelico/pascoa-045.m4a": {
+      "bytes": 242866,
+      "sha256": "e514adf3e30c4687ae55df970f5d4a61667f362315705644e625f69614ac9364"
+    },
+    "narracao/evangelico/pascoa-046.m4a": {
+      "bytes": 250610,
+      "sha256": "9909e7573d1f75808b4ad4ec28201583fe528b3dd904b3db161c147746d0fd74"
+    },
+    "narracao/evangelico/pascoa-047.m4a": {
+      "bytes": 239732,
+      "sha256": "397a32574af803f4834ac8f762bc3d58e8950419bab565f6f1caf072823e0526"
+    },
+    "narracao/evangelico/pascoa-048.m4a": {
+      "bytes": 247838,
+      "sha256": "20662d2fe82f9f885ccbebad2ebe69de0df37095e74f5aca9e8e53e608a6a59c"
+    },
+    "narracao/evangelico/pascoa-049.m4a": {
+      "bytes": 245254,
+      "sha256": "0a8c193e93942c7227c001c695408916984587674d1f4607bb8adf7e09b2681a"
+    },
+    "narracao/evangelico/pascoa-050.m4a": {
+      "bytes": 272734,
+      "sha256": "2c785533adb61f12c60ec953afd367cd814f7f8e3fee85237c6e34ae6fb4871f"
+    },
+    "narracao/evangelico/quaresma-001.m4a": {
+      "bytes": 213009,
+      "sha256": "2bee04b467118b25da41ef9f6363998878a8435a8afb7e48d8dee5b8f024d21a"
+    },
+    "narracao/evangelico/quaresma-002.m4a": {
+      "bytes": 216076,
+      "sha256": "d151babf02fd832259ea993f1e9fed0d4236db1881a4009e5e5353d6fc897839"
+    },
+    "narracao/evangelico/quaresma-003.m4a": {
+      "bytes": 259689,
+      "sha256": "cd1dfc505d748bf4f38900ceece828f7fea3aaa612692ce73ce7a336938b7a92"
+    },
+    "narracao/evangelico/quaresma-004.m4a": {
+      "bytes": 236253,
+      "sha256": "320058af47c609c017e5743bf3db0abfdeeaca356183f7bf06a85b7c4a3d07f3"
+    },
+    "narracao/evangelico/quaresma-005.m4a": {
+      "bytes": 225558,
+      "sha256": "490600c75d74d424bd2e9a934576289461f8e37141ffd152208508a3334b35e2"
+    },
+    "narracao/evangelico/quaresma-006.m4a": {
+      "bytes": 238966,
+      "sha256": "d7a89a97e1c306c343d400343ebe56f09eb0c8cdd7da4b9c4b38f4ed4ddaac51"
+    },
+    "narracao/evangelico/quaresma-007.m4a": {
+      "bytes": 245394,
+      "sha256": "7978272658a19be59b588ddd138ea6e5322242b1063f32339b4e72df7aab05f4"
+    },
+    "narracao/evangelico/quaresma-008.m4a": {
+      "bytes": 240334,
+      "sha256": "32aca4b33906aa66b5288113c7f2c259f621455f3042d07d0541db0c5f6750c5"
+    },
+    "narracao/evangelico/quaresma-009.m4a": {
+      "bytes": 259185,
+      "sha256": "39a8c96c9377ec6f38cebb7fc6c4d5a4409f05ea085f8d0908e007a6ec1f76a1"
+    },
+    "narracao/evangelico/quaresma-010.m4a": {
+      "bytes": 210446,
+      "sha256": "09c495a88cf7d69a741cf8e272a81b8f0f59729a504e2a93c17f1e4fe66993e8"
+    },
+    "narracao/evangelico/quaresma-011.m4a": {
+      "bytes": 254201,
+      "sha256": "edabb2647bfcdaca871bc3f74ee0ca92ae39126fc320683ee03ced4493b532b1"
+    },
+    "narracao/evangelico/quaresma-012.m4a": {
+      "bytes": 230443,
+      "sha256": "668b8afac8bb3866c677ba5d5b5cefc816dce6839c728ab0c7c1b9a482b845f3"
+    },
+    "narracao/evangelico/quaresma-013.m4a": {
+      "bytes": 222099,
+      "sha256": "64fc1d6bda94fb88f8e2ce8b83e86a32c2470e6b8297434e829687ec4fe93def"
+    },
+    "narracao/evangelico/quaresma-014.m4a": {
+      "bytes": 258254,
+      "sha256": "c46dbd0e20b2bbfa4190e2a2af7fb0d076f89ea02ff52d36a72e7b5e3764ddbf"
+    },
+    "narracao/evangelico/quaresma-015.m4a": {
+      "bytes": 233393,
+      "sha256": "3eae8e5854a19cbcc571b66d8083ce1ec470f585a5e7691fbc7bdc8fb0dfe266"
+    },
+    "narracao/evangelico/quaresma-016.m4a": {
+      "bytes": 224301,
+      "sha256": "e25ade97681623d341e709456178b38ecf40258afb1aca095f36ac578b6d181a"
+    },
+    "narracao/evangelico/quaresma-017.m4a": {
+      "bytes": 242499,
+      "sha256": "785e17dc7638314db0acca337c79a7f4a5dd9bba684da282fbaaf974998d4e74"
+    },
+    "narracao/evangelico/quaresma-018.m4a": {
+      "bytes": 242806,
+      "sha256": "efcc7e4399ac13f8ffc86a8aeec64820b4783eeab2e0078724c28e901e51b9a7"
+    },
+    "narracao/evangelico/quaresma-019.m4a": {
+      "bytes": 221734,
+      "sha256": "017612a4cb5c25a5b00d7b87bde9060cfb6a4411c8ca0bf2c607970adec5e05d"
+    },
+    "narracao/evangelico/quaresma-020.m4a": {
+      "bytes": 233840,
+      "sha256": "5997b6b6ba74b0c9d9cdaf5a439272fdb51b8d9fccc49d66addfae5d847655ac"
+    },
+    "narracao/evangelico/quaresma-021.m4a": {
+      "bytes": 231297,
+      "sha256": "38796ba34ffc0b76477cafab4ef67cddeaa8e474583a7efab36c422bf3037452"
+    },
+    "narracao/evangelico/quaresma-022.m4a": {
+      "bytes": 221971,
+      "sha256": "a53565dda99f93aea1bfbc3018bc86ad73821983da242c3f803ae76a42070c66"
+    },
+    "narracao/evangelico/quaresma-023.m4a": {
+      "bytes": 221667,
+      "sha256": "35781594bdab169d45ac7dc381eadb09a3f2323c656c3b9aa9a4cf9a6e265939"
+    },
+    "narracao/evangelico/quaresma-024.m4a": {
+      "bytes": 217722,
+      "sha256": "fc603f44d70ce3269c0e8bdc93d5d5255421fd66e235a2d2048eb094b03023f2"
+    },
+    "narracao/evangelico/quaresma-025.m4a": {
+      "bytes": 233271,
+      "sha256": "df7d54fed4538e3c9b6a1a9076ded01eb0abaec415dbee2391b02e64e02ae187"
+    },
+    "narracao/evangelico/quaresma-026.m4a": {
+      "bytes": 242511,
+      "sha256": "2cd012c1b248657ce559c6e36ebfbfe202f1ab89fbd8be692148c564c36d44bf"
+    },
+    "narracao/evangelico/quaresma-027.m4a": {
+      "bytes": 224023,
+      "sha256": "06108a1ad5573be25d9ea7e613dec73e8260fe179a9ddd9c1d3d381e7a40ee02"
+    },
+    "narracao/evangelico/quaresma-028.m4a": {
+      "bytes": 249761,
+      "sha256": "c5c8c51975e53cf8e7e0d11c1952efd7bb0004adf617945074d4684efa1fa848"
+    },
+    "narracao/evangelico/quaresma-029.m4a": {
+      "bytes": 239696,
+      "sha256": "6240ee27044932b4992eb0c44b2258f25ef6dfe3ff2a4d3208ac5770a64fc407"
+    },
+    "narracao/evangelico/quaresma-030.m4a": {
+      "bytes": 239313,
+      "sha256": "4444564defda6aee18e7bc8d77b8fbf9367fbec367951cf59f136aa0119bbd1c"
+    },
+    "narracao/evangelico/quaresma-031.m4a": {
+      "bytes": 244260,
+      "sha256": "579d7e120a3253e1431ebe5f7b78b6142e662624afed67d0ddef643ad26cddd1"
+    },
+    "narracao/evangelico/quaresma-032.m4a": {
+      "bytes": 221822,
+      "sha256": "7bb0ffb872c240b9bae6c88e11f4abdb0e5b8d006100d211c897f0ea7fe17d58"
+    },
+    "narracao/evangelico/quaresma-033.m4a": {
+      "bytes": 265900,
+      "sha256": "126a9cd684d74ab334d10843809b760d0359965963e2ceb28ee09e6c797467e3"
+    },
+    "narracao/evangelico/quaresma-034.m4a": {
+      "bytes": 235922,
+      "sha256": "a0b7f1e11301bc5f4e232ff60165fbd60fb1ea2481e0a28eaeb4fe65e2b50ee8"
+    },
+    "narracao/evangelico/quaresma-035.m4a": {
+      "bytes": 257788,
+      "sha256": "1e805efaa2618485a2e41fe3924a263be99273207ea4f478e8b44193faf38baf"
+    },
+    "narracao/evangelico/quaresma-036.m4a": {
+      "bytes": 260915,
+      "sha256": "0d575bf613bd2ef4d950e6ada3e64a20f3a0d03e3337c1de79615a5384f91b9e"
+    },
+    "narracao/evangelico/quaresma-037.m4a": {
+      "bytes": 242678,
+      "sha256": "395e0db7ed65c9be3c3c7ef462f87dcae5410a2b4de2138c7743b4dde54ca35d"
+    },
+    "narracao/evangelico/quaresma-038.m4a": {
+      "bytes": 233858,
+      "sha256": "f2c7884982412b18fb21e7d4f19240908fca84058c5821878135b40cd98dc23c"
+    },
+    "narracao/evangelico/quaresma-039.m4a": {
+      "bytes": 256837,
+      "sha256": "fba70e28504e0ba2ec29396f3a1b8ad958c61a3d167dd556054299edfd7c716e"
+    },
+    "narracao/evangelico/quaresma-040.m4a": {
+      "bytes": 250111,
+      "sha256": "e4589be3daa777711faf5957c70ceae0fd65745f381c07b41deee9f67bfb7d42"
+    },
+    "narracao/evangelico/quaresma-041.m4a": {
+      "bytes": 263367,
+      "sha256": "2da11960c2315f2c6e06247e33b59f951aca263a265fabd5292ed1d44f57d706"
+    },
+    "narracao/evangelico/quaresma-042.m4a": {
+      "bytes": 229425,
+      "sha256": "33f947d032eeb3b3c6d8ebbe9e0f00b841c976cfb2c22220f1fbc59c07825e66"
+    },
+    "narracao/evangelico/quaresma-043.m4a": {
+      "bytes": 254846,
+      "sha256": "4a07936913f152a666bd37ee690d5f1b12e3b33662798eb543f960dfcd0b8711"
+    },
+    "narracao/evangelico/quaresma-044.m4a": {
+      "bytes": 238215,
+      "sha256": "2d743009a9d803dd33574ab152264fa9a25a902394971d7b24e99ed8519dfd11"
+    },
+    "narracao/evangelico/quaresma-045.m4a": {
+      "bytes": 249384,
+      "sha256": "493db8a243bca711f459862b8174a401c47762781259dde3c0788d1b472c5fde"
+    },
+    "narracao/evangelico/quaresma-046.m4a": {
+      "bytes": 218995,
+      "sha256": "b23917c4c14df7bcaf49b57b931b7ff1034b9df8a914e09a59086464a8b07d7e"
+    },
+    "oracoes/ave-maria.m4a": {
+      "bytes": 78156,
+      "sha256": "e808adc012e94db49b353a480f875fcb470a5ee359ac3b3ea3712b6146a372c7"
+    },
+    "oracoes/creio.m4a": {
+      "bytes": 181361,
+      "sha256": "d2ca9317d3d57e193140497be8dd27fa17a7823f2f377d869bd94c0aff2ed9d0"
+    },
+    "oracoes/oracao-da-manha.m4a": {
+      "bytes": 60266,
+      "sha256": "f8243e8ff97eacec6eecdec85e7eb309dc3c39856747683ee18ddda183aa9ccb"
+    },
+    "oracoes/oracao-da-noite.m4a": {
+      "bytes": 82845,
+      "sha256": "6f73f30908b4c8cab491a86c0ab3648fd86e9ddb92ee657b381705c4e7dcd238"
+    },
+    "oracoes/oracao-de-entrega.m4a": {
+      "bytes": 43196,
+      "sha256": "a4fb0a65f52de5b8786e0ae9e369263a14bbcae0588e7482664e6ea423c23ce0"
+    },
+    "oracoes/pai-nosso-catolico.m4a": {
+      "bytes": 101835,
+      "sha256": "8afd9f432bfa75fd2ed53d9d210777704b4ce9da019673a331d88cfc2f49197b"
+    },
+    "oracoes/pai-nosso-evangelico.m4a": {
+      "bytes": 124909,
+      "sha256": "b05ad305079e17139b04d76cc3efeb7469b220a2b7c7b634297f3f87860f600e"
+    },
+    "oracoes/salmo-23.m4a": {
+      "bytes": 174750,
+      "sha256": "50a1cba25473f47bc77c6cf6c873a9fda6963dc84b3279ec18a232b26ec13b90"
+    },
+    "oracoes/salve-rainha.m4a": {
+      "bytes": 167130,
+      "sha256": "fba5808f8ed40f28aa012633a81919581aa8c6796049e1ab74b9a5de08d9e36f"
+    },
+    "santos/01-01.m4a": {
+      "bytes": 133020,
+      "sha256": "0c472b5039f0ef39689b85be42aa41324f673a0007263772425dd541855513fa"
+    },
+    "santos/01-02.m4a": {
+      "bytes": 173181,
+      "sha256": "6fb6b216815c37d915632bf143f08cfccb728ce06979ac88b1ce42de49031156"
+    },
+    "santos/01-03.m4a": {
+      "bytes": 162117,
+      "sha256": "2da06cbe85238de52ea09e29b3c3d2e5c2bf18d6e846e8716dd6baa5f1fb5d49"
+    },
+    "santos/01-04.m4a": {
+      "bytes": 148035,
+      "sha256": "cd019f6255b6aea8586245f546a76ac41a6cc6b248a7dc716ea55587d927a169"
+    },
+    "santos/01-05.m4a": {
+      "bytes": 171898,
+      "sha256": "265c7a82293c24f31a0841910a25e2be4111efffe3e6879143d073c3102ed84e"
+    },
+    "santos/01-06.m4a": {
+      "bytes": 154812,
+      "sha256": "86448df689b11ba0a63afe23acb33386eb40c17f80d8f2af1c0ac1a1fb7841bb"
+    },
+    "santos/01-07.m4a": {
+      "bytes": 163760,
+      "sha256": "fa025ab680dada08e30e86212fade453998ff26d33310e6d5cafa2de2df080e2"
+    },
+    "santos/01-08.m4a": {
+      "bytes": 168619,
+      "sha256": "5c2d1511467706759d88ee46dcd4068e59eb89f35c93806f0a470f64a500feaf"
+    },
+    "santos/01-09.m4a": {
+      "bytes": 175222,
+      "sha256": "29778ca4a7dc76b7e639bea7aa6c8899420e293312bf45087d2a550bef0633c7"
+    },
+    "santos/01-10.m4a": {
+      "bytes": 165657,
+      "sha256": "079cef8854c6ed0b52ee92a91cd985e45981fb1e388326705b1d50779dbb0a29"
+    },
+    "santos/01-11.m4a": {
+      "bytes": 154298,
+      "sha256": "f2c943df47485fd23d9c795f973408cbc8e961130fcb8171fe8818b03698e542"
+    },
+    "santos/01-12.m4a": {
+      "bytes": 162379,
+      "sha256": "dbf154b328a1711b996e0e0a550865832f79e0f3229d0fdbc7afab05d2ea2bd0"
+    },
+    "santos/01-13.m4a": {
+      "bytes": 146990,
+      "sha256": "23b9ae819f151fb6c4e1c04f15d9f2ded52fe68d03bbf37590b568b7d5d820c9"
+    },
+    "santos/01-14.m4a": {
+      "bytes": 161590,
+      "sha256": "91ac064d62266fb75f093a580b7ad7c27309f8a5d81a8d7269c1a2e547bdb3e3"
+    },
+    "santos/01-15.m4a": {
+      "bytes": 174467,
+      "sha256": "670ec851edde3e66d77d25c9bbeeca52631196a5d0edc02e15a79f5ddcad7f01"
+    },
+    "santos/01-16.m4a": {
+      "bytes": 188220,
+      "sha256": "55361822b50fed734dab10df90ce19ce81d4ccb298da90d94571cd2e0e9e241d"
+    },
+    "santos/01-17.m4a": {
+      "bytes": 141459,
+      "sha256": "c4b8833f2d93069f8e85537445af3e9997d2c4fc296382ee51ee2edae691924b"
+    },
+    "santos/01-18.m4a": {
+      "bytes": 174871,
+      "sha256": "e6ef11ffe317be14f8e253315412344e5d9d4d19fdcfda1d6b61e900ab0f6063"
+    },
+    "santos/01-19.m4a": {
+      "bytes": 160011,
+      "sha256": "a0a6a0e68293564bb74644c5049803b6f4d4fc7c2ee685aaff6b9bfe42b2c648"
+    },
+    "santos/01-20.m4a": {
+      "bytes": 147451,
+      "sha256": "30e65b3dae6bdc70dabfde6cdeba7a604651c5fb1546474b5db024dcbea3749a"
+    },
+    "santos/01-21.m4a": {
+      "bytes": 143134,
+      "sha256": "962dc66be9dd8fec83cd959bd16338f3fdde7af0cfb8d931020afbdf571d3cb8"
+    },
+    "santos/01-22.m4a": {
+      "bytes": 159717,
+      "sha256": "9a0e9f88412fc6f601c477898b310c91b80112a1da081261148536a8b550f30f"
+    },
+    "santos/01-23.m4a": {
+      "bytes": 160541,
+      "sha256": "c153b1f73083cffe900b6850cc199ada3ec765713a67466fb66d03acf1e339b0"
+    },
+    "santos/01-24.m4a": {
+      "bytes": 162861,
+      "sha256": "094c51fc209702aaea85780b0eab0c20ee45bca120b65ba5c31b1aef028f17c9"
+    },
+    "santos/01-25.m4a": {
+      "bytes": 145916,
+      "sha256": "bb9f48e8c797f44bbc9abf587c4e7c64e94df358bcf56a6760a8994dd30b5552"
+    },
+    "santos/01-26.m4a": {
+      "bytes": 147183,
+      "sha256": "909482959e77b0c4b91b1dec412f1da42cdc94f3cf156d001a79192e16ada1be"
+    },
+    "santos/01-27.m4a": {
+      "bytes": 186998,
+      "sha256": "2c598f1cbafecfd6eaf956ea858c93cbb5227b007d1af88f4125f64091345073"
+    },
+    "santos/01-28.m4a": {
+      "bytes": 143551,
+      "sha256": "73f17af778e4917eb4a559ddfbb7231c80585dc50befd1a3ac0cf02fe4eb1147"
+    },
+    "santos/01-29.m4a": {
+      "bytes": 159443,
+      "sha256": "d22f6fa9048e5a86878f957870f3959339f6c972eb0ba9eace1945e71f21c4e3"
+    },
+    "santos/01-30.m4a": {
+      "bytes": 162647,
+      "sha256": "5449c4364aaf976f2c1a0bd849950318148d177c503d93f85c5a61cfeae59017"
+    },
+    "santos/01-31.m4a": {
+      "bytes": 168720,
+      "sha256": "b6f31893642cc5727b6fe6a3572f243ac197b326c2dd99d4a6cbaa619255d171"
+    },
+    "santos/02-01.m4a": {
+      "bytes": 137068,
+      "sha256": "7bea6df32802b99c83c667411191eb5d6d773e669684aaf41c9abefa5a7bead3"
+    },
+    "santos/02-02.m4a": {
+      "bytes": 156235,
+      "sha256": "f955b0d90925564d7f0ea7c8b14a687988e047378ccf4e9d0e84f7db07e4a1d7"
+    },
+    "santos/02-03.m4a": {
+      "bytes": 153437,
+      "sha256": "7d7181077c6a435546a13e014e2719bde5c21cee13a648480c284eb595981a3b"
+    },
+    "santos/02-04.m4a": {
+      "bytes": 146140,
+      "sha256": "3aa4712fc9d9dca0e050be2aa382e8ccdeb2b00c654d18f163d41c4ed1dc81db"
+    },
+    "santos/02-05.m4a": {
+      "bytes": 156732,
+      "sha256": "e2b338cc7dea64e8dfe0e45fcd7bdd80cc5462c60d417fd0119dc743d5e4057b"
+    },
+    "santos/02-06.m4a": {
+      "bytes": 182503,
+      "sha256": "b7af1b078ba88d1f898eeb0a548d0b14c2cd710c8b3cd9fa9fde9d549c0f8529"
+    },
+    "santos/02-07.m4a": {
+      "bytes": 169625,
+      "sha256": "fd38d93612b19e0903009baf94ba8ee95125ec07d84acfde3f33ddd775535a35"
+    },
+    "santos/02-08.m4a": {
+      "bytes": 159299,
+      "sha256": "a3abe2539dd7b211fc4f28f7086a92b0237da1a66600bb2ee9718a0542465f11"
+    },
+    "santos/02-09.m4a": {
+      "bytes": 143598,
+      "sha256": "6ac633107cd5268b725385aa0b64df39c30afce4a026a61025f0c1297e4e01cb"
+    },
+    "santos/02-10.m4a": {
+      "bytes": 162371,
+      "sha256": "c218d3e164f90cd3a89a912688d826c0768b43ac21cc7e1616a9a85c0cfd7b43"
+    },
+    "santos/02-11.m4a": {
+      "bytes": 158405,
+      "sha256": "f268cd2cb991a3a4f328ee1ab85869f2f6ae060cbca3464943b3b54b3a050b20"
+    },
+    "santos/02-12.m4a": {
+      "bytes": 154624,
+      "sha256": "2c97feb700bb5859d54ee4da8794c91adcf383ef30838b71380f2bc8b1bed44a"
+    },
+    "santos/02-13.m4a": {
+      "bytes": 152778,
+      "sha256": "ca18ac07e6e187ced8f273c5772ca8e46eb6ad62079e3510d9bfda5d07179fc8"
+    },
+    "santos/02-14.m4a": {
+      "bytes": 196246,
+      "sha256": "65a74b653019fb9fdf43faf51d69a5739e7797c43fde30bb5c2c0e4224c245ec"
+    },
+    "santos/02-15.m4a": {
+      "bytes": 178035,
+      "sha256": "6aed4bfe6aab3faa424aab9b9b49041dfedaeb07e44e80738b9ece9020743279"
+    },
+    "santos/02-16.m4a": {
+      "bytes": 173522,
+      "sha256": "4ea22a1d6c43909bfce723aae0ebaf3d93018373d9d8665c749f09e0057a1a09"
+    },
+    "santos/02-17.m4a": {
+      "bytes": 172877,
+      "sha256": "01bd7dc53b3f5d3e83433f867c0cb2e7a2cd11df89d76b00e719f96a445266c6"
+    },
+    "santos/02-18.m4a": {
+      "bytes": 178071,
+      "sha256": "feb791503f8f3e657d80f11c83bf0ff1377b23d7ef238016c580cf3823a9d241"
+    },
+    "santos/02-19.m4a": {
+      "bytes": 172229,
+      "sha256": "d85314194a77b4ac9c7afe40f7ea0183826b316a0c013522074081888a57e9e7"
+    },
+    "santos/02-20.m4a": {
+      "bytes": 180879,
+      "sha256": "5718149b828f8e8306dc9aebcaf5c198782447a99d9f48e9e044023e63a64159"
+    },
+    "santos/02-21.m4a": {
+      "bytes": 165744,
+      "sha256": "b787d46b9bd8e655e5083e66f85666f2b72026a69205bd7c2fa00d786904d914"
+    },
+    "santos/02-22.m4a": {
+      "bytes": 131415,
+      "sha256": "f6aeb9228d2e6574d89707347712e8ee78bebe2d6c0665418067cb30d2f9a8ec"
+    },
+    "santos/02-23.m4a": {
+      "bytes": 153083,
+      "sha256": "e6c30db5de0296fdd6e0b0cce905106cf3d22cefae89cbeaface42b662a30f3b"
+    },
+    "santos/02-24.m4a": {
+      "bytes": 177413,
+      "sha256": "bea413d702aa6aa6238505f8a6ef9dfd7c28c210486929ea510b93ef609236e1"
+    },
+    "santos/02-25.m4a": {
+      "bytes": 181656,
+      "sha256": "9acf59b2211d991dae2dedf1f5475ac43f86e4c329c5645341534cd646cf3f3b"
+    },
+    "santos/02-26.m4a": {
+      "bytes": 155354,
+      "sha256": "e77dc7da730004945a811fca9aa93c0f37d5dcbb75f18918218679d29f5f6d5a"
+    },
+    "santos/02-27.m4a": {
+      "bytes": 171566,
+      "sha256": "87b3c986706330f35e9e390f86954e0bb51f923493df2942c62f942e14e77ac8"
+    },
+    "santos/02-28.m4a": {
+      "bytes": 167944,
+      "sha256": "85f0b03dfdff7924726b3ddc477dff8caccfc65871afcd488dc29cf1b7fd79f8"
+    },
+    "santos/02-29.m4a": {
+      "bytes": 163777,
+      "sha256": "dd68a8c938dfcb7392e2d3c127483d196dc45243d74cea90d7f8413142a8ed5a"
+    },
+    "santos/03-01.m4a": {
+      "bytes": 168656,
+      "sha256": "1152a26f63920dedd33e67bce09b0579e25154b5780ba6d56b3c61fd3f49c44c"
+    },
+    "santos/03-02.m4a": {
+      "bytes": 184199,
+      "sha256": "ddaec89d7e1a2fbe031f3cfc4fbca2892c9b27566fea3c8ec303b91d74a1bdb7"
+    },
+    "santos/03-03.m4a": {
+      "bytes": 185289,
+      "sha256": "aa6b896019fc2a0dafd18dadabe82376f3b2e61d3a0cb9585fe8d8ed9091eeba"
+    },
+    "santos/03-04.m4a": {
+      "bytes": 164346,
+      "sha256": "f392208b6c0b9e782c3ea19ff39d23ba1d830e2ef80a9b4dd34e504e287a4779"
+    },
+    "santos/03-05.m4a": {
+      "bytes": 157316,
+      "sha256": "cd673ddbbbe437c05f40e055a444bd0451db1213ed40d0d7e0bc6b19292780b6"
+    },
+    "santos/03-06.m4a": {
+      "bytes": 168444,
+      "sha256": "96d15f46d609cae7b985fd623b45f4dfe07ebc5fc9e5c3e8679f5f14d823eaa0"
+    },
+    "santos/03-07.m4a": {
+      "bytes": 161541,
+      "sha256": "85846622626847437ea6431929ceffba0f20d058fa35a29edb70ef7dde193bf0"
+    },
+    "santos/03-08.m4a": {
+      "bytes": 175505,
+      "sha256": "4b4d719f00877398e085413ce1524fcf84084bfedf15ae5aaf90ebdbb30c49df"
+    },
+    "santos/03-09.m4a": {
+      "bytes": 188350,
+      "sha256": "89a21847a475c6d5ede4fb6fe27a11726557ed55705497d1449ff2d552bdd20b"
+    },
+    "santos/03-10.m4a": {
+      "bytes": 161038,
+      "sha256": "02f53603fbc5bdc0d0a9b69b645c1cf9ebd38b91ce4153f627b427046e38041a"
+    },
+    "santos/03-11.m4a": {
+      "bytes": 178517,
+      "sha256": "1acea27274364c5d835a98c58fa056a49d0d9bdc5d24a6f79fa855b5e55ecc30"
+    },
+    "santos/03-12.m4a": {
+      "bytes": 161378,
+      "sha256": "ec3c14c26d4e9b849178714620d050742651ee25775f6a6b15b493b20f66fc9a"
+    },
+    "santos/03-13.m4a": {
+      "bytes": 151188,
+      "sha256": "988024822967f23e92d3460c26a9a5f812f9af5303d489dd4f4648bb253792ca"
+    },
+    "santos/03-14.m4a": {
+      "bytes": 164097,
+      "sha256": "72587eb0e1508226c3fbc8feafdcda8ae0a172c75e47e11deab47b543032677e"
+    },
+    "santos/03-15.m4a": {
+      "bytes": 184355,
+      "sha256": "0bf4d17d0a928867a6443e6914bc82c1d4effca94f8c40bdf8b88e84258c0748"
+    },
+    "santos/03-16.m4a": {
+      "bytes": 166064,
+      "sha256": "7e84f4a8296b967bff92b51f18b80fcb33514c68fe916e68303f5d121ea74a43"
+    },
+    "santos/03-17.m4a": {
+      "bytes": 179670,
+      "sha256": "3986a7b689ea4266f92a63abdbef4c6acfa60ccdf8f1ddb52ee6b79c5c90b256"
+    },
+    "santos/03-18.m4a": {
+      "bytes": 174092,
+      "sha256": "57cf1d705677e011d13aae6093112b8e8f63f2cf4adf9338cb50293f8d959acf"
+    },
+    "santos/03-19.m4a": {
+      "bytes": 160553,
+      "sha256": "702ddbb66b92830a01461e9ba1388bcbce27cdf49e5b9ec6fe66099315dd01cc"
+    },
+    "santos/03-20.m4a": {
+      "bytes": 148200,
+      "sha256": "b44491b26ada2bd05270cf0517ec9294f45debd8502285ff062e1cd7baf986b4"
+    },
+    "santos/03-21.m4a": {
+      "bytes": 176334,
+      "sha256": "d0d1f3761a66a0b334130f5bdf34303b4d60730f76fdd36b450643d0ac47ef9a"
+    },
+    "santos/03-22.m4a": {
+      "bytes": 160311,
+      "sha256": "d6ec5e0b18a8fb44d798792dfa6921858dd0ca6de03edba07f120e32458bfbae"
+    },
+    "santos/03-23.m4a": {
+      "bytes": 182261,
+      "sha256": "546da50e915dc90f985232ebebcf4efca338f409dbfe598573f1b15544152c66"
+    },
+    "santos/03-24.m4a": {
+      "bytes": 177373,
+      "sha256": "a837542aab8ab42521a0f257c92a046bfaa6b1f7fa1161c79f3cfe15d4879593"
+    },
+    "santos/03-25.m4a": {
+      "bytes": 144516,
+      "sha256": "9c181624a5190805702c660bb895b8b596d3f6c94b901b4ad40d10ed3d17585d"
+    },
+    "santos/03-26.m4a": {
+      "bytes": 176804,
+      "sha256": "b5cfdf8f9b781ee8f6dd2d8eba9e100a0435d51b7b9e9569008055303cad5734"
+    },
+    "santos/03-27.m4a": {
+      "bytes": 162959,
+      "sha256": "44ab8b4fadf41cef915b6192f3f5945cddb605ef73dbcbd07df19cd502e937f7"
+    },
+    "santos/03-28.m4a": {
+      "bytes": 162964,
+      "sha256": "851f506daefc386c3a40d270920709b2187c166e8b93b4eb8f18d1bb22c11f44"
+    },
+    "santos/03-29.m4a": {
+      "bytes": 184943,
+      "sha256": "c4e7d155f3965a79a475baff0a6838c7e60805c7653089b96950dbb31711ece8"
+    },
+    "santos/03-30.m4a": {
+      "bytes": 184990,
+      "sha256": "0c2138604e5650540a220325715aa7f508ef5730681ab256dc6ecd41e42f373c"
+    },
+    "santos/03-31.m4a": {
+      "bytes": 144138,
+      "sha256": "b40df1023b9edf860c75c81c79e49c8e396c526f13df0828cb3bd801d7a34144"
+    },
+    "santos/04-01.m4a": {
+      "bytes": 153319,
+      "sha256": "d40abb31f1d47c47e599330ccf2cd4750e038ed2697ce32583b80711d75d9e8f"
+    },
+    "santos/04-02.m4a": {
+      "bytes": 170715,
+      "sha256": "f81ec1d3a8ee38da5a81ff82deb480d7b1e1f1ff838dd07073a9c0ab0c3fc2ee"
+    },
+    "santos/04-03.m4a": {
+      "bytes": 183784,
+      "sha256": "81063dc456114af9e13e743a4e2f759f6cc6080090e82691161998688fe92282"
+    },
+    "santos/04-04.m4a": {
+      "bytes": 169241,
+      "sha256": "80933185e62e8a0edfc458adf44e716a6d78b1078a92a1445465c9087ad1d53a"
+    },
+    "santos/04-05.m4a": {
+      "bytes": 186032,
+      "sha256": "7593e4aad1910618cb2b45cbe600fc33526d1a94f6a736c55c54689cf2bddf5f"
+    },
+    "santos/04-06.m4a": {
+      "bytes": 175298,
+      "sha256": "3855d1118d702dae1c744a166e46881fa26a051eb614e544767bbfc1963e7f41"
+    },
+    "santos/04-07.m4a": {
+      "bytes": 178477,
+      "sha256": "bac9659f3a105b60bc366615ad6efc943a9325568943db307412fd80a2c7c3b1"
+    },
+    "santos/04-08.m4a": {
+      "bytes": 156531,
+      "sha256": "5f2fe8dcab717d1321e553b648c3b97299d0c2aa4a84a9eea524a91f5fc8dd86"
+    },
+    "santos/04-09.m4a": {
+      "bytes": 149852,
+      "sha256": "7c33af0dd39682c7a93e05285e1c8b1c1faa7b2b339508a768d2370b76449ee9"
+    },
+    "santos/04-10.m4a": {
+      "bytes": 169896,
+      "sha256": "ef2960a8a8c57e4f7227f45911f6cce8bb946eb127817024e5e5ef73d6ab559a"
+    },
+    "santos/04-11.m4a": {
+      "bytes": 162645,
+      "sha256": "9c3d1bcff7583a60ee61696e94a3a5c5029c7b679d410ebc8f7d3f8c01345b83"
+    },
+    "santos/04-12.m4a": {
+      "bytes": 180755,
+      "sha256": "c0b532ec9cc89d663365516e6de5ebcec6294ac4b3bb0f513488174709b2f3de"
+    },
+    "santos/04-13.m4a": {
+      "bytes": 160811,
+      "sha256": "49f80cf4a7adc18e2165c9bfa82e189f874ba73e0992a649d0609ecad844a38e"
+    },
+    "santos/04-14.m4a": {
+      "bytes": 159121,
+      "sha256": "4a7755193f826a5d1fc2276dda08824cb31f2d921364f8ef1b902e11bfb6cd6f"
+    },
+    "santos/04-15.m4a": {
+      "bytes": 176332,
+      "sha256": "b25dd3122f49288d245c0604387be7052519f77db12a18dbfc2972ee607903b7"
+    },
+    "santos/04-16.m4a": {
+      "bytes": 174740,
+      "sha256": "06f65d590983c2a1bb9229e43843b91b690847a708c50d050da8e7202ee2735d"
+    },
+    "santos/04-17.m4a": {
+      "bytes": 149252,
+      "sha256": "6c1ef0bca400a80cc83ee5b845cca91782de37c9c027a6571974307953dbd4f7"
+    },
+    "santos/04-18.m4a": {
+      "bytes": 175101,
+      "sha256": "fa5364b3ddd6afe5a7ab195761e64f9d104f4e6105ea977794819f638c8228b8"
+    },
+    "santos/04-19.m4a": {
+      "bytes": 158757,
+      "sha256": "d66d946fe66e13ec088790bd8592575bc3849e8b498cace5613254ffc19d1d6e"
+    },
+    "santos/04-20.m4a": {
+      "bytes": 166323,
+      "sha256": "7165d974b67c27d464877afc8f47bfada368d5f9b029ec14fd080e3edf645c74"
+    },
+    "santos/04-21.m4a": {
+      "bytes": 166436,
+      "sha256": "b507da71eb842d7957956793e93e31b3816db3120565b5eecaf018695edf8653"
+    },
+    "santos/04-22.m4a": {
+      "bytes": 162528,
+      "sha256": "59e222ff06f0b8c574538c7e3946b3551c527e9e7025f4dd4ceeaa3fb0e17f22"
+    },
+    "santos/04-23.m4a": {
+      "bytes": 148654,
+      "sha256": "f042e881ba231b4b243e8d0ed177ab3a0be30b9663db654b1e7cbb40e805a08d"
+    },
+    "santos/04-24.m4a": {
+      "bytes": 197379,
+      "sha256": "41af805dd5995754e32317a747cda94e49c1edd274b74b408e3b63ed14c102d6"
+    },
+    "santos/04-25.m4a": {
+      "bytes": 164209,
+      "sha256": "658a59f73031b978570c15b1da2753d4a405763314dfdbd10a6e645aac81969e"
+    },
+    "santos/04-26.m4a": {
+      "bytes": 178728,
+      "sha256": "be2b6f9fbec82c348648d19ad511b96ea689e2a3041b1ad6791482ad0cc8a19f"
+    },
+    "santos/04-27.m4a": {
+      "bytes": 155651,
+      "sha256": "91aabaf07c6580f6b682580f172c99f7ae97cb66f2e34f815e99212afef23e5b"
+    },
+    "santos/04-28.m4a": {
+      "bytes": 183618,
+      "sha256": "c760897a3fb42ae7fd80fb219b991df5c2aa816eb302f8a2c9752327361e475a"
+    },
+    "santos/04-29.m4a": {
+      "bytes": 175443,
+      "sha256": "6e5d8d185ee384b9aa4f27d0a26d85b703e889cfa1267c22c5d93e9b0333c09e"
+    },
+    "santos/04-30.m4a": {
+      "bytes": 168318,
+      "sha256": "5f57026c7fd9842b0d350c09c44d07add8a4b93c208b89dc10e5ad54c27e7709"
+    },
+    "santos/05-01.m4a": {
+      "bytes": 147465,
+      "sha256": "2733d6d810be11df5bff030776496cb1bb77876e226ae035017199a319a4e5f9"
+    },
+    "santos/05-02.m4a": {
+      "bytes": 176024,
+      "sha256": "2dc5a48d81bd29a184a3c3db182cad08b3d909d936d51b27e98469d84b95f3e1"
+    },
+    "santos/05-03.m4a": {
+      "bytes": 148405,
+      "sha256": "0bd18281849aa134509f97d6bc7d4b6c79348e5eba44a9d286d9638850424b27"
+    },
+    "santos/05-04.m4a": {
+      "bytes": 150342,
+      "sha256": "496f4ea5236e1234c45cb783595661ddf2f687c2c0b5037415aa25db89025b4e"
+    },
+    "santos/05-05.m4a": {
+      "bytes": 183311,
+      "sha256": "a4372f8389159a7f38c29cd46c2bc7d397d3b62fe2a1bf802fe44652793eb9af"
+    },
+    "santos/05-06.m4a": {
+      "bytes": 168421,
+      "sha256": "7c34ac075461346abf4123a4098faabb72e3c2a8535f18ba54cc52c8f37884e1"
+    },
+    "santos/05-07.m4a": {
+      "bytes": 181373,
+      "sha256": "caa508e2804aebe682c3c3cfacca3d427d7e5f4c356ee127b73c3312fd5a5e80"
+    },
+    "santos/05-08.m4a": {
+      "bytes": 159114,
+      "sha256": "0ada273940ae52976dbb5b41f593ec5d66d4459f842de2715f2332c6997f1db3"
+    },
+    "santos/05-09.m4a": {
+      "bytes": 160420,
+      "sha256": "c3b5b08ebea1016c1b7ceeb9c83aa137f3348e970b73c616de91aa460610b7d6"
+    },
+    "santos/05-10.m4a": {
+      "bytes": 190943,
+      "sha256": "2a9edabbf2f2dfeb80f8706c2f400775dff549698dab9bed09bbcc66c8a4fa4a"
+    },
+    "santos/05-11.m4a": {
+      "bytes": 150290,
+      "sha256": "e40e9416dff197c8c975123876223db21667f12ecec613348b8014a6ccb4f726"
+    },
+    "santos/05-12.m4a": {
+      "bytes": 143096,
+      "sha256": "f7e6373770ab797234fea26f6c625047c11eb37749b255f82ff21793f3a9ef31"
+    },
+    "santos/05-13.m4a": {
+      "bytes": 175480,
+      "sha256": "8dae886c339dbc4d8aa8af7351e109cd4542e5ad1ce14edee2739dc6e6e58160"
+    },
+    "santos/05-14.m4a": {
+      "bytes": 164955,
+      "sha256": "b4efe63f85eb517aa00c59a01631d0df987f65b6c3ac975bacd551d5ffb70721"
+    },
+    "santos/05-15.m4a": {
+      "bytes": 159787,
+      "sha256": "ca08439e1dea996101244fe716172832febfc43ce2a6d742b628630e0e323ec1"
+    },
+    "santos/05-16.m4a": {
+      "bytes": 185189,
+      "sha256": "fb3b4d4a2d08d7eed2a27e8a47b9d0938998354cd57fdf8480dbcb2d4602e120"
+    },
+    "santos/05-17.m4a": {
+      "bytes": 196312,
+      "sha256": "8f5fd09a4efb6febc7dfc9e28e1492ca0e5d9ae747a48071213ba97efebd680d"
+    },
+    "santos/05-18.m4a": {
+      "bytes": 160895,
+      "sha256": "2ed1a51667101ea5094ebbab02626a26e3d1a0249e405a34863157324913906b"
+    },
+    "santos/05-19.m4a": {
+      "bytes": 186631,
+      "sha256": "836b307dbf691c52a4edf271b9e0eeeb130b37e9231de5f5514907e41df9ab67"
+    },
+    "santos/05-20.m4a": {
+      "bytes": 182916,
+      "sha256": "7464897dd699951e06a49d12bde548ad823f0631c19528861d4eb61404b140a2"
+    },
+    "santos/05-21.m4a": {
+      "bytes": 180481,
+      "sha256": "e3dab394b67ebee7a4462dbde1037a16bee7b3cb7bd2946e0aba8e7e5cecc6a4"
+    },
+    "santos/05-22.m4a": {
+      "bytes": 176494,
+      "sha256": "d571a021f366be817f046d45bae0161560401c5d95ed5430b90ff6cf2b1e8fcc"
+    },
+    "santos/05-23.m4a": {
+      "bytes": 178851,
+      "sha256": "b54aacb4e80c9142b88a95a6d5805e6b059476501f4fe007430c50eb6e5c75ec"
+    },
+    "santos/05-24.m4a": {
+      "bytes": 160418,
+      "sha256": "23452d75fc5a1693439401c6709b64d51e3b920c1ae1d8a77df04d0498a7e6cc"
+    },
+    "santos/05-25.m4a": {
+      "bytes": 173004,
+      "sha256": "3b2ad1572b6d60f2346a6ae7429f4dda3fd3e27fde34e3cfaf4bc673fb386ad5"
+    },
+    "santos/05-26.m4a": {
+      "bytes": 173245,
+      "sha256": "b485a3254f0693e300a21bb4bcba5f5729e5dd9e3e2fb29bdc42f09bdb648c4e"
+    },
+    "santos/05-27.m4a": {
+      "bytes": 186385,
+      "sha256": "1bc71d9e1e9545e74cbe91322a319bcff065883a24004c7fd404c7fa85c851f8"
+    },
+    "santos/05-28.m4a": {
+      "bytes": 173529,
+      "sha256": "f90b2af001dba596a1c0a98ee5d4889a0019ac4b1f885d5f0a26d26fd72ccddd"
+    },
+    "santos/05-29.m4a": {
+      "bytes": 181584,
+      "sha256": "41d82aceaef3fe932eab6d1bcbfc5b5cd3514d9a3a4f5a9f818a6bfc73e87e9a"
+    },
+    "santos/05-30.m4a": {
+      "bytes": 188503,
+      "sha256": "c2163aa2d57afe4fe3d23975435fef3dd703192622b8208a693c275e05fb793c"
+    },
+    "santos/05-31.m4a": {
+      "bytes": 162455,
+      "sha256": "a272f7a34bf9c965690284a1ee21dfa08e292c094494ef87d2337fb5a52e1c3d"
+    },
+    "santos/06-01.m4a": {
+      "bytes": 157679,
+      "sha256": "5f5668d447cb6ec6b1fd288096ca50e11430bdcf1ee347a770600ebb24840ac9"
+    },
+    "santos/06-02.m4a": {
+      "bytes": 149462,
+      "sha256": "0f5f46fe2f3559b130f4a96f1814504ad925f9a776a1abfb5ccb43bbdb8d6d51"
+    },
+    "santos/06-03.m4a": {
+      "bytes": 155955,
+      "sha256": "8927251d7d0a805a9e8930b7912cf8c0d904cecebf0554baab4d7ebae13e9b13"
+    },
+    "santos/06-04.m4a": {
+      "bytes": 182550,
+      "sha256": "2bff2a2d13b7ab563726adc705685ffa22a1a2dec0ae5f1d5351427f154a8402"
+    },
+    "santos/06-05.m4a": {
+      "bytes": 154963,
+      "sha256": "11246714621590a1375fd8f87056b98aa8508bce6b63046444cdbd6402238fde"
+    },
+    "santos/06-06.m4a": {
+      "bytes": 187625,
+      "sha256": "0879c9adce337b658a67cfb28108e0deabdf9279df1a8fa44d748cd8492513f7"
+    },
+    "santos/06-07.m4a": {
+      "bytes": 184818,
+      "sha256": "5115565566bec030021582bb277e4f0f96e2623b948ec919cd93e8d61bfa757d"
+    },
+    "santos/06-08.m4a": {
+      "bytes": 173870,
+      "sha256": "0114469f2914f29e0b9d85ecb66579ce02a69de878a6a5e629c9c0cc7305975f"
+    },
+    "santos/06-09.m4a": {
+      "bytes": 191767,
+      "sha256": "14d32d4e8df0a0da5b5cb53f4c78291440b6488380271bded20ac7ddf33fde0b"
+    },
+    "santos/06-10.m4a": {
+      "bytes": 163090,
+      "sha256": "b1de9621869c7211da72f6a2db1061ade31ddb9c2689a3783cd17816751393b3"
+    },
+    "santos/06-11.m4a": {
+      "bytes": 164015,
+      "sha256": "c6e9ed72a16b846ea1714b31b58e91c8992f79b4f18f6bd4a9289c6e9d85c763"
+    },
+    "santos/06-12.m4a": {
+      "bytes": 139277,
+      "sha256": "5f40d633bc83447406b851edf35d6662950eadc055f6b8f6af1b5af52d4e51eb"
+    },
+    "santos/06-13.m4a": {
+      "bytes": 174990,
+      "sha256": "43d0f69f5c07e39ce462e353ef21dc2265ddd6f509d93f1b0742ae045a48b876"
+    },
+    "santos/06-14.m4a": {
+      "bytes": 135105,
+      "sha256": "b6759299c3f33cb0fa3067c4a46d5cd8a5ff160054499fe2f9da8c9257c2d813"
+    },
+    "santos/06-15.m4a": {
+      "bytes": 154919,
+      "sha256": "e31451e8c9355790b4eede741d9e419c06453635223ca7c28cca01a8884c5943"
+    },
+    "santos/06-16.m4a": {
+      "bytes": 165522,
+      "sha256": "9d4ad1b9aea2474114cbd326e8873015c092a1cdb64de5e49b79f896bdde0bfa"
+    },
+    "santos/06-17.m4a": {
+      "bytes": 178711,
+      "sha256": "1571154bf5770c9142a97562fdcce7d6ca9c9fbf4d53dc7c642ab58e677cae5d"
+    },
+    "santos/06-18.m4a": {
+      "bytes": 182895,
+      "sha256": "00b13bbf132bd96867be1b07d78f26b99f29c109ff99069966c81d628a331343"
+    },
+    "santos/06-19.m4a": {
+      "bytes": 195266,
+      "sha256": "9dacb91cb22751a15f8ccdf6d52fd2aa6d8ceadcc94b23bde3ae63f4c3ce1044"
+    },
+    "santos/06-20.m4a": {
+      "bytes": 144510,
+      "sha256": "ae77e3668e89770a645fc2f2ca01b850d6a8e188574681d063fed932c2ee649b"
+    },
+    "santos/06-21.m4a": {
+      "bytes": 179819,
+      "sha256": "4a1ac2f9ce574190667b0b040629688f39c54ae66cc2d19fd0792b138f356f78"
+    },
+    "santos/06-22.m4a": {
+      "bytes": 180143,
+      "sha256": "f5a905b177b3f83eb660ecc3d39eb257a94fd3dc970cdac03804e6dc16d8ad30"
+    },
+    "santos/06-23.m4a": {
+      "bytes": 175982,
+      "sha256": "c7206f740136f539acbe5516dadcdeab1d0575d8eb832dc14bb716434c52c7cd"
+    },
+    "santos/06-24.m4a": {
+      "bytes": 141109,
+      "sha256": "b5ea7db3ae37a59c8f3c825c8689b4a5def615440451993cebe42109cfa93e30"
+    },
+    "santos/06-25.m4a": {
+      "bytes": 149468,
+      "sha256": "99f2f7a4b4dd9cd5d682844a4f32826b57e3cc705f35424e10bc69b241c61dba"
+    },
+    "santos/06-26.m4a": {
+      "bytes": 172950,
+      "sha256": "5042f5b5450a0c4d19f1b454ebe0a9afd0ad8b00ca37a890bb2f1466ddea8a40"
+    },
+    "santos/06-27.m4a": {
+      "bytes": 161515,
+      "sha256": "012ae6c753ecadc4ba56e3d223fb05c3a4fe6e924fb4a9eebfcf9b37993eda3b"
+    },
+    "santos/06-28.m4a": {
+      "bytes": 160613,
+      "sha256": "2349c254d316ef6378d153ac238e7c8dcb6248ac287c1fd5458d9889b11e316a"
+    },
+    "santos/06-29.m4a": {
+      "bytes": 170500,
+      "sha256": "dc90843266ed647d7084cbc4b55e5a2bfe316086fd55e947d7ceb26928696d07"
+    },
+    "santos/06-30.m4a": {
+      "bytes": 175035,
+      "sha256": "a8c43c622e3fd0db5ec288d0915c61de55783b4b3adb0afa83839dcab832bc98"
+    },
+    "santos/07-01.m4a": {
+      "bytes": 140583,
+      "sha256": "1297bb08f74d7f5a051a837f130c20425edf59e8a3a035f592e2bfda7fcaf97f"
+    },
+    "santos/07-02.m4a": {
+      "bytes": 190368,
+      "sha256": "02e2719e4a6f242b8715132f75873efcdef518acab6d11090b32e74eb3bdf766"
+    },
+    "santos/07-03.m4a": {
+      "bytes": 149822,
+      "sha256": "813a319fab55d1492b3a13f8a8f7f441ffa9a77e9c918028b260c1aa80f425d0"
+    },
+    "santos/07-04.m4a": {
+      "bytes": 162673,
+      "sha256": "899caec70f5ac4971bf4aaa7f85c6e084d326632f6bdcd741fdc2b54d89848e6"
+    },
+    "santos/07-05.m4a": {
+      "bytes": 170949,
+      "sha256": "f53fba79a4f32f16d40c412f47c9e31f6172f68c1fdf7d2c3a7974474ac91385"
+    },
+    "santos/07-06.m4a": {
+      "bytes": 154209,
+      "sha256": "ba45647ce9fe29358c776ffc2557369e2fb380201574899ead6415eda06325b2"
+    },
+    "santos/07-07.m4a": {
+      "bytes": 175110,
+      "sha256": "86e3008a917820af42ae167e6cc66c67b349d03ef94d0981b45ec067d4f3ac9e"
+    },
+    "santos/07-08.m4a": {
+      "bytes": 167094,
+      "sha256": "28b87a4c3b03afc63a107e1f0cdc9dec8af0f417827b36441e69487d92d6f02f"
+    },
+    "santos/07-09.m4a": {
+      "bytes": 189989,
+      "sha256": "bffa30d856bf049820b343d8a7defa744f8de96138710a0902fe5b8b0c3e490b"
+    },
+    "santos/07-10.m4a": {
+      "bytes": 150015,
+      "sha256": "3103abc06a9cb0f0aa63d029e6dcd41a920a8b979e4fd0e68f51a7b12887af01"
+    },
+    "santos/07-11.m4a": {
+      "bytes": 164094,
+      "sha256": "1c9ab31d7fad9837b5c950f9d1b0ae45feab8ec77bf7927f305bb1d439115772"
+    },
+    "santos/07-12.m4a": {
+      "bytes": 180460,
+      "sha256": "34dd65f36a5292a7f80c204d69762d5136b9cdfee1b8be431a33ed8c7a72727e"
+    },
+    "santos/07-13.m4a": {
+      "bytes": 179089,
+      "sha256": "11db224197cc72c47b1d4c322da5b2a09f6379fc1e1e395d65512c45464ab45e"
+    },
+    "santos/07-14.m4a": {
+      "bytes": 182841,
+      "sha256": "b5ea44f60cac145ad39d97d994cee2fd56bf3c300d9016d139bff128f3fe2492"
+    },
+    "santos/07-15.m4a": {
+      "bytes": 176641,
+      "sha256": "8e0d971578fa22f70b1f10ad1cf008e8d555644183116aedee5d3dd8cb892759"
+    },
+    "santos/07-16.m4a": {
+      "bytes": 160011,
+      "sha256": "f39bbb5c1a2df5a044a4d94a54171ec1092c8e7d5ef648ff1a65d0e903e62571"
+    },
+    "santos/07-17.m4a": {
+      "bytes": 180394,
+      "sha256": "64ee1e75d8e5fe2094c22d6e1941db3616edf50f9b7ab0866c541aaebb9d02a9"
+    },
+    "santos/07-18.m4a": {
+      "bytes": 181541,
+      "sha256": "159997bf0f2107c1098d7f2d8b58f60d8665855239fbb10c5c5e3fad820544c6"
+    },
+    "santos/07-19.m4a": {
+      "bytes": 154234,
+      "sha256": "cffc90a1f1f1eee1a66379d7236ce15b139d4c4ecd5bc2a05a4be4810213e2f6"
+    },
+    "santos/07-20.m4a": {
+      "bytes": 151161,
+      "sha256": "e680b4fcb2a039fe27acb3a2a8afd34216d2cd3834b4d06a51214c4b82161222"
+    },
+    "santos/07-21.m4a": {
+      "bytes": 181698,
+      "sha256": "0d8a65662efc471b7329425182a9eee4ea233b87d7a9c10c7c8899a7d20f035c"
+    },
+    "santos/07-22.m4a": {
+      "bytes": 155913,
+      "sha256": "1839dbd9f06dcac3ed3fedc83b31f6b9c76ff009be09327b7f1e1ddc0c1a9e80"
+    },
+    "santos/07-23.m4a": {
+      "bytes": 183432,
+      "sha256": "05a358fe3fdfb656eae6f5cb9b3102a2d08b6c85f44e11f3aaabec054dba8092"
+    },
+    "santos/07-24.m4a": {
+      "bytes": 192353,
+      "sha256": "8e536fd45a4e05f9414ddd9626645517aa0e47a60d0aafe9a13fff11fd69ccf7"
+    },
+    "santos/07-25.m4a": {
+      "bytes": 150483,
+      "sha256": "5aae1720e3666ade4b31c8aa4a35b6a08d06eb35ebb7b1e5f1496b8e6f34ec94"
+    },
+    "santos/07-26.m4a": {
+      "bytes": 129873,
+      "sha256": "bf4216ee39511e8ecc691548aecd5da34afdc2c153c12c343dcbb90c115a6038"
+    },
+    "santos/07-27.m4a": {
+      "bytes": 168230,
+      "sha256": "e6d4d6416975b985ab19d52972154dd9dabb0aa7319bda1ac474ef18cd97f05a"
+    },
+    "santos/07-28.m4a": {
+      "bytes": 177815,
+      "sha256": "1c719961b8a821a586601d5a68890b2447e46f77588683cb88fe035339544288"
+    },
+    "santos/07-29.m4a": {
+      "bytes": 146949,
+      "sha256": "2590e18b3fbd0b110ff701db73f0886df2dee56ebb9c3206b3bdfdb98521692b"
+    },
+    "santos/07-30.m4a": {
+      "bytes": 175988,
+      "sha256": "10b169177b3538c9dc400bc5343bb801a114c10db7e24bcd619d30c2d23ca1f7"
+    },
+    "santos/07-31.m4a": {
+      "bytes": 171512,
+      "sha256": "20b6b600adea4992adaecdd93cb4edfa684902a351f40b5a3c52f0b0f2dda3e9"
+    },
+    "santos/08-01.m4a": {
+      "bytes": 187894,
+      "sha256": "d4dcb4fd60eaa551e58c02167c968992ce323c5bff2065b6bbc6bf693a23f27f"
+    },
+    "santos/08-02.m4a": {
+      "bytes": 187403,
+      "sha256": "b481683924afaf31d8e5b10d74bb6502bb61b124987bdf45c008830fd0df413b"
+    },
+    "santos/08-03.m4a": {
+      "bytes": 149263,
+      "sha256": "0e4fb6f3eb21bf0d5ee02397d236b077b695d8653453ae0865d3b8e4bd91cce6"
+    },
+    "santos/08-04.m4a": {
+      "bytes": 185021,
+      "sha256": "f904842e550bc153d9623e7921c18b8a66949ec4c1d1a6deb0ab0445c982740f"
+    },
+    "santos/08-05.m4a": {
+      "bytes": 145881,
+      "sha256": "3a2ffaef09e603127012ca686817730ded92d4194be3fe16f6f8177a13a4a48f"
+    },
+    "santos/08-06.m4a": {
+      "bytes": 143353,
+      "sha256": "842f454ad348b99eab136c97de5676a963f2175bc3ccbf753c157649556189aa"
+    },
+    "santos/08-07.m4a": {
+      "bytes": 168936,
+      "sha256": "7cad2ecd0a8d112201000dd699869c4ded78b27922fed0ccbc149ee34d71fcfb"
+    },
+    "santos/08-08.m4a": {
+      "bytes": 152214,
+      "sha256": "d481a282ce377fd3fd3dfe34a716123533c29800ca9d812e1eefd0d022ee64a1"
+    },
+    "santos/08-09.m4a": {
+      "bytes": 186501,
+      "sha256": "2db4d2c3fec39156ed384769850575ab4103bd161e6998f205947353e59c8452"
+    },
+    "santos/08-10.m4a": {
+      "bytes": 164678,
+      "sha256": "d9d9e203892126f4b28a3a1ce538feab473217490c4d7d48e7068852352bebfd"
+    },
+    "santos/08-11.m4a": {
+      "bytes": 175689,
+      "sha256": "3e3b3caf01f1687df2c76089a10e775c3f54602a201236f298019013c9ebfc1f"
+    },
+    "santos/08-12.m4a": {
+      "bytes": 180128,
+      "sha256": "3e8458ccd0348bea7191db55c6706b5c593faf5b9fa35a6fe927c76709a1b8d7"
+    },
+    "santos/08-13.m4a": {
+      "bytes": 171013,
+      "sha256": "3de674c9d08fd53d276722a5f4acd451265455c00cf518ef9a22e85ee73c7c77"
+    },
+    "santos/08-14.m4a": {
+      "bytes": 186948,
+      "sha256": "b7ce0d7633872e327cda58ceab543b1dddeddd78b94ec217d2281cc0d56a116b"
+    },
+    "santos/08-15.m4a": {
+      "bytes": 140399,
+      "sha256": "9489f6d3424afa0d3e766d81bf54362bf3aaa52dd5989d08285cfcb81af88809"
+    },
+    "santos/08-16.m4a": {
+      "bytes": 155180,
+      "sha256": "baa82b3bdb2f6c81f1f5d27a7af506adeae45710bfde0099bf4f76ee20a20fcd"
+    },
+    "santos/08-17.m4a": {
+      "bytes": 185457,
+      "sha256": "eab9d9f8d8fa69c3742c70ad6cb8b0ed7b1cf6be8f81ec49ae80f786deaac950"
+    },
+    "santos/08-18.m4a": {
+      "bytes": 160056,
+      "sha256": "568548012038f0dc66d2bf9146a6bfba57e5665da21e7aa2f65680818f443de0"
+    },
+    "santos/08-19.m4a": {
+      "bytes": 166553,
+      "sha256": "c8f6eff7bc285cd1bc19978ba03532e342c4d1b93c4ea46ad639e173fc7c52c5"
+    },
+    "santos/08-20.m4a": {
+      "bytes": 152396,
+      "sha256": "2818ce601718158439c4483156e0584f1a7a72f9727f9524d8b5212af3068431"
+    },
+    "santos/08-21.m4a": {
+      "bytes": 184536,
+      "sha256": "1f85388cd4d1057fdd8a589bc6b0d31a37b6a8041b0d83daac2c3a8a20da6816"
+    },
+    "santos/08-22.m4a": {
+      "bytes": 151978,
+      "sha256": "2629e55d161bc5d2649b131e04e9b3be20bd2f9609b690b06884a30e52c8cad8"
+    },
+    "santos/08-23.m4a": {
+      "bytes": 170848,
+      "sha256": "bb6b9ba8fabfcab7f0a954dc71e078fc19dfde820a5bf46d8140d5342668e7ee"
+    },
+    "santos/08-24.m4a": {
+      "bytes": 141984,
+      "sha256": "1e6ebbf7002af73e507b5ff443b0f683fa88d0273f85694deb22fd48010195de"
+    },
+    "santos/08-25.m4a": {
+      "bytes": 120000,
+      "sha256": "c0354e622898972d6aee20aeb1b51f036acb804953f1a307c02b469cba054676"
+    },
+    "santos/08-26.m4a": {
+      "bytes": 186619,
+      "sha256": "b236a6df02e749932481bdc93adfe0c39546f320f3b9e9bfc9c62a8154a7aeab"
+    },
+    "santos/08-27.m4a": {
+      "bytes": 164441,
+      "sha256": "a2a3faf5b6437265187389d96cc0515aca8779bb6393d44e06e3acaf2961d99b"
+    },
+    "santos/08-28.m4a": {
+      "bytes": 169509,
+      "sha256": "c602a1dc269df9d3778607a83d08890cf2f2a3652f5a354ef648fe33e9e207c4"
+    },
+    "santos/08-29.m4a": {
+      "bytes": 143547,
+      "sha256": "a7122b13e86c7030c534e5d06f0bae3130c592e4a2528840d100541bfc62986a"
+    },
+    "santos/08-30.m4a": {
+      "bytes": 173029,
+      "sha256": "bcce7f269051ad749a09c3150161c4dc43eb21e7f1c1ccea29ad65fdffba605b"
+    },
+    "santos/08-31.m4a": {
+      "bytes": 166193,
+      "sha256": "054651fa26822662fe1b48ad295e91072013565d3de84bc0bb286d023aef3bf1"
+    },
+    "santos/09-01.m4a": {
+      "bytes": 145027,
+      "sha256": "16af6b1b8c0801aba7596899a8c0df2563ea7b373e1d37c26a320422fa91ff89"
+    },
+    "santos/09-02.m4a": {
+      "bytes": 160014,
+      "sha256": "3db84e4839668d4b4d4788fb983777a6233c956f5e8b46978987d31ad21364c4"
+    },
+    "santos/09-03.m4a": {
+      "bytes": 159771,
+      "sha256": "965ee048feb2baf13d46e02cc42e79d7273fc6c1c35860728b14fdf3400807c0"
+    },
+    "santos/09-04.m4a": {
+      "bytes": 143346,
+      "sha256": "09c7b23d527da8dc40ec1d8e8fb5577e1a495c3303fa25f2bd478e07e32cd4f6"
+    },
+    "santos/09-05.m4a": {
+      "bytes": 173439,
+      "sha256": "3ccd3ceb7b445824ae93fcc475bb7a3043f99a437280ff981eb9eecc61ebe3ad"
+    },
+    "santos/09-06.m4a": {
+      "bytes": 141464,
+      "sha256": "17968cfb9e6e46db165a496dac68ffa4860bc77ae0383a9563bd9af856377695"
+    },
+    "santos/09-07.m4a": {
+      "bytes": 152341,
+      "sha256": "e79c1246c0cd4682c5f8d3cd67090f73dfb6647831d2577f2d2aec919f28055f"
+    },
+    "santos/09-08.m4a": {
+      "bytes": 161792,
+      "sha256": "a3e78acbe87668bce003a4558726efa6b38c10fcc3e15e843435025e4acfeedc"
+    },
+    "santos/09-09.m4a": {
+      "bytes": 168649,
+      "sha256": "b88fc9b5d527edc4c6ee0b2fae77c2b8dc9b3e07d9e1ed7005c25d4b88860d4a"
+    },
+    "santos/09-10.m4a": {
+      "bytes": 166841,
+      "sha256": "530101618c0f28cf82b153400c874fa5502b11c19beeb3e5943d891054fe19c2"
+    },
+    "santos/09-11.m4a": {
+      "bytes": 186349,
+      "sha256": "314bb53d46856a250d933adfa79819313acc3bb4cfaffec99f20e34faa3ca5a7"
+    },
+    "santos/09-12.m4a": {
+      "bytes": 157301,
+      "sha256": "f67f8794aee8de63bed25d8b30bbb5338941b9f18b9f6d125ce80bf5d5cca3f4"
+    },
+    "santos/09-13.m4a": {
+      "bytes": 159290,
+      "sha256": "15c153f62dfebc721922e100589643ed8f2a5bf974170fb6a11f9d1b823faf83"
+    },
+    "santos/09-14.m4a": {
+      "bytes": 147659,
+      "sha256": "81a2e38ad9462540a40bdb710ae2061f42387d3e7e9a537cdfa40ae59028bd67"
+    },
+    "santos/09-15.m4a": {
+      "bytes": 124467,
+      "sha256": "18e49bb13fcbfae53f1b575ee341a32eeb4f5a629d002ee963307c6862c8301d"
+    },
+    "santos/09-16.m4a": {
+      "bytes": 167797,
+      "sha256": "79b7db7f8b6e527f959204c4fb6cd33219c607bf5cb67afa331bc756645baaab"
+    },
+    "santos/09-17.m4a": {
+      "bytes": 172950,
+      "sha256": "cd9d19c02900794a702b64d0451a13f655d582b6f5cf34fef2eb1198e319a31b"
+    },
+    "santos/09-18.m4a": {
+      "bytes": 182684,
+      "sha256": "25ca48da3a81aeaced1bb254a857b160f2b94eb9d502d9259f6a72d98d38974f"
+    },
+    "santos/09-19.m4a": {
+      "bytes": 152994,
+      "sha256": "5f42f5d31e3cf70d6163a03cf8d7585af18eb99cc10f6e2ce12445e3e38ec719"
+    },
+    "santos/09-20.m4a": {
+      "bytes": 176975,
+      "sha256": "760a19e1aa6d0169f907e5b68f36abd644e5fe37295484b8822a07e498c1a3d9"
+    },
+    "santos/09-21.m4a": {
+      "bytes": 163107,
+      "sha256": "1a97c6ef77d3a684a63f467bbd4051fb0427e2d50587ee550a52382de96d1fd7"
+    },
+    "santos/09-22.m4a": {
+      "bytes": 155646,
+      "sha256": "218848f833678ae93cabe4371f17c083bd648d35fbaa3ac1fa8829844f50075f"
+    },
+    "santos/09-23.m4a": {
+      "bytes": 198898,
+      "sha256": "78ea2754b5a257240293c67fcc79faf2af5c08586f77d7b0e54a839cead89fdb"
+    },
+    "santos/09-24.m4a": {
+      "bytes": 175374,
+      "sha256": "aa9f0c277fb4be93a2f3123ddc24e86433bf0c35a05a46efc18adae9be5982ab"
+    },
+    "santos/09-25.m4a": {
+      "bytes": 153932,
+      "sha256": "067b0a62a6a783bc400cf553590d7d8f37fda68ec36078758d498e072ab4fcac"
+    },
+    "santos/09-26.m4a": {
+      "bytes": 154945,
+      "sha256": "f29a6207cd3dde4149ad31d1e15812da950720f63c20c77304bd7cf5b932197f"
+    },
+    "santos/09-27.m4a": {
+      "bytes": 167426,
+      "sha256": "632da0f99c888cb443997f0e7bce9d9c22eade23c351e68f72b83fbbf5e9169c"
+    },
+    "santos/09-28.m4a": {
+      "bytes": 171278,
+      "sha256": "a43785a46d940b78c673eb2e9e509406e5ef39278d10db9eda4facb6a879f1f0"
+    },
+    "santos/09-29.m4a": {
+      "bytes": 167449,
+      "sha256": "ebfc617f05b302a0f307a3f53dffd8f943d6c8401d34889e7ac86ae5543d5160"
+    },
+    "santos/09-30.m4a": {
+      "bytes": 148320,
+      "sha256": "cd3bfbdf50c7f1b369616c3ecd599e9b0579a8af4930baa2fd94cddb70aba89b"
+    },
+    "santos/10-01.m4a": {
+      "bytes": 153869,
+      "sha256": "087f38779245a6c727968a3ba9262c356fc9126ef3430367558f7557fbe9156d"
+    },
+    "santos/10-02.m4a": {
+      "bytes": 148748,
+      "sha256": "54d64159f3a9621fe5e6ca95e7402ffbe4a82ec3a67dce7cca6481be6134ab38"
+    },
+    "santos/10-03.m4a": {
+      "bytes": 159378,
+      "sha256": "b8e32cfc712e87366a22d5d74d48ba86fc7691a235d61fffe38cbcea907eff1c"
+    },
+    "santos/10-04.m4a": {
+      "bytes": 186656,
+      "sha256": "17744eb7eba33eedfc317943f9f1605ae1f3dc6f33083110933822cbcb85f223"
+    },
+    "santos/10-05.m4a": {
+      "bytes": 174871,
+      "sha256": "190f852ef8c6b1d163d0631a0faf83f655b070c598e67d404bfb25ba5a35e8f5"
+    },
+    "santos/10-06.m4a": {
+      "bytes": 164211,
+      "sha256": "bbf961ed791e95534f5c4bf9d33b3d4e7fadd80b9a2aff3192d1773a001b9dac"
+    },
+    "santos/10-07.m4a": {
+      "bytes": 171425,
+      "sha256": "9b46765f8c03fe4356b0fb02b5a2c7b850f2481840c7557b21930b77f2ce8a82"
+    },
+    "santos/10-08.m4a": {
+      "bytes": 149148,
+      "sha256": "0b45c2941b8d0246e80abeb449bf9c8638864827e112a8ca838994cdb069cc20"
+    },
+    "santos/10-09.m4a": {
+      "bytes": 185964,
+      "sha256": "ed424f8f8df199375a371b1e662e202a36d1a0412cce7533ad70ee01f04514cb"
+    },
+    "santos/10-10.m4a": {
+      "bytes": 185757,
+      "sha256": "6d180ef04fb427c189af8e06543beb4773a2ab855c9347930e24895883df9680"
+    },
+    "santos/10-11.m4a": {
+      "bytes": 176101,
+      "sha256": "f91489ac83aead37f1fe055d0250cb7622063ada97bb4f1094a338ae6d65fa3f"
+    },
+    "santos/10-12.m4a": {
+      "bytes": 159163,
+      "sha256": "01079e005fe610bb545c99e4cdf35d27114a0c2e16fe594d9fe692cc1324f1a1"
+    },
+    "santos/10-13.m4a": {
+      "bytes": 151296,
+      "sha256": "07ef93cd5c9ec5614c0bfd2741fe44e308f24891eb870d9a3cfa052a29249168"
+    },
+    "santos/10-14.m4a": {
+      "bytes": 158178,
+      "sha256": "f6b478b89cf6cd808ed6a78e3b39c5587a3f0f8cd59a727900b6c3bcfcaebac8"
+    },
+    "santos/10-15.m4a": {
+      "bytes": 169324,
+      "sha256": "f0e2c3143f6d35652e8dd760014e7cd56cbce044b4c400cde0c9429f58c5f90b"
+    },
+    "santos/10-16.m4a": {
+      "bytes": 175060,
+      "sha256": "e0e08df1bef81c82ad8e6c41c337228609f848d462f0905ee629956434d1f978"
+    },
+    "santos/10-17.m4a": {
+      "bytes": 153220,
+      "sha256": "9d29808341997542f893a371eadbf83a50c495ae1e295ebc1e95bc8b11c72f10"
+    },
+    "santos/10-18.m4a": {
+      "bytes": 147778,
+      "sha256": "bba89a8cec961dd7b97b57d363ced51ba59ddf9bce4246e6fb280d62db6fb0ea"
+    },
+    "santos/10-19.m4a": {
+      "bytes": 167616,
+      "sha256": "d26792e117f414152c964805296834a7beab1a742333b0a3aae245ce20fe5330"
+    },
+    "santos/10-20.m4a": {
+      "bytes": 172285,
+      "sha256": "52f0cde51cb2d5898a02fac48be2fb90eab5cc31595247b698fdfc1f37b7915c"
+    },
+    "santos/10-21.m4a": {
+      "bytes": 152169,
+      "sha256": "871055c5a7f644faf532f61ed40a3ab3f0b00181d58279d721150183c4d7fc9f"
+    },
+    "santos/10-22.m4a": {
+      "bytes": 205397,
+      "sha256": "748f923eff7c1c766b81b0a967cc614a3736e3fc86a6add9d1a0ffb85d2172db"
+    },
+    "santos/10-23.m4a": {
+      "bytes": 194066,
+      "sha256": "5871a8c520e35d8d4449bc099e2b48d7ef3b3c1de285b8999bf9e6e3e40f6b64"
+    },
+    "santos/10-24.m4a": {
+      "bytes": 189443,
+      "sha256": "9b5bce1a6271b6ecf39268c7b629a69a93f42a5512b21f60357e47363d5f12f2"
+    },
+    "santos/10-25.m4a": {
+      "bytes": 188443,
+      "sha256": "8fcc9604c9104a6ba5783e4b8808e0dac538731c4ca04aac2565c27d7a520c58"
+    },
+    "santos/10-26.m4a": {
+      "bytes": 147382,
+      "sha256": "069defe8ee3d08441490294382e1a2913e9ff63cda2a589c88260ca0bcc655e8"
+    },
+    "santos/10-27.m4a": {
+      "bytes": 157561,
+      "sha256": "ab7702d71fd09c9c7ad07eb5f9d8a6b150cfa77876472ff89896bdc59e778b73"
+    },
+    "santos/10-28.m4a": {
+      "bytes": 170795,
+      "sha256": "198cbe5fa8fad33eeed175b830f24e94b5b9d7879fbedcf14e8cb40a383a9803"
+    },
+    "santos/10-29.m4a": {
+      "bytes": 161161,
+      "sha256": "b60a7c113552d7461fe3d138a7e0318ad5dc84fc170910997128ff30eb641b7b"
+    },
+    "santos/10-30.m4a": {
+      "bytes": 145514,
+      "sha256": "611e94815f6c2d01948ba4616cce95e69d7140b00342d5a7895d05eaace71a70"
+    },
+    "santos/10-31.m4a": {
+      "bytes": 159702,
+      "sha256": "618fc2e83b8fded199cf53ca9a777e14afba5102a5542907be5a5aba0ca77007"
+    },
+    "santos/11-01.m4a": {
+      "bytes": 158560,
+      "sha256": "011d1bd4224c74b0e05d75139a11645b4954f759a78ba60b0f70d47b5acec8b3"
+    },
+    "santos/11-02.m4a": {
+      "bytes": 162759,
+      "sha256": "2bb4329f47ea6299356462faca574e1cd36d04e9765231d00cc7f300a38a7027"
+    },
+    "santos/11-03.m4a": {
+      "bytes": 162595,
+      "sha256": "b9a0850b6744847ed4fc85f1e88ebf6164476d4418bbcd3a16fb14448c973cab"
+    },
+    "santos/11-04.m4a": {
+      "bytes": 166926,
+      "sha256": "443d7da2ab1c67f8125bbc703cb42eec0357a4bb21ce62dc7a75f5bc1380c0c2"
+    },
+    "santos/11-05.m4a": {
+      "bytes": 171767,
+      "sha256": "5956d75fa9f6e2b4ba70aab8a1bb0d6bbb2f84882401fc2cb81f9f4e0723d408"
+    },
+    "santos/11-06.m4a": {
+      "bytes": 165090,
+      "sha256": "b1442dfc5e201aa6577158d5ef68aa315d9dba40c2dce76b5f634182951ba517"
+    },
+    "santos/11-07.m4a": {
+      "bytes": 176490,
+      "sha256": "fae18441a14d2eeeb3604d432a5df139f4d4d2553f878bf59a0ed5fdab89b84d"
+    },
+    "santos/11-08.m4a": {
+      "bytes": 170834,
+      "sha256": "f6e05f037ce80bf109f2844f0d3ce83e15e238b9a385d3bff2f21c1daf5f321f"
+    },
+    "santos/11-09.m4a": {
+      "bytes": 146406,
+      "sha256": "ea5f7291cb76e13b804ec01d67a20709f50c4ee974922e3a7abd8a957136a406"
+    },
+    "santos/11-10.m4a": {
+      "bytes": 181561,
+      "sha256": "3d1f4a696fbf895da4577835d3d5a0efad23fe613845ee7ca24b817f419ccab1"
+    },
+    "santos/11-11.m4a": {
+      "bytes": 176609,
+      "sha256": "76cc100868941bb0bcde04d86ba50da1e1882c04fb5846920e5fee640eb32ff3"
+    },
+    "santos/11-12.m4a": {
+      "bytes": 183889,
+      "sha256": "f274813e4e054dfc03079119e9d2155beff7646456fd47e5788290950171c889"
+    },
+    "santos/11-13.m4a": {
+      "bytes": 166760,
+      "sha256": "6a66463de62ea16d36af216f270b0982bf90acb6930ffbe28ee19025f0cdccec"
+    },
+    "santos/11-14.m4a": {
+      "bytes": 157857,
+      "sha256": "218b4f5923d8db557f2801288985190c926b70468adeb15efaaf9c928047a0c7"
+    },
+    "santos/11-15.m4a": {
+      "bytes": 179037,
+      "sha256": "c739a5e22fcddd9e8042f1c49cc7d0861dbc840b373972c46c6ec607643cc03f"
+    },
+    "santos/11-16.m4a": {
+      "bytes": 158017,
+      "sha256": "2fc6183b6e9ddfd68e9d827cdf1d9e81c5fe3d751889c48e763f9bf5af99fea0"
+    },
+    "santos/11-17.m4a": {
+      "bytes": 178960,
+      "sha256": "224a1487d253928ab4677982bce94ab9d5266e3ff3474312464d66b2dcfd0581"
+    },
+    "santos/11-18.m4a": {
+      "bytes": 159870,
+      "sha256": "c5d7b749ac1e862c05ce715209a1b9d2c9c183a0b34a591ab5ba01f79bb8c8a5"
+    },
+    "santos/11-19.m4a": {
+      "bytes": 198702,
+      "sha256": "b1786c7dad59e7a3304fb1b451771558caf0400a02a400e0944dc319b283ebd7"
+    },
+    "santos/11-20.m4a": {
+      "bytes": 163045,
+      "sha256": "b6531625b88f4900a4da94d4e64acc4d3faf0331b3677a75a432d4737fe374f8"
+    },
+    "santos/11-21.m4a": {
+      "bytes": 161179,
+      "sha256": "b4d3f556cae58c0eb684c11a9875642289056a5c0e9044e0313d28a34ad67d25"
+    },
+    "santos/11-22.m4a": {
+      "bytes": 140983,
+      "sha256": "a78f7d9d83b6ff624f29906d1f96cc5c907d4e488b22d24af2249907799dd0cb"
+    },
+    "santos/11-23.m4a": {
+      "bytes": 157706,
+      "sha256": "b4b66346f7d6ed36352910374b8b4bdb4d27b3aae60f687482e5d121e60268c3"
+    },
+    "santos/11-24.m4a": {
+      "bytes": 162832,
+      "sha256": "46d3d63e66a326e7d5f90d3a2a15bf7258d517dd41d5a89b043ac7004ddc58d5"
+    },
+    "santos/11-25.m4a": {
+      "bytes": 162773,
+      "sha256": "7a33d3e4d505d3649d8c269d8b9ad382f2ce509d85e63838949501d5d1026099"
+    },
+    "santos/11-26.m4a": {
+      "bytes": 180085,
+      "sha256": "e638691c0ad9b957055ba44af7c9c8047f1e56f02cfb3877c2c7535398c274b0"
+    },
+    "santos/11-27.m4a": {
+      "bytes": 156322,
+      "sha256": "5969e9907dd8dc016ebac9b165374c12eca0397ce33275d9fad88bd90ba4d853"
+    },
+    "santos/11-28.m4a": {
+      "bytes": 152414,
+      "sha256": "05cd8ae266b2ad508437bcc7e34dffae4fe18afadb31f3a6cf731dce18794856"
+    },
+    "santos/11-29.m4a": {
+      "bytes": 164751,
+      "sha256": "fcd5bd9448cff54736059656f4bc374a764c52363d2be2add6ba6c2950a6f5af"
+    },
+    "santos/11-30.m4a": {
+      "bytes": 154054,
+      "sha256": "91cd411c44a19f49b2a95cd94444cbd735e5ba01b593280125f06ab0ead2dec4"
+    },
+    "santos/12-01.m4a": {
+      "bytes": 183520,
+      "sha256": "dad43cfa0d577643628a83aefc7dda0de3c8a06bc57f8010e4c8849179153713"
+    },
+    "santos/12-02.m4a": {
+      "bytes": 133316,
+      "sha256": "5b86e4c0ee78eb784ca54286eee312cc31a9408605501ad33a40cace6fdace94"
+    },
+    "santos/12-03.m4a": {
+      "bytes": 181128,
+      "sha256": "574410642576c6252029e1758618547b9afa06e393315f1d344ebc6800f1f75c"
+    },
+    "santos/12-04.m4a": {
+      "bytes": 152342,
+      "sha256": "62aaa237de6936c2250dcf7fae56122b8f59a717fc41cb3f5e3087afd1b56ec8"
+    },
+    "santos/12-05.m4a": {
+      "bytes": 161921,
+      "sha256": "9c4210d1b3479169c1cd0e9d23f30255d50d19086655d32621bbf379e4c199dd"
+    },
+    "santos/12-06.m4a": {
+      "bytes": 142705,
+      "sha256": "e1988af1e47605aff3deea425091d671f119d19b697a9c5ef21863ca0e12cb83"
+    },
+    "santos/12-07.m4a": {
+      "bytes": 176494,
+      "sha256": "1c180b0bc2d09938c087dff4b77d87f895e6208de050c5af73053e9c9ed0f9fc"
+    },
+    "santos/12-08.m4a": {
+      "bytes": 156816,
+      "sha256": "b5600c151541e6e0e6acc3dd288a53523212f9733ddbfb7fe5447b1519cf2e4f"
+    },
+    "santos/12-09.m4a": {
+      "bytes": 173091,
+      "sha256": "0d4ed44de84af834e53711e48d29688747032b6bd1e13911adfe0dce9992a9a1"
+    },
+    "santos/12-10.m4a": {
+      "bytes": 148549,
+      "sha256": "2d828680ffd0299ceee4c4af6a2320ecd2e6815537bc020b01a277348f936b44"
+    },
+    "santos/12-11.m4a": {
+      "bytes": 165211,
+      "sha256": "e050f7a23474bc3c88b66f1046b7290830ee2c5468bc5966ef768c8589aa863f"
+    },
+    "santos/12-12.m4a": {
+      "bytes": 155902,
+      "sha256": "7b95bf8c6688aabdf413d9eae1d3418b3fb94b9c9e741e0e84b2dead821c3917"
+    },
+    "santos/12-13.m4a": {
+      "bytes": 158826,
+      "sha256": "761de7391a7af7a37470a3826b0a1f09b28960e28aeff707010883ca8be483dd"
+    },
+    "santos/12-14.m4a": {
+      "bytes": 161813,
+      "sha256": "a40d0fcc87e043daa248f05e444e812a43ccd4df5f25df0ffc362bbfdff60334"
+    },
+    "santos/12-15.m4a": {
+      "bytes": 172997,
+      "sha256": "28417563e647a5f572d62ef28655424155df6aa36b35884ded5a759cfbc29c43"
+    },
+    "santos/12-16.m4a": {
+      "bytes": 164862,
+      "sha256": "7391063dfc04b007fe0527241294d4076a3d6fa9889e94838282f0567c73d6e4"
+    },
+    "santos/12-17.m4a": {
+      "bytes": 180630,
+      "sha256": "70911eabb823055ee3d6e3ed8fa58aeaffc4d556940e1695bae35b9d82e983d1"
+    },
+    "santos/12-18.m4a": {
+      "bytes": 163811,
+      "sha256": "a9967ed13a41ac5d8f4fe141dc2452370f5fd7e97411694cad1dca1a67dfca31"
+    },
+    "santos/12-19.m4a": {
+      "bytes": 142863,
+      "sha256": "a3096920d9b38687f4f2d5ba4bdef1a25c54ef6948b37aeda673aa5a2be96378"
+    },
+    "santos/12-20.m4a": {
+      "bytes": 151858,
+      "sha256": "3b2104aa46ef2dd88a5754a526f6135b8aeb8384ff55157035e27ec52306dc45"
+    },
+    "santos/12-21.m4a": {
+      "bytes": 179378,
+      "sha256": "799965d1ff7f9015dcb964482f6cb8dddea1f9c903f2a1976d638b0dbd4761e9"
+    },
+    "santos/12-22.m4a": {
+      "bytes": 174185,
+      "sha256": "3e4a9b0a644b55abf2616290ad56ae0392c26b0d2ba3bb9b53d0acaea4ff8239"
+    },
+    "santos/12-23.m4a": {
+      "bytes": 161545,
+      "sha256": "fec8ea0ca37018a4e0e6e59f7d8af796cde99065d937e064fd2357e975b45549"
+    },
+    "santos/12-24.m4a": {
+      "bytes": 161249,
+      "sha256": "8a3da363805e33e9b9b9dfd31efe15c307e5a43844aea4b71fa0287585d1a84a"
+    },
+    "santos/12-25.m4a": {
+      "bytes": 142703,
+      "sha256": "90a66d84d5546bc11b62133c65c0c855fd195ee4ffa79c3696a95d1aa9b68d27"
+    },
+    "santos/12-26.m4a": {
+      "bytes": 143581,
+      "sha256": "ab63a807afcaeee125efc196582644d6a5a9d9d52371da27f2ebb3e6045f5786"
+    },
+    "santos/12-27.m4a": {
+      "bytes": 156133,
+      "sha256": "41a58e49c9543fbdafb7374530250c71c6eab9de171410f55af5d3474819d9b5"
+    },
+    "santos/12-28.m4a": {
+      "bytes": 141340,
+      "sha256": "763846646f813afa7df7a2b3e59abe8f68dda6e5fae6a3c3b75d0506ebfb3834"
+    },
+    "santos/12-29.m4a": {
+      "bytes": 161599,
+      "sha256": "fbbf32bd89e721c3eceb09ebf6ff168e6c72a00f91732ec906528a03f5c65912"
+    },
+    "santos/12-30.m4a": {
+      "bytes": 169219,
+      "sha256": "f6c6f4cd77237721624391a847524d74adcfcb94415cc1e357882603913e82c0"
+    },
+    "santos/12-31.m4a": {
+      "bytes": 141303,
+      "sha256": "831133c823a3da6c462bceb87e4854d8cf4889d271ab4e916810d4ceac6c3814"
+    },
     "santos/anunciacao-do-senhor.webp": {
       "bytes": 109296,
       "sha256": "ceb7f8cac5ffc455e557c44857505bd0cef93e534b5d4551e80e64ad805d9140"
@@ -5053,6 +9689,118 @@
     "santos/visitacao-de-nossa-senhora.webp": {
       "bytes": 115188,
       "sha256": "57d8001069ad90a8574fa8ac97bf7156339f5b00541018d105d68f3017905aec"
+    },
+    "terco/dolorosos-abertura.m4a": {
+      "bytes": 620372,
+      "sha256": "bd2577d2173eabddf0f22504189ed9c32f924b5751230243666a24d5b4e65204"
+    },
+    "terco/dolorosos-dezena-1.m4a": {
+      "bytes": 1029645,
+      "sha256": "90febce768f4e987a365aa95de39b7d0b9b0bb5aa0992da941dc0b373bc2d564"
+    },
+    "terco/dolorosos-dezena-2.m4a": {
+      "bytes": 1018911,
+      "sha256": "86d5e01bcb66f037a6828ff067d5ea9f17f84ad2e23b937eeff8f204b618dc68"
+    },
+    "terco/dolorosos-dezena-3.m4a": {
+      "bytes": 1018373,
+      "sha256": "4a495023b477afd162c12a7a60dde39b1342bb53cd016b4e260648cb5a639a1b"
+    },
+    "terco/dolorosos-dezena-4.m4a": {
+      "bytes": 1025627,
+      "sha256": "34e8ec269531009abb06d51ec15d950d0856f9157af87e91a152c26a4ce0fa3a"
+    },
+    "terco/dolorosos-dezena-5.m4a": {
+      "bytes": 1023552,
+      "sha256": "c55389a797e328e5dbf420dfea82f6c6db6a6a2a8f706e819ecd44279a09b0ad"
+    },
+    "terco/dolorosos-fecho.m4a": {
+      "bytes": 296766,
+      "sha256": "0979b2edff219b5d7289c731014929578ea13227bbd052b5d09d7da74b198710"
+    },
+    "terco/gloriosos-abertura.m4a": {
+      "bytes": 620372,
+      "sha256": "bd2577d2173eabddf0f22504189ed9c32f924b5751230243666a24d5b4e65204"
+    },
+    "terco/gloriosos-dezena-1.m4a": {
+      "bytes": 1016744,
+      "sha256": "52a47ae547709c027dac3d21dbc01ea9d1429f70ac9c94d8e008bd71aeb0ea30"
+    },
+    "terco/gloriosos-dezena-2.m4a": {
+      "bytes": 1017136,
+      "sha256": "c4aee19afe432cdb5e7abf3b117642d82ba9945377af2a82bec97674ec4c16dd"
+    },
+    "terco/gloriosos-dezena-3.m4a": {
+      "bytes": 1017911,
+      "sha256": "363274ffc30e75d9b101b7d7e3f7a2d38bdea1166d62c878f847d53c3320016a"
+    },
+    "terco/gloriosos-dezena-4.m4a": {
+      "bytes": 1016649,
+      "sha256": "0222759b824897ec9392a3ece6b8e513178f0928a3503ea21d6cf0705488fb1e"
+    },
+    "terco/gloriosos-dezena-5.m4a": {
+      "bytes": 1025913,
+      "sha256": "83413cc95596c2e8728381d39f9bd635c52fcd53be9eace835281e49fc4f1e97"
+    },
+    "terco/gloriosos-fecho.m4a": {
+      "bytes": 296766,
+      "sha256": "0979b2edff219b5d7289c731014929578ea13227bbd052b5d09d7da74b198710"
+    },
+    "terco/gozosos-abertura.m4a": {
+      "bytes": 620372,
+      "sha256": "bd2577d2173eabddf0f22504189ed9c32f924b5751230243666a24d5b4e65204"
+    },
+    "terco/gozosos-dezena-1.m4a": {
+      "bytes": 1018185,
+      "sha256": "b2b8ebcfff2cfba11b7a70e8888256b00d4ad8ec6880c22e3f7f4ad5d0f6ca25"
+    },
+    "terco/gozosos-dezena-2.m4a": {
+      "bytes": 1012467,
+      "sha256": "6e2c23a211f8e8ddfdd3a9c7d53f4e4508ac00f5d714ac15f1f76fd304393e51"
+    },
+    "terco/gozosos-dezena-3.m4a": {
+      "bytes": 1014724,
+      "sha256": "402aacb5ca551330e8639c33bb2e8581a2a2f5935bfd72836730f0c11a9cfc7e"
+    },
+    "terco/gozosos-dezena-4.m4a": {
+      "bytes": 1012109,
+      "sha256": "1f261b70a964528c8f175581cb660caaddc24d0b099f9a2e038691de00dc5cff"
+    },
+    "terco/gozosos-dezena-5.m4a": {
+      "bytes": 1020573,
+      "sha256": "7c0f81a5152da99da0707ceaf5b190732c1773d3bc2d9b828fd55a28ca04f850"
+    },
+    "terco/gozosos-fecho.m4a": {
+      "bytes": 296766,
+      "sha256": "0979b2edff219b5d7289c731014929578ea13227bbd052b5d09d7da74b198710"
+    },
+    "terco/luminosos-abertura.m4a": {
+      "bytes": 620372,
+      "sha256": "bd2577d2173eabddf0f22504189ed9c32f924b5751230243666a24d5b4e65204"
+    },
+    "terco/luminosos-dezena-1.m4a": {
+      "bytes": 1025500,
+      "sha256": "97ca618d6e04f04b77b73e4297bc96acceeab48465c0500a1f4a92d95dd19e21"
+    },
+    "terco/luminosos-dezena-2.m4a": {
+      "bytes": 1015902,
+      "sha256": "0ead250079ec87050fce60d60ad749e20643af1c813c1391a226f183abd303cb"
+    },
+    "terco/luminosos-dezena-3.m4a": {
+      "bytes": 1019376,
+      "sha256": "24a65d5216df75a72d6c2ca986fce097632d68d00e06e82793f7e9e8e3189837"
+    },
+    "terco/luminosos-dezena-4.m4a": {
+      "bytes": 1018187,
+      "sha256": "b0721752258f387622203fd77f37a479f1b8b502f299185816d0ae5c18333a63"
+    },
+    "terco/luminosos-dezena-5.m4a": {
+      "bytes": 1019412,
+      "sha256": "dcb80a78e65f1a5573eed0b8d6a77f618bef3510d789435df0f8f000b3a98425"
+    },
+    "terco/luminosos-fecho.m4a": {
+      "bytes": 296766,
+      "sha256": "0979b2edff219b5d7289c731014929578ea13227bbd052b5d09d7da74b198710"
     }
   }
 }
