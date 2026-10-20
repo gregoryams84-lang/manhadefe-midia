@@ -30,8 +30,11 @@ são ignorados.
      jeito: no texto aparado, como o app o lê), oração terminando em
      "Amém.", referência "Livro C,V" ou "Livro C,V-V" (a palavra final é do
      lint, que roda no fim);
-   - índice: a temporada não sobrepõe outra de novela/temporadas.json (o
-     mesmo id é a versão nova dela, e a substitui);
+   - índice: o novela/temporadas.json FINAL — as temporadas que já estavam,
+     com esta no lugar da versão anterior dela (o mesmo id) — passa pelas
+     regras do app, que o recusa inteiro por qualquer uma: base terminada
+     em /, ids únicos, fim = início + capítulos − 1 e nenhuma sobreposição
+     de datas (nem entre as que já estavam);
    - no caminho real, também as ferramentas: as chaves do R2, o boto3, o
      dart, as ferramentas do app e as da voz na raiz de mídia.
 
@@ -538,18 +541,54 @@ def ler_indice(midia):
     return (None if problemas else dados), problemas
 
 
-def conferir_sobreposicao(indice, entrega):
-    """A temporada nova não pode cair nos dias de outra (o app recusaria o
-    índice inteiro); a de mesmo id é a versão anterior dela."""
+def conferir_indice(indice):
+    """Os problemas do índice FINAL (o que vai ser gravado: as temporadas que
+    já estavam, com a nova no lugar da versão anterior dela) pelas regras do
+    app (IndiceDeTemporadas.fromJson), que recusa o índice INTEIRO por
+    qualquer uma: a base "videos" terminada em /; cada temporada com id
+    t<número>, arquivo novela/<id>.json, capítulos ≥ 1 e fim = início +
+    capítulos − 1; os ids únicos; nenhuma sobreposição de datas."""
     problemas = []
-    for r in indice['temporadas']:
-        if r['id'] == entrega.id:
+    base = indice.get('videos')
+    if not isinstance(base, str) or not base.endswith('/') or not urlparse(base).path.endswith('/'):
+        problemas.append(f'índice final: a base "videos" ({base}) não termina em /')
+    temporadas = indice.get('temporadas')
+    if not isinstance(temporadas, list):
+        return problemas + ['índice final: sem a lista "temporadas"']
+    ids = [r.get('id') if isinstance(r, dict) else None for r in temporadas]
+    for id_ in sorted({i for i in ids if ids.count(i) > 1}, key=str):
+        problemas.append(f'índice final: o id {id_} aparece {ids.count(id_)} vezes — cada temporada '
+                         'tem um id só (todas apontariam o mesmo novela/<id>.json)')
+    vistas = []
+    for r in temporadas:
+        if not isinstance(r, dict):
+            problemas.append('índice final: uma temporada não é um objeto')
             continue
-        inicio, fim = data_valida(r['inicio']), data_valida(r['fim'])
-        if not (entrega.inicio > fim or entrega.fim < inicio):
-            problemas.append(f'as datas de {entrega.id} ({entrega.inicio} a {entrega.fim}) '
-                             f'sobrepõem a temporada {r["id"]} ({inicio} a {fim}) do índice '
-                             'existente')
+        id_, capitulos = r.get('id'), r.get('capitulos')
+        inicio, fim = data_valida(r.get('inicio')), data_valida(r.get('fim'))
+        if not isinstance(id_, str) or not ID_DE_TEMPORADA.fullmatch(id_):
+            problemas.append(f'índice final: id "{id_}" fora do formato t<número>')
+            continue
+        if r.get('arquivo') != f'novela/{id_}.json':
+            problemas.append(f'índice final: {id_} com arquivo "{r.get("arquivo")}" — tem de ser '
+                             f'novela/{id_}.json')
+        if not isinstance(capitulos, int) or isinstance(capitulos, bool) or capitulos < 1:
+            problemas.append(f'índice final: {id_} com capitulos "{capitulos}" — um inteiro ≥ 1')
+            continue
+        if inicio is None or fim is None:
+            problemas.append(f'índice final: {id_} com início "{r.get("inicio")}" e fim '
+                             f'"{r.get("fim")}" — datas AAAA-MM-DD que existam')
+            continue
+        esperado = inicio + timedelta(days=capitulos - 1)
+        if fim != esperado:
+            problemas.append(f'índice final: {id_} termina em {fim}, mas {capitulos} capítulo(s) a '
+                             f'partir de {inicio} terminam em {esperado}')
+        for outro, o_inicio, o_fim in vistas:
+            if not (inicio > o_fim or fim < o_inicio):
+                problemas.append(f'índice final: as datas de {outro} ({o_inicio} a {o_fim}) '
+                                 f'sobrepõem as de {id_} ({inicio} a {fim}) — o app recusaria o '
+                                 'índice inteiro')
+        vistas.append((id_, inicio, fim))
     return problemas
 
 
@@ -1021,12 +1060,13 @@ def main(argv=None):
 
     # 1. Conferência: tudo, antes de qualquer envio ou escrita.
     entrega, problemas = conferir_entrega(Path(args.entrega))
-    indice, p = ler_indice(midia)
-    problemas += p
-    if entrega is not None and indice is not None:
-        problemas += conferir_sobreposicao(indice, entrega)
+    indice, problemas_do_indice = ler_indice(midia)
+    problemas += problemas_do_indice
     base, p = resolver_base(args.videos_base, indice, args.r2, prefixo)
     problemas += p
+    # O índice FINAL, inteiro, pelas regras do app (que o recusa inteiro).
+    if entrega is not None and base is not None and not problemas_do_indice:
+        problemas += conferir_indice(indice_atualizado(indice, entrega, base))
     chaves = dart = None
     if not args.simular:
         chaves, dart, p = conferir_o_caminho_real(args, midia, app)

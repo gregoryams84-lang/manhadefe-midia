@@ -588,6 +588,54 @@ def teste_recusa_sobreposicao_com_temporada_existente():
         assert publicar(pasta, midia)[0] == 0
 
 
+def _resumo(id_, inicio, fim, capitulos):
+    return {'id': id_, 'titulo': id_, 'inicio': inicio, 'fim': fim, 'capitulos': capitulos,
+            'arquivo': f'novela/{id_}.json'}
+
+
+def teste_indice_final_inteiro_conferido_antes_de_escrever():
+    """R8-E: o app recusa o índice INTEIRO (IndiceDeTemporadas.fromJson) —
+    a lista final, com as que já estavam, é conferida antes de qualquer
+    escrita, não só a temporada nova contra as outras."""
+    with tempfile.TemporaryDirectory() as tmp:
+        midia = Path(tmp) / 'midia'
+        (midia / 'novela').mkdir(parents=True)
+
+        def indice(*temporadas):
+            (midia / 'novela' / 'temporadas.json').write_text(json.dumps({
+                'versao': 1, 'videos': BASE, 'temporadas': list(temporadas)}), encoding='utf-8')
+
+        pasta = entrega_valida(tmp)   # t1, 10 e 11/11: não toca nenhuma das outras
+        # Duas que já estavam se sobrepõem entre si.
+        indice(_resumo('t2', '2026-12-01', '2026-12-07', 7), _resumo('t3', '2026-12-07', '2026-12-13', 7))
+        deve_recusar(pasta, midia, 'sobrepõem', 't2 (2026-12-01 a 2026-12-07)',
+                     't3 (2026-12-07 a 2026-12-13)')
+        # O mesmo id duas vezes (em datas que não se tocam).
+        indice(_resumo('t2', '2026-12-01', '2026-12-07', 7), _resumo('t2', '2026-12-20', '2026-12-26', 7))
+        deve_recusar(pasta, midia, 'o id t2 aparece 2 vezes')
+        # Arrumado, passa — e a temporada nova fica entre as outras, em ordem.
+        indice(_resumo('t2', '2026-12-01', '2026-12-07', 7), _resumo('t0', '2026-10-21', '2026-10-22', 2))
+        assert publicar(pasta, midia)[0] == 0
+        final = json.loads((midia / 'novela' / 'temporadas.json').read_text(encoding='utf-8'))
+        assert [t['id'] for t in final['temporadas']] == ['t0', 't1', 't2']
+
+
+def teste_conferir_indice_tem_as_regras_do_app():
+    """A função pura: cada regra do IndiceDeTemporadas.fromJson, listada."""
+    ok = {'versao': 1, 'videos': BASE, 'temporadas': [
+        _resumo('t1', '2026-11-10', '2026-11-16', 7), _resumo('t2', '2026-11-17', '2026-11-23', 7)]}
+    assert pt.conferir_indice(ok) == []
+    errado = json.loads(json.dumps(ok))
+    errado['videos'] = 'https://videos.exemplo.invalid/novela'
+    errado['temporadas'][0]['fim'] = '2026-11-17'          # 7 capítulos: o fim é dia 16
+    errado['temporadas'][1]['arquivo'] = 'novela/outra.json'
+    problemas = pt.conferir_indice(errado)
+    assert len(problemas) == 4, problemas
+    for trecho in ('termina em /', 't1 termina em 2026-11-17', '2026-11-16', 'novela/t2.json',
+                   'sobrepõem'):
+        assert any(trecho in p for p in problemas), (trecho, problemas)
+
+
 def teste_simular_recusa_o_repositorio_real_e_sem_midia():
     with tempfile.TemporaryDirectory() as tmp:
         pasta = entrega_valida(tmp)
