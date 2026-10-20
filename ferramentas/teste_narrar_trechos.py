@@ -687,6 +687,35 @@ def teste_construir_troca_so_a_chave_do_trecho_no_marcas_json_e_regrava_ordenado
         assert not (midia / 'terco' / 'marcas.json').exists(), 'nenhum trecho do Terço montado'
 
 
+def teste_construir_le_e_confere_o_marcas_json_antes_de_gravar_qualquer_coisa():
+    """R8-I: o marcas.json da pasta é lido e conferido ANTES de o construir
+    gravar o JSON do app (e antes de montar o áudio publicado): malformado
+    — JSON quebrado, lista no lugar do objeto, marca que não é número, ou
+    número que o arquivo regravado não reproduz —, nada é gravado."""
+    with tempfile.TemporaryDirectory() as tmp:
+        app = app_de_teste(tmp)
+        midia = midia_de_teste(tmp)
+        ave_maria = app / 'assets' / 'content' / 'oracoes' / 'ave-maria.json'
+        app_antes = ave_maria.read_bytes()
+        marcas = midia / 'oracoes' / 'marcas.json'
+        marcas.parent.mkdir(parents=True)
+        for quebrado in ('{"oracoes/creio.m4a": [0, 2,', '["oracoes/creio.m4a"]',
+                         '{"oracoes/creio.m4a": [0, "dois"]}', '{"oracoes/creio.m4a": [0, true]}',
+                         '{"oracoes/creio.m4a": [0, NaN]}', '{"oracoes/creio.m4a": [0, 1234.5678]}'):
+            marcas.write_text(quebrado, encoding='utf-8')
+            assert nt.main(args_comuns(tmp, app) + ['--ids', 'ave-maria']) == 1, quebrado
+            assert ave_maria.read_bytes() == app_antes, (quebrado, 'o JSON do app mudou')
+            assert marcas.read_text(encoding='utf-8') == quebrado
+            assert not (midia / 'oracoes' / 'ave-maria.m4a').exists(), \
+                (quebrado, 'montou o áudio publicado')
+        # Consertado, a mesma chamada grava as duas coisas.
+        marcas.write_text('{"oracoes/creio.m4a": [0, 2, 3, 4]}', encoding='utf-8')
+        assert nt.main(args_comuns(tmp, app) + ['--ids', 'ave-maria']) == 0
+        assert ave_maria.read_bytes() != app_antes
+        assert json.loads(marcas.read_text(encoding='utf-8'))['oracoes/ave-maria.m4a'] == \
+            nt.ler_json(ave_maria)['marcas']
+
+
 def teste_exportar_marcas_reproduz_os_dois_arquivos_byte_a_byte():
     with tempfile.TemporaryDirectory() as tmp:
         raiz = copia_da_montagem(tmp)

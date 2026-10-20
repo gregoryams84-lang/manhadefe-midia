@@ -31,7 +31,9 @@ chave publicada de cada áudio (`terco/gozosos-abertura.m4a`) e as marcas em
 segundos, chaves em ordem alfabética. O app as lê do servidor (e fica com as
 embutidas se faltarem): corrigir o tempo de uma marca deixa de pedir versão
 nova na loja. Toda montagem que grava as marcas no JSON do app troca também
-a chave do trecho no marcas.json da pasta dele; --exportar-marcas refaz os
+a chave do trecho no marcas.json da pasta dele — lido e conferido ANTES de
+qualquer gravação: malformado, nada é gravado (nem o áudio publicado, nem o
+JSON do app); --exportar-marcas refaz os
 dois arquivos inteiros a partir das peças do diretório de trabalho, sem
 gerar nem recodificar nada, e recusa se as peças não forem as do áudio
 publicado (a soma delas e das pausas tem de dar a duração do .m4a).
@@ -110,6 +112,7 @@ Uso:
 import argparse
 import hashlib
 import json
+import math
 import os
 import re
 import subprocess
@@ -699,16 +702,30 @@ def texto_das_marcas(marcas_por_chave):
     return '{' + chr(10) + (',' + chr(10)).join(linhas) + chr(10) + '}' + chr(10)
 
 
+def _marcas_validas(marcas):
+    return isinstance(marcas, list) and all(
+        isinstance(m, (int, float)) and not isinstance(m, bool) and math.isfinite(m) for m in marcas)
+
+
 def ler_marcas_publicadas(caminho):
-    """{chave: marcas} do marcas.json, ou {} se ele ainda não existe. Um
-    arquivo que não é um objeto de listas para tudo: regravá-lo por cima
-    apagaria as outras chaves."""
+    """{chave: marcas} do marcas.json, ou {} se ele ainda não existe —
+    conferido: um JSON válido, um objeto de listas de números finitos, que
+    regravado (texto_das_marcas) diz o mesmo. Qualquer outra coisa para
+    tudo (ValueError): regravá-lo por cima apagaria ou trocaria as outras
+    chaves. O construir chama isto ANTES de gravar qualquer coisa."""
     if not caminho.exists():
         return {}
-    dados = json.loads(caminho.read_text(encoding='utf-8'))
-    if not isinstance(dados, dict) or not all(isinstance(v, list) for v in dados.values()):
-        raise ValueError(f'{caminho}: não é um objeto {{"chave": [marcas]}} — conserte à mão '
-                         'ou refaça com --exportar-marcas')
+    conserte = 'conserte à mão ou refaça com --exportar-marcas'
+    try:
+        dados = json.loads(caminho.read_text(encoding='utf-8'))
+    except ValueError as e:  # JSON quebrado, BOM, bytes que não são UTF-8
+        raise ValueError(f'{caminho}: não é um JSON válido ({e}) — {conserte}') from None
+    if not isinstance(dados, dict) or not all(_marcas_validas(v) for v in dados.values()):
+        raise ValueError(f'{caminho}: não é um objeto {{"chave": [marcas em segundos]}} — '
+                         f'{conserte}')
+    if json.loads(texto_das_marcas(dados)) != dados:
+        raise ValueError(f'{caminho}: regravado, o arquivo não diria as mesmas marcas (mais de 6 '
+                         f'algarismos?) — {conserte}')
     return dados
 
 
@@ -725,15 +742,6 @@ def gravar_marcas_publicadas(caminho, marcas_por_chave):
     parcial.replace(caminho)
 
 
-def atualizar_marcas_publicadas(trecho, marcas):
-    """Troca só a chave deste trecho no marcas.json da pasta dele (as outras
-    ficam como estavam) e regrava em ordem alfabética."""
-    caminho = arquivo_de_marcas(trecho)
-    dados = ler_marcas_publicadas(caminho)
-    dados[trecho.arquivo] = marcas
-    gravar_marcas_publicadas(caminho, dados)
-
-
 # ---------------------------------------------------------------------------
 # Orquestração
 # ---------------------------------------------------------------------------
@@ -747,7 +755,12 @@ def pecas_do_trecho(trecho, reaproveitar):
 def construir(trecho, trabalho, reaproveitar, log):
     """Monta o arquivo final a partir das peças já prontas, grava as marcas
     (se o trecho tiver JSON: no JSON do app e no marcas.json publicado da
-    pasta dele) e registra no log."""
+    pasta dele) e registra no log. O marcas.json é lido e conferido ANTES
+    de qualquer gravação (R8-I): malformado, nada é gravado — nem o áudio
+    publicado, nem o JSON do app."""
+    publicadas = None
+    if trecho.json is not None:
+        publicadas = ler_marcas_publicadas(arquivo_de_marcas(trecho))
     wavs = []
     for _, _, chave in pecas_do_trecho(trecho, reaproveitar):
         wav = arquivos_da_peca(trabalho, trecho.tradicao, chave)[0]
@@ -758,10 +771,15 @@ def construir(trecho, trabalho, reaproveitar, log):
     if len(marcas) != trecho.contas_esperadas:
         raise RuntimeError(f'{trecho.id}: {len(marcas)} marcas, a tela espera {trecho.contas_esperadas}')
     if trecho.json is not None:
-        gravar_marcas(trecho, marcas)
         # D6 da versão 5: o app lê as marcas do servidor; as publicadas e as
-        # embutidas saem da MESMA montagem.
-        atualizar_marcas_publicadas(trecho, marcas)
+        # embutidas saem da MESMA montagem. O texto novo do marcas.json é
+        # conferido antes de o JSON do app mudar.
+        publicadas[trecho.arquivo] = marcas
+        if json.loads(texto_das_marcas(publicadas)) != publicadas:
+            raise ValueError(f'{arquivo_de_marcas(trecho)}: o texto gravado não reproduziria as '
+                             'marcas')
+        gravar_marcas(trecho, marcas)
+        gravar_marcas_publicadas(arquivo_de_marcas(trecho), publicadas)
     simulado = any(json.loads(arquivos_da_peca(trabalho, trecho.tradicao, c)[2]
                               .read_text(encoding='utf-8')).get('simulado')
                    for _, _, c in pecas_do_trecho(trecho, reaproveitar))
