@@ -855,7 +855,7 @@ def limpar_mensagem(texto, chaves):
 
 def _codigo_do_erro(erro):
     """O Error.Code de um ClientError do botocore ('404', 'AccessDenied'),
-    ou None."""
+    ou None — só o do próprio erro."""
     resposta = getattr(erro, 'response', None)
     if not isinstance(resposta, dict) or not isinstance(resposta.get('Error'), dict):
         return None
@@ -863,16 +863,34 @@ def _codigo_do_erro(erro):
     return str(codigo) if codigo else None
 
 
+def _codigo_na_cadeia(erro):
+    """O Error.Code do erro ou de um que ele embrulha: o boto3 lança o erro
+    do envio como S3UploadFailedError ("Failed to upload <caminho local> to
+    <balde>/<chave>: ..."), com o ClientError no __context__ — e, com o
+    caminho da entrega longo, o código do texto cairia depois do corte."""
+    vistos = set()
+    while erro is not None and id(erro) not in vistos:
+        vistos.add(id(erro))
+        codigo = _codigo_do_erro(erro)
+        if codigo:
+            return codigo
+        erro = erro.__cause__ or erro.__context__
+    return None
+
+
 def descrever_erro(erro, chaves):
-    """O que vai à tela de um erro do R2, do botocore ou da rede: o tipo (e,
-    num ClientError, o Error.Code) e a mensagem LIMPA — limpa antes de
-    cortada, para nenhum pedaço do endpoint escapar do corte."""
-    codigo = _codigo_do_erro(erro)
+    """O que vai à tela de um erro do R2, do botocore ou da rede: o tipo (e o
+    Error.Code do ClientError, dele ou do que ele embrulha) e a mensagem
+    LIMPA — limpa antes de cortada, para nenhum pedaço do endpoint escapar
+    do corte."""
+    codigo = _codigo_na_cadeia(erro)
     nome = type(erro).__name__ + (f' ({codigo})' if codigo else '')
     return limpar_mensagem(f'{nome}: {erro}', chaves)[:LIMITE_DA_MENSAGEM]
 
 
 def _nao_existe(erro):
+    # Só o código do PRÓPRIO erro do HEAD: um 404 no meio da cadeia não é
+    # "o objeto não existe".
     return _codigo_do_erro(erro) in ('404', 'NoSuchKey', 'NotFound')
 
 

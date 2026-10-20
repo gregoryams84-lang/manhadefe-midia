@@ -862,7 +862,10 @@ class ClienteFalso:
 
 class ClienteQueFalha(ClienteFalso):
     """Lança `erro` na primeira chamada de `metodo` feita depois de
-    `depois_de` envios bem-sucedidos (0: logo a primeira)."""
+    `depois_de` envios bem-sucedidos (0: logo a primeira). No envio, como o
+    boto3 de verdade (S3Transfer.upload_file): o ClientError sai embrulhado
+    num S3UploadFailedError com o caminho local e a chave na mensagem, e o
+    ClientError no __context__."""
 
     def __init__(self, metodo, erro, depois_de=0):
         super().__init__()
@@ -877,8 +880,38 @@ class ClienteQueFalha(ClienteFalso):
         return super().head_object(Bucket, Key)
 
     def upload_file(self, Filename, Bucket, Key, ExtraArgs=None):  # noqa: N803
-        self._talvez_falhe('upload_file')
+        from boto3.exceptions import S3UploadFailedError
+        from botocore.exceptions import ClientError
+        try:
+            self._talvez_falhe('upload_file')
+        except ClientError as e:
+            raise S3UploadFailedError(f'Failed to upload {Filename} to {Bucket}/{Key}: {e}')
         return super().upload_file(Filename, Bucket, Key, ExtraArgs)
+
+
+class ClienteQueAparece(ClienteFalso):
+    """A chave `alvo` aparece no balde, com outro conteúdo, entre o plano e o
+    envio (outra publicação ao mesmo tempo): o 1º HEAD dela (o do plano) não
+    a vê; o 2º (o de logo antes do envio), sim."""
+
+    def __init__(self, alvo):
+        super().__init__()
+        self.alvo, self.olhadas = alvo, 0
+
+    def head_object(self, Bucket, Key):  # noqa: N803
+        if Key == self.alvo:
+            self.olhadas += 1
+            if self.olhadas == 2:
+                self.objetos[Key] = (123, 'c' * 64)
+        return super().head_object(Bucket, Key)
+
+
+class ClienteQueCorrompe(ClienteFalso):
+    """Depois do envio, o R2 mostra outro sha256 (o objeto não é o enviado)."""
+
+    def upload_file(self, Filename, Bucket, Key, ExtraArgs=None):  # noqa: N803
+        super().upload_file(Filename, Bucket, Key, ExtraArgs)
+        self.objetos[Key] = (self.objetos[Key][0], 'd' * 64)
 
 
 def teste_planejar_videos_escolhe_a_chave_sem_nunca_sobrescrever():
@@ -1431,7 +1464,7 @@ def teste_erro_do_r2_nunca_vai_cru_a_tela_e_nada_e_escrito():
                                                f'recusou a chave {CHAVE_DE_ACESSO}'}}, 'PutObject')
     casos = (('cliente', 0, ValueError(f'Invalid endpoint: {ENDPOINT}'), 'ValueError'),
              ('head_object', 0, conexao, 'EndpointConnectionError'),
-             ('upload_file', 0, negado, 'ClientError (AccessDenied)'),
+             ('upload_file', 0, negado, 'S3UploadFailedError (AccessDenied)'),
              ('head_object', 1, conexao, 'EndpointConnectionError'))   # depois de um envio
     for metodo, depois_de, erro, nome in casos:
         assert CONTA in str(erro), 'o dublê traz a conta na mensagem'
@@ -1452,6 +1485,99 @@ def teste_erro_do_r2_nunca_vai_cru_a_tela_e_nada_e_escrito():
             nada_da_conta_em(saida)
             assert _arvore(midia) == antes, (metodo, 'escreveu na raiz de mídia')
             assert dubles.comandos == [], 'nem voz nem manifesto'
+
+
+def teste_envio_negado_com_caminho_longo_mantem_o_codigo_do_erro():
+    """R8-P: o boto3 de verdade embrulha o ClientError do envio num
+    S3UploadFailedError ("Failed to upload <caminho local> to <balde>/<chave>:
+    An error occurred (AccessDenied)..."); com o caminho da entrega longo, o
+    código ficava depois do corte de 300. O diagnóstico o traz na frente,
+    tirado do ClientError de dentro — e continua sem nada da conta."""
+    from botocore.exceptions import ClientError
+    negado = ClientError({'Error': {'Code': 'AccessDenied',
+                                    'Message': f'negado para {CONTA}.r2.cloudflarestorage.com'}},
+                         'PutObject')
+    with tempfile.TemporaryDirectory() as tmp:
+        dubles = Dubles(tmp)
+        dubles.cliente = ClienteQueFalha('upload_file', negado)
+        midia = dubles.midia()
+        pasta = entrega_valida(tmp, nome='entrega-' + 'a' * 140)
+        antes = _arvore(midia)
+        codigo, saida = dubles.publicar(pasta, midia, '--sem-voz', '--r2-prefixo', 'teste/midia/')
+        assert codigo == 1, saida
+        linha = next(linha for linha in saida.splitlines() if 'o envio falhou' in linha)
+        assert 'S3UploadFailedError (AccessDenied): Failed to upload' in linha, linha
+        assert len(f'Failed to upload {pasta / "01-catolico.mp4"} to manhadefe-video/teste/midia/'
+                   'video/t1/01-catolico.mp4: An error occurred (') > pt.LIMITE_DA_MENSAGEM - 30, \
+            'o caminho é longo o bastante para o código cair depois do corte'
+        nada_da_conta_em(saida)
+        assert _arvore(midia) == antes
+
+
+def teste_re_head_que_ja_mostra_a_chave_para_antes_de_subir():
+    """R8-P: entre o plano e o envio, a chave aparece no R2 (outra
+    publicação): o HEAD logo antes do envio a vê — RuntimeError, nada sobe,
+    o objeto que apareceu fica como está, nada é escrito."""
+    with tempfile.TemporaryDirectory() as tmp:
+        dubles = Dubles(tmp)
+        dubles.cliente = ClienteQueAparece('teste/midia/video/t1/01-catolico.mp4')
+        midia = dubles.midia()
+        antes = _arvore(midia)
+        codigo, saida = dubles.publicar(entrega_valida(tmp), midia, '--sem-voz',
+                                        '--r2-prefixo', 'teste/midia/')
+        assert codigo == 1, saida
+        assert 'RuntimeError' in saida and 'apareceu no R2 durante a publicação' in saida, saida
+        assert dubles.cliente.envios == []
+        assert dubles.cliente.objetos == {'teste/midia/video/t1/01-catolico.mp4': (123, 'c' * 64)}
+        assert _arvore(midia) == antes and dubles.comandos == []
+
+
+def teste_head_depois_do_envio_com_outro_sha256_para_antes_de_escrever():
+    """R8-P: depois do envio, o R2 mostra outro sha256 — exit 1, nada
+    escrito na raiz de mídia."""
+    with tempfile.TemporaryDirectory() as tmp:
+        dubles = Dubles(tmp)
+        dubles.cliente = ClienteQueCorrompe()
+        midia = dubles.midia()
+        antes = _arvore(midia)
+        codigo, saida = dubles.publicar(entrega_valida(tmp), midia, '--sem-voz')
+        assert codigo == 1, saida
+        assert 'depois do envio, o R2 não mostra o mesmo tamanho e sha256' in saida, saida
+        assert len(dubles.cliente.envios) == 1, 'parou no primeiro'
+        assert _arvore(midia) == antes and dubles.comandos == []
+
+
+def teste_envio_leva_content_type_video_mp4_e_o_sha256_nos_metadados():
+    """R8-P: cada envio leva ContentType video/mp4 e o sha256 do arquivo nos
+    metadados (é por ele que a chave é reconhecida depois)."""
+    with tempfile.TemporaryDirectory() as tmp:
+        dubles = Dubles(tmp)
+        midia = dubles.midia()
+        pasta = entrega_valida(tmp)
+        codigo, saida = dubles.publicar(pasta, midia, '--sem-voz')
+        assert codigo == 0, saida
+        esperados = {f'video/t1/{nn}-{t}.mp4': sha256_de(pasta / f'{nn}-{t}.mp4')
+                     for nn in ('01', '02') for t in ('catolico', 'evangelico')}
+        assert [chave for chave, _ in dubles.cliente.envios] == list(esperados)
+        for chave, extra in dubles.cliente.envios:
+            assert extra == {'ContentType': 'video/mp4', 'Metadata': {'sha256': esperados[chave]}}, \
+                (chave, extra)
+
+
+def teste_descrever_erro_limpa_antes_de_cortar():
+    """R8-P: o corte em 300 vem DEPOIS da limpeza — o endpoint que atravessa
+    a posição 300 não deixa pedaço do id da conta."""
+    cabeca = 'RuntimeError: '
+    texto = 'x' * (280 - len(cabeca)) + ENDPOINT + '/manhadefe-video/video/t1/01-catolico.mp4 '
+    texto += 'y' * (400 - len(cabeca) - len(texto))
+    completo = f'{cabeca}{texto}'
+    assert len(completo) == 400 and completo.index(ENDPOINT) == 280
+    assert completo.index(ENDPOINT) < pt.LIMITE_DA_MENSAGEM < completo.index(ENDPOINT) + len(ENDPOINT)
+    descricao = pt.descrever_erro(RuntimeError(texto), chaves_falsas())
+    assert len(descricao) <= pt.LIMITE_DA_MENSAGEM
+    assert CONTA[:8] not in descricao and 'https://' not in descricao, descricao
+    # O marcador (16 caracteres, de 280 a 295) cabe inteiro antes do corte.
+    assert descricao.endswith('<endpoint do R2>/man'), descricao
 
 
 # ---------------------------------------------------------------------------
