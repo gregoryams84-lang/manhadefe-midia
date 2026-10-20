@@ -1138,6 +1138,74 @@ def teste_base_de_producao_recusa_teste_e_avisa_r2_dev():
         assert codigo == 0 and 'aviso:' not in saida, saida
 
 
+def teste_recusa_do_trocado_explica_a_sobra_de_rodada_interrompida():
+    """R8-O (N2 da re-revisão): a 1ª publicação sobe os vídeos e para antes
+    de gravar o JSON (aqui, no HEAD público); o chat reexporta um vídeo. A
+    rodada seguinte continua recusando — o R2 nunca é sobrescrito, nem a
+    sobra —, mas diz que o objeto é provavelmente sobra de uma rodada
+    interrompida, que nenhum aparelho o usa e que --substituir-videos é
+    seguro; com a opção, passa: a chave nova no JSON, a fixa como sobra."""
+    with tempfile.TemporaryDirectory() as tmp:
+        dubles = Dubles(tmp)
+        midia = dubles.midia()
+        pasta = entrega_valida(tmp)
+        extra = ('--sem-voz', '--r2-prefixo', 'teste/midia/')
+        dubles.publico = {'teste/midia/video/t1/02-evangelico.mp4': 99}   # o HEAD público falha
+        assert dubles.publicar(pasta, midia, *extra)[0] == 1
+        assert len(dubles.cliente.envios) == 4 and not (midia / 'novela' / 't1.json').exists()
+        sobra = dubles.cliente.objetos['teste/midia/video/t1/01-catolico.mp4']
+        dubles.publico = {}
+        shutil.copyfile(midia_sintetica()['outro'], pasta / '01-catolico.mp4')   # reexportado
+        codigo, saida = dubles.publicar(pasta, midia, *extra)
+        assert codigo == 1, saida
+        assert 'teste/midia/video/t1/01-catolico.mp4 (cap. 1, t1c1, 2026-11-10)' in saida, saida
+        assert 'sobra de uma rodada interrompida' in saida and 'nenhum aparelho o usa' in saida
+        assert 'publicar com --substituir-videos é seguro' in saida, saida
+        assert 'já publicado' not in saida, saida
+        assert len(dubles.cliente.envios) == 4, 'nada subiu'
+        codigo, saida = dubles.publicar(pasta, midia, *extra, '--substituir-videos')
+        assert codigo == 0, saida
+        sha = sha256_de(pasta / '01-catolico.mp4')
+        t1 = json.loads((midia / 'novela' / 't1.json').read_text(encoding='utf-8'))
+        assert t1['capitulos'][0]['video']['catolico']['arquivo'] == \
+            f'video/t1/01-catolico-{sha[:8]}.mp4'
+        assert dubles.cliente.objetos['teste/midia/video/t1/01-catolico.mp4'] == sobra, \
+            'a fixa fica como sobra'
+        # Uma terceira versão: agora o JSON aponta a versionada (uma troca já
+        # publicada) — a fixa é a versão de antes da troca, não sobra.
+        shutil.copyfile(midia_sintetica()['yuvj420p'], pasta / '01-catolico.mp4')
+        codigo, saida = dubles.publicar(pasta, midia, *extra)
+        assert codigo == 1, saida
+        assert 'já publicado' in saida and 'sobra de uma rodada' not in saida, saida
+
+
+def teste_recusa_do_trocado_com_o_json_da_pasta_ou_do_ultimo_commit_e_a_de_sempre():
+    """R8-O: se o novela/<t>.json da pasta --midia, ou só o do último commit
+    dela, aponta a chave fixa, a recusa é a de sempre (já publicado: aparelho
+    com o JSON velho). Sem nenhum dos dois, é a da sobra."""
+    with tempfile.TemporaryDirectory() as tmp:
+        dubles = Dubles(tmp)
+        midia = dubles.midia()
+        pasta = entrega_valida(tmp)
+        assert dubles.publicar(pasta, midia, '--sem-voz')[0] == 0     # o JSON aponta a fixa
+        shutil.copyfile(midia_sintetica()['outro'], pasta / '01-catolico.mp4')
+        codigo, saida = dubles.publicar(pasta, midia, '--sem-voz')
+        assert codigo == 1 and 'já publicado' in saida and 'sobra de uma rodada' not in saida, saida
+        # Só o último commit aponta (o JSON da pasta saiu): a de sempre também.
+        _git(midia, 'init', '-q')
+        _git(midia, 'add', '--', 'novela/t1.json')
+        _git(midia, 'commit', '-q', '-m', 'a temporada publicada')
+        (midia / 'novela' / 't1.json').unlink()
+        codigo, saida = dubles.publicar(pasta, midia, '--sem-voz')
+        assert codigo == 1 and 'já publicado' in saida and 'sobra de uma rodada' not in saida, saida
+        # Nem a pasta nem o último commit: sobra.
+        _git(midia, 'rm', '-q', '--cached', '--', 'novela/t1.json')
+        _git(midia, 'commit', '-q', '-m', 'sem a temporada')
+        codigo, saida = dubles.publicar(pasta, midia, '--sem-voz')
+        assert codigo == 1 and 'sobra de uma rodada interrompida' in saida, saida
+        assert 'já publicado' not in saida, saida
+
+
 def teste_simular_preve_o_trocado_pelo_json_publicado():
     """Na simulação o R2 não é consultado: o estado vem do novela/<t>.json
     publicado na pasta — o vídeo que mudou é trocado e recusa sem a opção,

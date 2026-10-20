@@ -48,7 +48,11 @@ são ignorados.
      senão a fixa video/<t>/<NN>-<tradicao>.mp4 — ausente, sobe (novo);
      com este conteúdo, já estava; com OUTRO sha256 (trocado), a
      publicação recusa antes de subir ou escrever qualquer coisa, listando
-     chave, capítulo e data. Com --substituir-videos, o trocado sobe na
+     chave, capítulo e data — e, quando nenhum novela/<t>.json (nem o da
+     pasta, nem o do último commit dela) aponta o vídeo, explica que o
+     objeto é provavelmente sobra de uma rodada interrompida, que nenhum
+     aparelho o usa e que --substituir-videos é seguro (nem a sobra é
+     sobrescrita). Com --substituir-videos, o trocado sobe na
      chave versionada video/<t>/<NN>-<tradicao>-<sha8>.mp4 (sha8 = os 8
      primeiros hex do sha256) e o objeto velho fica: o aparelho com o JSON
      velho baixa o velho, o com o novo baixa o novo, sem janela. O sha256
@@ -986,6 +990,7 @@ class Video:
     estado: str = ''
     sobe: bool = False
     velha: str = ''
+    recusada: str = ''     # a chave fixa com OUTRO conteúdo, quando o plano recusa
 
 
 def videos_da_entrega(entrega):
@@ -1016,6 +1021,31 @@ def videos_publicados(midia, id_):
         dados = json.loads((Path(midia) / 'novela' / f'{id_}.json').read_text(encoding='utf-8-sig'))
     except (OSError, ValueError, UnicodeDecodeError):
         return {}
+    return _videos_do_json(dados, id_)
+
+
+def videos_no_ultimo_commit(midia, id_):
+    """O mesmo de videos_publicados, do novela/<t>.json do ÚLTIMO COMMIT da
+    raiz de mídia (git show HEAD:./novela/<t>.json) — o que os aparelhos
+    podem ter, mesmo que a pasta já não o tenha; {} fora de um repositório
+    git, sem commit ou sem o arquivo nele."""
+    try:
+        r = subprocess.run(['git', '-C', str(midia), 'show', f'HEAD:./novela/{id_}.json'],
+                           capture_output=True)
+    except OSError:
+        return {}
+    if r.returncode != 0:
+        return {}
+    try:
+        dados = json.loads(r.stdout.decode('utf-8-sig'))
+    except (ValueError, UnicodeDecodeError):
+        return {}
+    return _videos_do_json(dados, id_)
+
+
+def _videos_do_json(dados, id_):
+    """{(n, tradição): {arquivo, bytes, sha256}} de um novela/<t>.json já
+    lido: só as chaves de vídeo do capítulo e da tradição certos."""
     capitulos = dados.get('capitulos') if isinstance(dados, dict) else None
     publicados = {}
     for cap in capitulos if isinstance(capitulos, list) else []:
@@ -1085,6 +1115,7 @@ def planejar_videos(entrega, videos, publicados, consultar, substituir, prefixo=
         elif la == este:
             v.chave, v.estado, v.sobe = fixa, JA_ESTAVA, False
         elif not substituir:
+            v.recusada = fixa
             recusas.append(f'{prefixo}{fixa} (cap. {v.capitulo.n}, '
                            f'{entrega.id_do_capitulo(v.capitulo)}, {v.capitulo.dados["data"]})')
         else:
@@ -1547,15 +1578,34 @@ def _publicar(args, midia, app, prefixo):
             return 1
     if recusas or problemas:
         simulado = ' (simulado, pelo novela/<t>.json publicado)' if args.simular else ''
-        if recusas:
-            print(f'R2{simulado}: {len(recusas)} vídeo(s) já publicado(s) com OUTRO conteúdo — '
+        # A regra não muda: nada no R2 é sobrescrito. Muda a explicação
+        # (R8-O): o vídeo que nenhum novela/<t>.json aponta — nem o da pasta
+        # nem o do último commit dela — é provavelmente sobra de uma rodada
+        # interrompida, que subiu e parou antes de gravar o JSON.
+        apontados = set(publicados) | set(videos_no_ultimo_commit(midia, entrega.id))
+        recusados = list(zip((v for v in videos if v.recusada), recusas))
+        no_ar = [r for v, r in recusados if (v.capitulo.n, v.tradicao) in apontados]
+        sobras = [r for v, r in recusados if (v.capitulo.n, v.tradicao) not in apontados]
+        if no_ar:
+            print(f'R2{simulado}: {len(no_ar)} vídeo(s) já publicado(s) com OUTRO conteúdo — '
                   'nada foi enviado nem escrito:')
-            for recusa in recusas:
+            for recusa in no_ar:
                 print(f'  - {recusa}')
             print('  sobrescrever quebraria o capítulo em todo aparelho que ainda tem o JSON velho '
                   '(o sha256 não bate e o vídeo é recusado). Para publicar a versão nova numa chave '
                   'nova (video/<t>/<nn>-<tradicao>-<sha8>.mp4), com o objeto velho intocado, rode '
                   'de novo com --substituir-videos')
+        if sobras:
+            print(f'R2{simulado}: {len(sobras)} vídeo(s) no R2 com OUTRO conteúdo, que nenhum '
+                  f'novela/{entrega.id}.json aponta (nem o da pasta, nem o do último commit) — nada '
+                  'foi enviado nem escrito:')
+            for recusa in sobras:
+                print(f'  - {recusa}')
+            print('  é provavelmente sobra de uma rodada interrompida (que subiu o vídeo e parou '
+                  'antes de gravar o JSON): nenhum aparelho o usa, e publicar com '
+                  '--substituir-videos é seguro — a chave nova vai no JSON, e a fixa fica como '
+                  'sobra (centavos). Nem a sobra é sobrescrita: o HEAD público daquela rodada pode '
+                  'tê-la posto no cache da borda')
         for problema in problemas:
             print(f'R2{simulado}: {problema}')
         return 1
