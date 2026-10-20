@@ -23,7 +23,9 @@ import subprocess
 import sys
 import tempfile
 import traceback
+import urllib.error
 from pathlib import Path
+from urllib.parse import urlparse
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import publicar_temporada as pt  # noqa: E402
@@ -947,6 +949,117 @@ def teste_com_substituir_videos_sobe_na_chave_versionada_e_o_velho_fica_intocado
     assert 'delete_object' not in fonte and 'delete_objects' not in fonte
 
 
+def teste_url_publica_confere_cada_video_antes_de_escrever():
+    """R8-D: depois de subir — e também para o que já estava —, um HEAD na
+    URL PÚBLICA <base><chave> (a que o app vai pedir) confere o
+    Content-Length = bytes. A base que não serve o objeto para antes de
+    escrever os JSONs locais; o erro de rede sai limpo."""
+    extra = ('--sem-voz', '--r2-prefixo', 'teste/midia/')
+    base = 'https://pub-exemplo123.r2.dev/teste/midia/'
+    esperadas = [f'{base}video/t1/{nn}-{t}.mp4' for nn in ('01', '02')
+                 for t in ('catolico', 'evangelico')]
+    with tempfile.TemporaryDirectory() as tmp:
+        dubles = Dubles(tmp)
+        midia = dubles.midia()
+        pasta = entrega_valida(tmp)
+        codigo, saida = dubles.publicar(pasta, midia, *extra)
+        assert codigo == 0, saida
+        assert dubles.urls == esperadas, dubles.urls
+        # De novo: tudo já estava, e o HEAD público confere do mesmo jeito.
+        dubles.urls.clear()
+        codigo, saida = dubles.publicar(pasta, midia, *extra)
+        assert codigo == 0 and 'já estava: 4' in saida, saida
+        assert dubles.urls == esperadas, dubles.urls
+    from urllib.error import URLError
+    falhas = (({'teste/midia/video/t1/02-evangelico.mp4': 99}, '02-evangelico.mp4'),
+              (URLError(f'sem rota para {ENDPOINT}'), 'URLError'))
+    for publico, trecho in falhas:
+        with tempfile.TemporaryDirectory() as tmp:
+            dubles = Dubles(tmp)
+            dubles.publico = publico
+            midia = dubles.midia()
+            pasta = entrega_valida(tmp)
+            antes = _arvore(midia)
+            codigo, saida = dubles.publicar(pasta, midia, *extra)
+            assert codigo == 1, saida
+            assert trecho in saida and 'URL pública' in saida, saida
+            nada_da_conta_em(saida)
+            assert _arvore(midia) == antes, 'nada escrito'
+            assert dubles.comandos == []
+    # Uma base que não é a do balde (o objeto não está onde o app vai
+    # pedir): 404, nada escrito.
+    with tempfile.TemporaryDirectory() as tmp:
+        dubles = Dubles(tmp)
+        midia = dubles.midia()
+        codigo, saida = dubles.publicar(entrega_valida(tmp), midia, '--sem-voz',
+                                        '--videos-base', 'https://outro.exemplo.invalid/outra-pasta/')
+        assert codigo == 1 and 'HTTPError: HTTP Error 404' in saida, saida
+        assert 'https://outro.exemplo.invalid/outra-pasta/video/t1/01-catolico.mp4' in saida
+        assert not (midia / 'novela').exists()
+
+
+def teste_consultar_url_publica_faz_head_e_le_o_content_length():
+    """O HEAD de verdade, com o urlopen trocado por um dublê (nenhum socket):
+    método HEAD na URL pedida, com tempo-limite; o Content-Length vira int;
+    sem ele, None."""
+    pedidos = []
+
+    class Resposta:
+        def __init__(self, headers):
+            self.headers = headers
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *_):
+            return False
+
+    def urlopen(pedido, timeout=None):
+        pedidos.append((pedido.full_url, pedido.get_method(), timeout))
+        return Resposta({'Content-Length': '250865'} if 'com' in pedido.full_url else {})
+
+    real = pt.urllib.request.urlopen
+    pt.urllib.request.urlopen = urlopen
+    try:
+        assert pt.consultar_url_publica('https://x.invalid/com.mp4') == 250865
+        assert pt.consultar_url_publica('https://x.invalid/sem.mp4') is None
+    finally:
+        pt.urllib.request.urlopen = real
+    assert pedidos == [('https://x.invalid/com.mp4', 'HEAD', 20),
+                       ('https://x.invalid/sem.mp4', 'HEAD', 20)], pedidos
+
+
+def teste_simular_nao_faz_head_na_url_publica():
+    def nunca(url):
+        raise AssertionError(f'a simulação fez HEAD em {url}')
+    real = pt.consultar_url_publica
+    pt.consultar_url_publica = nunca
+    try:
+        with tempfile.TemporaryDirectory() as tmp:
+            codigo, saida = publicar(entrega_valida(tmp), Path(tmp) / 'midia')
+            assert codigo == 0, saida
+    finally:
+        pt.consultar_url_publica = real
+
+
+def teste_base_de_producao_recusa_teste_e_avisa_r2_dev():
+    """R8-D: sem --r2-prefixo (produção), a base com "teste/" é recusada; a
+    *.r2.dev só avisa — hoje ela ainda é a base real, até o DNS ir para a
+    Cloudflare. Com prefixo (ensaio), nenhuma das duas."""
+    with tempfile.TemporaryDirectory() as tmp:
+        pasta = entrega_valida(tmp)
+        deve_recusar(pasta, Path(tmp) / 'm1', 'teste/', 'produção',
+                     extra=('--videos-base', 'https://pub-x.r2.dev/teste/midia/'))
+        codigo, saida = publicar(pasta, Path(tmp) / 'm2', videos_base='https://pub-x.r2.dev/')
+        assert codigo == 0, saida
+        assert 'aviso:' in saida and 'r2.dev' in saida, saida
+        codigo, saida = publicar(pasta, Path(tmp) / 'm3', '--r2-prefixo', 'teste/midia/',
+                                 videos_base='https://pub-x.r2.dev/teste/midia/')
+        assert codigo == 0 and 'aviso:' not in saida, saida
+        codigo, saida = publicar(pasta, Path(tmp) / 'm4', videos_base='https://video.manhadefe.com.br/')
+        assert codigo == 0 and 'aviso:' not in saida, saida
+
+
 def teste_simular_preve_o_trocado_pelo_json_publicado():
     """Na simulação o R2 não é consultado: o estado vem do novela/<t>.json
     publicado na pasta — o vídeo que mudou é trocado e recusa sem a opção,
@@ -990,6 +1103,11 @@ class Dubles:
         self.cliente = ClienteFalso()
         # Quem monta o cliente (o teste troca para montar um que falha).
         self.criar_cliente = lambda chaves: self.cliente
+        # O HEAD na URL pública: responde pelo balde falso (o caminho da URL
+        # é a chave no R2); `publico` troca o Content-Length de uma chave ou
+        # é um erro que todo HEAD lança.
+        self.urls = []
+        self.publico = {}
         self.comandos = []
         self.stt, self.lint = stt, lint
         # False: o gerar_manifesto de um app anterior à Task 7, que não
@@ -1055,16 +1173,26 @@ class Dubles:
             return self.lint
         raise AssertionError(f'comando inesperado: {cmd}')
 
+    def head_publico(self, url):
+        self.urls.append(url)
+        if isinstance(self.publico, Exception):
+            raise self.publico
+        chave = urlparse(url).path.lstrip('/')
+        if chave not in self.cliente.objetos:
+            raise urllib.error.HTTPError(url, 404, 'Not Found', {}, None)
+        return self.publico.get(chave, self.cliente.objetos[chave][0])
+
     @contextlib.contextmanager
     def instalados(self):
-        antes = pt.rodar, pt.criar_cliente_r2, pt.localizar_dart
+        antes = pt.rodar, pt.criar_cliente_r2, pt.localizar_dart, pt.consultar_url_publica
         pt.rodar = self.rodar
         pt.criar_cliente_r2 = lambda chaves: self.criar_cliente(chaves)
         pt.localizar_dart = lambda: 'dart'
+        pt.consultar_url_publica = self.head_publico
         try:
             yield self
         finally:
-            pt.rodar, pt.criar_cliente_r2, pt.localizar_dart = antes
+            pt.rodar, pt.criar_cliente_r2, pt.localizar_dart, pt.consultar_url_publica = antes
 
     def publicar(self, pasta, midia, *extra):
         """main() no caminho real com os dublês; devolve (código, tudo o que

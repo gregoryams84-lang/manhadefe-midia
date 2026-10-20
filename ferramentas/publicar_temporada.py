@@ -52,6 +52,11 @@ são ignorados.
      velho baixa o velho, o com o novo baixa o novo, sem janela. O sha256
      vai nos metadados e o que sobe é conferido depois. Vem PRIMEIRO: se o
      envio falhar, nenhum JSON local aponta para um vídeo que não está lá;
+   - a URL pública: cada vídeo (o que subiu e o que já estava) por um HEAD
+     em <base><chave>, a URL que o app vai pedir — o Content-Length tem de
+     ser o tamanho do arquivo, senão para antes de escrever. Em produção
+     (sem --r2-prefixo), a base com "teste/" é recusada e a *.r2.dev só
+     avisa (é a base real até o domínio próprio entrar);
    - <midia>/novela/<t>.json: a temporada no formato do app (Temporada.fromJson
      em lib/content/novela.dart) — por capítulo, `id` <t>c<n>, `capa`,
      `legenda` (só com SRT) e `video` com arquivo (a chave escolhida
@@ -105,6 +110,7 @@ import shutil
 import subprocess
 import sys
 import unicodedata
+import urllib.request
 from dataclasses import dataclass
 from datetime import date, timedelta
 from pathlib import Path
@@ -705,7 +711,24 @@ def resolver_base(videos_base, indice, url_publica, prefixo):
     if prefixo and not partes.path.endswith('/' + prefixo):
         return None, [f'a base "videos" ({base}, de {origem}) não termina no prefixo do R2 '
                       f'({prefixo}): o app pediria os vídeos fora de onde eles sobem']
+    if not prefixo and 'teste/' in base.lower():
+        return None, [f'a base "videos" ({base}, de {origem}) é de teste (tem "teste/"), mas a '
+                      'publicação é de produção (sem --r2-prefixo): o app pediria os vídeos na '
+                      'pasta de teste do balde']
     return base, []
+
+
+def avisos_da_base(base, prefixo):
+    """O que não recusa, mas o Gregory precisa ver: em produção (sem
+    prefixo), a base *.r2.dev — a Public Development URL, que a Cloudflare
+    limita. Hoje ela ainda é a base real, até o DNS do domínio próprio
+    (video.manhadefe.com.br) ir para a Cloudflare."""
+    host = (urlparse(base).hostname or '').lower()
+    if not prefixo and (host == 'r2.dev' or host.endswith('.r2.dev')):
+        return [f'a base "videos" ({base}) é a Public Development URL do R2 (*.r2.dev), que a '
+                'Cloudflare limita — serve até o domínio próprio (video.manhadefe.com.br) estar no '
+                'ar; aí, publique com --videos-base apontando para ele']
+    return []
 
 
 def conferir_raiz_da_simulacao(midia, app=None):
@@ -985,6 +1008,37 @@ def planejar_videos(entrega, videos, publicados, consultar, substituir, prefixo=
                 continue
             v.chave, v.estado, v.sobe, v.velha = nova, TROCADO, la_nova is None, fixa
     return problemas, recusas
+
+
+def consultar_url_publica(url, tempo=20):
+    """O Content-Length que a URL PÚBLICA dá num HEAD (None se ela não dá
+    nenhum); erro HTTP ou de rede sobe. É o ponto que os testes trocam por
+    dublê."""
+    pedido = urllib.request.Request(url, method='HEAD',
+                                    headers={'User-Agent': 'manhadefe-publicar-temporada'})
+    with urllib.request.urlopen(pedido, timeout=tempo) as resposta:  # noqa: S310 — só http(s)
+        tamanho = resposta.headers.get('Content-Length')
+    return int(tamanho) if tamanho is not None and tamanho.strip().isdigit() else None
+
+
+def conferir_pela_url_publica(videos, base, chaves):
+    """[problemas] de cada vídeo — o que subiu e o que já estava — pela URL
+    que o app vai pedir, <base><chave>: o HEAD tem de dar o Content-Length =
+    bytes. Pega a base que não serve o objeto (outro prefixo, outro
+    domínio, o balde sem acesso público). O erro sai limpo (R8-A)."""
+    problemas = []
+    for v in videos:
+        url = base + v.chave
+        try:
+            tamanho = consultar_url_publica(url)
+        except Exception as e:  # noqa: BLE001 — erro de rede: limpo, nunca cru
+            problemas.append(limpar_mensagem(f'{url}: {descrever_erro(e, chaves)}', chaves))
+            continue
+        if tamanho != v.bytes:
+            dado = 'nenhum' if tamanho is None else _milhar(tamanho)
+            problemas.append(limpar_mensagem(f'{url}: o HEAD deu Content-Length {dado} — o vídeo '
+                                             f'tem {_milhar(v.bytes)} bytes', chaves))
+    return problemas
 
 
 def subir_videos(cliente, videos, prefixo='', balde=BALDE):
@@ -1311,6 +1365,9 @@ def main(argv=None):
         return 1
     ids = [entrega.id_do_capitulo(c) for c in entrega.capitulos]
     print(f'conferência ok: {entrega.id}, {len(ids)} capítulo(s), de {entrega.inicio} a {entrega.fim}')
+    avisos = avisos_da_base(base, prefixo)
+    for aviso in avisos:
+        print(f'aviso: {aviso}')
 
     # 2. O R2, antes de qualquer escrita local (nenhum JSON aponta para um
     #    vídeo que não está lá): a chave de cada vídeo, só consultando — o
@@ -1358,6 +1415,16 @@ def main(argv=None):
         except Exception as e:  # noqa: BLE001 — qualquer erro do R2: limpo, nunca cru
             print(f'R2: o envio falhou ({descrever_erro(e, chaves)}); nada foi escrito — '
                   'rode de novo (o que já subiu com o mesmo sha256 não sobe outra vez)')
+            return 1
+        # Cada vídeo pela URL que o app vai pedir (também o que já estava).
+        problemas = conferir_pela_url_publica(videos, base, chaves)
+        if problemas:
+            print(f'URL pública: {len(problemas)} vídeo(s) não conferem pela base "videos" — '
+                  'nada foi escrito:')
+            for problema in problemas:
+                print(f'  - {problema}')
+            print('  o app pediria os vídeos ali: confira a base (--videos-base ou a do índice) e o '
+                  'acesso público do balde; o que subiu fica no R2 e não sobe de novo')
             return 1
     por_capitulo = {(v.capitulo.n, v.tradicao): v for v in videos}
 
@@ -1418,10 +1485,17 @@ def main(argv=None):
         velha = (f' — {prefixo}{v.velha} fica intocado (o JSON velho ainda aponta para ele)'
                  if v.estado == TROCADO else '')
         print(f'  {prefixo}{v.chave}  {_milhar(v.bytes)} bytes  {v.estado}: {acao}{velha}')
+    if args.simular:
+        print('URL pública: não conferida (simulado)')
+    else:
+        print(f'URL pública: os {len(videos)} vídeos conferidos por HEAD em {base} (Content-Length '
+              '= bytes)')
     print(f'base "videos": {base}')
     if base.startswith(MARCADOR_DA_URL_PUBLICA):
         print('  (simulado: o arquivo de chaves não é lido — a rodada real põe aqui a Public '
               'Development URL do R2)')
+    for aviso in avisos:
+        print(f'  aviso: {aviso}')
     if indice and indice.get('videos') and indice['videos'] != base:
         print(f'  (era {indice["videos"]}: o vídeo que já está no aparelho não baixa de novo — o '
               'app o reconhece pelo sha256)')
