@@ -571,11 +571,14 @@ class Dubles:
     dublês que registram o que a ferramenta pediu e fazem o que cada
     comando faria no disco."""
 
-    def __init__(self, tmp, stt=0, lint=0):
+    def __init__(self, tmp, stt=0, lint=0, manifesto_com_novela=True):
         self.tmp = Path(tmp)
         self.cliente = ClienteFalso()
         self.comandos = []
         self.stt, self.lint = stt, lint
+        # False: o gerar_manifesto de um app anterior à Task 7, que não
+        # conhece a pasta novela/.
+        self.manifesto_com_novela = manifesto_com_novela
         self.app = self.tmp / 'app'
         for arquivo in ('pubspec.yaml', 'tool/midia/texto_narrado.dart',
                         'tool/midia/gerar_manifesto.dart', 'tool/lint_conteudo.dart'):
@@ -621,7 +624,16 @@ class Dubles:
         if cmd[1].endswith('conferir_stt.py'):
             return self.stt
         if 'tool/midia/gerar_manifesto.dart' in cmd:
-            (Path(cmd[-1]) / 'manifesto.json').write_text('{}', encoding='utf-8')
+            raiz = Path(cmd[-1])
+            pastas = {'narracao': '.m4a', 'imagens': '.webp', 'novela': ('.json', '.srt')}
+            if not self.manifesto_com_novela:
+                pastas.pop('novela')
+            arquivos = {p.relative_to(raiz).as_posix(): {'bytes': p.stat().st_size,
+                                                          'sha256': sha256_de(p)}
+                        for pasta, extensao in pastas.items() for p in (raiz / pasta).rglob('*')
+                        if p.is_file() and p.name.endswith(extensao)}
+            (raiz / 'manifesto.json').write_text(json.dumps({'versao': 1, 'arquivos': arquivos}),
+                                                 encoding='utf-8')
             return 0
         if 'tool/lint_conteudo.dart' in cmd:
             return self.lint
@@ -712,6 +724,20 @@ def teste_sem_voz_pula_a_voz_e_lint_com_erro_sai_com_1():
         assert codigo == 1, saida
         assert dubles.ferramentas() == ['gerar_manifesto.dart', 'lint_conteudo.dart']
         assert 'lint' in saida
+
+
+def teste_manifesto_que_nao_lista_a_temporada_para_antes_do_lint():
+    """O gerar_manifesto de um app anterior à Task 7 não conhece novela/: o
+    app não baixaria a temporada, e o lint antigo nem olharia. Para antes do
+    lint e diz por quê."""
+    with tempfile.TemporaryDirectory() as tmp:
+        dubles = Dubles(tmp, manifesto_com_novela=False)
+        midia = dubles.midia()
+        codigo, saida = dubles.publicar(entrega_valida(tmp), midia, '--sem-voz')
+        assert codigo == 1, saida
+        assert dubles.ferramentas() == ['gerar_manifesto.dart']
+        assert 'novela/temporadas.json' in saida and 'novela/t1c1.srt' in saida
+        assert 'Task 7' in saida
 
 
 def teste_publicacao_real_confere_as_ferramentas_antes_de_escrever():

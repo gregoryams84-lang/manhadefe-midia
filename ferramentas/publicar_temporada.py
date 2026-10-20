@@ -53,7 +53,9 @@ são ignorados.
      conferir_stt.py --stt whisper — reprovado, para e lista (o manifesto
      não é refeito). Os dois .py rodam a cópia de DENTRO de --midia: eles
      gravam na raiz do repositório em que estão;
-   - o manifesto (gerar_manifesto.dart) e o lint (lint_conteudo.dart, 0
+   - o manifesto (gerar_manifesto.dart), conferido: tem de listar os
+     arquivos da temporada (um app anterior à Task 7 não conhece novela/ e
+     a temporada não chegaria a ninguém); e o lint (lint_conteudo.dart, 0
      erros, senão sai com 1).
    No fim, o resumo. NUNCA faz commit nem push: commit por caminho, e o
    push só com o OK do Gregory.
@@ -861,6 +863,28 @@ def _caminhos_da_voz(ids):
     return {f'narracao/{t}/{id_}.m4a' for id_ in ids for t in TRADICOES}
 
 
+def fora_do_manifesto(midia, entrega, com_voz):
+    """As chaves da temporada que o manifesto recém-gerado NÃO lista. O app
+    só baixa o que está nele: o gerar_manifesto de um app anterior à Task 7
+    ignora novela/ (e o lint antigo nem olharia), e a temporada não chegaria
+    a ninguém."""
+    try:
+        arquivos = json.loads((midia / 'manifesto.json').read_text(encoding='utf-8'))['arquivos']
+        if not isinstance(arquivos, dict):
+            raise TypeError
+    except (OSError, ValueError, KeyError, TypeError):
+        return ['manifesto.json (não deu para ler)']
+    esperados = ['novela/temporadas.json', f'novela/{entrega.id}.json']
+    for c in entrega.capitulos:
+        id_ = entrega.id_do_capitulo(c)
+        esperados.append(f'imagens/{id_}.webp')
+        if c.legenda is not None:
+            esperados.append(f'novela/{id_}.srt')
+    if com_voz:
+        esperados += sorted(_caminhos_da_voz([entrega.id_do_capitulo(c) for c in entrega.capitulos]))
+    return [chave for chave in esperados if chave not in arquivos]
+
+
 def gerar_voz(dart, midia, app, ids, motor):
     """texto_narrado -> narrar -> conferir_stt; None se tudo passou, senão a
     mensagem do que parou."""
@@ -1019,6 +1043,11 @@ def main(argv=None):
         (manifesto, cwd_manifesto), (lint, cwd_lint) = comandos_do_manifesto(dart, midia, app)
         if rodar(manifesto, cwd=cwd_manifesto) != 0:
             print('manifesto: o gerar_manifesto.dart falhou (a saída está acima)')
+            return 1
+        faltam = fora_do_manifesto(midia, entrega, com_voz=not args.sem_voz)
+        if faltam:
+            print(f'manifesto: não lista {", ".join(faltam)} — o gerar_manifesto.dart do app '
+                  'apontado conhece a pasta novela/ (Task 7)? Sem isso o app não baixa a temporada')
             return 1
         if rodar(lint, cwd=cwd_lint) != 0:
             print('lint: o lint_conteudo.dart achou erro (a saída está acima) — corrija e publique '
