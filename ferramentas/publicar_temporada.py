@@ -53,7 +53,14 @@ são ignorados.
      primeiros hex do sha256) e o objeto velho fica: o aparelho com o JSON
      velho baixa o velho, o com o novo baixa o novo, sem janela. O sha256
      vai nos metadados e o que sobe é conferido depois. Vem PRIMEIRO: se o
-     envio falhar, nenhum JSON local aponta para um vídeo que não está lá;
+     envio falhar, nenhum JSON local aponta para um vídeo que não está lá.
+     Uma publicação real por vez: a trava <midia>/.publicando.trava (criada
+     com O_EXCL, com a data/hora e o PID) vem antes de qualquer conferência,
+     HEAD ou envio e sai no fim, também na falha; presente, a publicação
+     recusa na hora — se nenhuma estiver rodando, apague o arquivo. O HEAD
+     de logo antes de cada envio só estreita a janela; quem impede a
+     corrida é a trava (que vale para a mesma --midia: duas raízes de mídia
+     diferentes publicando o mesmo prefixo ao mesmo tempo não se veem);
    - a URL pública: cada vídeo (o que subiu e o que já estava) por um HEAD
      em <base><chave>, a URL que o app vai pedir — o Content-Length tem de
      ser o tamanho do arquivo, senão para antes de escrever. Em produção
@@ -121,7 +128,7 @@ import sys
 import unicodedata
 import urllib.request
 from dataclasses import dataclass
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -782,6 +789,49 @@ def _dentro_de(pasta, raiz):
     return a == b or a.startswith(b.rstrip(os.sep) + os.sep)
 
 
+TRAVA = '.publicando.trava'
+
+
+def tomar_trava(midia):
+    """A trava da publicação REAL: <midia>/.publicando.trava, criada com
+    O_EXCL, com a data/hora e o PID dentro (R8-N). Uma publicação por vez
+    nesta raiz de mídia: o HEAD logo antes de cada envio só estreita a
+    janela (o objeto só aparece no R2 quando o PUT termina), não impede
+    duas publicações ao mesmo tempo — quem impede é a trava. Devolve (o
+    caminho, None) ou (None, por que recusou); recusar não toca em nada."""
+    caminho = Path(midia) / TRAVA
+    if not Path(midia).is_dir():
+        return None, f'a raiz de mídia {midia} não existe (--midia)'
+    try:
+        descritor = os.open(caminho, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+    except FileExistsError:
+        try:
+            de_quando = caminho.read_text(encoding='utf-8').strip()
+        except OSError:
+            de_quando = ''
+        if not de_quando:
+            try:
+                de_quando = f'{datetime.fromtimestamp(caminho.stat().st_mtime):%Y-%m-%d %H:%M:%S}'
+            except OSError:
+                de_quando = 'quando não se sabe'
+        return None, (f'outra publicação está rodando nesta raiz de mídia — a trava {caminho} é de '
+                      f'{de_quando}. Se nenhuma publicação estiver rodando (uma que caiu sem limpar), '
+                      'basta apagar esse arquivo e rodar de novo; nada foi tocado')
+    except OSError as e:
+        return None, f'não deu para criar a trava {caminho} ({type(e).__name__}: {e})'
+    with os.fdopen(descritor, 'w', encoding='utf-8', newline='') as f:
+        f.write(f'{datetime.now():%Y-%m-%d %H:%M:%S} PID {os.getpid()}' + chr(10))
+    return caminho, None
+
+
+def soltar_trava(caminho):
+    """Apaga a trava desta publicação (no finally: também na falha)."""
+    try:
+        caminho.unlink()
+    except FileNotFoundError:
+        pass
+
+
 def _repositorio_git_de(pasta):
     """A pasta que tem .git (o diretório, ou o arquivo de um worktree) e
     contém `pasta` — ela mesma ou uma acima dela —, ou None."""
@@ -1083,7 +1133,9 @@ def subir_videos(cliente, videos, prefixo='', balde=BALDE):
     """Sobe os vídeos que o plano manda subir (`sobe`), com o sha256 nos
     metadados, e confere cada um depois (HEAD: o mesmo tamanho e sha256).
     O plano só manda subir para chave ausente, e a ausência é conferida de
-    novo logo antes do envio: nada no balde é sobrescrito, e nada é apagado
+    novo logo antes do envio — isso ESTREITA a janela, não impede a
+    corrida: o objeto só aparece no R2 quando o PUT termina. Quem impede
+    duas publicações ao mesmo tempo é a trava (tomar_trava). Nada é apagado
     (esta ferramenta não apaga no R2)."""
     for v in videos:
         if not v.sobe:
@@ -1423,7 +1475,24 @@ def main(argv=None):
     midia = Path(args.midia).absolute() if args.midia else MIDIA_PADRAO
     app = Path(args.app).absolute() if args.app else APP_PADRAO
     prefixo = normalizar_prefixo(args.r2_prefixo)
+    if args.simular:
+        return _publicar(args, midia, app, prefixo)
+    # A rodada real: uma por vez nesta raiz de mídia (R8-N). A trava vem
+    # antes de qualquer conferência, HEAD ou envio, e sai no finally —
+    # também na falha e numa interrupção.
+    trava, recusa = tomar_trava(midia)
+    if trava is None:
+        print(f'trava: {recusa}')
+        return 1
+    try:
+        return _publicar(args, midia, app, prefixo)
+    finally:
+        soltar_trava(trava)
 
+
+def _publicar(args, midia, app, prefixo):
+    """A publicação, da conferência ao resumo (na rodada real, com a trava
+    já tomada)."""
     # 1. Conferência: tudo, antes de qualquer envio ou escrita.
     avisos_da_entrega = []
     entrega, problemas = conferir_entrega(Path(args.entrega), avisos=avisos_da_entrega)

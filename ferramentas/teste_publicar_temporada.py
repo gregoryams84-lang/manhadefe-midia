@@ -17,6 +17,7 @@ import contextlib
 import hashlib
 import io
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -837,9 +838,11 @@ class ClienteFalso:
         self.objetos = dict(existentes or {})  # chave -> (bytes, sha256)
         self.envios = []
         self.apagados = []
+        self.consultas = []                    # as chaves de cada HEAD
 
     def head_object(self, Bucket, Key):  # noqa: N803 (o nome é o do boto3)
         assert Bucket == 'manhadefe-video', Bucket
+        self.consultas.append(Key)
         if Key not in self.objetos:
             raise self.NaoExiste()
         tamanho, sha = self.objetos[Key]
@@ -1485,6 +1488,109 @@ def teste_erro_do_r2_nunca_vai_cru_a_tela_e_nada_e_escrito():
             nada_da_conta_em(saida)
             assert _arvore(midia) == antes, (metodo, 'escreveu na raiz de mídia')
             assert dubles.comandos == [], 'nem voz nem manifesto'
+
+
+TRAVA_DE_OUTRA = '2026-10-20 03:50:12 PID 4242' + chr(10)
+
+
+def teste_trava_exclusiva_uma_publicacao_real_por_vez():
+    """R8-N: a publicação real cria <midia>/.publicando.trava (O_EXCL, com
+    data/hora e PID) antes de qualquer HEAD ou envio, e a apaga no fim —
+    também na falha e numa interrupção. Com a trava presente, recusa na
+    hora, sem tocar em nada, dizendo de quando ela é e que, se nenhuma
+    publicação estiver rodando, basta apagar o arquivo."""
+    with tempfile.TemporaryDirectory() as tmp:
+        dubles = Dubles(tmp)
+        midia = dubles.midia()
+        pasta = entrega_valida(tmp)
+        trava = midia / '.publicando.trava'
+        # (1) A trava de outra publicação: recusa na hora, nem confere a entrega.
+        trava.write_text(TRAVA_DE_OUTRA, encoding='utf-8')
+        antes = _arvore(midia)
+        codigo, saida = dubles.publicar(pasta, midia, '--sem-voz')
+        assert codigo == 1, saida
+        assert '2026-10-20 03:50:12 PID 4242' in saida and str(trava) in saida, saida
+        assert 'basta apagar' in saida and 'conferência' not in saida, saida
+        assert dubles.cliente.consultas == [] and dubles.cliente.envios == []
+        assert dubles.comandos == [] and _arvore(midia) == antes
+        assert trava.read_text(encoding='utf-8') == TRAVA_DE_OUTRA, 'a trava da outra fica'
+        # (2) Sem trava: ela existe durante a rodada (data/hora e PID desta) e some no fim.
+        trava.unlink()
+        vistas = []
+        consultar = dubles.cliente.head_object
+
+        def head_object(Bucket, Key):  # noqa: N803
+            vistas.append(trava.read_text(encoding='utf-8') if trava.exists() else None)
+            return consultar(Bucket, Key)
+
+        dubles.cliente.head_object = head_object
+        codigo, saida = dubles.publicar(pasta, midia, '--sem-voz')
+        assert codigo == 0, saida
+        assert vistas and all(v is not None for v in vistas), vistas
+        assert re.fullmatch(rf'\d{{4}}-\d\d-\d\d \d\d:\d\d:\d\d PID {os.getpid()}' + chr(10),
+                            vistas[0]), vistas[0]
+        assert not trava.exists(), 'apagada no fim'
+        # (3) Na falha (o lint), também some.
+        dubles.lint = 1
+        assert dubles.publicar(pasta, midia, '--sem-voz')[0] == 1
+        assert not trava.exists()
+        # (4) Numa interrupção no meio (Ctrl+C no HEAD), também.
+        dubles.lint = 0
+        dubles.cliente = ClienteQueFalha('head_object', KeyboardInterrupt())
+        try:
+            dubles.publicar(pasta, midia, '--sem-voz')
+        except KeyboardInterrupt:
+            pass
+        else:
+            raise AssertionError('a interrupção deveria ter subido')
+        assert not trava.exists()
+        # (5) --midia que não existe: recusa, sem criar nada.
+        codigo, saida = dubles.publicar(pasta, Path(tmp) / 'nao-existe', '--sem-voz')
+        assert codigo == 1 and 'não existe' in saida, saida
+        assert not (Path(tmp) / 'nao-existe').exists()
+
+
+def teste_duas_publicacoes_ao_mesmo_tempo_a_segunda_recusa():
+    """R8-N (N1 da re-revisão): a segunda publicação, lançada enquanto a
+    primeira está no meio (aqui, de dentro do primeiro HEAD dela) e com um
+    vídeo DIFERENTE para a mesma chave, acha a trava e recusa sem tocar em
+    nada; a primeira termina, e o R2 tem só o conteúdo dela."""
+    with tempfile.TemporaryDirectory() as tmp:
+        dubles = Dubles(tmp)
+        midia = dubles.midia()
+        pasta = entrega_valida(tmp)
+        outra = Path(tmp) / 'outra-entrega'
+        shutil.copytree(pasta, outra)
+        shutil.copyfile(midia_sintetica()['outro'], outra / '01-catolico.mp4')
+        segunda = []
+        consultar = dubles.cliente.head_object
+
+        def head_object(Bucket, Key):  # noqa: N803
+            if not segunda:
+                segunda.append(dubles.publicar(outra, midia, '--sem-voz'))
+            return consultar(Bucket, Key)
+
+        dubles.cliente.head_object = head_object
+        codigo, saida = dubles.publicar(pasta, midia, '--sem-voz')
+        assert codigo == 0, saida
+        codigo2, saida2 = segunda[0]
+        assert codigo2 == 1 and '.publicando.trava' in saida2, saida2
+        assert len(dubles.cliente.envios) == 4
+        assert dubles.cliente.objetos['video/t1/01-catolico.mp4'] == \
+            ((pasta / '01-catolico.mp4').stat().st_size, sha256_de(pasta / '01-catolico.mp4'))
+        assert not (midia / '.publicando.trava').exists()
+
+
+def teste_simular_nao_cria_nem_olha_a_trava():
+    """A trava é da rodada REAL: a simulação (numa pasta temporária) nem a
+    cria nem a olha."""
+    with tempfile.TemporaryDirectory() as tmp:
+        midia = Path(tmp) / 'midia'
+        midia.mkdir()
+        (midia / '.publicando.trava').write_text(TRAVA_DE_OUTRA, encoding='utf-8')
+        codigo, saida = publicar(entrega_valida(tmp), midia)
+        assert codigo == 0, saida
+        assert (midia / '.publicando.trava').read_text(encoding='utf-8') == TRAVA_DE_OUTRA
 
 
 def teste_envio_negado_com_caminho_longo_mantem_o_codigo_do_erro():
