@@ -1,6 +1,6 @@
 {
   "versao": 1,
-  "geradoEm": "2026-10-15T10:52:03.000Z",
+  "geradoEm": "2026-10-20T04:44:29.000Z",
   "arquivos": {
     "hinos/a-linda-historia.m4a": {
       "bytes": 399269,
@@ -6734,6 +6734,10 @@
       "bytes": 181361,
       "sha256": "d2ca9317d3d57e193140497be8dd27fa17a7823f2f377d869bd94c0aff2ed9d0"
     },
+    "oracoes/marcas.json": {
+      "bytes": 494,
+      "sha256": "0359c270604f33f07a82f7d5ab80d3bfe2e4b2bbf081d747b1eca5e9b2a5b293"
+    },
     "oracoes/oracao-da-manha.m4a": {
       "bytes": 60266,
       "sha256": "f8243e8ff97eacec6eecdec85e7eb309dc3c39856747683ee18ddda183aa9ccb"
@@ -9801,6 +9805,10 @@
     "terco/luminosos-fecho.m4a": {
       "bytes": 296766,
       "sha256": "0979b2edff219b5d7289c731014929578ea13227bbd052b5d09d7da74b198710"
+    },
+    "terco/marcas.json": {
+      "bytes": 2777,
+      "sha256": "e98fc7e19b3b71769f06461a669d3be2ed8f38d7fa85d8acafe87a4a4b879b52"
     }
   }
 }
