@@ -82,8 +82,13 @@ def midia_sintetica():
             cinco=video(pasta / 'cinco.mp4', 720, 1280, 5, 660),
             # Outro vídeo válido de 4 s (outro conteúdo, outro sha256).
             outro=video(pasta / 'outro.mp4', 720, 1280, 4, 550),
-            # h264 High 4:4:4: o ffprobe diz h264, mas muito Android não toca.
+            # h264 High 4:4:4, High 10 e High 4:2:2: o ffprobe diz h264, mas
+            # muito Android não toca.
             yuv444=video(pasta / 'yuv444.mp4', 720, 1280, 4, 440, pix_fmt='yuv444p'),
+            yuv420p10=video(pasta / 'yuv420p10.mp4', 720, 1280, 4, 440, pix_fmt='yuv420p10le'),
+            yuv422=video(pasta / 'yuv422.mp4', 720, 1280, 4, 440, pix_fmt='yuv422p'),
+            # O mesmo 4:2:0 de 8 bits, com a faixa cheia de cor (R8-M): passa.
+            yuvj420p=video(pasta / 'yuvj420p.mp4', 720, 1280, 4, 440, pix_fmt='yuvj420p'),
             capa=capa(pasta / 'capa.webp', 1080, 1350),
             capa_errada=capa(pasta / 'capa-errada.webp', 1000, 1350))
     return _MIDIA
@@ -426,6 +431,40 @@ def teste_recusa_pix_fmt_diferente_de_yuv420p_e_versoes_identicas():
         saida = deve_recusar(pasta, Path(tmp) / 'midia', '01-catolico.mp4', 'yuv444p', 'yuv420p',
                              'cap. 2', '02-catolico.mp4 e 02-evangelico.mp4', 'mesmo sha256')
         assert '2 problema(s)' in saida, saida
+
+
+def teste_yuvj420p_passa_com_aviso_e_10_bits_4_2_2_e_4_4_4_continuam_recusados():
+    """R8-M: yuvj420p é o mesmo h264 de 8 bits 4:2:0, só com a faixa cheia de
+    cor (comum em exportação de imagem/IA): passa, com um AVISO — na
+    conferência e no resumo — que sugere exportar em yuv420p. Nunca recusa.
+    Qualquer outro pix_fmt (10 bits, 4:2:2, 4:4:4) continua erro."""
+    sugestao = 'exporte em yuv420p: -vf scale=out_range=tv -pix_fmt yuv420p'
+    m = midia_sintetica()
+    with tempfile.TemporaryDirectory() as tmp:
+        pasta = entrega_valida(tmp)
+        shutil.copyfile(m['yuvj420p'], pasta / '01-catolico.mp4')
+        avisos = []
+        entrega, problemas = pt.conferir_entrega(pasta, avisos=avisos)
+        assert entrega is not None and problemas == [], problemas
+        assert len(avisos) == 1, avisos
+        assert '01-catolico.mp4' in avisos[0] and 'yuvj420p' in avisos[0], avisos
+        assert sugestao in avisos[0], avisos
+        codigo, saida = publicar(pasta, Path(tmp) / 'midia')
+        assert codigo == 0, saida
+        assert sugestao in saida.split('== resumo')[1], 'o aviso vai ao resumo'
+        # Com outro problema na entrega, o aviso sai junto — e não conta.
+        editar_temporada(pasta, lambda t: t['capitulos'][1].update(oracao='Senhor, cuida de nós.'))
+        saida = deve_recusar(pasta, Path(tmp) / 'midia-com-problema', 'Amém.', sugestao)
+        assert '1 problema(s)' in saida, saida
+        editar_temporada(pasta, lambda t: t['capitulos'][1].update(
+            oracao='Senhor, cuida da minha família e ensina-nos a amar. Amém.'))
+        # 10 bits, 4:2:2 e 4:4:4: erro, como antes.
+        for nome, pix_fmt in (('yuv420p10', 'yuv420p10le'), ('yuv422', 'yuv422p'),
+                              ('yuv444', 'yuv444p')):
+            shutil.copyfile(m[nome], pasta / '01-catolico.mp4')
+            saida = deve_recusar(pasta, Path(tmp) / f'midia-{nome}', '01-catolico.mp4',
+                                 f'pix_fmt {pix_fmt}', 'tem de ser yuv420p')
+            assert '1 problema(s)' in saida, saida
 
 
 def teste_recusa_duracao_fora_de_2_segundos():

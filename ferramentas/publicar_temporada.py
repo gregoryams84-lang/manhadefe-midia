@@ -16,7 +16,9 @@ são ignorados.
    - id `t<número>`; capítulos numerados de 1 a N em ordem; datas que
      existem e consecutivas a partir de `inicio`; duracaoS inteiro;
    - vídeos: os dois de cada capítulo, h264 yuv420p (o 4:2:0 de 8 bits que
-     todo Android toca), 720x1280, até 25 MB (D4), a duração a 2 s de
+     todo Android toca; o yuvj420p, o mesmo com a faixa cheia de cor, passa
+     com um AVISO que sugere exportar em yuv420p; 10 bits, 4:2:2 e 4:4:4
+     são erro), 720x1280, até 25 MB (D4), a duração a 2 s de
      duracaoS e as duas versões a 0,5 s uma da outra (no limite passa); e
      as duas diferentes — o mesmo sha256 nas duas é entrega trocada (o
      bispo na católica, o pastor na evangélica);
@@ -147,6 +149,10 @@ TRADICOES = ('catolico', 'evangelico')
 LIMITE_DE_BYTES = 25 * 1024 * 1024          # D4: vídeo até 25 MB
 TAMANHO_DO_VIDEO = (720, 1280)
 PIX_FMT_DO_VIDEO = 'yuv420p'
+# R8-M: o mesmo 4:2:0 de 8 bits, só com a faixa cheia de cor (comum em
+# exportação de imagem/IA) — toca nos Android: passa, com um AVISO.
+PIX_FMT_FAIXA_CHEIA = 'yuvj420p'
+EXPORTAR_EM_YUV420P = 'exporte em yuv420p: -vf scale=out_range=tv -pix_fmt yuv420p'
 TAMANHO_DA_CAPA = (1080, 1350)
 FOLGA_DA_DURACAO = 2.0                       # vídeo x duracaoS
 FOLGA_ENTRE_VERSOES = 0.5                    # católico x evangélico
@@ -404,11 +410,13 @@ def _conferir_textos(rotulo, cap):
     return problemas
 
 
-def conferir_entrega(pasta, limite_de_bytes=LIMITE_DE_BYTES):
+def conferir_entrega(pasta, limite_de_bytes=LIMITE_DE_BYTES, avisos=None):
     """(Entrega ou None, [problemas]). A Entrega vem sempre que o id, o
     início e os capítulos dão para ler — mesmo com problemas, para as outras
     conferências (o índice) também listarem os delas. `limite_de_bytes` é
-    parâmetro para o teste não precisar de um vídeo de 25 MB."""
+    parâmetro para o teste não precisar de um vídeo de 25 MB. O que passa
+    mas merece aviso (o yuvj420p, R8-M) vai para a lista `avisos`, se vier
+    uma — nunca para os problemas."""
     pasta = Path(pasta)
     arquivo = pasta / 'temporada.json'
     if not pasta.is_dir():
@@ -481,10 +489,15 @@ def conferir_entrega(pasta, limite_de_bytes=LIMITE_DE_BYTES):
             if medida['codec'] != 'h264':
                 problemas.append(f'{rotulo} ({video.name}): vídeo '
                                  f'{medida["codec"] or "(sem fluxo de vídeo)"} — tem de ser h264')
-            if medida['pix_fmt'] != PIX_FMT_DO_VIDEO:
+            if medida['pix_fmt'] == PIX_FMT_FAIXA_CHEIA:
+                if avisos is not None:
+                    avisos.append(f'{rotulo} ({video.name}): pix_fmt {PIX_FMT_FAIXA_CHEIA} — o 4:2:0 '
+                                  'de 8 bits com a faixa cheia de cor: passa (a cor pode variar um '
+                                  f'pouco num aparelho que ignore a faixa); {EXPORTAR_EM_YUV420P}')
+            elif medida['pix_fmt'] != PIX_FMT_DO_VIDEO:
                 problemas.append(f'{rotulo} ({video.name}): pix_fmt {medida["pix_fmt"] or "(nenhum)"}'
-                                 f' — tem de ser {PIX_FMT_DO_VIDEO} (o h264 de 8 bits 4:2:0 que todo '
-                                 'Android toca; High 10 e 4:4:4 não)')
+                                 f' — tem de ser {PIX_FMT_DO_VIDEO} (ou {PIX_FMT_FAIXA_CHEIA}): o h264 '
+                                 'de 8 bits 4:2:0 que todo Android toca; 10 bits, 4:2:2 e 4:4:4 não')
             if (medida['largura'], medida['altura']) != TAMANHO_DO_VIDEO:
                 problemas.append(f'{rotulo} ({video.name}): {medida["largura"]}x{medida["altura"]}'
                                  f' — tem de ser {TAMANHO_DO_VIDEO[0]}x{TAMANHO_DO_VIDEO[1]}')
@@ -1394,7 +1407,8 @@ def main(argv=None):
     prefixo = normalizar_prefixo(args.r2_prefixo)
 
     # 1. Conferência: tudo, antes de qualquer envio ou escrita.
-    entrega, problemas = conferir_entrega(Path(args.entrega))
+    avisos_da_entrega = []
+    entrega, problemas = conferir_entrega(Path(args.entrega), avisos=avisos_da_entrega)
     indice, problemas_do_indice = ler_indice(midia)
     problemas += problemas_do_indice
     chaves = dart = None
@@ -1413,11 +1427,14 @@ def main(argv=None):
         print(f'conferência: {len(problemas)} problema(s) — nada foi enviado nem escrito:')
         for problema in problemas:
             print(f'  - {problema}')
+        # O aviso não recusa, mas a entrega volta para ser refeita: vai junto.
+        for aviso in avisos_da_entrega:
+            print(f'aviso (não recusa): {aviso}')
         return 1
     ids = [entrega.id_do_capitulo(c) for c in entrega.capitulos]
     print(f'conferência ok: {entrega.id}, {len(ids)} capítulo(s), de {entrega.inicio} a {entrega.fim}')
     avisos = avisos_da_base(base, prefixo)
-    for aviso in avisos:
+    for aviso in avisos_da_entrega + avisos:
         print(f'aviso: {aviso}')
 
     # 2. O R2, antes de qualquer escrita local (nenhum JSON aponta para um
@@ -1534,6 +1551,8 @@ def main(argv=None):
                              for t in TRADICOES)
         print(f'  {entrega.id_do_capitulo(c)}  {c.dados["data"]}  {tamanhos}  '
               f'legenda: {"sim" if c.legenda else "não"}')
+    for aviso in avisos_da_entrega:
+        print(f'  aviso: {aviso}')
     contagem = ', '.join(f'{estado}: {sum(1 for v in videos if v.estado == estado)}'
                          for estado in (NOVO, JA_ESTAVA, TROCADO))
     nota = ('; simulado: o R2 não foi consultado — o estado vem do novela/<t>.json publicado'
