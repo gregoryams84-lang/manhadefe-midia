@@ -731,6 +731,49 @@ def teste_publicacao_real_confere_as_ferramentas_antes_de_escrever():
 
 
 # ---------------------------------------------------------------------------
+# A temporada de teste t0 (o passeio no emulador da Task 9)
+# ---------------------------------------------------------------------------
+
+def teste_temporada_de_teste_t0_passa_na_conferencia_do_publicar():
+    import temporada_de_teste as tt
+    with tempfile.TemporaryDirectory() as tmp:
+        saida = Path(tmp) / 't0'
+        assert tt.main([str(saida), '--inicio', '2026-10-21']) == 0
+        assert sorted(p.name for p in saida.iterdir()) == [
+            '01-catolico.mp4', '01-evangelico.mp4', '01.srt', '01.webp',
+            '02-catolico.mp4', '02-evangelico.mp4', '02.srt', '02.webp', 'temporada.json']
+        temporada = json.loads((saida / 'temporada.json').read_text(encoding='utf-8'))
+        assert temporada['id'] == 't0'
+        assert [c['data'] for c in temporada['capitulos']] == ['2026-10-21', '2026-10-22']
+        # Os textos são os de dois cartões reais do app.
+        for c, cartao in zip(temporada['capitulos'], ('comum-001', 'comum-002')):
+            real = json.loads((pt.APP_PADRAO / 'assets' / 'content' / 'cartoes' / f'{cartao}.json')
+                              .read_text(encoding='utf-8'))
+            for campo in ('referenciaBiblica', 'versiculo', 'reflexao', 'oracao'):
+                assert c[campo] == real[campo], (cartao, campo)
+            assert c['duracaoS'] == 10
+        # As duas versões de cada capítulo são vídeos diferentes (o passeio
+        # vê qual tocou).
+        assert sha256_de(saida / '01-catolico.mp4') != sha256_de(saida / '01-evangelico.mp4')
+        # Passa na conferência e na publicação simulada.
+        entrega, problemas = pt.conferir_entrega(saida)
+        assert entrega is not None and problemas == [], problemas
+        codigo, texto = publicar(saida, Path(tmp) / 'midia')
+        assert codigo == 0, texto
+        indice = json.loads((Path(tmp) / 'midia' / 'novela' / 'temporadas.json')
+                            .read_text(encoding='utf-8'))
+        assert [(t['id'], t['inicio'], t['fim']) for t in indice['temporadas']] == \
+               [('t0', '2026-10-21', '2026-10-22')]
+        # Pasta de saída com arquivos: recusa, sem misturar entregas.
+        try:
+            tt.main([str(saida), '--inicio', '2026-10-21'])
+        except SystemExit as e:
+            assert e.code != 0 and 'vazia' in str(e.code), e.code
+        else:
+            raise AssertionError('deveria ter recusado a pasta com arquivos')
+
+
+# ---------------------------------------------------------------------------
 
 def main():
     """Roda tudo sem pytest."""
