@@ -78,6 +78,11 @@ são ignorados.
      arquivos da temporada (um app anterior à Task 7 não conhece novela/ e
      a temporada não chegaria a ninguém); e o lint (lint_conteudo.dart, 0
      erros, senão sai com 1).
+   Parar DEPOIS de escrever (a voz reprovada, o manifesto, o lint) lista o
+   que esta rodada escreveu e removeu, diz em destaque "NÃO rode o
+   gerar_manifesto nem faça commit" e dá os comandos exatos para desfazer:
+   git checkout -- <os versionados> e git clean -f -- <os novos>. Nada vai
+   para quarentena.
    No fim, o resumo. NUNCA faz commit nem push: commit por caminho, e o
    push só com o OK do Gregory.
 
@@ -1244,13 +1249,14 @@ def fora_do_manifesto(midia, entrega, com_voz):
 
 
 def gerar_voz(dart, midia, app, ids, motor):
-    """texto_narrado -> narrar -> conferir_stt; None se tudo passou, senão a
-    mensagem do que parou."""
+    """texto_narrado -> narrar -> conferir_stt. Devolve (None se tudo passou,
+    senão a mensagem do que parou; se o narrar.py chegou a rodar — e a voz
+    a gravar no disco)."""
     (texto, cwd_texto), (narrar, cwd_narrar), (stt, cwd_stt) = comandos_da_voz(
         dart, midia, app, ids, motor)
     if rodar(texto, cwd=cwd_texto) != 0:
         return ('o texto_narrado.dart falhou (a opção --temporadas é da Task 7 do app: o app '
-                'apontado já a tem?)')
+                'apontado já a tem?)'), False
     jsonl = midia / 'ferramentas' / 'narracao' / 'narracoes.jsonl'
     emitidos = set()
     for linha in jsonl.read_text(encoding='utf-8').splitlines():
@@ -1261,19 +1267,62 @@ def gerar_voz(dart, midia, app, ids, motor):
     faltam = sorted(_caminhos_da_voz(ids) - emitidos)
     if faltam:
         return (f'o texto_narrado.dart não emitiu a voz dos capítulos ({", ".join(faltam)}): a '
-                'opção --temporadas é da Task 7 do app — o app apontado já a tem?')
+                'opção --temporadas é da Task 7 do app — o app apontado já a tem?'), False
     if rodar(narrar, cwd=cwd_narrar) != 0:
-        return 'o narrar.py falhou (a saída está acima); nada do manifesto foi refeito'
+        return 'o narrar.py falhou (a saída está acima); nada do manifesto foi refeito', True
     faltam = sorted(c for c in _caminhos_da_voz(ids)
                     if not (midia / c).exists() or (midia / c).stat().st_size == 0)
     if faltam:
-        return f'o narrar.py não gravou {", ".join(faltam)}; nada do manifesto foi refeito'
+        return f'o narrar.py não gravou {", ".join(faltam)}; nada do manifesto foi refeito', True
     if rodar(stt, cwd=cwd_stt) != 0:
         reprovados = _reprovados_no_log(midia, ids)
         lista = f': {", ".join(reprovados)}' if reprovados else ' (a lista está acima)'
         return (f'a conferência por STT reprovou a voz{lista} — refaça com narrar.py --ids '
-                f'{",".join(ids)} --refazer e publique de novo; nada do manifesto foi refeito')
-    return None
+                f'{",".join(ids)} --refazer e publique de novo; nada do manifesto foi '
+                'refeito'), True
+    return None, True
+
+
+def _versionados_no_git(midia, caminhos):
+    """Os caminhos (relativos a `midia`, com /) que o git dela versiona —
+    também os apagados do disco; None se ela não é um repositório git (ou o
+    git não roda)."""
+    try:
+        r = subprocess.run(['git', '-C', str(midia), 'ls-files', '-z', '--', *caminhos],
+                           capture_output=True)
+    except OSError:
+        return None
+    if r.returncode != 0:
+        return None
+    return set(r.stdout.decode('utf-8', errors='replace').split('\0')) - {''}
+
+
+def como_desfazer(midia, escritos, removidos):
+    """O que vai à tela quando a publicação para DEPOIS de escrever na raiz
+    de mídia (a voz reprovada, o manifesto, o lint): em destaque, que NÃO se
+    roda o gerar_manifesto nem se faz commit; cada caminho escrito e
+    removido nesta rodada; e os comandos exatos para desfazer — git
+    checkout -- <os versionados> (voltam como estão no commit) e git clean
+    -f -- <os novos> (saem). Nada é movido para quarentena."""
+    faixa = '=' * 76
+    linhas = ['', faixa,
+              'NÃO rode o gerar_manifesto nem faça commit: a publicação parou no meio, e a raiz',
+              f'de mídia ({midia}) ficou com o que esta rodada escreveu:', faixa]
+    linhas += [f'  escrito:  {caminho}' for caminho in escritos]
+    linhas += [f'  removido: {caminho}' for caminho in removidos]
+    versionados = _versionados_no_git(midia, escritos + removidos)
+    if versionados is None:
+        linhas.append('a raiz de mídia não é um repositório git: restaure ou apague à mão os '
+                      'caminhos acima')
+        return linhas
+    a_restaurar = [c for c in escritos + removidos if c in versionados]
+    a_apagar = [c for c in escritos if c not in versionados and (midia / c).exists()]
+    linhas.append(f'para desfazer (na pasta {midia}):')
+    if a_restaurar:
+        linhas.append('  git checkout -- ' + ' '.join(a_restaurar))
+    if a_apagar:
+        linhas.append('  git clean -f -- ' + ' '.join(a_apagar))
+    return linhas
 
 
 def _reprovados_no_log(midia, ids):
@@ -1443,24 +1492,33 @@ def main(argv=None):
         for cmd, cwd in comandos_do_manifesto('dart', midia, app):
             print(_mostrar(cmd, cwd))
     else:
+        # Daqui em diante a raiz de mídia já tem o que esta rodada escreveu:
+        # parar é dizer o quê e como desfazer (R8-H).
+        def parar(mensagem, *mais):
+            print(mensagem)
+            for linha in como_desfazer(midia, escritos + list(mais), removidos):
+                print(linha)
+            return 1
+
+        voz = []
         if not args.sem_voz:
-            falha = gerar_voz(dart, midia, app, ids, args.motor)
+            falha, narrou = gerar_voz(dart, midia, app, ids, args.motor)
+            if narrou:
+                voz = [c for c in sorted(_caminhos_da_voz(ids)) if (midia / c).exists()]
             if falha:
-                print(f'voz: {falha}')
-                return 1
+                return parar(f'voz: {falha}', *voz)
         (manifesto, cwd_manifesto), (lint, cwd_lint) = comandos_do_manifesto(dart, midia, app)
         if rodar(manifesto, cwd=cwd_manifesto) != 0:
-            print('manifesto: o gerar_manifesto.dart falhou (a saída está acima)')
-            return 1
+            return parar('manifesto: o gerar_manifesto.dart falhou (a saída está acima)', *voz,
+                         'manifesto.json')
         faltam = fora_do_manifesto(midia, entrega, com_voz=not args.sem_voz)
         if faltam:
-            print(f'manifesto: não lista {", ".join(faltam)} — o gerar_manifesto.dart do app '
-                  'apontado conhece a pasta novela/ (Task 7)? Sem isso o app não baixa a temporada')
-            return 1
+            return parar(f'manifesto: não lista {", ".join(faltam)} — o gerar_manifesto.dart do app '
+                         'apontado conhece a pasta novela/ (Task 7)? Sem isso o app não baixa a '
+                         'temporada', *voz, 'manifesto.json')
         if rodar(lint, cwd=cwd_lint) != 0:
-            print('lint: o lint_conteudo.dart achou erro (a saída está acima) — corrija e publique '
-                  'de novo; nada foi commitado')
-            return 1
+            return parar('lint: o lint_conteudo.dart achou erro (a saída está acima) — corrija e '
+                         'publique de novo', *voz, 'manifesto.json')
 
     # 5. O resumo.
     print()

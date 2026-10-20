@@ -1265,6 +1265,67 @@ def teste_voz_reprovada_para_antes_do_manifesto():
         assert dubles.ferramentas() == ['texto_narrado.dart', 'narrar.py', 'conferir_stt.py']
         assert not (midia / 'manifesto.json').exists()
         assert 'reprov' in saida
+        # Fora de um repositório git, não há comando a dar: a lista, e à mão.
+        assert 'NÃO rode o gerar_manifesto nem faça commit' in saida
+        assert 'não é um repositório git' in saida and 'novela/t1.json' in saida
+
+
+def _git(pasta, *args):
+    r = subprocess.run(['git', '-c', 'user.name=teste', '-c', 'user.email=teste@exemplo.invalid',
+                        '-c', 'core.autocrlf=false', *args],
+                       cwd=str(pasta), capture_output=True, text=True, encoding='utf-8')
+    assert r.returncode == 0, (args, r.stderr)
+    return r.stdout
+
+
+def teste_stt_reprovado_lista_o_que_foi_escrito_e_os_comandos_exatos_para_desfazer():
+    """R8-H: a voz reprovada para antes do manifesto, mas os JSONs, as capas,
+    as legendas e a voz já estão no disco. A mensagem lista cada caminho,
+    diz em destaque "NÃO rode o gerar_manifesto nem faça commit" e dá os
+    comandos exatos — git checkout -- <versionados> e git clean -f --
+    <novos> —, que, rodados como impressos, devolvem a raiz de mídia ao
+    commit. Sem quarentena: nada é movido."""
+    with tempfile.TemporaryDirectory() as tmp:
+        dubles = Dubles(tmp, stt=1)
+        midia = dubles.midia()
+        # A raiz de mídia é um repositório com uma versão anterior publicada:
+        # o índice (com outra temporada) e a capa do capítulo 1.
+        (midia / 'novela').mkdir()
+        (midia / 'novela' / 'temporadas.json').write_text(json.dumps({
+            'versao': 1, 'videos': 'https://pub-exemplo123.r2.dev/',
+            'temporadas': [_resumo('t2', '2026-12-01', '2026-12-07', 7)]}), encoding='utf-8')
+        (midia / 'imagens').mkdir()
+        (midia / 'imagens' / 't1c1.webp').write_bytes(b'capa velha')
+        # Como o .gitignore do repositório de mídia: o jsonl e os logs da voz.
+        (midia / '.gitignore').write_text('ferramentas/narracao/narracoes.jsonl' + chr(10)
+                                          + 'ferramentas/narracao/*.log.jsonl' + chr(10),
+                                          encoding='utf-8')
+        _git(midia, 'init', '-q')
+        _git(midia, 'add', '--', '.gitignore', 'ferramentas/narrar.py', 'ferramentas/conferir_stt.py',
+             'novela/temporadas.json', 'imagens/t1c1.webp')
+        _git(midia, 'commit', '-q', '-m', 'a versão anterior')
+        codigo, saida = dubles.publicar(entrega_valida(tmp), midia)
+        assert codigo == 1, saida
+        assert 'reprov' in saida and 'NÃO rode o gerar_manifesto nem faça commit' in saida, saida
+        versionados = {'imagens/t1c1.webp', 'novela/temporadas.json'}
+        novos = {'novela/t1.json', 'novela/t1c1.srt', 'imagens/t1c2.webp',
+                 'narracao/catolico/t1c1.m4a', 'narracao/evangelico/t1c1.m4a',
+                 'narracao/catolico/t1c2.m4a', 'narracao/evangelico/t1c2.m4a'}
+        for caminho in versionados | novos:
+            assert caminho in saida, caminho
+        linhas = [linha.strip() for linha in saida.splitlines()]
+        checkout = next(linha for linha in linhas if linha.startswith('git checkout -- '))
+        clean = next(linha for linha in linhas if linha.startswith('git clean -f -- '))
+        assert set(checkout.split()[3:]) == versionados, checkout
+        assert set(clean.split()[4:]) == novos, clean
+        assert not (midia / 'manifesto.json').exists()
+        assert _git(midia, 'status', '--porcelain') != ''
+        # Os comandos, rodados como impressos, devolvem a raiz de mídia ao commit.
+        for comando in (checkout, clean):
+            r = subprocess.run(comando.split(), cwd=str(midia), capture_output=True, text=True)
+            assert r.returncode == 0, (comando, r.stderr)
+        assert _git(midia, 'status', '--porcelain') == ''
+        assert (midia / 'imagens' / 't1c1.webp').read_bytes() == b'capa velha'
 
 
 def teste_sem_voz_pula_a_voz_e_lint_com_erro_sai_com_1():
@@ -1275,6 +1336,9 @@ def teste_sem_voz_pula_a_voz_e_lint_com_erro_sai_com_1():
         assert codigo == 1, saida
         assert dubles.ferramentas() == ['gerar_manifesto.dart', 'lint_conteudo.dart']
         assert 'lint' in saida
+        # Parou depois de escrever: o mesmo aviso, com o manifesto refeito na lista.
+        assert 'NÃO rode o gerar_manifesto nem faça commit' in saida
+        assert 'manifesto.json' in saida and 'novela/t1.json' in saida
 
 
 def teste_manifesto_que_nao_lista_a_temporada_para_antes_do_lint():
