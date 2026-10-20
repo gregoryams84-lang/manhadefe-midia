@@ -77,7 +77,10 @@ imprime o que faria.
 As chaves do R2 são lidas do arquivo (--r2) pelos rótulos ("Access Key ID",
 "Secret Access Key", a URL https://<conta>.r2.cloudflarestorage.com e a
 "Public Development URL") e só usadas dentro do processo: nunca impressas
-nem gravadas.
+nem gravadas. Erro do R2, do botocore ou da rede nunca vai cru à tela:
+passa por descrever_erro — o tipo (o Error.Code, num ClientError) e a
+mensagem limpa por limpar_mensagem (o endpoint, o host dele, o id da conta
+e as chaves viram "<endpoint do R2>", "<conta>" e "<chave>").
 
 Uso:
   python ferramentas/publicar_temporada.py "<entrega>" --simular --midia <pasta temporária>
@@ -771,9 +774,54 @@ def localizar_dart():
     return None
 
 
+MARCA_DO_ENDPOINT = '<endpoint do R2>'
+# Qualquer host da API S3 do R2 (o id da conta é o subdomínio), mesmo de
+# outra conta ou com o balde na frente.
+_HOST_DO_R2 = re.compile(r'[A-Za-z0-9.-]*\.r2\.cloudflarestorage\.com', re.IGNORECASE)
+LIMITE_DA_MENSAGEM = 300
+
+
+def limpar_mensagem(texto, chaves):
+    """O texto sem nada que identifique a conta do R2: o endpoint inteiro, o
+    host dele, o id da conta e as chaves de acesso viram marcadores
+    ("<endpoint do R2>", "<conta>", "<chave>"), em qualquer caixa; e
+    qualquer outro host *.r2.cloudflarestorage.com que sobrar também. Toda
+    mensagem que vem do R2, do botocore ou da rede passa por aqui antes de
+    ir à tela (R8-A) — `chaves` None: só a troca genérica."""
+    trocas = []
+    if chaves is not None:
+        endpoint = (chaves.endpoint or '').rstrip('/')
+        host = urlparse(endpoint).hostname or ''
+        trocas = [(endpoint, MARCA_DO_ENDPOINT), (host, MARCA_DO_ENDPOINT),
+                  (host.split('.')[0], '<conta>'),
+                  (chaves.access_key_id, '<chave>'), (chaves.secret_access_key, '<chave>')]
+    for valor, marcador in trocas:
+        if valor:
+            texto = re.sub(re.escape(valor), marcador, texto, flags=re.IGNORECASE)
+    return _HOST_DO_R2.sub(MARCA_DO_ENDPOINT, texto)
+
+
+def _codigo_do_erro(erro):
+    """O Error.Code de um ClientError do botocore ('404', 'AccessDenied'),
+    ou None."""
+    resposta = getattr(erro, 'response', None)
+    if not isinstance(resposta, dict) or not isinstance(resposta.get('Error'), dict):
+        return None
+    codigo = resposta['Error'].get('Code')
+    return str(codigo) if codigo else None
+
+
+def descrever_erro(erro, chaves):
+    """O que vai à tela de um erro do R2, do botocore ou da rede: o tipo (e,
+    num ClientError, o Error.Code) e a mensagem LIMPA — limpa antes de
+    cortada, para nenhum pedaço do endpoint escapar do corte."""
+    codigo = _codigo_do_erro(erro)
+    nome = type(erro).__name__ + (f' ({codigo})' if codigo else '')
+    return limpar_mensagem(f'{nome}: {erro}', chaves)[:LIMITE_DA_MENSAGEM]
+
+
 def _nao_existe(erro):
-    resposta = getattr(erro, 'response', None) or {}
-    return str((resposta.get('Error') or {}).get('Code', '')) in ('404', 'NoSuchKey', 'NotFound')
+    return _codigo_do_erro(erro) in ('404', 'NoSuchKey', 'NotFound')
 
 
 def _cabeca(cliente, balde, chave):
@@ -1128,8 +1176,8 @@ def main(argv=None):
     else:
         try:
             enviados = subir_videos(criar_cliente_r2(chaves), envios)
-        except Exception as e:  # noqa: BLE001
-            print(f'R2: o envio falhou ({type(e).__name__}: {str(e)[:300]}); nada foi escrito — '
+        except Exception as e:  # noqa: BLE001 — qualquer erro do R2: limpo, nunca cru
+            print(f'R2: o envio falhou ({descrever_erro(e, chaves)}); nada foi escrito — '
                   'rode de novo (o que já subiu com o mesmo sha256 não sobe outra vez)')
             return 1
 

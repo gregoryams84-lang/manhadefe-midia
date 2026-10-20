@@ -328,6 +328,51 @@ def teste_simular_nunca_le_o_arquivo_de_chaves_e_usa_o_marcador_da_url_publica()
             assert segredo not in saida
 
 
+# Os valores de R2_FALSO, para conferir que nenhum chega à tela.
+CONTA = '00112233445566778899aabbccddeeff'
+ENDPOINT = f'https://{CONTA}.r2.cloudflarestorage.com'
+CHAVE_DE_ACESSO = '0123456789abcdef0123456789abcdef'
+SEGREDO = 'fedcba9876543210' * 4
+O_QUE_IDENTIFICA_A_CONTA = (ENDPOINT, f'{CONTA}.r2.cloudflarestorage.com', CONTA, CHAVE_DE_ACESSO,
+                            SEGREDO, 'r2.cloudflarestorage.com')
+
+
+def chaves_falsas():
+    return pt.ChavesR2(endpoint=ENDPOINT, access_key_id=CHAVE_DE_ACESSO, secret_access_key=SEGREDO,
+                       url_publica='https://pub-exemplo123.r2.dev')
+
+
+def nada_da_conta_em(texto):
+    for valor in O_QUE_IDENTIFICA_A_CONTA:
+        assert valor.lower() not in texto.lower(), (valor, texto)
+
+
+def teste_limpar_mensagem_tira_endpoint_host_conta_e_chaves():
+    """R8-A: a função única que limpa toda mensagem do R2, do botocore ou da
+    rede — o endpoint inteiro, o host dele (em qualquer caixa, com o balde
+    na frente), o id da conta e as chaves viram marcadores."""
+    texto = (f'Could not connect to the endpoint URL: "{ENDPOINT}/manhadefe-video/x.mp4"; '
+             f'host {CONTA.upper()}.R2.CloudflareStorage.com; '
+             f'virtual manhadefe-video.{CONTA}.r2.cloudflarestorage.com:443; conta {CONTA}; '
+             f'Credential={CHAVE_DE_ACESSO}/20261020/auto/s3/aws4_request; segredo {SEGREDO}; '
+             'outra conta https://ffff0000ffff0000ffff0000ffff0000.r2.cloudflarestorage.com/y')
+    limpo = pt.limpar_mensagem(texto, chaves_falsas())
+    nada_da_conta_em(limpo)
+    assert 'ffff0000ffff0000' not in limpo, limpo
+    assert '"<endpoint do R2>/manhadefe-video/x.mp4"' in limpo, limpo
+    assert 'conta <conta>;' in limpo and 'Credential=<chave>/20261020' in limpo, limpo
+    assert 'segredo <chave>' in limpo, limpo
+    # Sem as chaves (não lidas), o host genérico sai do mesmo jeito.
+    nada_da_conta_em(pt.limpar_mensagem(f'em {ENDPOINT}/x', None))
+    # A descrição: o nome do tipo, o Error.Code do ClientError, a mensagem limpa.
+    from botocore.exceptions import ClientError
+    erro = ClientError({'Error': {'Code': 'AccessDenied', 'Message': f'negado em {ENDPOINT}'}},
+                       'PutObject')
+    descricao = pt.descrever_erro(erro, chaves_falsas())
+    assert descricao.startswith('ClientError (AccessDenied): '), descricao
+    nada_da_conta_em(descricao)
+
+
 def teste_chaves_do_r2_lidas_pelo_rotulo_sem_vazar_valor():
     with tempfile.TemporaryDirectory() as tmp:
         arquivo = Path(tmp) / 'R2.txt'
@@ -758,6 +803,27 @@ class ClienteFalso:
         self.objetos[Key] = (Path(Filename).stat().st_size, ExtraArgs['Metadata']['sha256'])
 
 
+class ClienteQueFalha(ClienteFalso):
+    """Lança `erro` na primeira chamada de `metodo` feita depois de
+    `depois_de` envios bem-sucedidos (0: logo a primeira)."""
+
+    def __init__(self, metodo, erro, depois_de=0):
+        super().__init__()
+        self.metodo, self.erro, self.depois_de = metodo, erro, depois_de
+
+    def _talvez_falhe(self, metodo):
+        if metodo == self.metodo and len(self.envios) >= self.depois_de:
+            raise self.erro
+
+    def head_object(self, Bucket, Key):  # noqa: N803
+        self._talvez_falhe('head_object')
+        return super().head_object(Bucket, Key)
+
+    def upload_file(self, Filename, Bucket, Key, ExtraArgs=None):  # noqa: N803
+        self._talvez_falhe('upload_file')
+        return super().upload_file(Filename, Bucket, Key, ExtraArgs)
+
+
 def teste_subir_videos_pula_o_que_ja_esta_la_com_o_mesmo_tamanho_e_sha256():
     with tempfile.TemporaryDirectory() as tmp:
         a, b, c = (Path(tmp) / f'{n}.mp4' for n in 'abc')
@@ -797,6 +863,8 @@ class Dubles:
     def __init__(self, tmp, stt=0, lint=0, manifesto_com_novela=True):
         self.tmp = Path(tmp)
         self.cliente = ClienteFalso()
+        # Quem monta o cliente (o teste troca para montar um que falha).
+        self.criar_cliente = lambda chaves: self.cliente
         self.comandos = []
         self.stt, self.lint = stt, lint
         # False: o gerar_manifesto de um app anterior à Task 7, que não
@@ -866,7 +934,7 @@ class Dubles:
     def instalados(self):
         antes = pt.rodar, pt.criar_cliente_r2, pt.localizar_dart
         pt.rodar = self.rodar
-        pt.criar_cliente_r2 = lambda chaves: self.cliente
+        pt.criar_cliente_r2 = lambda chaves: self.criar_cliente(chaves)
         pt.localizar_dart = lambda: 'dart'
         try:
             yield self
@@ -874,8 +942,10 @@ class Dubles:
             pt.rodar, pt.criar_cliente_r2, pt.localizar_dart = antes
 
     def publicar(self, pasta, midia, *extra):
+        """main() no caminho real com os dublês; devolve (código, tudo o que
+        foi ao terminal — stdout e stderr)."""
         saida = io.StringIO()
-        with self.instalados(), contextlib.redirect_stdout(saida):
+        with self.instalados(), contextlib.redirect_stdout(saida), contextlib.redirect_stderr(saida):
             codigo = pt.main([str(pasta), '--midia', str(midia), '--app', str(self.app),
                               '--r2', str(self.chaves), *extra])
         return codigo, saida.getvalue()
@@ -982,6 +1052,47 @@ def teste_publicacao_real_confere_as_ferramentas_antes_de_escrever():
         assert 'narrar.py' in saida and 'R2.txt' in saida and 'lint_conteudo.dart' in saida
         assert dubles.cliente.envios == [] and dubles.comandos == []
         assert not any(midia.iterdir())
+
+
+def _arvore(pasta):
+    return sorted(p.relative_to(pasta).as_posix() for p in Path(pasta).rglob('*'))
+
+
+def teste_erro_do_r2_nunca_vai_cru_a_tela_e_nada_e_escrito():
+    """R8-A: a falha de rede ou do R2 traz o endpoint da conta na mensagem
+    (EndpointConnectionError, ClientError, o ValueError do endpoint
+    inválido). Em todo caminho — montar o cliente, consultar (HEAD), enviar,
+    conferir depois do envio — a saída mostra o tipo e a mensagem limpa,
+    nada da conta, e nada é escrito na raiz de mídia."""
+    from botocore.exceptions import ClientError, EndpointConnectionError
+    conexao = EndpointConnectionError(
+        endpoint_url=f'{ENDPOINT}/manhadefe-video/teste/midia/video/t1/01-catolico.mp4')
+    negado = ClientError({'Error': {'Code': 'AccessDenied',
+                                    'Message': f'a conta {CONTA} em {CONTA}.r2.cloudflarestorage.com '
+                                               f'recusou a chave {CHAVE_DE_ACESSO}'}}, 'PutObject')
+    casos = (('cliente', 0, ValueError(f'Invalid endpoint: {ENDPOINT}'), 'ValueError'),
+             ('head_object', 0, conexao, 'EndpointConnectionError'),
+             ('upload_file', 0, negado, 'ClientError (AccessDenied)'),
+             ('head_object', 1, conexao, 'EndpointConnectionError'))   # depois de um envio
+    for metodo, depois_de, erro, nome in casos:
+        assert CONTA in str(erro), 'o dublê traz a conta na mensagem'
+        with tempfile.TemporaryDirectory() as tmp:
+            dubles = Dubles(tmp)
+            midia = dubles.midia()
+            if metodo == 'cliente':
+                def falha(chaves, erro=erro):
+                    raise erro
+                dubles.criar_cliente = falha
+            else:
+                dubles.cliente = ClienteQueFalha(metodo, erro, depois_de)
+            pasta = entrega_valida(tmp)
+            antes = _arvore(midia)
+            codigo, saida = dubles.publicar(pasta, midia, '--r2-prefixo', 'teste/midia/')
+            assert codigo == 1, (metodo, saida)
+            assert nome in saida, (nome, saida)
+            nada_da_conta_em(saida)
+            assert _arvore(midia) == antes, (metodo, 'escreveu na raiz de mídia')
+            assert dubles.comandos == [], 'nem voz nem manifesto'
 
 
 # ---------------------------------------------------------------------------
