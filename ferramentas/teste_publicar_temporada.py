@@ -286,17 +286,37 @@ Public Development URL (19/10/2026): https://pub-exemplo123.r2.dev
 """
 
 
-def teste_base_videos_vem_da_url_publica_do_arquivo_de_chaves_com_o_prefixo():
+def teste_simular_nunca_le_o_arquivo_de_chaves_e_usa_o_marcador_da_url_publica():
+    """R8-F: sem --videos-base e sem índice, a simulação usa o marcador
+    "<Public Development URL>/" + prefixo; o arquivo de chaves nunca é lido
+    (a URL de desenvolvimento do R2 não vai ao resumo nem aos JSONs)."""
     with tempfile.TemporaryDirectory() as tmp:
         chaves = Path(tmp) / 'R2.txt'
         chaves.write_text(R2_FALSO.replace(chr(10), chr(13) + chr(10)), encoding='utf-8')
         pasta = entrega_valida(tmp)
         midia = Path(tmp) / 'midia'
-        codigo, saida = publicar(pasta, midia, '--r2', str(chaves), '--r2-prefixo', 'teste/midia',
-                                 videos_base=None)
+        lidas = []
+        reais = pt.ler_chaves_r2, pt.url_publica_de
+        pt.ler_chaves_r2 = lambda *a: lidas.append('ler_chaves_r2') or reais[0](*a)
+        pt.url_publica_de = lambda *a: lidas.append('url_publica_de') or reais[1](*a)
+        try:
+            codigo, saida = publicar(pasta, midia, '--r2', str(chaves), '--r2-prefixo',
+                                     'teste/midia', videos_base=None)
+            # Nem um --r2 que daria erro ao ler (uma pasta) atrapalha: não é lido.
+            codigo2, saida2 = publicar(pasta, Path(tmp) / 'midia2', '--r2', str(tmp),
+                                       videos_base=None)
+        finally:
+            pt.ler_chaves_r2, pt.url_publica_de = reais
         assert codigo == 0, saida
+        assert codigo2 == 0, saida2
+        assert lidas == [], lidas
         indice = json.loads((midia / 'novela' / 'temporadas.json').read_text(encoding='utf-8'))
-        assert indice['videos'] == 'https://pub-exemplo123.r2.dev/teste/midia/'
+        assert indice['videos'] == '<Public Development URL>/teste/midia/'
+        indice2 = json.loads((Path(tmp) / 'midia2' / 'novela' / 'temporadas.json')
+                             .read_text(encoding='utf-8'))
+        assert indice2['videos'] == '<Public Development URL>/'
+        assert 'pub-exemplo123' not in saida + saida2
+        assert all(b'pub-exemplo123' not in p.read_bytes() for p in midia.rglob('*') if p.is_file())
         # A chave no R2 leva o prefixo; o `arquivo` do JSON, não (o prefixo
         # está na base).
         assert 'teste/midia/video/t1/01-catolico.mp4' in saida
@@ -668,6 +688,49 @@ def teste_simular_recusa_o_repositorio_real_e_sem_midia():
         raise AssertionError('deveria ter recusado o repositório real')
 
 
+def teste_simular_recusa_qualquer_repositorio_git_e_o_repositorio_do_app():
+    """R8-G: rodando o script de uma CÓPIA, o "repositório real" dele é a
+    cópia — a trava tem de reconhecer qualquer pasta com .git (ela ou uma
+    acima dela; num worktree o .git é um arquivo) e o repositório do app,
+    antes de qualquer escrita."""
+    with tempfile.TemporaryDirectory() as tmp:
+        pasta = entrega_valida(tmp)
+        repo = Path(tmp) / 'outro-repo'
+        (repo / '.git').mkdir(parents=True)
+        worktree = Path(tmp) / 'worktree'
+        worktree.mkdir()
+        (worktree / '.git').write_text('gitdir: ../outro-repo/.git/worktrees/x', encoding='utf-8')
+        app = Path(tmp) / 'app-do-gregory'
+        app.mkdir()
+        recusas = ((repo, '.git'), (repo / 'novela', '.git'), (worktree, '.git'),
+                   (app, 'repositório do app'), (app / 'build' / 'midia', 'repositório do app'))
+        antes = sorted(p.relative_to(tmp).as_posix() for p in Path(tmp).rglob('*'))
+        real = pt.REPOSITORIO_DO_APP
+        pt.REPOSITORIO_DO_APP = app
+        try:
+            for midia, trecho in recusas:
+                try:
+                    publicar(pasta, midia)
+                except SystemExit as e:
+                    assert e.code != 0 and trecho in str(e.code), (midia, str(e.code))
+                else:
+                    raise AssertionError(f'deveria ter recusado {midia}')
+            # O --app apontado também é o repositório do app.
+            outro_app = Path(tmp) / 'outro-app'
+            try:
+                publicar(pasta, outro_app, '--app', str(outro_app))
+            except SystemExit as e:
+                assert 'repositório do app' in str(e.code), str(e.code)
+            else:
+                raise AssertionError('deveria ter recusado --midia igual a --app')
+        finally:
+            pt.REPOSITORIO_DO_APP = real
+        assert sorted(p.relative_to(tmp).as_posix() for p in Path(tmp).rglob('*')) == antes, \
+            'nada escrito'
+    # O padrão de verdade é o app do Gregory, onde quer que o script esteja.
+    assert pt.REPOSITORIO_DO_APP == Path('C:/Users/robot/dev/manha-de-fe-app')
+
+
 # ---------------------------------------------------------------------------
 # O caminho real, com dublês: R2, voz, manifesto e lint
 # ---------------------------------------------------------------------------
@@ -852,6 +915,11 @@ def teste_publicacao_com_dubles_sobe_ao_r2_gera_voz_confere_e_roda_manifesto_e_l
         assert manifesto[-1] == str(midia)
         assert lint[-1] == f'--manifesto={midia / "manifesto.json"}'
         assert (midia / 'novela' / 't1.json').exists() and (midia / 'manifesto.json').exists()
+        # Sem --videos-base e sem índice, a base é a Public Development URL
+        # do arquivo de chaves, com o prefixo (só no caminho real: a
+        # simulação nunca lê o arquivo).
+        indice = json.loads((midia / 'novela' / 'temporadas.json').read_text(encoding='utf-8'))
+        assert indice['videos'] == 'https://pub-exemplo123.r2.dev/teste/midia/'
         assert 'https://pub-exemplo123.r2.dev/teste/midia/' in saida
         assert 'push SÓ com OK do Gregory' in saida
         assert '0123456789abcdef' not in saida and 'fedcba98' not in saida

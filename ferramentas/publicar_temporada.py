@@ -67,9 +67,12 @@ são ignorados.
    No fim, o resumo. NUNCA faz commit nem push: commit por caminho, e o
    push só com o OK do Gregory.
 
---simular: exige --midia numa pasta temporária (nunca o repositório real
-nem uma pasta dentro dele); escreve os JSONs, as capas e as legendas nela;
-não sobe ao R2, não gera voz e não roda o Dart — imprime o que faria.
+--simular: exige --midia numa pasta temporária — nunca o repositório real,
+o repositório do app ou qualquer pasta com .git (ela ou uma acima dela);
+escreve os JSONs, as capas e as legendas nela; não sobe ao R2, não gera
+voz, não roda o Dart e nunca lê o arquivo de chaves (sem --videos-base e
+sem índice, a base é o marcador "<Public Development URL>/" + prefixo) —
+imprime o que faria.
 
 As chaves do R2 são lidas do arquivo (--r2) pelos rótulos ("Access Key ID",
 "Secret Access Key", a URL https://<conta>.r2.cloudflarestorage.com e a
@@ -103,6 +106,13 @@ APP_PADRAO = (Path(os.environ['MANHA_DE_FE_APP']) if os.environ.get('MANHA_DE_FE
               else RAIZ.parent / 'manha-de-fe-app')
 CHAVES_R2_PADRAO = Path('C:/Users/robot/OneDrive/Área de Trabalho/NUVEM GREGORY/'
                         'Cloudflare R2/R2.txt')
+# O repositório do app do Gregory, onde quer que este script esteja: rodando
+# de uma CÓPIA do repo de mídia, a pasta-irmã (APP_PADRAO) não é ele, e a
+# trava do --simular tem de reconhecê-lo mesmo assim.
+REPOSITORIO_DO_APP = Path('C:/Users/robot/dev/manha-de-fe-app')
+# A base dos vídeos na simulação, que nunca lê o arquivo de chaves: a rodada
+# real põe aqui a "Public Development URL" do R2.
+MARCADOR_DA_URL_PUBLICA = '<Public Development URL>'
 DART_PADRAO = Path('C:/Users/robot/flutter-sdk/bin') / ('dart.bat' if os.name == 'nt' else 'dart')
 BALDE = 'manhadefe-video'
 MOTORES = ('elevenlabs', 'microsoft')
@@ -658,25 +668,23 @@ def ler_chaves_r2(caminho):
                     url_publica=url_publica_de(texto))
 
 
-def resolver_base(videos_base, indice, arquivo_de_chaves, prefixo):
+def resolver_base(videos_base, indice, url_publica, prefixo):
     """(a base `videos` terminada em /, [problemas]): --videos-base, senão a
-    do índice existente, senão a Public Development URL do arquivo de chaves
-    mais o prefixo. Uma base que não termina no prefixo do R2 mandaria o app
-    pedir os vídeos fora de onde eles sobem."""
+    do índice existente, senão a Public Development URL (a das chaves do R2,
+    já lidas; na simulação, que nunca lê o arquivo de chaves, o marcador
+    MARCADOR_DA_URL_PUBLICA) mais o prefixo. Uma base que não termina no
+    prefixo do R2 mandaria o app pedir os vídeos fora de onde eles sobem."""
     if videos_base:
         base, origem = videos_base, '--videos-base'
     elif indice and indice.get('videos'):
         base, origem = indice['videos'], 'o índice existente'
+    elif url_publica == MARCADOR_DA_URL_PUBLICA:
+        return f'{MARCADOR_DA_URL_PUBLICA}/{prefixo}', []
+    elif url_publica:
+        base, origem = f'{url_publica.rstrip("/")}/{prefixo}', 'a Public Development URL do R2'
     else:
-        try:
-            publica = url_publica_de(Path(arquivo_de_chaves).read_text(encoding='utf-8-sig'))
-        except OSError:
-            return None, [f'sem a base "videos": não veio --videos-base, o índice ainda não '
-                          f'existe e o arquivo de chaves do R2 não foi encontrado ({arquivo_de_chaves})']
-        if not publica:
-            return None, [f'sem a base "videos": não veio --videos-base, o índice ainda não '
-                          f'existe e {Path(arquivo_de_chaves).name} não tem a "Public Development URL"']
-        base, origem = f'{publica}/{prefixo}', 'a Public Development URL do R2'
+        return None, ['sem a base "videos": não veio --videos-base, o índice ainda não existe e o '
+                      'arquivo de chaves do R2 (--r2) não deu a "Public Development URL"']
     if not base.endswith('/'):
         base += '/'
     partes = urlparse(base)
@@ -688,23 +696,45 @@ def resolver_base(videos_base, indice, arquivo_de_chaves, prefixo):
     return base, []
 
 
-def conferir_raiz_da_simulacao(midia):
+def conferir_raiz_da_simulacao(midia, app=None):
     """--simular escreve de verdade (JSONs, capas, legendas): exige --midia
-    numa pasta temporária, nunca o repositório real nem uma pasta dentro
-    dele — um gerar_manifesto depois levaria a temporada simulada ao app.
-    Roda antes de qualquer outra conferência e de qualquer escrita."""
+    numa pasta temporária — nunca o repositório real, o repositório do app
+    (REPOSITORIO_DO_APP, a pasta-irmã ou o --app) nem qualquer pasta com
+    .git (ela ou uma acima dela): rodando o script de uma cópia, o
+    "repositório real" dele é a cópia, e um gerar_manifesto ou um commit
+    depois levaria a temporada simulada ao app. Roda antes de qualquer outra
+    conferência e de qualquer escrita."""
     if not midia:
         sys.exit('--simular exige --midia apontando uma pasta temporária: a simulação escreve '
                  'os JSONs, as capas e as legendas de verdade, e nunca no repositório real')
     if _dentro_de(midia, MIDIA_PADRAO):
         sys.exit(f'--simular com --midia no repositório real ({MIDIA_PADRAO}): aponte uma pasta '
                  'temporária fora dele — a simulação escreve os JSONs, as capas e as legendas')
+    for repositorio in (REPOSITORIO_DO_APP, APP_PADRAO, app):
+        if repositorio and _dentro_de(midia, repositorio):
+            sys.exit(f'--simular com --midia no repositório do app ({repositorio}): aponte uma '
+                     'pasta temporária — a simulação escreve os JSONs, as capas e as legendas')
+    repositorio = _repositorio_git_de(midia)
+    if repositorio is not None:
+        sys.exit(f'--simular com --midia dentro de um repositório git ({repositorio} tem .git): '
+                 'aponte uma pasta temporária fora de qualquer repositório — a simulação escreve '
+                 'os JSONs, as capas e as legendas')
 
 
 def _dentro_de(pasta, raiz):
     a = os.path.normcase(str(Path(pasta).resolve()))
     b = os.path.normcase(str(Path(raiz).resolve()))
     return a == b or a.startswith(b.rstrip(os.sep) + os.sep)
+
+
+def _repositorio_git_de(pasta):
+    """A pasta que tem .git (o diretório, ou o arquivo de um worktree) e
+    contém `pasta` — ela mesma ou uma acima dela —, ou None."""
+    atual = Path(pasta).resolve()
+    for candidata in (atual, *atual.parents):
+        if (candidata / '.git').exists():
+            return candidata
+    return None
 
 
 # ---------------------------------------------------------------------------
@@ -1051,9 +1081,9 @@ def _mostrar(cmd, cwd):
 def main(argv=None):
     _console_tolerante()
     args = _argumentos(argv)
-    # Antes de tudo: a simulação nunca escreve no repositório real.
+    # Antes de tudo: a simulação nunca escreve num repositório.
     if args.simular:
-        conferir_raiz_da_simulacao(args.midia)
+        conferir_raiz_da_simulacao(args.midia, args.app)
     midia = Path(args.midia).absolute() if args.midia else MIDIA_PADRAO
     app = Path(args.app).absolute() if args.app else APP_PADRAO
     prefixo = normalizar_prefixo(args.r2_prefixo)
@@ -1062,15 +1092,18 @@ def main(argv=None):
     entrega, problemas = conferir_entrega(Path(args.entrega))
     indice, problemas_do_indice = ler_indice(midia)
     problemas += problemas_do_indice
-    base, p = resolver_base(args.videos_base, indice, args.r2, prefixo)
-    problemas += p
-    # O índice FINAL, inteiro, pelas regras do app (que o recusa inteiro).
-    if entrega is not None and base is not None and not problemas_do_indice:
-        problemas += conferir_indice(indice_atualizado(indice, entrega, base))
     chaves = dart = None
     if not args.simular:
         chaves, dart, p = conferir_o_caminho_real(args, midia, app)
         problemas += p
+    # A simulação nunca lê o arquivo de chaves: a base sem --videos-base e
+    # sem índice é o marcador.
+    publica = MARCADOR_DA_URL_PUBLICA if args.simular else (chaves.url_publica if chaves else None)
+    base, p = resolver_base(args.videos_base, indice, publica, prefixo)
+    problemas += p
+    # O índice FINAL, inteiro, pelas regras do app (que o recusa inteiro).
+    if entrega is not None and base is not None and not problemas_do_indice:
+        problemas += conferir_indice(indice_atualizado(indice, entrega, base))
     if problemas:
         print(f'conferência: {len(problemas)} problema(s) — nada foi enviado nem escrito:')
         for problema in problemas:
@@ -1147,6 +1180,9 @@ def main(argv=None):
     for chave, tamanho, estado in enviados:
         print(f'  {chave}  {_milhar(tamanho)} bytes  {estado}')
     print(f'base "videos": {base}')
+    if base.startswith(MARCADOR_DA_URL_PUBLICA):
+        print('  (simulado: o arquivo de chaves não é lido — a rodada real põe aqui a Public '
+              'Development URL do R2)')
     if indice and indice.get('videos') and indice['videos'] != base:
         print(f'  (era {indice["videos"]}: o vídeo que já está no aparelho não baixa de novo — o '
               'app o reconhece pelo sha256)')
