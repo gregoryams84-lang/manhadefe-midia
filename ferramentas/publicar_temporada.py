@@ -648,11 +648,19 @@ def rodar(cmd, cwd=None):
 
 
 def criar_cliente_r2(chaves):
+    """O cliente S3 do R2 como na documentação da Cloudflare (region_name
+    'auto'). Os checksums opcionais que o boto3 manda por padrão desde a
+    1.36 ficam só para quando a operação os exige: serviços compatíveis com
+    S3 já recusaram esses cabeçalhos, e este envio não tem como ser provado
+    contra o R2 antes do primeiro uso real."""
     import boto3  # noqa: PLC0415 — só no caminho real
+    from botocore.config import Config  # noqa: PLC0415
     return boto3.client(service_name='s3', endpoint_url=chaves.endpoint,
                         aws_access_key_id=chaves.access_key_id,
                         aws_secret_access_key=chaves.secret_access_key,
-                        region_name='auto')
+                        region_name='auto',
+                        config=Config(request_checksum_calculation='when_required',
+                                      response_checksum_validation='when_required'))
 
 
 def localizar_dart():

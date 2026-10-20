@@ -566,6 +566,19 @@ def teste_subir_videos_pula_o_que_ja_esta_la_com_o_mesmo_tamanho_e_sha256():
                              'Metadata': {'sha256': dict((e[0], e[3]) for e in envios)[chave]}}
 
 
+def teste_cliente_do_r2_e_o_do_boto3_no_endpoint_da_conta_sem_rede():
+    """O único pedaço do envio que roda o boto3 de verdade aqui: montar o
+    cliente não toca a rede."""
+    chaves = pt.ChavesR2(endpoint='https://00112233445566778899aabbccddeeff.r2.cloudflarestorage.com',
+                         access_key_id='a' * 32, secret_access_key='b' * 64, url_publica=None)
+    cliente = pt.criar_cliente_r2(chaves)
+    assert cliente.meta.endpoint_url == chaves.endpoint
+    assert cliente.meta.region_name == 'auto'
+    assert cliente.meta.config.request_checksum_calculation == 'when_required'
+    assert cliente.meta.config.response_checksum_validation == 'when_required'
+    assert callable(cliente.head_object) and callable(cliente.upload_file)
+
+
 class Dubles:
     """Troca, durante um teste, o cliente do R2, o dart e os comandos por
     dublês que registram o que a ferramenta pediu e fazem o que cada
