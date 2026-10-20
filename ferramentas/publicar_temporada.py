@@ -39,14 +39,23 @@ são ignorados.
      dart, as ferramentas do app e as da voz na raiz de mídia.
 
 2. ESCREVE (tudo conferido):
-   - R2: cada mp4 vai ao balde manhadefe-video em
-     <r2-prefixo>video/<t>/<NN>-<tradicao>.mp4, com o sha256 nos metadados;
-     o que já está lá com o mesmo tamanho e o mesmo sha256 não sobe de
-     novo. Vem PRIMEIRO: se o envio falhar, nenhum JSON local aponta para
-     um vídeo que não está no ar;
+   - R2 (balde manhadefe-video, as chaves com o --r2-prefixo): NUNCA
+     sobrescreve um objeto com outro conteúdo, com ou sem opção, e nunca
+     apaga nada. A chave de cada vídeo sai só de consultas (HEAD): a que o
+     novela/<t>.json já publicado dá, se o objeto lá é este (já estava);
+     senão a fixa video/<t>/<NN>-<tradicao>.mp4 — ausente, sobe (novo);
+     com este conteúdo, já estava; com OUTRO sha256 (trocado), a
+     publicação recusa antes de subir ou escrever qualquer coisa, listando
+     chave, capítulo e data. Com --substituir-videos, o trocado sobe na
+     chave versionada video/<t>/<NN>-<tradicao>-<sha8>.mp4 (sha8 = os 8
+     primeiros hex do sha256) e o objeto velho fica: o aparelho com o JSON
+     velho baixa o velho, o com o novo baixa o novo, sem janela. O sha256
+     vai nos metadados e o que sobe é conferido depois. Vem PRIMEIRO: se o
+     envio falhar, nenhum JSON local aponta para um vídeo que não está lá;
    - <midia>/novela/<t>.json: a temporada no formato do app (Temporada.fromJson
      em lib/content/novela.dart) — por capítulo, `id` <t>c<n>, `capa`,
-     `legenda` (só com SRT) e `video` com arquivo, bytes e sha256;
+     `legenda` (só com SRT) e `video` com arquivo (a chave escolhida
+     acima), bytes e sha256;
    - capas em <midia>/imagens/<t>c<n>.webp, legendas em
      <midia>/novela/<t>c<n>.srt (sem o BOM, se vier com um); as sobras de
      uma versão anterior da MESMA temporada (capítulo que sumiu, legenda
@@ -833,26 +842,168 @@ def _cabeca(cliente, balde, chave):
         raise
 
 
-def subir_videos(cliente, envios, balde=BALDE):
-    """`envios`: [(chave, arquivo, bytes, sha256)]. Pula o que já está no
-    balde com o mesmo tamanho e o mesmo sha256 nos metadados; o que sobe é
-    conferido do mesmo jeito depois. Devolve [(chave, bytes, 'subiu' ou
-    'já estava')]."""
-    resultado = []
-    for chave, arquivo, tamanho, sha in envios:
-        cabeca = _cabeca(cliente, balde, chave)
-        if (cabeca and cabeca.get('ContentLength') == tamanho
-                and (cabeca.get('Metadata') or {}).get('sha256') == sha):
-            resultado.append((chave, tamanho, 'já estava'))
+def _estado_no_r2(cliente, chave, balde=BALDE):
+    """(bytes, sha256 dos metadados) do objeto no balde, ou None se ele não
+    existe. Objeto sem o sha256 nos metadados volta com None no lugar dele —
+    e nunca é "o mesmo conteúdo"."""
+    cabeca = _cabeca(cliente, balde, chave)
+    if cabeca is None:
+        return None
+    return cabeca.get('ContentLength'), (cabeca.get('Metadata') or {}).get('sha256')
+
+
+# ---------------------------------------------------------------------------
+# A chave de cada vídeo no R2: nunca sobrescrever conteúdo diferente (R8-B)
+# ---------------------------------------------------------------------------
+
+NOVO, JA_ESTAVA, TROCADO = 'novo', 'já estava', 'trocado (chave nova)'
+_CHAVE_DE_VIDEO = re.compile(r'video/(t\d+)/(\d{2})-(catolico|evangelico)(?:-([0-9a-f]{8}))?\.mp4',
+                             re.ASCII)
+
+
+@dataclass
+class Video:
+    """Um vídeo da entrega e o destino dele: `chave` é a chave de mídia (o
+    `arquivo` do JSON; no R2, prefixo + chave); `sobe` diz se ela precisa
+    subir; no TROCADO, `velha` é a chave fixa, que fica intocada."""
+    capitulo: CapituloDaEntrega
+    tradicao: str
+    arquivo: Path
+    bytes: int
+    sha256: str
+    chave: str = ''
+    estado: str = ''
+    sobe: bool = False
+    velha: str = ''
+
+
+def videos_da_entrega(entrega):
+    """Os vídeos, na ordem dos capítulos (católico, evangélico), com o
+    tamanho e o sha256 medidos na conferência."""
+    return [Video(capitulo=c, tradicao=t, arquivo=c.videos[t], bytes=c.videos[t].stat().st_size,
+                  sha256=c.shas[t]) for c in entrega.capitulos for t in TRADICOES]
+
+
+def chave_do_video(entrega, capitulo, tradicao):
+    """A chave FIXA do vídeo: video/<t>/<nn>-<tradicao>.mp4."""
+    return f'video/{entrega.id}/{capitulo.nn}-{tradicao}.mp4'
+
+
+def chave_versionada(entrega, capitulo, tradicao, sha256):
+    """A chave do vídeo TROCADO: video/<t>/<nn>-<tradicao>-<sha8>.mp4, com
+    sha8 = os 8 primeiros caracteres hex minúsculos do sha256 do arquivo (o
+    app confere que batem com o sha256 que o próprio JSON declara)."""
+    return f'video/{entrega.id}/{capitulo.nn}-{tradicao}-{sha256[:8].lower()}.mp4'
+
+
+def videos_publicados(midia, id_):
+    """{(n, tradição): {arquivo, bytes, sha256}} do novela/<t>.json JÁ
+    publicado na raiz de mídia — só as chaves de vídeo do capítulo e da
+    tradição certos (a fixa ou uma versionada); {} se ele não existe ou não
+    dá para ler (ele vai ser regravado de qualquer jeito)."""
+    try:
+        dados = json.loads((Path(midia) / 'novela' / f'{id_}.json').read_text(encoding='utf-8-sig'))
+    except (OSError, ValueError, UnicodeDecodeError):
+        return {}
+    capitulos = dados.get('capitulos') if isinstance(dados, dict) else None
+    publicados = {}
+    for cap in capitulos if isinstance(capitulos, list) else []:
+        if not isinstance(cap, dict) or not isinstance(cap.get('video'), dict):
             continue
-        cliente.upload_file(str(arquivo), balde, chave,
-                            ExtraArgs={'ContentType': 'video/mp4', 'Metadata': {'sha256': sha}})
-        conferida = _cabeca(cliente, balde, chave)
-        if (not conferida or conferida.get('ContentLength') != tamanho
-                or (conferida.get('Metadata') or {}).get('sha256') != sha):
+        n = cap.get('n')
+        for tradicao in TRADICOES:
+            video = cap['video'].get(tradicao)
+            arquivo = video.get('arquivo') if isinstance(video, dict) else None
+            m = _CHAVE_DE_VIDEO.fullmatch(arquivo) if isinstance(arquivo, str) else None
+            if (m and m.group(1) == id_ and isinstance(n, int) and not isinstance(n, bool)
+                    and int(m.group(2)) == n and m.group(3) == tradicao):
+                publicados[n, tradicao] = {'arquivo': arquivo, 'bytes': video.get('bytes'),
+                                           'sha256': video.get('sha256')}
+    return publicados
+
+
+def r2_segundo_o_json_publicado(publicados):
+    """O `consultar` da simulação, que não toca o R2: o que o novela/<t>.json
+    publicado diz que está lá — cada chave com o tamanho e o sha256 dele; e
+    a chave fixa de um vídeo que ele já dá numa versionada existe com OUTRO
+    conteúdo (foi por isso que a versionada nasceu)."""
+    conhecidos = {}
+    for video in publicados.values():
+        conhecidos[video['arquivo']] = (video.get('bytes'), video.get('sha256'))
+    for video in publicados.values():
+        m = _CHAVE_DE_VIDEO.fullmatch(video['arquivo'])
+        if m.group(4):
+            conhecidos.setdefault(f'video/{m.group(1)}/{m.group(2)}-{m.group(3)}.mp4', (None, None))
+    return conhecidos.get
+
+
+def planejar_videos(entrega, videos, publicados, consultar, substituir, prefixo=''):
+    """Escolhe a chave de cada vídeo SEM nunca sobrescrever no R2 um objeto
+    com outro conteúdo, com ou sem opção — só consultando:
+      1. a chave que o novela/<t>.json já publicado dá para o capítulo e a
+         tradição, se o objeto lá é este (mesmo tamanho e sha256): já estava;
+      2. senão a chave fixa video/<t>/<nn>-<tradicao>.mp4 — ausente: novo;
+         com este conteúdo: já estava;
+      3. senão (a fixa tem outro conteúdo): trocado. Sem `substituir`, é uma
+         RECUSA (chave, capítulo e data); com ele, a chave versionada
+         ...-<sha8>.mp4 — ausente: sobe; com este conteúdo: reusa; com
+         outro: problema. O objeto velho fica intocado: o aparelho com o
+         JSON velho baixa o velho, o com o novo baixa o novo, sem depender
+         de cache da borda.
+    `consultar(chave)` -> (bytes, sha256) do objeto em prefixo + chave, ou
+    None se ele não existe. Preenche os `videos` e devolve (problemas,
+    recusas)."""
+    vistos = {}
+
+    def no_r2(chave):
+        if chave not in vistos:
+            vistos[chave] = consultar(chave)
+        return vistos[chave]
+
+    problemas, recusas = [], []
+    for v in videos:
+        este = (v.bytes, v.sha256)
+        anterior = (publicados.get((v.capitulo.n, v.tradicao)) or {}).get('arquivo')
+        if anterior and no_r2(anterior) == este:
+            v.chave, v.estado, v.sobe = anterior, JA_ESTAVA, False
+            continue
+        fixa = chave_do_video(entrega, v.capitulo, v.tradicao)
+        la = no_r2(fixa)
+        if la is None:
+            v.chave, v.estado, v.sobe = fixa, NOVO, True
+        elif la == este:
+            v.chave, v.estado, v.sobe = fixa, JA_ESTAVA, False
+        elif not substituir:
+            recusas.append(f'{prefixo}{fixa} (cap. {v.capitulo.n}, '
+                           f'{entrega.id_do_capitulo(v.capitulo)}, {v.capitulo.dados["data"]})')
+        else:
+            nova = chave_versionada(entrega, v.capitulo, v.tradicao, v.sha256)
+            la_nova = no_r2(nova)
+            if la_nova is not None and la_nova != este:
+                problemas.append(f'{prefixo}{nova}: já está no R2 com outro conteúdo — nada é '
+                                 'sobrescrito; confira o objeto à mão antes de publicar')
+                continue
+            v.chave, v.estado, v.sobe, v.velha = nova, TROCADO, la_nova is None, fixa
+    return problemas, recusas
+
+
+def subir_videos(cliente, videos, prefixo='', balde=BALDE):
+    """Sobe os vídeos que o plano manda subir (`sobe`), com o sha256 nos
+    metadados, e confere cada um depois (HEAD: o mesmo tamanho e sha256).
+    O plano só manda subir para chave ausente, e a ausência é conferida de
+    novo logo antes do envio: nada no balde é sobrescrito, e nada é apagado
+    (esta ferramenta não apaga no R2)."""
+    for v in videos:
+        if not v.sobe:
+            continue
+        chave = prefixo + v.chave
+        if _estado_no_r2(cliente, chave, balde) is not None:
+            raise RuntimeError(f'{chave}: apareceu no R2 durante a publicação — nada foi '
+                               'sobrescrito; rode de novo')
+        cliente.upload_file(str(v.arquivo), balde, chave,
+                            ExtraArgs={'ContentType': 'video/mp4', 'Metadata': {'sha256': v.sha256}})
+        if _estado_no_r2(cliente, chave, balde) != (v.bytes, v.sha256):
             raise RuntimeError(f'{chave}: depois do envio, o R2 não mostra o mesmo tamanho e sha256')
-        resultado.append((chave, tamanho, 'subiu'))
-    return resultado
 
 
 def conferir_o_caminho_real(args, midia, app):
@@ -909,14 +1060,9 @@ def escrever_json(caminho, dados):
     parcial.replace(caminho)
 
 
-def chave_do_video(entrega, capitulo, tradicao):
-    """A chave de mídia do vídeo (o `arquivo` do JSON; no R2, com o prefixo)."""
-    return f'video/{entrega.id}/{capitulo.nn}-{tradicao}.mp4'
-
-
-def temporada_no_formato_do_app(entrega, medidos):
-    """O <t>.json que Temporada.fromJson lê. `medidos`: {(n, tradição):
-    (bytes, sha256)}."""
+def temporada_no_formato_do_app(entrega, videos):
+    """O <t>.json que Temporada.fromJson lê. `videos`: {(n, tradição):
+    Video}, com a chave que o plano escolheu (a fixa ou a versionada)."""
     capitulos = []
     for c in entrega.capitulos:
         id_ = entrega.id_do_capitulo(c)
@@ -926,8 +1072,8 @@ def temporada_no_formato_do_app(entrega, medidos):
         saida['capa'] = f'assets/images/cartoes/{id_}.webp'
         if c.legenda is not None:
             saida['legenda'] = f'novela/{id_}.srt'
-        saida['video'] = {t: {'arquivo': chave_do_video(entrega, c, t),
-                              'bytes': medidos[c.n, t][0], 'sha256': medidos[c.n, t][1]}
+        saida['video'] = {t: {'arquivo': videos[c.n, t].chave, 'bytes': videos[c.n, t].bytes,
+                              'sha256': videos[c.n, t].sha256}
                           for t in TRADICOES}
         capitulos.append(saida)
     return {'id': entrega.id, 'titulo': entrega.titulo, 'inicio': entrega.inicio.isoformat(),
@@ -970,12 +1116,13 @@ def limpar_sobras(midia, entrega):
     return removidos
 
 
-def escrever(midia, entrega, medidos, base, indice):
-    """Os JSONs, as capas e as legendas; o índice por último. Devolve os
-    caminhos escritos e os removidos (relativos a `midia`)."""
+def escrever(midia, entrega, videos, base, indice):
+    """Os JSONs, as capas e as legendas; o índice por último. `videos`:
+    {(n, tradição): Video}. Devolve os caminhos escritos e os removidos
+    (relativos a `midia`)."""
     escritos = []
     escrever_json(midia / 'novela' / f'{entrega.id}.json',
-                  temporada_no_formato_do_app(entrega, medidos))
+                  temporada_no_formato_do_app(entrega, videos))
     escritos.append(f'novela/{entrega.id}.json')
     for c in entrega.capitulos:
         id_ = entrega.id_do_capitulo(c)
@@ -1115,6 +1262,11 @@ def _argumentos(argv):
     ap.add_argument('--motor', choices=MOTORES, default='microsoft',
                     help='a voz dos cartões dos capítulos (padrão: microsoft, a fase atual)')
     ap.add_argument('--sem-voz', action='store_true', help='não gera a voz dos capítulos')
+    ap.add_argument('--substituir-videos', action='store_true',
+                    help='o vídeo já publicado com OUTRO conteúdo sobe numa chave nova '
+                         '(video/<t>/<nn>-<tradicao>-<sha8>.mp4) e o JSON aponta para ela; o objeto '
+                         'velho fica intocado. Sem ela, a publicação recusa antes de subir ou '
+                         'escrever qualquer coisa')
     ap.add_argument('--simular', action='store_true',
                     help='escreve só os JSONs, as capas e as legendas em --midia (temporária); '
                          'não sobe, não gera voz, não roda o Dart')
@@ -1160,29 +1312,57 @@ def main(argv=None):
     ids = [entrega.id_do_capitulo(c) for c in entrega.capitulos]
     print(f'conferência ok: {entrega.id}, {len(ids)} capítulo(s), de {entrega.inicio} a {entrega.fim}')
 
-    # 2. Os vídeos medidos e o R2 (primeiro: nenhum JSON local aponta para um
-    #    vídeo que não subiu).
-    medidos, envios = {}, []
-    for c in entrega.capitulos:
-        for t in TRADICOES:
-            tamanho, sha = c.videos[t].stat().st_size, c.shas[t]
-            medidos[c.n, t] = (tamanho, sha)
-            envios.append((prefixo + chave_do_video(entrega, c, t), c.videos[t], tamanho, sha))
+    # 2. O R2, antes de qualquer escrita local (nenhum JSON aponta para um
+    #    vídeo que não está lá): a chave de cada vídeo, só consultando — o
+    #    que trocaria um vídeo publicado é recusado aqui, antes de subir
+    #    qualquer coisa —, e depois o envio do que falta.
+    videos = videos_da_entrega(entrega)
+    publicados = videos_publicados(midia, entrega.id)
     if args.simular:
-        print(f'R2 (simulado): subiria ao balde {BALDE}:')
-        for chave, _, tamanho, sha in envios:
-            print(f'    {chave}  {_milhar(tamanho)} bytes  sha256 {sha}')
-        enviados = [(chave, tamanho, 'simulado: não subiu') for chave, _, tamanho, _ in envios]
+        problemas, recusas = planejar_videos(entrega, videos, publicados,
+                                             r2_segundo_o_json_publicado(publicados),
+                                             args.substituir_videos, prefixo)
     else:
         try:
-            enviados = subir_videos(criar_cliente_r2(chaves), envios)
+            cliente = criar_cliente_r2(chaves)
+            problemas, recusas = planejar_videos(
+                entrega, videos, publicados,
+                lambda chave: _estado_no_r2(cliente, prefixo + chave),
+                args.substituir_videos, prefixo)
+        except Exception as e:  # noqa: BLE001 — qualquer erro do R2: limpo, nunca cru
+            print(f'R2: a consulta falhou ({descrever_erro(e, chaves)}); nada foi enviado nem '
+                  'escrito')
+            return 1
+    if recusas or problemas:
+        simulado = ' (simulado, pelo novela/<t>.json publicado)' if args.simular else ''
+        if recusas:
+            print(f'R2{simulado}: {len(recusas)} vídeo(s) já publicado(s) com OUTRO conteúdo — '
+                  'nada foi enviado nem escrito:')
+            for recusa in recusas:
+                print(f'  - {recusa}')
+            print('  sobrescrever quebraria o capítulo em todo aparelho que ainda tem o JSON velho '
+                  '(o sha256 não bate e o vídeo é recusado). Para publicar a versão nova numa chave '
+                  'nova (video/<t>/<nn>-<tradicao>-<sha8>.mp4), com o objeto velho intocado, rode '
+                  'de novo com --substituir-videos')
+        for problema in problemas:
+            print(f'R2{simulado}: {problema}')
+        return 1
+    if args.simular:
+        print(f'R2 (simulado): subiria ao balde {BALDE}:')
+        for v in videos:
+            if v.sobe:
+                print(f'    {prefixo}{v.chave}  {_milhar(v.bytes)} bytes  sha256 {v.sha256}')
+    else:
+        try:
+            subir_videos(cliente, videos, prefixo)
         except Exception as e:  # noqa: BLE001 — qualquer erro do R2: limpo, nunca cru
             print(f'R2: o envio falhou ({descrever_erro(e, chaves)}); nada foi escrito — '
                   'rode de novo (o que já subiu com o mesmo sha256 não sobe outra vez)')
             return 1
+    por_capitulo = {(v.capitulo.n, v.tradicao): v for v in videos}
 
     # 3. Os JSONs, as capas e as legendas.
-    escritos, removidos = escrever(midia, entrega, medidos, base, indice)
+    escritos, removidos = escrever(midia, entrega, por_capitulo, base, indice)
 
     # 4. Voz, manifesto e lint.
     if args.simular:
@@ -1221,12 +1401,23 @@ def main(argv=None):
     print(f'temporada {entrega.id} ("{entrega.titulo}"): {len(ids)} capítulo(s), de '
           f'{entrega.inicio} a {entrega.fim}')
     for c in entrega.capitulos:
-        videos = '  '.join(f'{c.nn}-{t}.mp4 {_milhar(medidos[c.n, t][0])} bytes' for t in TRADICOES)
-        print(f'  {entrega.id_do_capitulo(c)}  {c.dados["data"]}  {videos}  '
+        tamanhos = '  '.join(f'{c.nn}-{t}.mp4 {_milhar(por_capitulo[c.n, t].bytes)} bytes'
+                             for t in TRADICOES)
+        print(f'  {entrega.id_do_capitulo(c)}  {c.dados["data"]}  {tamanhos}  '
               f'legenda: {"sim" if c.legenda else "não"}')
-    print(f'R2 (balde {BALDE}):')
-    for chave, tamanho, estado in enviados:
-        print(f'  {chave}  {_milhar(tamanho)} bytes  {estado}')
+    contagem = {estado: sum(1 for v in videos if v.estado == estado)
+                for estado in (NOVO, JA_ESTAVA, TROCADO)}
+    print(f'R2 (balde {BALDE}'
+          f'{"; simulado: o R2 não foi consultado — o estado vem do novela/<t>.json publicado" if args.simular else ""}'
+          f'): {", ".join(f"{estado}: {n}" for estado, n in contagem.items())}')
+    for v in videos:
+        if args.simular:
+            acao = 'subiria' if v.sobe else 'não subiria'
+        else:
+            acao = 'subiu' if v.sobe else 'não subiu'
+        velha = (f' — {prefixo}{v.velha} fica intocado (o JSON velho ainda aponta para ele)'
+                 if v.estado == TROCADO else '')
+        print(f'  {prefixo}{v.chave}  {_milhar(v.bytes)} bytes  {v.estado}: {acao}{velha}')
     print(f'base "videos": {base}')
     if base.startswith(MARCADOR_DA_URL_PUBLICA):
         print('  (simulado: o arquivo de chaves não é lido — a rodada real põe aqui a Public '

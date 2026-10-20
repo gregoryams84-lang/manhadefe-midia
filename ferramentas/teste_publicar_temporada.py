@@ -17,6 +17,7 @@ import contextlib
 import hashlib
 import io
 import json
+import re
 import shutil
 import subprocess
 import sys
@@ -77,6 +78,8 @@ def midia_sintetica():
             estreito=video(pasta / 'estreito.mp4', 640, 1280, 4, 440),
             longo=video(pasta / 'longo.mp4', 720, 1280, 7, 440),
             cinco=video(pasta / 'cinco.mp4', 720, 1280, 5, 660),
+            # Outro vídeo válido de 4 s (outro conteúdo, outro sha256).
+            outro=video(pasta / 'outro.mp4', 720, 1280, 4, 550),
             # h264 High 4:4:4: o ffprobe diz h264, mas muito Android não toca.
             yuv444=video(pasta / 'yuv444.mp4', 720, 1280, 4, 440, pix_fmt='yuv444p'),
             capa=capa(pasta / 'capa.webp', 1080, 1350),
@@ -789,13 +792,23 @@ class ClienteFalso:
     def __init__(self, existentes=None):
         self.objetos = dict(existentes or {})  # chave -> (bytes, sha256)
         self.envios = []
+        self.apagados = []
 
     def head_object(self, Bucket, Key):  # noqa: N803 (o nome é o do boto3)
         assert Bucket == 'manhadefe-video', Bucket
         if Key not in self.objetos:
             raise self.NaoExiste()
         tamanho, sha = self.objetos[Key]
-        return {'ContentLength': tamanho, 'Metadata': {'sha256': sha}}
+        return {'ContentLength': tamanho, 'Metadata': {} if sha is None else {'sha256': sha}}
+
+    # A ferramenta nunca apaga no R2 (R8-B): se apagasse, o teste veria aqui.
+    def delete_object(self, Bucket, Key):  # noqa: N803
+        self.apagados.append(Key)
+        self.objetos.pop(Key, None)
+
+    def delete_objects(self, Bucket, Delete):  # noqa: N803
+        for objeto in Delete.get('Objects', []):
+            self.delete_object(Bucket, objeto['Key'])
 
     def upload_file(self, Filename, Bucket, Key, ExtraArgs=None):  # noqa: N803
         assert Bucket == 'manhadefe-video', Bucket
@@ -824,22 +837,134 @@ class ClienteQueFalha(ClienteFalso):
         return super().upload_file(Filename, Bucket, Key, ExtraArgs)
 
 
-def teste_subir_videos_pula_o_que_ja_esta_la_com_o_mesmo_tamanho_e_sha256():
+def teste_planejar_videos_escolhe_a_chave_sem_nunca_sobrescrever():
+    """R8-B, a função pura: (1) a chave do JSON publicado, se o objeto lá é
+    este; (2) a fixa — ausente: novo; igual: já estava; (3) a fixa com outro
+    conteúdo: trocado — sem a opção, recusa (chave, capítulo e data); com
+    ela, a chave versionada ...-<sha8>.mp4 (lá com este conteúdo: reusa; com
+    outro: problema)."""
     with tempfile.TemporaryDirectory() as tmp:
-        a, b, c = (Path(tmp) / f'{n}.mp4' for n in 'abc')
-        for arquivo, conteudo in ((a, b'aaaa'), (b, b'bbbbbb'), (c, b'cc')):
-            arquivo.write_bytes(conteudo)
-        envios = [('x/a.mp4', a, 4, sha256_de(a)), ('x/b.mp4', b, 6, sha256_de(b)),
-                  ('x/c.mp4', c, 2, sha256_de(c))]
-        cliente = ClienteFalso({'x/b.mp4': (6, sha256_de(b)),        # igual: pula
-                                'x/c.mp4': (2, 'outro-sha')})        # mesmo tamanho, outro sha
-        resultado = pt.subir_videos(cliente, envios)
-        assert resultado == [('x/a.mp4', 4, 'subiu'), ('x/b.mp4', 6, 'já estava'),
-                             ('x/c.mp4', 2, 'subiu')], resultado
-        assert [k for k, _ in cliente.envios] == ['x/a.mp4', 'x/c.mp4']
-        for chave, extra in cliente.envios:
-            assert extra == {'ContentType': 'video/mp4',
-                             'Metadata': {'sha256': dict((e[0], e[3]) for e in envios)[chave]}}
+        entrega, problemas = pt.conferir_entrega(entrega_valida(tmp))
+        assert problemas == []
+        c1, e1, c2, e2 = pt.videos_da_entrega(entrega)
+        r2 = {'video/t1/01-catolico.mp4': (c1.bytes, 'a' * 64),        # outro conteúdo
+              'video/t1/01-evangelico.mp4': (e1.bytes, e1.sha256),     # este
+              # 02-catolico: ausente
+              'video/t1/02-evangelico.mp4': (e2.bytes, None)}          # sem o sha256: outro
+
+        def planejar(publicados=None, substituir=False):
+            videos = pt.videos_da_entrega(entrega)
+            problemas, recusas = pt.planejar_videos(entrega, videos, publicados or {}, r2.get,
+                                                    substituir, prefixo='teste/midia/')
+            return videos, problemas, recusas
+
+        videos, problemas, recusas = planejar()
+        assert problemas == [], problemas
+        assert recusas == ['teste/midia/video/t1/01-catolico.mp4 (cap. 1, t1c1, 2026-11-10)',
+                           'teste/midia/video/t1/02-evangelico.mp4 (cap. 2, t1c2, 2026-11-11)'], recusas
+        videos, problemas, recusas = planejar(substituir=True)
+        assert problemas == recusas == []
+        assert [(v.chave, v.estado, v.sobe) for v in videos] == [
+            (f'video/t1/01-catolico-{c1.sha256[:8]}.mp4', pt.TROCADO, True),
+            ('video/t1/01-evangelico.mp4', pt.JA_ESTAVA, False),
+            ('video/t1/02-catolico.mp4', pt.NOVO, True),
+            (f'video/t1/02-evangelico-{e2.sha256[:8]}.mp4', pt.TROCADO, True)]
+        assert videos[0].velha == 'video/t1/01-catolico.mp4'
+        assert re.fullmatch(r'video/t1/01-catolico-[0-9a-f]{8}\.mp4', videos[0].chave)
+        # A versionada já lá: com este conteúdo, reusa (não sobe); com outro, problema.
+        r2[f'video/t1/01-catolico-{c1.sha256[:8]}.mp4'] = (c1.bytes, c1.sha256)
+        r2[f'video/t1/02-evangelico-{e2.sha256[:8]}.mp4'] = (e2.bytes, 'b' * 64)
+        videos, problemas, recusas = planejar(substituir=True)
+        assert (videos[0].estado, videos[0].sobe) == (pt.TROCADO, False)
+        assert len(problemas) == 1 and f'02-evangelico-{e2.sha256[:8]}.mp4' in problemas[0], problemas
+        # A chave que o JSON publicado dá, com este conteúdo: já estava — sem a opção.
+        publicados = {(1, 'catolico'): {'arquivo': f'video/t1/01-catolico-{c1.sha256[:8]}.mp4',
+                                        'bytes': c1.bytes, 'sha256': c1.sha256}}
+        videos, problemas, recusas = planejar(publicados)
+        assert (videos[0].chave, videos[0].estado, videos[0].sobe) == \
+            (f'video/t1/01-catolico-{c1.sha256[:8]}.mp4', pt.JA_ESTAVA, False)
+        assert recusas == ['teste/midia/video/t1/02-evangelico.mp4 (cap. 2, t1c2, 2026-11-11)']
+
+
+def teste_republicar_video_trocado_sem_a_opcao_recusa_antes_de_subir_ou_escrever():
+    """R8-B: o vídeo no ar com outro sha256 nunca é sobrescrito. Sem
+    --substituir-videos, a publicação lista chave, capítulo e data e sai com
+    1 — nada sobe, nada é escrito, nada roda."""
+    with tempfile.TemporaryDirectory() as tmp:
+        dubles = Dubles(tmp)
+        midia = dubles.midia()
+        pasta = entrega_valida(tmp)
+        dubles.cliente.objetos['video/t1/02-catolico.mp4'] = (123, 'a' * 64)
+        objetos, antes = dict(dubles.cliente.objetos), _arvore(midia)
+        codigo, saida = dubles.publicar(pasta, midia, '--sem-voz')
+        assert codigo == 1, saida
+        assert 'video/t1/02-catolico.mp4 (cap. 2, t1c2, 2026-11-11)' in saida, saida
+        assert '--substituir-videos' in saida
+        assert dubles.cliente.envios == [] and dubles.cliente.objetos == objetos
+        assert _arvore(midia) == antes and dubles.comandos == []
+
+
+def teste_com_substituir_videos_sobe_na_chave_versionada_e_o_velho_fica_intocado():
+    """R8-B: com a opção, o vídeo trocado sobe em video/<t>/<nn>-<tradicao>-
+    <sha8>.mp4 e o JSON aponta para ela; o objeto velho fica intocado (o
+    aparelho com o JSON velho baixa o velho; com o novo, o novo). O resumo
+    separa novo, já estava e trocado. Publicar de novo, sem a opção, reusa
+    a chave que o JSON publicado já dá. Nada é apagado no R2, nunca."""
+    with tempfile.TemporaryDirectory() as tmp:
+        dubles = Dubles(tmp)
+        midia = dubles.midia()
+        pasta = entrega_valida(tmp)
+        velho = (123, 'a' * 64)
+        dubles.cliente.objetos['teste/midia/video/t1/02-catolico.mp4'] = velho
+        extra = ('--sem-voz', '--r2-prefixo', 'teste/midia/')
+        codigo, saida = dubles.publicar(pasta, midia, *extra, '--substituir-videos')
+        assert codigo == 0, saida
+        sha = sha256_de(pasta / '02-catolico.mp4')
+        nova = f'video/t1/02-catolico-{sha[:8]}.mp4'
+        assert [k for k, _ in dubles.cliente.envios] == [
+            'teste/midia/video/t1/01-catolico.mp4', 'teste/midia/video/t1/01-evangelico.mp4',
+            'teste/midia/' + nova, 'teste/midia/video/t1/02-evangelico.mp4']
+        assert dubles.cliente.objetos['teste/midia/video/t1/02-catolico.mp4'] == velho
+        assert dubles.cliente.apagados == []
+        t1 = json.loads((midia / 'novela' / 't1.json').read_text(encoding='utf-8'))
+        assert t1['capitulos'][1]['video']['catolico'] == {
+            'arquivo': nova, 'bytes': (pasta / '02-catolico.mp4').stat().st_size, 'sha256': sha}
+        assert t1['capitulos'][0]['video']['catolico']['arquivo'] == 'video/t1/01-catolico.mp4'
+        assert 'novo: 3, já estava: 0, trocado (chave nova): 1' in saida, saida
+        assert f'teste/midia/{nova}' in saida and 'intocado' in saida
+        # De novo, sem a opção: o JSON publicado já dá a chave nova, com este
+        # conteúdo — já estava; nada sobe.
+        enviados = len(dubles.cliente.envios)
+        codigo, saida = dubles.publicar(pasta, midia, *extra)
+        assert codigo == 0, saida
+        assert len(dubles.cliente.envios) == enviados
+        assert 'novo: 0, já estava: 4, trocado (chave nova): 0' in saida, saida
+        t1 = json.loads((midia / 'novela' / 't1.json').read_text(encoding='utf-8'))
+        assert t1['capitulos'][1]['video']['catolico']['arquivo'] == nova
+        assert dubles.cliente.apagados == []
+    # E o código nem tem como apagar no R2.
+    fonte = Path(pt.__file__).read_text(encoding='utf-8')
+    assert 'delete_object' not in fonte and 'delete_objects' not in fonte
+
+
+def teste_simular_preve_o_trocado_pelo_json_publicado():
+    """Na simulação o R2 não é consultado: o estado vem do novela/<t>.json
+    publicado na pasta — o vídeo que mudou é trocado e recusa sem a opção,
+    como a rodada real recusaria; com ela, a chave versionada."""
+    with tempfile.TemporaryDirectory() as tmp:
+        pasta = entrega_valida(tmp)
+        midia = Path(tmp) / 'midia'
+        assert publicar(pasta, midia)[0] == 0          # a versão "publicada"
+        shutil.copyfile(midia_sintetica()['outro'], pasta / '01-catolico.mp4')
+        deve_recusar(pasta, midia, 'video/t1/01-catolico.mp4 (cap. 1, t1c1, 2026-11-10)',
+                     '--substituir-videos')
+        codigo, saida = publicar(pasta, midia, '--substituir-videos')
+        assert codigo == 0, saida
+        sha = sha256_de(pasta / '01-catolico.mp4')
+        t1 = json.loads((midia / 'novela' / 't1.json').read_text(encoding='utf-8'))
+        assert t1['capitulos'][0]['video']['catolico']['arquivo'] == \
+            f'video/t1/01-catolico-{sha[:8]}.mp4'
+        assert 'novo: 0, já estava: 3, trocado (chave nova): 1' in saida, saida
 
 
 def teste_cliente_do_r2_e_o_do_boto3_no_endpoint_da_conta_sem_rede():
