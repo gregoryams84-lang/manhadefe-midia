@@ -677,14 +677,17 @@ def teste_indice_final_inteiro_conferido_antes_de_escrever():
 
         pasta = entrega_valida(tmp)   # t1, 10 e 11/11: não toca nenhuma das outras
         # Duas que já estavam se sobrepõem entre si.
-        indice(_resumo('t2', '2026-12-01', '2026-12-07', 7), _resumo('t3', '2026-12-07', '2026-12-13', 7))
+        indice(_resumo('t2', '2026-12-01', '2026-12-07', 7),
+               _resumo('t3', '2026-12-07', '2026-12-13', 7))
         deve_recusar(pasta, midia, 'sobrepõem', 't2 (2026-12-01 a 2026-12-07)',
                      't3 (2026-12-07 a 2026-12-13)')
         # O mesmo id duas vezes (em datas que não se tocam).
-        indice(_resumo('t2', '2026-12-01', '2026-12-07', 7), _resumo('t2', '2026-12-20', '2026-12-26', 7))
+        indice(_resumo('t2', '2026-12-01', '2026-12-07', 7),
+               _resumo('t2', '2026-12-20', '2026-12-26', 7))
         deve_recusar(pasta, midia, 'o id t2 aparece 2 vezes')
         # Arrumado, passa — e a temporada nova fica entre as outras, em ordem.
-        indice(_resumo('t2', '2026-12-01', '2026-12-07', 7), _resumo('t0', '2026-10-21', '2026-10-22', 2))
+        indice(_resumo('t2', '2026-12-01', '2026-12-07', 7),
+               _resumo('t0', '2026-10-21', '2026-10-22', 2))
         assert publicar(pasta, midia)[0] == 0
         final = json.loads((midia / 'novela' / 'temporadas.json').read_text(encoding='utf-8'))
         assert [t['id'] for t in final['temporadas']] == ['t0', 't1', 't2']

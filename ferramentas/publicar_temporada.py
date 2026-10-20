@@ -91,7 +91,8 @@ o repositório do app ou qualquer pasta com .git (ela ou uma acima dela);
 escreve os JSONs, as capas e as legendas nela; não sobe ao R2, não gera
 voz, não roda o Dart e nunca lê o arquivo de chaves (sem --videos-base e
 sem índice, a base é o marcador "<Public Development URL>/" + prefixo) —
-imprime o que faria.
+imprime o que faria. O estado do R2 (novo, já estava, trocado) sai do
+novela/<t>.json publicado na pasta, sem consultar o balde.
 
 As chaves do R2 são lidas do arquivo (--r2) pelos rótulos ("Access Key ID",
 "Secret Access Key", a URL https://<conta>.r2.cloudflarestorage.com e a
@@ -105,6 +106,7 @@ Uso:
   python ferramentas/publicar_temporada.py "<entrega>" --simular --midia <pasta temporária>
   python ferramentas/publicar_temporada.py "<entrega>" --motor microsoft
   python ferramentas/publicar_temporada.py "<entrega>" --midia <cópia do repo> --r2-prefixo teste/midia/ --motor microsoft
+  python ferramentas/publicar_temporada.py "<entrega>" --motor microsoft --substituir-videos   # vídeo já publicado trocado
 """
 import argparse
 import hashlib
@@ -1458,6 +1460,8 @@ def main(argv=None):
         for v in videos:
             if v.sobe:
                 print(f'    {prefixo}{v.chave}  {_milhar(v.bytes)} bytes  sha256 {v.sha256}')
+        if not any(v.sobe for v in videos):
+            print('    (nada: todos já estão lá, segundo o novela/<t>.json publicado)')
     else:
         try:
             subir_videos(cliente, videos, prefixo)
@@ -1530,11 +1534,11 @@ def main(argv=None):
                              for t in TRADICOES)
         print(f'  {entrega.id_do_capitulo(c)}  {c.dados["data"]}  {tamanhos}  '
               f'legenda: {"sim" if c.legenda else "não"}')
-    contagem = {estado: sum(1 for v in videos if v.estado == estado)
-                for estado in (NOVO, JA_ESTAVA, TROCADO)}
-    print(f'R2 (balde {BALDE}'
-          f'{"; simulado: o R2 não foi consultado — o estado vem do novela/<t>.json publicado" if args.simular else ""}'
-          f'): {", ".join(f"{estado}: {n}" for estado, n in contagem.items())}')
+    contagem = ', '.join(f'{estado}: {sum(1 for v in videos if v.estado == estado)}'
+                         for estado in (NOVO, JA_ESTAVA, TROCADO))
+    nota = ('; simulado: o R2 não foi consultado — o estado vem do novela/<t>.json publicado'
+            if args.simular else '')
+    print(f'R2 (balde {BALDE}{nota}): {contagem}')
     for v in videos:
         if args.simular:
             acao = 'subiria' if v.sobe else 'não subiria'
@@ -1563,8 +1567,9 @@ def main(argv=None):
     if args.simular:
         print('voz, manifesto e lint: não rodaram (simulado)')
     else:
-        voz = 'pulada (--sem-voz)' if args.sem_voz else f'{args.motor}, {len(ids) * 2} arquivos, STT ok'
-        print(f'voz: {voz}; manifesto refeito; lint sem erro')
+        da_voz = ('pulada (--sem-voz)' if args.sem_voz
+                  else f'{args.motor}, {len(ids) * 2} arquivos, STT ok')
+        print(f'voz: {da_voz}; manifesto refeito; lint sem erro')
     print('lembrete: commit por caminho (git add -- <novos>; git commit -- <caminhos>) + push SÓ '
           'com OK do Gregory.')
     return 0
