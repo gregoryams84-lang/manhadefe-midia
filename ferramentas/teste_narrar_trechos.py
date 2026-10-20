@@ -14,7 +14,13 @@ deste repo; as 4 cópias evangélicas das comuns vão para o --trabalho
 temporário. A ferramenta RECUSA --simular sem --midia e --app temporários
 (R6-E, 09/10) — há um teste só disso. O teste do catálogo inteiro (~8 min)
 só roda com NARRAR_TRECHOS_TESTE_LENTO=1.
+
+Os marcas.json (D6 da versão 5) pedem o catálogo publicado inteiro (28 + 9
+chaves): uma montagem simulada só, feita uma vez por processo com o ritmo
+no máximo (toda peça com a duração mínima), reaproveitada pelos testes
+deles — quem mexe nela trabalha numa cópia.
 """
+import atexit
 import json
 import os
 import shutil
@@ -564,6 +570,183 @@ def teste_simular_exige_midia_e_app_temporarios_e_nao_escreve_nada():
         assert nt.main(['--simular', '--app', str(app), '--midia', str(midia)] + resto) == 0
         assert (midia / 'oracoes' / 'ave-maria.m4a').exists()
         assert ave_maria.read_text(encoding='utf-8') != marcas_antes
+
+
+# ---------------------------------------------------------------------------
+# marcas.json do Terço e das orações (D6 da versão 5): o app lê as marcas do
+# servidor — terco/marcas.json e oracoes/marcas.json, só os arquivos
+# publicados, chaves em ordem alfabética.
+# ---------------------------------------------------------------------------
+
+_MONTAGEM = {}
+
+
+def catalogo_montado():
+    """A raiz temporária (app/, midia/, trabalho/) com o catálogo inteiro
+    montado em modo simulado, feita UMA vez por processo. Com o ritmo
+    simulado no máximo, toda peça dura DURACAO_MINIMA_SIMULADA: o áudio
+    encolhe ~5 vezes e a montagem cabe no tempo de um teste comum. Só
+    leitura: quem mexe trabalha em copia_da_montagem()."""
+    if 'raiz' not in _MONTAGEM:
+        tmp = tempfile.mkdtemp(prefix='marcas-json-')
+        atexit.register(shutil.rmtree, tmp, True)
+        app = app_de_teste(tmp)
+        ritmo = nt.CARACTERES_POR_SEGUNDO
+        try:
+            nt.CARACTERES_POR_SEGUNDO = 1e9
+            assert nt.main(args_comuns(tmp, app)) == 0
+        finally:
+            nt.CARACTERES_POR_SEGUNDO = ritmo
+        _MONTAGEM['raiz'] = Path(tmp)
+    return _MONTAGEM['raiz']
+
+
+def copia_da_montagem(tmp):
+    destino = Path(tmp) / 'copia'
+    shutil.copytree(catalogo_montado(), destino)
+    return destino
+
+
+def args_de_exportar(raiz):
+    return ['--exportar-marcas', '--app', str(raiz / 'app'), '--midia', str(raiz / 'midia'),
+            '--trabalho', str(raiz / 'trabalho'), '--log', str(raiz / 'log.jsonl')]
+
+
+def marcas_publicadas(midia):
+    return [midia / 'terco' / 'marcas.json', midia / 'oracoes' / 'marcas.json']
+
+
+def marcas_no_app(trecho):
+    dados = nt.ler_json(trecho.json)
+    return dados['marcas'] if trecho.posicao is None else dados['trechos'][trecho.posicao]['marcas']
+
+
+def deve_sair(argv, *trechos_da_mensagem):
+    """main(argv) tem de parar com SystemExit (código != 0) e uma mensagem
+    com cada trecho pedido; devolve a mensagem."""
+    try:
+        nt.main(argv)
+    except SystemExit as e:
+        assert e.code != 0, e.code
+        for trecho in trechos_da_mensagem:
+            assert trecho in str(e.code), (trecho, str(e.code))
+        return str(e.code)
+    raise AssertionError(f'deveria ter parado ({trechos_da_mensagem})')
+
+
+def teste_montagem_grava_os_dois_marcas_json_com_28_e_9_chaves_iguais_aos_jsons_do_app():
+    raiz = catalogo_montado()
+    midia, app = raiz / 'midia', raiz / 'app'
+    terco_json, oracoes_json = marcas_publicadas(midia)
+    terco = json.loads(terco_json.read_text(encoding='utf-8'))
+    oracoes = json.loads(oracoes_json.read_text(encoding='utf-8'))
+    assert len(terco) == 28 and len(oracoes) == 9, (len(terco), len(oracoes))
+    trechos = nt.catalogo(app, midia, raiz / 'trabalho')
+    # Só os arquivos PUBLICADOS, pela chave publicada: as cópias evangélicas
+    # das comuns (no trabalho) nunca entram.
+    assert set(terco) == {t.arquivo for t in trechos if nt.eh_do_terco(t)}
+    assert set(oracoes) == {t.arquivo for t in trechos if t.arquivo.startswith('oracoes/')}
+    for t in trechos:
+        if t.json is None:
+            continue
+        publicadas = (terco if nt.eh_do_terco(t) else oracoes)[t.arquivo]
+        assert publicadas == marcas_no_app(t), t.id
+    assert terco['terco/gozosos-fecho.m4a'] == []
+    for arquivo in (terco_json, oracoes_json):
+        bruto = arquivo.read_bytes()
+        assert not bruto.startswith(b'\xef\xbb\xbf'), 'UTF-8 sem BOM'
+        assert b'\r' not in bruto and bruto.endswith(b'\n'), 'LF'
+        chaves = list(json.loads(bruto.decode('utf-8')))
+        assert chaves == sorted(chaves), 'chaves em ordem alfabética'
+    # Uma chave por linha, as marcas como nos JSONs do app (inteiro quando
+    # redondo): o diff de uma correção é uma linha.
+    linhas = terco_json.read_text(encoding='utf-8').splitlines()
+    assert len(linhas) == 28 + 2 and linhas[0] == '{' and linhas[-1] == '}'
+    abertura = nt.ler_json(app / 'assets' / 'content' / 'terco' / 'gozosos.json')['trechos'][0]['marcas']
+    assert f'  "terco/gozosos-abertura.m4a": {nt.formatar_marcas(abertura)},' in linhas
+
+
+def teste_construir_troca_so_a_chave_do_trecho_no_marcas_json_e_regrava_ordenado():
+    with tempfile.TemporaryDirectory() as tmp:
+        app = app_de_teste(tmp)
+        midia = midia_de_teste(tmp)
+        oracoes_json = midia / 'oracoes' / 'marcas.json'
+        oracoes_json.parent.mkdir(parents=True)
+        # Um marcas.json que já existe, fora de ordem e com chaves que esta
+        # montagem não toca: ficam como estavam.
+        oracoes_json.write_text('{"oracoes/salmo-23.m4a": [0, 1], "oracoes/creio.m4a": [0, 2, 3, 4]}',
+                                encoding='utf-8')
+        assert nt.main(args_comuns(tmp, app) + ['--ids', 'ave-maria,salmo-23-evangelico']) == 0
+        dados = json.loads(oracoes_json.read_text(encoding='utf-8'))
+        assert list(dados) == ['oracoes/ave-maria.m4a', 'oracoes/creio.m4a', 'oracoes/salmo-23.m4a']
+        assert dados['oracoes/ave-maria.m4a'] == \
+            nt.ler_json(app / 'assets' / 'content' / 'oracoes' / 'ave-maria.json')['marcas']
+        # A cópia evangélica do salmo não é publicada: não grava marca nenhuma.
+        assert dados['oracoes/salmo-23.m4a'] == [0, 1]
+        assert dados['oracoes/creio.m4a'] == [0, 2, 3, 4]
+        assert not (midia / 'terco' / 'marcas.json').exists(), 'nenhum trecho do Terço montado'
+
+
+def teste_exportar_marcas_reproduz_os_dois_arquivos_byte_a_byte():
+    with tempfile.TemporaryDirectory() as tmp:
+        raiz = copia_da_montagem(tmp)
+        originais = {p: p.read_bytes() for p in marcas_publicadas(raiz / 'midia')}
+        for p in originais:
+            p.unlink()
+        m4a = {p: p.stat().st_mtime_ns for p in (raiz / 'midia').glob('*/*.m4a')}
+        assert len(m4a) == 37
+        assert nt.main(args_de_exportar(raiz)) == 0
+        for p, bruto in originais.items():
+            assert p.read_bytes() == bruto, p.name
+        # Não gera nem recodifica nada: os .m4a publicados ficam intocados.
+        assert {p: p.stat().st_mtime_ns for p in (raiz / 'midia').glob('*/*.m4a')} == m4a
+
+
+def teste_exportar_marcas_exige_trabalho_e_midia():
+    # A recusa vem antes de ler qualquer coisa: as pastas nem existem.
+    argv = args_de_exportar(Path(tempfile.gettempdir()) / 'exportar-marcas-nao-existe')
+    sem_trabalho = argv[:5] + argv[7:]
+    sem_midia = argv[:3] + argv[5:]
+    assert '--trabalho' not in sem_trabalho and '--midia' not in sem_midia
+    deve_sair(sem_trabalho, '--trabalho')
+    deve_sair(sem_midia, '--midia')
+
+
+def teste_exportar_marcas_recusa_pecas_que_nao_sao_as_do_audio_publicado():
+    with tempfile.TemporaryDirectory() as tmp:
+        raiz = copia_da_montagem(tmp)
+        trabalho, midia = raiz / 'trabalho', raiz / 'midia'
+        originais = {p: p.read_bytes() for p in marcas_publicadas(midia)}
+        trechos = nt.catalogo(raiz / 'app', midia, trabalho)
+        dezena = _por_id(trechos, 'gozosos-dezena-2')
+        # A peça 2 da dezena é a meditação do 2º mistério gozoso: só ela a usa.
+        _, peca, chave = nt.pecas_do_trecho(dezena, True)[1]
+        assert peca.rotulo == 'meditacao 2'
+        wav, _, meta = nt.arquivos_da_peca(trabalho, 'catolico', chave)
+        original = meta.read_text(encoding='utf-8')
+
+        # (1) o `segundos` adulterado: o metadado não é mais o do .wav medido.
+        dados = json.loads(original)
+        dados['segundos'] = round(dados['segundos'] + 1.5, 3)
+        meta.write_text(json.dumps(dados), encoding='utf-8')
+        deve_sair(args_de_exportar(raiz), 'gozosos-dezena-2', chave)
+        assert {p: p.read_bytes() for p in marcas_publicadas(midia)} == originais, 'nada gravado'
+
+        # (2) a peça gerada de novo DEPOIS da montagem (o .wav e o .json
+        # novos, coerentes entre si): a soma não bate com o áudio publicado.
+        nt.silencio_wav(wav, dados['segundos'])
+        dados['segundos'] = round(nt.duracao_segundos(wav), 3)
+        meta.write_text(json.dumps(dados), encoding='utf-8')
+        mensagem = deve_sair(args_de_exportar(raiz), 'terco/gozosos-dezena-2.m4a',
+                             'não são as do áudio publicado')
+        assert 'gozosos-dezena-1' not in mensagem, 'só o trecho que usa a peça'
+        assert {p: p.read_bytes() for p in marcas_publicadas(midia)} == originais, 'nada gravado'
+
+        # Desfeito, volta a passar e grava o mesmo de antes.
+        nt.silencio_wav(wav, json.loads(original)['segundos'])
+        meta.write_text(original, encoding='utf-8')
+        assert nt.main(args_de_exportar(raiz)) == 0
+        assert {p: p.read_bytes() for p in marcas_publicadas(midia)} == originais
 
 
 def teste_lento_catalogo_inteiro_montado_pelo_ffmpeg_real():

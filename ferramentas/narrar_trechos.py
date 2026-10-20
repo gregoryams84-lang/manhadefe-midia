@@ -25,6 +25,17 @@ assets/content/terco/*.json e assets/content/oracoes/*.json. A tela do Terço
 passa por cada marca; a oração guiada acende um passo. Hoje as marcas são
 chute; com o áudio real, as contas acenderiam fora de hora.
 
+Desde a versão 5 do app (D6), as mesmas marcas também são PUBLICADAS:
+<midia>/terco/marcas.json e <midia>/oracoes/marcas.json, um objeto com a
+chave publicada de cada áudio (`terco/gozosos-abertura.m4a`) e as marcas em
+segundos, chaves em ordem alfabética. O app as lê do servidor (e fica com as
+embutidas se faltarem): corrigir o tempo de uma marca deixa de pedir versão
+nova na loja. Toda montagem que grava as marcas no JSON do app troca também
+a chave do trecho no marcas.json da pasta dele; --exportar-marcas refaz os
+dois arquivos inteiros a partir das peças do diretório de trabalho, sem
+gerar nem recodificar nada, e recusa se as peças não forem as do áudio
+publicado (a soma delas e das pausas tem de dar a duração do .m4a).
+
 Como a marca é exata por construção: cada PEÇA (um passo de oração, uma
 Ave-Maria inteira vale duas peças, o Glória vale uma) vira um arquivo
 próprio, medido com ffprobe; entre as peças entra um silêncio de duração
@@ -89,6 +100,7 @@ Uso:
   python ferramentas/narrar_trechos.py --so-contar
   python ferramentas/narrar_trechos.py --motor microsoft                 # a fase atual
   python ferramentas/narrar_trechos.py --exportar-textos ferramentas/narracao/trechos.jsonl
+  python ferramentas/narrar_trechos.py --exportar-marcas --trabalho ferramentas/narracao/trechos-microsoft --midia .
   python ferramentas/narrar_trechos.py --mostrar gozosos-dezena-1      # o texto, peça a peça
   python ferramentas/narrar_trechos.py --simular --midia /tmp/midia --app /tmp/app   # prova ponta a ponta
   python ferramentas/narrar_trechos.py                                 # tudo o que falta
@@ -128,6 +140,9 @@ PASTA_DAS_ORACOES = 'oracoes'
 # diretório de trabalho, nesta subpasta — nunca em <midia>/oracoes/: o app
 # não as pede, e o manifesto não as lista.
 PASTA_EVANGELICO_NO_TRABALHO = 'oracoes-evangelico'
+# As marcas publicadas (D6 da versão 5): um arquivo destes em terco/ e outro
+# em oracoes/, ao lado dos áudios — <midia>/terco/marcas.json.
+ARQUIVO_DE_MARCAS = 'marcas.json'
 TRABALHO_PADRAO = RAIZ / 'ferramentas' / 'narracao' / 'trechos'
 # Peças simuladas nunca se misturam com as reais: outro diretório. As da
 # Microsoft idem (a chave da peça não leva a voz).
@@ -149,6 +164,11 @@ PAUSA_APOS_MEDITACAO = 2.0   # depois da meditação do mistério, antes do Pai-
 # seca, cortada no "Amém". Vem depois da última peça: não mexe em marca
 # nenhuma (a marca é o começo de uma conta), só na duração final.
 PAUSA_DE_SAIDA = 0.6
+# Quanto o .m4a montado pode diferir da soma das peças e das pausas: o AAC
+# acrescenta uns milissegundos de priming; mais que isso é peça errada na
+# lista (na montagem) ou peça que não é a do áudio publicado (no
+# --exportar-marcas).
+FOLGA_DA_DURACAO = 0.15
 
 # --simular: ritmo de fala plausível. As vozes aprovadas rodam a ~120 palavras
 # por minuto (docs/fase4/narracao-parametros.md); em português dá por volta
@@ -554,11 +574,30 @@ def _silencio(trabalho, segundos):
     return sil
 
 
+# Uma medição por .wav: as duas peças da Ave-Maria aparecem 10 vezes cada
+# numa dezena, em 24 dos 28 trechos do Terço, e medir cada ocorrência com o
+# ffprobe (40 a 80 ms cada) era o grosso do tempo da montagem — 835 chamadas
+# no catálogo inteiro. A chave leva o tamanho e o mtime: a peça refeita no
+# mesmo caminho é medida de novo.
+_DURACOES = {}
+
+
+def duracao_do_wav(wav):
+    """A duração do .wav pelo ffprobe (a mesma medida de sempre), medida uma
+    vez por versão do arquivo."""
+    wav = Path(wav)
+    estado = wav.stat()
+    chave = (os.path.normcase(str(wav.resolve())), estado.st_size, estado.st_mtime_ns)
+    if chave not in _DURACOES:
+        _DURACOES[chave] = duracao_segundos(wav)
+    return _DURACOES[chave]
+
+
 def montar(trecho, wavs, trabalho):
     """Concatena peças e silêncios num .m4a só (uma codificação), com a
     PAUSA_DE_SAIDA no fim, e devolve (marcas, duração total medida). `wavs`
     são os .wav das peças, na ordem."""
-    duracoes = [duracao_segundos(w) for w in wavs]
+    duracoes = [duracao_do_wav(w) for w in wavs]
     marcas, previsto = calcular_marcas(trecho.pecas, duracoes)
     conferir_crescentes(marcas, trecho.id)
     previsto += PAUSA_DE_SAIDA
@@ -584,7 +623,7 @@ def montar(trecho, wavs, trabalho):
     total = duracao_segundos(trecho.destino)
     # O AAC acrescenta uns milissegundos de priming; mais que isso é sinal de
     # peça errada na lista.
-    if abs(total - previsto) > 0.15:
+    if abs(total - previsto) > FOLGA_DA_DURACAO:
         raise RuntimeError(f'{trecho.id}: o arquivo final tem {total:.3f}s, '
                            f'as peças somam {previsto:.3f}s')
     return marcas, total
@@ -637,6 +676,64 @@ def gravar_marcas(trecho, marcas):
         f.write(depois)
 
 
+def eh_publicado(trecho):
+    """O áudio vai ao servidor (terco/ ou oracoes/) — não é a cópia
+    evangélica das comuns, que fica no diretório de trabalho."""
+    return trecho.arquivo.startswith((PASTA_DO_TERCO + '/', PASTA_DAS_ORACOES + '/'))
+
+
+def arquivo_de_marcas(trecho):
+    """O marcas.json da pasta do trecho publicado: <midia>/terco/marcas.json
+    ou <midia>/oracoes/marcas.json — ao lado do áudio."""
+    return trecho.destino.parent / ARQUIVO_DE_MARCAS
+
+
+def texto_das_marcas(marcas_por_chave):
+    """O conteúdo do marcas.json: as chaves publicadas em ordem alfabética,
+    uma por linha, e as marcas como nos JSONs do app (inteiro quando
+    redondo) — corrigir uma marca muda uma linha do diff."""
+    if not marcas_por_chave:
+        return '{}' + chr(10)
+    linhas = [f'  {json.dumps(chave, ensure_ascii=False)}: {formatar_marcas(marcas)}'
+              for chave, marcas in sorted(marcas_por_chave.items())]
+    return '{' + chr(10) + (',' + chr(10)).join(linhas) + chr(10) + '}' + chr(10)
+
+
+def ler_marcas_publicadas(caminho):
+    """{chave: marcas} do marcas.json, ou {} se ele ainda não existe. Um
+    arquivo que não é um objeto de listas para tudo: regravá-lo por cima
+    apagaria as outras chaves."""
+    if not caminho.exists():
+        return {}
+    dados = json.loads(caminho.read_text(encoding='utf-8'))
+    if not isinstance(dados, dict) or not all(isinstance(v, list) for v in dados.values()):
+        raise ValueError(f'{caminho}: não é um objeto {{"chave": [marcas]}} — conserte à mão '
+                         'ou refaça com --exportar-marcas')
+    return dados
+
+
+def gravar_marcas_publicadas(caminho, marcas_por_chave):
+    """Grava o marcas.json inteiro (UTF-8 sem BOM, LF) e confere, reparseando,
+    que o texto diz exatamente as marcas pedidas."""
+    texto = texto_das_marcas(marcas_por_chave)
+    if json.loads(texto) != marcas_por_chave:
+        raise ValueError(f'{caminho}: o texto gravado não reproduz as marcas')
+    caminho.parent.mkdir(parents=True, exist_ok=True)
+    parcial = caminho.with_name(caminho.name + '.parte')
+    with open(parcial, 'w', encoding='utf-8', newline='') as f:
+        f.write(texto)
+    parcial.replace(caminho)
+
+
+def atualizar_marcas_publicadas(trecho, marcas):
+    """Troca só a chave deste trecho no marcas.json da pasta dele (as outras
+    ficam como estavam) e regrava em ordem alfabética."""
+    caminho = arquivo_de_marcas(trecho)
+    dados = ler_marcas_publicadas(caminho)
+    dados[trecho.arquivo] = marcas
+    gravar_marcas_publicadas(caminho, dados)
+
+
 # ---------------------------------------------------------------------------
 # Orquestração
 # ---------------------------------------------------------------------------
@@ -649,7 +746,8 @@ def pecas_do_trecho(trecho, reaproveitar):
 
 def construir(trecho, trabalho, reaproveitar, log):
     """Monta o arquivo final a partir das peças já prontas, grava as marcas
-    (se o trecho tiver JSON) e registra no log."""
+    (se o trecho tiver JSON: no JSON do app e no marcas.json publicado da
+    pasta dele) e registra no log."""
     wavs = []
     for _, _, chave in pecas_do_trecho(trecho, reaproveitar):
         wav = arquivos_da_peca(trabalho, trecho.tradicao, chave)[0]
@@ -661,6 +759,9 @@ def construir(trecho, trabalho, reaproveitar, log):
         raise RuntimeError(f'{trecho.id}: {len(marcas)} marcas, a tela espera {trecho.contas_esperadas}')
     if trecho.json is not None:
         gravar_marcas(trecho, marcas)
+        # D6 da versão 5: o app lê as marcas do servidor; as publicadas e as
+        # embutidas saem da MESMA montagem.
+        atualizar_marcas_publicadas(trecho, marcas)
     simulado = any(json.loads(arquivos_da_peca(trabalho, trecho.tradicao, c)[2]
                               .read_text(encoding='utf-8')).get('simulado')
                    for _, _, c in pecas_do_trecho(trecho, reaproveitar))
@@ -747,11 +848,25 @@ def main(argv=None):
     ap.add_argument('--exportar-textos', metavar='ARQUIVO',
                     help='grava o texto de cada arquivo publicado (terco/, oracoes/) no formato '
                          'do narracoes.jsonl, para o conferir_stt.py, e sai')
+    ap.add_argument('--exportar-marcas', action='store_true',
+                    help='refaz <midia>/terco/marcas.json e <midia>/oracoes/marcas.json a partir '
+                         'das peças de --trabalho, conferindo que elas somam a duração do áudio '
+                         'publicado; não gera nem recodifica nada; exige --trabalho e --midia')
     args = ap.parse_args(argv)
 
     # Antes de tudo: a simulação nunca toca os repositórios reais.
     if args.simular:
         conferir_raizes_da_simulacao(args.app, args.midia)
+    # As peças de qual trabalho e o áudio de qual raiz: dito na linha de
+    # comando, nunca o padrão — trechos/ (ElevenLabs) e trechos-microsoft/
+    # (o Antonio) têm as mesmas chaves de peça e só um é o do áudio publicado.
+    if args.exportar_marcas:
+        faltam = [nome for nome, valor in (('--trabalho', args.trabalho), ('--midia', args.midia))
+                  if not valor]
+        if faltam:
+            sys.exit(f'--exportar-marcas exige {" e ".join(faltam)}: o diretório de trabalho com as '
+                     'peças do áudio publicado (hoje, ferramentas/narracao/trechos-microsoft) e a '
+                     'raiz de mídia onde ele está')
     app = Path(args.app) if args.app else APP_PADRAO
     if not (app / 'pubspec.yaml').exists():
         sys.exit(f'{app} não parece o repo do app (sem pubspec.yaml): aponte com --app '
@@ -773,6 +888,8 @@ def main(argv=None):
         return mostrar(todos, args.mostrar)
     if args.exportar_textos:
         return exportar_textos(todos, Path(args.exportar_textos))
+    if args.exportar_marcas:
+        return exportar_marcas(todos, trabalho, reaproveitar)
     escolhidos = selecionar(todos, args)
     if not args.refazer:
         escolhidos = [t for t in escolhidos if not t.destino.exists()]
@@ -891,8 +1008,7 @@ def exportar_textos(trechos, destino):
     chave `terco/…` ou `oracoes/…`), com o texto das peças em ordem — o
     que o conferir_stt.py compara com o que ouviu. As cópias evangélicas
     (no diretório de trabalho) ficam de fora: não são publicadas."""
-    publicados = [t for t in trechos
-                  if t.arquivo.startswith((PASTA_DO_TERCO + '/', PASTA_DAS_ORACOES + '/'))]
+    publicados = [t for t in trechos if eh_publicado(t)]
     destino.parent.mkdir(parents=True, exist_ok=True)
     with open(destino, 'w', encoding='utf-8') as f:
         for t in publicados:
@@ -900,6 +1016,84 @@ def exportar_textos(trechos, destino):
                                 'texto': ' '.join(p.texto for p in t.pecas)},
                                ensure_ascii=False) + chr(10))
     print(f'{len(publicados)} textos em {destino}')
+    return 0
+
+
+def exportar_marcas(trechos, trabalho, reaproveitar):
+    """--exportar-marcas: refaz <midia>/terco/marcas.json e
+    <midia>/oracoes/marcas.json INTEIROS (os 28 + 9 publicados) a partir das
+    peças de `trabalho` e das pausas deste código (calcular_marcas), sem
+    gerar nem recodificar nada.
+
+    A duração de cada peça é a do ffprobe sobre o .wav — a mesma medida que
+    a montagem usou. Os `segundos` dos metadados têm três casas: somados,
+    deram 0,01 s de diferença em 37 das 274 marcas do áudio publicado em
+    14/10. Eles ficam como guarda: o `segundos` que não bate com o .wav é
+    peça mudada depois de medida. E a soma das peças, das pausas e da
+    PAUSA_DE_SAIDA tem de dar a duração do .m4a publicado, com
+    FOLGA_DA_DURACAO — senão as peças não são as do áudio publicado.
+    Qualquer problema: nada é gravado, e a mensagem lista todos."""
+    publicados = [t for t in trechos if eh_publicado(t)]
+    problemas = []
+    pecas_mudadas = {}  # chave da peça -> (descrição, [ids dos trechos que a usam])
+    por_arquivo = {}    # marcas.json -> {chave publicada: marcas}
+    iguais, diferentes = 0, []
+    for t in publicados:
+        if not t.destino.exists():
+            problemas.append(f'{t.arquivo}: o áudio publicado não existe ({t.destino})')
+            continue
+        duracoes, incompleto = [], False
+        for n, peca, chave in pecas_do_trecho(t, reaproveitar):
+            wav, _, meta = arquivos_da_peca(trabalho, t.tradicao, chave)
+            if not (wav.exists() and meta.exists()):
+                problemas.append(f'{t.arquivo}: falta a peça {n} ("{peca.rotulo}", {chave}) '
+                                 f'em {pasta_da_peca(trabalho, t.tradicao)}')
+                incompleto = True
+                continue
+            medida = duracao_do_wav(wav)
+            anotada = json.loads(meta.read_text(encoding='utf-8')).get('segundos')
+            if (isinstance(anotada, bool) or not isinstance(anotada, (int, float))
+                    or abs(anotada - medida) > 0.001):
+                descricao = (f'peça {chave} ("{peca.rotulo}"): o .json diz {anotada} s e o .wav '
+                             f'mede {medida:.3f} s')
+                ids = pecas_mudadas.setdefault(chave, (descricao, []))[1]
+                if t.id not in ids:
+                    ids.append(t.id)
+                incompleto = True
+                continue
+            duracoes.append(medida)
+        if incompleto:
+            continue
+        marcas, previsto = calcular_marcas(t.pecas, duracoes)
+        previsto += PAUSA_DE_SAIDA
+        total = duracao_segundos(t.destino)
+        if abs(total - previsto) > FOLGA_DA_DURACAO:
+            problemas.append(f'{t.arquivo}: o áudio publicado tem {total:.3f} s e as peças de '
+                             f'{trabalho} somam {previsto:.3f} s — as peças não são as do áudio '
+                             'publicado')
+            continue
+        try:
+            conferir_crescentes(marcas, t.id)
+        except ValueError as e:
+            problemas.append(str(e))
+            continue
+        por_arquivo.setdefault(arquivo_de_marcas(t), {})[t.arquivo] = marcas
+        dados = ler_json(t.json)
+        no_app = dados['marcas'] if t.posicao is None else dados['trechos'][t.posicao]['marcas']
+        if no_app == marcas:
+            iguais += 1
+        else:
+            diferentes.append(t.id)
+    for descricao, ids in pecas_mudadas.values():
+        problemas.append(f'{descricao}, usada em {", ".join(ids)} — a peça mudou depois de medida')
+    if problemas:
+        sys.exit(f'--exportar-marcas: NADA gravado; {len(problemas)} problema(s):' + chr(10)
+                 + chr(10).join(f'  {p}' for p in problemas))
+    for caminho, marcas in sorted(por_arquivo.items()):
+        gravar_marcas_publicadas(caminho, marcas)
+        print(f'{len(marcas)} trechos em {caminho}')
+    print(f'marcas iguais às embutidas no app: {iguais} de {len(publicados)}'
+          + (f' (diferentes: {", ".join(diferentes)})' if diferentes else ''))
     return 0
 
 
