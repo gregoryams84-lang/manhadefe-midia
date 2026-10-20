@@ -15,8 +15,11 @@ são ignorados.
    problemas e sai com 1:
    - id `t<número>`; capítulos numerados de 1 a N em ordem; datas que
      existem e consecutivas a partir de `inicio`; duracaoS inteiro;
-   - vídeos: os dois de cada capítulo, h264, 720x1280, até 25 MB (D4), a
-     duração a 2 s de duracaoS e as duas versões a 0,5 s uma da outra;
+   - vídeos: os dois de cada capítulo, h264 yuv420p (o 4:2:0 de 8 bits que
+     todo Android toca), 720x1280, até 25 MB (D4), a duração a 2 s de
+     duracaoS e as duas versões a 0,5 s uma da outra (no limite passa); e
+     as duas diferentes — o mesmo sha256 nas duas é entrega trocada (o
+     bispo na católica, o pastor na evangélica);
    - capa WebP 1080x1350;
    - legenda: SRT que o parser do app lê inteiro, UMA linha por fala, até
      42 caracteres (cabe inteira com a letra no máximo, Ruling 9), cada fala
@@ -24,8 +27,9 @@ são ignorados.
      anterior;
    - textos: versículo até 180 caracteres, reflexão de 40 a 100 palavras
      e no máximo 2 travessões (as réguas do lint do app, contadas do mesmo
-     jeito), oração terminando em "Amém.", referência "Livro C,V" ou
-     "Livro C,V-V" (a palavra final é do lint, que roda no fim);
+     jeito: no texto aparado, como o app o lê), oração terminando em
+     "Amém.", referência "Livro C,V" ou "Livro C,V-V" (a palavra final é do
+     lint, que roda no fim);
    - índice: a temporada não sobrepõe outra de novela/temporadas.json (o
      mesmo id é a versão nova dela, e a substitui);
    - no caminho real, também as ferramentas: as chaves do R2, o boto3, o
@@ -104,6 +108,7 @@ TRADICOES = ('catolico', 'evangelico')
 # As réguas da entrega.
 LIMITE_DE_BYTES = 25 * 1024 * 1024          # D4: vídeo até 25 MB
 TAMANHO_DO_VIDEO = (720, 1280)
+PIX_FMT_DO_VIDEO = 'yuv420p'
 TAMANHO_DA_CAPA = (1080, 1350)
 FOLGA_DA_DURACAO = 2.0                       # vídeo x duracaoS
 FOLGA_ENTRE_VERSOES = 0.5                    # católico x evangélico
@@ -137,6 +142,7 @@ class CapituloDaEntrega:
     videos: dict                # tradição -> Path
     capa: Path
     legenda: Path | None
+    shas: dict                  # tradição -> sha256 do vídeo (medido na conferência)
 
     @property
     def nn(self):
@@ -171,9 +177,11 @@ def data_valida(texto):
 
 def contar_palavras(reflexao):
     """Como o lint do app (regra 13): pedaços separados por espaço; um
-    travessão colado entre letras separa dois."""
+    travessão colado entre letras separa dois. O texto é o APARADO — o app
+    apara (Capitulo.fromJson) e o lint mede o aparado: espaço nas pontas
+    não é palavra."""
     total = 0
-    for pedaco in _ESPACOS.split(reflexao):
+    for pedaco in _ESPACOS.split(reflexao.strip()):
         lados = [s for s in _TRAVESSAO.split(pedaco) if s]
         total += len(lados) or 1
     return total
@@ -191,10 +199,10 @@ def referencia_valida(referencia):
 
 
 def sondar(arquivo):
-    """{codec, largura, altura, duracao} do primeiro fluxo de vídeo (a
-    imagem WebP conta como um), pelo ffprobe; None se ele não ler."""
+    """{codec, pix_fmt, largura, altura, duracao} do primeiro fluxo de vídeo
+    (a imagem WebP conta como um), pelo ffprobe; None se ele não ler."""
     r = subprocess.run(['ffprobe', '-v', 'error', '-show_entries',
-                        'stream=codec_type,codec_name,width,height:format=duration',
+                        'stream=codec_type,codec_name,pix_fmt,width,height:format=duration',
                         '-of', 'json', str(arquivo)],
                        capture_output=True, text=True, encoding='utf-8', errors='replace')
     if r.returncode != 0:
@@ -205,8 +213,15 @@ def sondar(arquivo):
         duracao = float(dados.get('format', {}).get('duration'))
     except (TypeError, ValueError):
         duracao = None
-    return {'codec': fluxo.get('codec_name'), 'largura': fluxo.get('width'),
-            'altura': fluxo.get('height'), 'duracao': duracao}
+    return {'codec': fluxo.get('codec_name'), 'pix_fmt': fluxo.get('pix_fmt'),
+            'largura': fluxo.get('width'), 'altura': fluxo.get('height'), 'duracao': duracao}
+
+
+def passa_da_folga(a, b, folga):
+    """|a - b| > folga, com a diferença arredondada ao microssegundo (a
+    precisão do ffprobe): 4,4 - 3,9 dá 0,5000000000000004 em ponto
+    flutuante, e no limite tem de passar."""
+    return round(abs(a - b), 6) > folga
 
 
 def _milhar(n):
@@ -221,6 +236,12 @@ def _segundos(ms):
 def _casas(segundos):
     """87.733 -> "87,73"; 2.0 -> "2"."""
     return f'{segundos:.2f}'.rstrip('0').rstrip('.').replace('.', ',')
+
+
+def _ms(segundos):
+    """Até o milissegundo: 6.001 -> "6,001"; 4.4 -> "4,4"; 6.0 -> "6" — a
+    recusa no limite mostra a diferença que recusou."""
+    return f'{segundos:.3f}'.rstrip('0').rstrip('.').replace('.', ',')
 
 
 def _tempo_srt(ms):
@@ -271,8 +292,8 @@ def conferir_legenda(texto, duracao_do_video):
     for i, bloco in enumerate(blocos):
         if not bloco:
             if any(blocos[i + 1:]):
-                problemas.append(f'linha em branco a mais depois da fala {falas} — o app para '
-                                 'de ler a legenda ali')
+                onde = f'a mais depois da fala {falas}' if falas else 'antes da primeira fala'
+                problemas.append(f'linha em branco {onde} — o app para de ler a legenda ali')
             continue
         falas += 1
         if len(bloco) < 3:
@@ -318,10 +339,11 @@ def _conferir_textos(rotulo, cap):
         valor = cap.get(campo)
         if not isinstance(valor, str) or not valor.strip():
             problemas.append(f'{rotulo}: sem "{campo}"')
+    # Medidos aparados, como o app (que apara) e o lint (que mede o aparado).
     versiculo = cap.get('versiculo')
-    if isinstance(versiculo, str) and len(versiculo) > MAXIMO_DE_CARACTERES_DO_VERSICULO:
-        problemas.append(f'{rotulo}: versículo com {len(versiculo)} caracteres — o máximo é '
-                         f'{MAXIMO_DE_CARACTERES_DO_VERSICULO} (cabe na imagem de partilha)')
+    if isinstance(versiculo, str) and len(versiculo.strip()) > MAXIMO_DE_CARACTERES_DO_VERSICULO:
+        problemas.append(f'{rotulo}: versículo com {len(versiculo.strip())} caracteres — o máximo '
+                         f'é {MAXIMO_DE_CARACTERES_DO_VERSICULO} (cabe na imagem de partilha)')
     reflexao = cap.get('reflexao')
     if isinstance(reflexao, str) and reflexao.strip():
         palavras = contar_palavras(reflexao)
@@ -402,13 +424,14 @@ def conferir_entrega(pasta, limite_de_bytes=LIMITE_DE_BYTES):
                              'segundos')
 
         nn = f'{i:02d}'
-        videos, duracoes = {}, {}
+        videos, duracoes, shas = {}, {}, {}
         for tradicao in TRADICOES:
             video = pasta / f'{nn}-{tradicao}.mp4'
             if not video.exists():
                 problemas.append(f'{rotulo}: falta {video.name}')
                 continue
             videos[tradicao] = video
+            shas[tradicao] = sha256_de(video)
             tamanho = video.stat().st_size
             if tamanho > limite_de_bytes:
                 problemas.append(f'{rotulo} ({video.name}): {_milhar(tamanho)} bytes — o máximo é '
@@ -420,6 +443,10 @@ def conferir_entrega(pasta, limite_de_bytes=LIMITE_DE_BYTES):
             if medida['codec'] != 'h264':
                 problemas.append(f'{rotulo} ({video.name}): vídeo '
                                  f'{medida["codec"] or "(sem fluxo de vídeo)"} — tem de ser h264')
+            if medida['pix_fmt'] != PIX_FMT_DO_VIDEO:
+                problemas.append(f'{rotulo} ({video.name}): pix_fmt {medida["pix_fmt"] or "(nenhum)"}'
+                                 f' — tem de ser {PIX_FMT_DO_VIDEO} (o h264 de 8 bits 4:2:0 que todo '
+                                 'Android toca; High 10 e 4:4:4 não)')
             if (medida['largura'], medida['altura']) != TAMANHO_DO_VIDEO:
                 problemas.append(f'{rotulo} ({video.name}): {medida["largura"]}x{medida["altura"]}'
                                  f' — tem de ser {TAMANHO_DO_VIDEO[0]}x{TAMANHO_DO_VIDEO[1]}')
@@ -427,14 +454,18 @@ def conferir_entrega(pasta, limite_de_bytes=LIMITE_DE_BYTES):
                 problemas.append(f'{rotulo} ({video.name}): o ffprobe não deu a duração')
                 continue
             duracoes[tradicao] = medida['duracao']
-            if duracao_ok and abs(medida['duracao'] - duracao) > FOLGA_DA_DURACAO:
-                problemas.append(f'{rotulo} ({video.name}): {_casas(medida["duracao"])} s, mas '
+            if duracao_ok and passa_da_folga(medida['duracao'], duracao, FOLGA_DA_DURACAO):
+                problemas.append(f'{rotulo} ({video.name}): {_ms(medida["duracao"])} s, mas '
                                  f'duracaoS = {duracao} (folga de {_casas(FOLGA_DA_DURACAO)} s)')
+        if len(shas) == len(TRADICOES) and shas['catolico'] == shas['evangelico']:
+            problemas.append(f'{rotulo}: {nn}-catolico.mp4 e {nn}-evangelico.mp4 são o mesmo arquivo '
+                             '(mesmo sha256) — a versão católica é do bispo e a evangélica do '
+                             'pastor: entrega trocada')
         if len(duracoes) == len(TRADICOES):
             a, b = duracoes['catolico'], duracoes['evangelico']
-            if abs(a - b) > FOLGA_ENTRE_VERSOES:
-                problemas.append(f'{rotulo}: as versões têm {_casas(a)} s (católica) e {_casas(b)} s '
-                                 f'(evangélica) — diferem {_casas(abs(a - b))} s; o máximo é '
+            if passa_da_folga(a, b, FOLGA_ENTRE_VERSOES):
+                problemas.append(f'{rotulo}: as versões têm {_ms(a)} s (católica) e {_ms(b)} s '
+                                 f'(evangélica) — diferem {_ms(abs(a - b))} s; o máximo é '
                                  f'{_casas(FOLGA_ENTRE_VERSOES)} s')
 
         capa = pasta / f'{nn}.webp'
@@ -459,7 +490,8 @@ def conferir_entrega(pasta, limite_de_bytes=LIMITE_DE_BYTES):
                               conferir_legenda(texto, min(duracoes.values()) if duracoes else None)]
         else:
             legenda = None
-        lista.append(CapituloDaEntrega(n=i, dados=cap, videos=videos, capa=capa, legenda=legenda))
+        lista.append(CapituloDaEntrega(n=i, dados=cap, videos=videos, capa=capa, legenda=legenda,
+                                       shas=shas))
 
     for arquivo_da_pasta in sorted(pasta.iterdir()):
         m = _ARQUIVO_DA_ENTREGA.fullmatch(arquivo_da_pasta.name)
@@ -1012,7 +1044,7 @@ def main(argv=None):
     medidos, envios = {}, []
     for c in entrega.capitulos:
         for t in TRADICOES:
-            tamanho, sha = c.videos[t].stat().st_size, sha256_de(c.videos[t])
+            tamanho, sha = c.videos[t].stat().st_size, c.shas[t]
             medidos[c.n, t] = (tamanho, sha)
             envios.append((prefixo + chave_do_video(entrega, c, t), c.videos[t], tamanho, sha))
     if args.simular:

@@ -52,10 +52,10 @@ def _ffmpeg(*args):
         raise RuntimeError(f'ffmpeg falhou: {r.stderr.strip()[:400]}')
 
 
-def video(destino, largura, altura, segundos, frequencia):
+def video(destino, largura, altura, segundos, frequencia, pix_fmt='yuv420p'):
     _ffmpeg('-f', 'lavfi', '-i', f'testsrc=size={largura}x{altura}:rate=25:duration={segundos}',
             '-f', 'lavfi', '-i', f'sine=frequency={frequencia}:sample_rate=44100:duration={segundos}',
-            '-c:v', 'libx264', '-preset', 'ultrafast', '-pix_fmt', 'yuv420p',
+            '-c:v', 'libx264', '-preset', 'ultrafast', '-pix_fmt', pix_fmt,
             '-c:a', 'aac', '-b:a', '64k', '-shortest', str(destino))
     return destino
 
@@ -77,6 +77,8 @@ def midia_sintetica():
             estreito=video(pasta / 'estreito.mp4', 640, 1280, 4, 440),
             longo=video(pasta / 'longo.mp4', 720, 1280, 7, 440),
             cinco=video(pasta / 'cinco.mp4', 720, 1280, 5, 660),
+            # h264 High 4:4:4: o ffprobe diz h264, mas muito Android não toca.
+            yuv444=video(pasta / 'yuv444.mp4', 720, 1280, 4, 440, pix_fmt='yuv444p'),
             capa=capa(pasta / 'capa.webp', 1080, 1350),
             capa_errada=capa(pasta / 'capa-errada.webp', 1000, 1350))
     return _MIDIA
@@ -343,6 +345,19 @@ def teste_recusa_resolucao_errada_e_lista_todos_os_problemas():
         assert '2 problema(s)' in saida, saida
 
 
+def teste_recusa_pix_fmt_diferente_de_yuv420p_e_versoes_identicas():
+    """R8-J: h264 que não é yuv420p (High 10, 4:4:4) passa no codec_name e não
+    toca em muito Android; e o católico igual ao evangélico (mesmo sha256) é
+    entrega trocada — a spec manda o bispo num e o pastor no outro."""
+    with tempfile.TemporaryDirectory() as tmp:
+        pasta = entrega_valida(tmp)
+        shutil.copyfile(midia_sintetica()['yuv444'], pasta / '01-catolico.mp4')
+        shutil.copyfile(pasta / '02-catolico.mp4', pasta / '02-evangelico.mp4')
+        saida = deve_recusar(pasta, Path(tmp) / 'midia', '01-catolico.mp4', 'yuv444p', 'yuv420p',
+                             'cap. 2', '02-catolico.mp4 e 02-evangelico.mp4', 'mesmo sha256')
+        assert '2 problema(s)' in saida, saida
+
+
 def teste_recusa_duracao_fora_de_2_segundos():
     with tempfile.TemporaryDirectory() as tmp:
         pasta = entrega_valida(tmp)
@@ -361,6 +376,56 @@ def teste_recusa_versoes_com_duracoes_diferentes():
         shutil.copyfile(midia_sintetica()['cinco'], pasta / '02-evangelico.mp4')
         saida = deve_recusar(pasta, Path(tmp) / 'midia', 'cap. 2', 'versões')
         assert '1 problema(s)' in saida, saida
+
+
+@contextlib.contextmanager
+def duracoes_trocadas(por_arquivo):
+    """O ffprobe de verdade, com a duração de alguns arquivos trocada (nome ->
+    segundos, como o ffprobe a daria): os limites exatos sem depender da
+    precisão do encoder."""
+    real = pt.sondar
+
+    def sondar(arquivo):
+        medida = real(arquivo)
+        if medida is not None and Path(arquivo).name in por_arquivo:
+            medida = dict(medida, duracao=por_arquivo[Path(arquivo).name])
+        return medida
+
+    pt.sondar = sondar
+    try:
+        yield
+    finally:
+        pt.sondar = real
+
+
+def teste_limites_exatos_da_duracao_2_s_e_entre_versoes_0_5_s():
+    """R8-K (c): no limite passa, 1 ms além recusa — nos dois sentidos. As
+    durações chegam do ffprobe como decimais (4.400000): 4,4 - 3,9 dá
+    0,5000000000000004 em ponto flutuante e não pode recusar."""
+    with tempfile.TemporaryDirectory() as tmp:
+        pasta = entrega_valida(tmp, capitulos=1)   # duracaoS = 4
+        (pasta / '01.srt').unlink()                # a legenda vai até 3,6 s
+
+        def problemas(catolico, evangelico):
+            with duracoes_trocadas({'01-catolico.mp4': catolico, '01-evangelico.mp4': evangelico}):
+                entrega, lista = pt.conferir_entrega(pasta)
+            assert entrega is not None
+            return lista
+
+        # duracaoS ± 2 s.
+        assert problemas(6.0, 6.0) == []
+        assert problemas(2.0, 2.0) == []
+        acima = problemas(6.001, 6.001)
+        assert len(acima) == 2 and all('6,001 s, mas duracaoS = 4' in p for p in acima), acima
+        abaixo = problemas(1.999, 1.999)
+        assert len(abaixo) == 2 and all('1,999 s, mas duracaoS = 4' in p for p in abaixo), abaixo
+        # Católica x evangélica ± 0,5 s.
+        assert 4.4 - 3.9 > 0.5, 'o caso de ponto flutuante que o teste quer cobrir'
+        assert problemas(4.4, 3.9) == []
+        assert problemas(3.9, 4.4) == []
+        for catolico, evangelico in ((4.4, 3.899), (3.899, 4.4)):
+            lista = problemas(catolico, evangelico)
+            assert len(lista) == 1 and 'diferem 0,501 s' in lista[0], lista
 
 
 def teste_recusa_video_maior_que_o_limite_que_e_parametro():
@@ -406,6 +471,22 @@ def teste_recusa_fala_com_menos_de_1_5_segundo():
         pasta = _com_legenda(tmp, SRT_VALIDO.replace('00:00:01,800 --> 00:00:03,600',
                                                      '00:00:01,800 --> 00:00:03,200'))
         deve_recusar(pasta, Path(tmp) / 'midia', '01.srt', 'fala 2', '1,4 s')
+
+
+def teste_limite_exato_da_fala_1_5_s():
+    """R8-K (c): 1,5 s em ponto passa; 1 ms a menos recusa."""
+    um_e_meio = '1\n00:00:00,000 --> 00:00:01,500\nUm.\n'
+    assert pt.conferir_legenda(um_e_meio, 4.0) == []
+    assert pt.conferir_legenda(um_e_meio.replace('01,500', '01,499'), 4.0) == \
+        ['fala 1 dura 1,499 s — o mínimo é 1,5 s']
+
+
+def teste_linha_em_branco_antes_da_primeira_fala():
+    """R8-L: a recusa diz onde está a linha (não "depois da fala 0")."""
+    problemas = pt.conferir_legenda(chr(10) + SRT_VALIDO, 4.0)
+    assert len(problemas) == 1, problemas
+    assert problemas[0].startswith('linha em branco antes da primeira fala'), problemas
+    assert 'fala 0' not in problemas[0]
 
 
 def teste_recusa_legenda_que_o_app_nao_le_inteira():
@@ -460,6 +541,24 @@ def teste_recusa_textos_fora_da_medida():
         editar_temporada(pasta, mudar)
         deve_recusar(pasta, Path(tmp) / 'midia', '181 caracteres', '5 palavras', 'Amém.',
                      'Gênesis 37', '3 travessões')
+
+
+def teste_reflexao_e_versiculo_medidos_no_texto_aparado():
+    """R8-C: o app apara o texto (Capitulo.fromJson) e o lint mede o texto
+    aparado — espaço nas pontas não é palavra nem caractere."""
+    trinta_e_oito = ' '.join(['palavra'] * 38)
+    assert pt.contar_palavras(trinta_e_oito) == 38
+    assert pt.contar_palavras(' ' + trinta_e_oito + ' ') == 38
+    assert pt.contar_palavras(chr(10) + '  ' + trinta_e_oito + chr(9) + ' ') == 38
+    with tempfile.TemporaryDirectory() as tmp:
+        pasta = entrega_valida(tmp)
+
+        def mudar(t):
+            t['capitulos'][0]['reflexao'] = ' ' + trinta_e_oito + ' '
+            t['capitulos'][1]['versiculo'] = '  ' + 'v' * 180 + ' '   # 180 aparado: passa
+        editar_temporada(pasta, mudar)
+        saida = deve_recusar(pasta, Path(tmp) / 'midia', 'cap. 1', '38 palavras')
+        assert '1 problema(s)' in saida, saida
 
 
 def teste_recusa_arquivo_que_falta_e_arquivo_que_sobra():
