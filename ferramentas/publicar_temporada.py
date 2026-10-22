@@ -91,11 +91,12 @@ são ignorados.
      arquivos da temporada (um app anterior à Task 7 não conhece novela/ e
      a temporada não chegaria a ninguém); e o lint (lint_conteudo.dart, 0
      erros, senão sai com 1).
-   Parar DEPOIS de escrever (a voz reprovada, o manifesto, o lint) lista o
-   que esta rodada escreveu e removeu, diz em destaque "NÃO rode o
-   gerar_manifesto nem faça commit" e dá os comandos exatos para desfazer:
-   git checkout -- <os versionados> e git clean -f -- <os novos>. Nada vai
-   para quarentena.
+   Parar DEPOIS de escrever (a voz reprovada, o manifesto, o lint — e
+   também um Ctrl+C ou uma exceção imprevista, que seguem subindo depois
+   do bloco) lista o que esta rodada escreveu e removeu, diz em destaque
+   "NÃO rode o gerar_manifesto nem faça commit" e dá os comandos exatos
+   para desfazer: git checkout -- <os versionados> e git clean -f -- <os
+   novos>. Nada vai para quarentena.
    No fim, o resumo. NUNCA faz commit nem push: commit por caminho, e o
    push só com o OK do Gregory.
 
@@ -1460,17 +1461,29 @@ def como_desfazer(midia, escritos, removidos):
     return linhas
 
 
-def _reprovados_no_log(midia, ids):
+def _registros_do_stt(midia, ids):
+    """{caminho: o ÚLTIMO registro do stt.log.jsonl} das vozes dos `ids`.
+    Uma linha truncada (um conferir_stt.py morto no meio da escrita, numa
+    rodada anterior) é pulada, não derruba a publicação (M-m2)."""
     log = midia / 'ferramentas' / 'narracao' / 'stt.log.jsonl'
     if not log.exists():
-        return []
+        return {}
+    caminhos = _caminhos_da_voz(ids)
     ultimo = {}
     for linha in log.read_text(encoding='utf-8').splitlines():
-        if linha.strip():
+        if not linha.strip():
+            continue
+        try:
             r = json.loads(linha)
-            if r.get('caminho') in _caminhos_da_voz(ids):
-                ultimo[r['caminho']] = r
-    return sorted(c for c, r in ultimo.items() if not r.get('aprovado'))
+        except ValueError:
+            continue
+        if isinstance(r, dict) and r.get('caminho') in caminhos:
+            ultimo[r['caminho']] = r
+    return ultimo
+
+
+def _reprovados_no_log(midia, ids):
+    return sorted(c for c, r in _registros_do_stt(midia, ids).items() if not r.get('aprovado'))
 
 
 # ---------------------------------------------------------------------------
@@ -1675,32 +1688,49 @@ def _publicar(args, midia, app, prefixo):
             print(_mostrar(cmd, cwd))
     else:
         # Daqui em diante a raiz de mídia já tem o que esta rodada escreveu:
-        # parar é dizer o quê e como desfazer (R8-H).
-        def parar(mensagem, *mais):
+        # parar é dizer o quê e como desfazer (R8-H) — também quando a
+        # rodada morre por um Ctrl+C ou por uma exceção imprevista (M-m2):
+        # o mesmo bloco sai, e a exceção segue subindo. `tocados` é o que o
+        # passo 4 vai gravando além de `escritos`.
+        tocados = []
+
+        def parar(mensagem):
             print(mensagem)
-            for linha in como_desfazer(midia, escritos + list(mais), removidos):
+            for linha in como_desfazer(midia, escritos + tocados, removidos):
                 print(linha)
             return 1
 
-        voz = []
-        if not args.sem_voz:
-            falha, narrou = gerar_voz(dart, midia, app, ids, args.motor)
-            if narrou:
-                voz = [c for c in sorted(_caminhos_da_voz(ids)) if (midia / c).exists()]
-            if falha:
-                return parar(f'voz: {falha}', *voz)
-        (manifesto, cwd_manifesto), (lint, cwd_lint) = comandos_do_manifesto(dart, midia, app)
-        if rodar(manifesto, cwd=cwd_manifesto) != 0:
-            return parar('manifesto: o gerar_manifesto.dart falhou (a saída está acima)', *voz,
-                         'manifesto.json')
-        faltam = fora_do_manifesto(midia, entrega, com_voz=not args.sem_voz)
-        if faltam:
-            return parar(f'manifesto: não lista {", ".join(faltam)} — o gerar_manifesto.dart do app '
-                         'apontado conhece a pasta novela/ (Task 7)? Sem isso o app não baixa a '
-                         'temporada', *voz, 'manifesto.json')
-        if rodar(lint, cwd=cwd_lint) != 0:
-            return parar('lint: o lint_conteudo.dart achou erro (a saída está acima) — corrija e '
-                         'publique de novo', *voz, 'manifesto.json')
+        def voz_no_disco():
+            return [c for c in sorted(_caminhos_da_voz(ids)) if (midia / c).exists()]
+
+        try:
+            if not args.sem_voz:
+                falha, narrou = gerar_voz(dart, midia, app, ids, args.motor)
+                if narrou:
+                    tocados += voz_no_disco()
+                if falha:
+                    return parar(f'voz: {falha}')
+            (manifesto, cwd_manifesto), (lint, cwd_lint) = comandos_do_manifesto(dart, midia, app)
+            # Começou a ser refeito: conta como tocado, mesmo que falhe no meio.
+            tocados.append('manifesto.json')
+            if rodar(manifesto, cwd=cwd_manifesto) != 0:
+                return parar('manifesto: o gerar_manifesto.dart falhou (a saída está acima)')
+            faltam = fora_do_manifesto(midia, entrega, com_voz=not args.sem_voz)
+            if faltam:
+                return parar(f'manifesto: não lista {", ".join(faltam)} — o gerar_manifesto.dart '
+                             'do app apontado conhece a pasta novela/ (Task 7)? Sem isso o app não '
+                             'baixa a temporada')
+            if rodar(lint, cwd=cwd_lint) != 0:
+                return parar('lint: o lint_conteudo.dart achou erro (a saída está acima) — corrija '
+                             'e publique de novo')
+        except BaseException as e:  # noqa: BLE001 — o Ctrl+C não é Exception; tudo sobe depois do bloco
+            # A voz pode ter sido gravada antes de o gerar_voz devolver (o
+            # Ctrl+C no whisper): o que está no disco entra na lista.
+            if not args.sem_voz and not any(c.startswith('narracao/') for c in tocados):
+                tocados += voz_no_disco()
+            detalhe = f': {e}' if str(e) else ''
+            parar(f'a publicação foi interrompida depois da escrita ({type(e).__name__}{detalhe})')
+            raise
 
     # 5. O resumo.
     print()

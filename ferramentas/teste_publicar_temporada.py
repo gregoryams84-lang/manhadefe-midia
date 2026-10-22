@@ -1256,6 +1256,12 @@ class Dubles:
         self.publico = {}
         self.comandos = []
         self.stt, self.lint = stt, lint
+        # (fim do nome de um comando, exceção): esse comando, em vez de
+        # rodar, lança a exceção — um Ctrl+C no whisper, um erro imprevisto.
+        self.explode = None
+        # Tudo o que a última publicação imprimiu, mesmo quando ela morreu
+        # por uma exceção (publicar() não chega a devolver).
+        self.saida = io.StringIO()
         # False: o gerar_manifesto de um app anterior à Task 7, que não
         # conhece a pasta novela/.
         self.manifesto_com_novela = manifesto_com_novela
@@ -1279,6 +1285,8 @@ class Dubles:
     def rodar(self, cmd, cwd=None):
         cmd = [str(c) for c in cmd]
         self.comandos.append((cmd, cwd))
+        if self.explode and any(c.endswith(self.explode[0]) for c in cmd):
+            raise self.explode[1]
         if 'tool/midia/texto_narrado.dart' in cmd:
             saida = next(c.split('=', 1)[1] for c in cmd if c.startswith('--saida='))
             novela = Path(next(c.split('=', 1)[1] for c in cmd if c.startswith('--temporadas=')))
@@ -1343,7 +1351,7 @@ class Dubles:
     def publicar(self, pasta, midia, *extra):
         """main() no caminho real com os dublês; devolve (código, tudo o que
         foi ao terminal — stdout e stderr)."""
-        saida = io.StringIO()
+        saida = self.saida = io.StringIO()
         with self.instalados(), contextlib.redirect_stdout(saida), contextlib.redirect_stderr(saida):
             codigo = pt.main([str(pasta), '--midia', str(midia), '--app', str(self.app),
                               '--r2', str(self.chaves), *extra])
@@ -1472,6 +1480,63 @@ def teste_stt_reprovado_lista_o_que_foi_escrito_e_os_comandos_exatos_para_desfaz
             assert r.returncode == 0, (comando, r.stderr)
         assert _git(midia, 'status', '--porcelain') == ''
         assert (midia / 'imagens' / 't1c1.webp').read_bytes() == b'capa velha'
+
+
+def teste_ctrl_c_ou_erro_imprevisto_depois_da_escrita_imprime_o_bloco_de_como_desfazer():
+    """M-m2: o bloco do R8-H (o que foi escrito e como desfazer) sai também
+    quando a rodada morre DEPOIS da escrita por um Ctrl+C (KeyboardInterrupt
+    não é Exception) ou por uma exceção imprevista — e a exceção segue
+    subindo, com a trava solta. Antes da escrita, nada a desfazer: só a
+    exceção."""
+    casos = (('conferir_stt.py', KeyboardInterrupt(), 'KeyboardInterrupt'),
+             ('gerar_manifesto.dart', RuntimeError('disco cheio ao gravar o manifesto'),
+              'RuntimeError: disco cheio ao gravar o manifesto'))
+    for comando, excecao, nome in casos:
+        with tempfile.TemporaryDirectory() as tmp:
+            dubles = Dubles(tmp)
+            dubles.explode = (comando, excecao)
+            midia = dubles.midia()
+            try:
+                dubles.publicar(entrega_valida(tmp), midia, '--motor', 'microsoft')
+            except type(excecao):
+                pass
+            else:
+                raise AssertionError(f'{nome} deveria ter subido')
+            saida = dubles.saida.getvalue()
+            assert 'interrompida depois da escrita' in saida and nome in saida, saida
+            assert 'NÃO rode o gerar_manifesto nem faça commit' in saida, saida
+            for caminho in ('novela/t1.json', 'novela/temporadas.json', 'imagens/t1c2.webp',
+                            'narracao/catolico/t1c1.m4a', 'narracao/evangelico/t1c2.m4a'):
+                assert f'escrito:  {caminho}' in saida, (caminho, saida)
+            assert ('manifesto.json' in saida) == (comando == 'gerar_manifesto.dart'), saida
+            assert not (midia / '.publicando.trava').exists(), 'a trava solta'
+    # Antes de qualquer escrita (um Ctrl+C no texto_narrado nem existe: ele
+    # vem depois dela; aqui, no HEAD do R2), não há bloco: nada a desfazer.
+    with tempfile.TemporaryDirectory() as tmp:
+        dubles = Dubles(tmp)
+        dubles.cliente = ClienteQueFalha('head_object', KeyboardInterrupt())
+        midia = dubles.midia()
+        try:
+            dubles.publicar(entrega_valida(tmp), midia, '--sem-voz')
+        except KeyboardInterrupt:
+            pass
+        assert 'NÃO rode' not in dubles.saida.getvalue()
+
+
+def teste_reprovados_no_log_tolera_linha_truncada():
+    """M-m2: um conferir_stt.py morto no meio da escrita deixa uma linha
+    truncada no stt.log.jsonl; a leitura dos reprovados a pula em vez de
+    derrubar a publicação com um ValueError."""
+    with tempfile.TemporaryDirectory() as tmp:
+        midia = Path(tmp)
+        log = midia / 'ferramentas' / 'narracao' / 'stt.log.jsonl'
+        log.parent.mkdir(parents=True)
+        linhas = [json.dumps({'caminho': 'narracao/catolico/t1c1.m4a', 'aprovado': True}),
+                  json.dumps({'caminho': 'narracao/evangelico/t1c1.m4a', 'aprovado': False}),
+                  json.dumps({'caminho': 'narracao/catolico/t1c2.m4a', 'aprovado': True}),
+                  '{"caminho": "narracao/evangelico/t1c2.m4a", "apro']
+        log.write_text(chr(10).join(linhas) + chr(10), encoding='utf-8')
+        assert pt._reprovados_no_log(midia, ['t1c1', 't1c2']) == ['narracao/evangelico/t1c1.m4a']
 
 
 def teste_sem_voz_pula_a_voz_e_lint_com_erro_sai_com_1():
