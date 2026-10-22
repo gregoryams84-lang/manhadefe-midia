@@ -30,8 +30,12 @@ são ignorados.
      até 42 (entre palavras, de preferência depois de pontuação), com a
      duração repartida na proporção dos caracteres e cada pedaço com pelo
      menos 1,5 s — sai como AVISO (fala, pedaços e tempos), e o SRT que vai
-     para novela/ é o dividido (o da entrega não muda); se a divisão não
-     cabe na duração da fala, é erro;
+     para novela/ é o dividido (o da entrega não muda). A fala que dura
+     menos do que precisa (1,5 s; ou k × 1,5 s, quando vai ser dividida
+     em k pedaços) é ESTENDIDA até isso quando há espaço — para a frente
+     até a fala seguinte ou o fim do vídeo, para trás no vazio depois da
+     anterior, ou encurtando a anterior no que ela tem acima do mínimo
+     dela —, também como AVISO; sem espaço, é erro como antes;
    - textos: versículo até 180 caracteres, reflexão de 40 a 100 palavras
      e no máximo 2 travessões (as réguas do lint do app, contadas do mesmo
      jeito: no texto aparado, como o app o lê), oração terminando em
@@ -414,6 +418,60 @@ class _Fala:
     fim: int
     texto: str
     pedacos: list | None = None  # (inicio, fim, texto) de cada pedaço, quando dividida
+    sem_espaco: bool = False     # precisava de mais tempo e não havia para onde estender
+
+
+def _minimo_da_fala(texto):
+    """Quanto a fala precisa durar: 1,5 s, ou k × 1,5 s quando vai ser
+    dividida em k pedaços (dividir_fala); a que não dá para dividir conta
+    como inteira (o problema dela é outro)."""
+    return len(dividir_fala(texto) or [texto]) * MINIMO_DE_MS_DA_FALA
+
+
+def _estender_falas(falas, fim_do_video, problemas, avisos):
+    """FM4: a fala que dura menos do que precisa (_minimo_da_fala) é
+    estendida até isso quando há espaço — primeiro para a frente, até a
+    fala seguinte (ou o fim do vídeo); depois para trás, no vazio depois da
+    anterior (ou desde o 0); por fim encurtando a anterior, no que ela tem
+    acima do mínimo DELA (o caso real do 05.srt da t1-v2: a fala curta
+    colada nas duas vizinhas). Quando o espaço não chega, nada muda: a
+    fala curta vira problema aqui; a longa fica marcada (`sem_espaco`) e o
+    problema é o da divisão que não cabe. Cada extensão sai como aviso.
+    `problemas` e `avisos` recebem (número da fala, texto)."""
+    for k, fala in enumerate(falas):
+        precisa = _minimo_da_fala(fala.texto)
+        duracao = fala.fim - fala.inicio
+        falta = precisa - duracao
+        if falta <= 0:
+            continue
+        limite = falas[k + 1].inicio if k + 1 < len(falas) else fim_do_video
+        frente = falta if limite is None else max(0, min(falta, limite - fala.fim))
+        piso = falas[k - 1].fim if k else 0
+        tras = max(0, min(falta - frente, fala.inicio - piso))
+        anterior = falas[k - 1] if k else None
+        cede = 0
+        if anterior is not None:
+            sobra = (anterior.fim - anterior.inicio) - _minimo_da_fala(anterior.texto)
+            cede = max(0, min(falta - frente - tras, sobra))
+        if frente + tras + cede < falta:
+            if len(fala.texto) <= MAXIMO_DE_CARACTERES_DA_FALA:
+                problemas.append((fala.numero, f'fala {fala.numero} dura {_segundos(duracao)} s — o '
+                                               f'mínimo é {_segundos(MINIMO_DE_MS_DA_FALA)} s, e não '
+                                               'há espaço para estendê-la'))
+            else:
+                fala.sem_espaco = True
+            continue
+        fala.fim += frente
+        fala.inicio -= tras + cede
+        detalhe = ''
+        if cede:
+            anterior.fim -= cede
+            detalhe = f'; a fala {anterior.numero} passa a terminar em {_tempo_srt(anterior.fim)}'
+        motivo = ('' if precisa == MINIMO_DE_MS_DA_FALA
+                  else f', o que a divisão em {precisa // MINIMO_DE_MS_DA_FALA} pede')
+        avisos.append((fala.numero, f'fala {fala.numero} durava {_segundos(duracao)} s: estendida '
+                                    f'para {_segundos(precisa)} s{motivo} ({_tempo_srt(fala.inicio)} '
+                                    f'--> {_tempo_srt(fala.fim)}{detalhe})'))
 
 
 def _dividir_falas_longas(falas, problemas, avisos):
@@ -434,6 +492,8 @@ def _dividir_falas_longas(falas, problemas, avisos):
             else:
                 motivo = (f'dividida em {len(pedacos)} pedaços, cada um precisaria de '
                           f'{_segundos(MINIMO_DE_MS_DA_FALA)} s, e a fala tem {_segundos(duracao)} s')
+                if fala.sem_espaco:
+                    motivo += ' — e não há espaço em volta para estendê-la'
             problemas.append((fala.numero, f'{cabecalho} ("{fala.texto}") — o máximo é '
                                            f'{MAXIMO_DE_CARACTERES_DA_FALA}, e {motivo}'))
             continue
@@ -465,8 +525,9 @@ def ajustar_legenda(texto, duracao_do_video):
     do formato. A tela mostra uma fala por vez, numa linha só: até 42
     caracteres, pelo menos 1,5 s, dentro do vídeo e sem sobrepor a
     anterior. O que dá para ajustar sem mexer no sentido é ajustado e sai
-    como aviso: a fala longa é dividida (FM3, _dividir_falas_longas). O
-    resto é problema (lista vazia = passa)."""
+    como aviso: a fala que dura menos do que precisa é estendida (FM4,
+    _estender_falas) e a fala longa é dividida (FM3,
+    _dividir_falas_longas). O resto é problema (lista vazia = passa)."""
     if texto.startswith('﻿'):
         texto = texto[1:]
     blocos = _blocos_como_o_app(texto)
@@ -499,9 +560,6 @@ def ajustar_legenda(texto, duracao_do_video):
         g = [int(x) for x in m.groups()]
         inicio = ((g[0] * 60 + g[1]) * 60 + g[2]) * 1000 + g[3]
         fim = ((g[4] * 60 + g[5]) * 60 + g[6]) * 1000 + g[7]
-        if fim - inicio < MINIMO_DE_MS_DA_FALA:
-            problemas.append(f'fala {contagem} dura {_segundos(fim - inicio)} s — o mínimo é '
-                             f'{_segundos(MINIMO_DE_MS_DA_FALA)} s')
         if duracao_do_video is not None and fim > round(duracao_do_video * 1000):
             problemas.append(f'fala {contagem} termina em {_tempo_srt(fim)}, depois do fim do vídeo '
                              f'({_tempo_srt(round(duracao_do_video * 1000))})')
@@ -512,12 +570,17 @@ def ajustar_legenda(texto, duracao_do_video):
         falas.append(_Fala(contagem, inicio, fim, linha))
     if not contagem:
         problemas.append('nenhuma fala')
-    # Os ajustes, fala a fala (as mensagens saem na ordem das falas).
+    # Os ajustes, fala a fala: primeiro o tempo (FM4), depois a divisão
+    # (FM3), que reparte o tempo já estendido. As mensagens saem na ordem
+    # das falas. O SRT ajustado só sai quando não há problema (com
+    # problema, nada vai ser escrito).
     das_falas, avisos = [], []
+    fim_do_video = round(duracao_do_video * 1000) if duracao_do_video is not None else None
+    _estender_falas(falas, fim_do_video, das_falas, avisos)
     _dividir_falas_longas(falas, das_falas, avisos)
     problemas += [p for _, p in sorted(das_falas, key=lambda par: par[0])]
     avisos = [a for _, a in sorted(avisos, key=lambda par: par[0])]
-    return problemas, avisos, _srt_de(falas) if avisos else None
+    return problemas, avisos, _srt_de(falas) if avisos and not problemas else None
 
 
 def conferir_legenda(texto, duracao_do_video, avisos=None):

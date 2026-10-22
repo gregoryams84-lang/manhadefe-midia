@@ -579,19 +579,116 @@ def teste_recusa_fala_com_mais_de_42_caracteres():
         assert publicar(pasta2, Path(tmp) / 'midia2')[0] == 0
 
 
-def teste_recusa_fala_com_menos_de_1_5_segundo():
+def teste_recusa_fala_com_menos_de_1_5_segundo_sem_espaco_para_estender():
+    """FM4: a fala curta só é recusada quando não há como estendê-la até
+    1,5 s — aqui a 2 está presa entre a 1 (1,5 s em ponto) e a 3, e a 3
+    entre a 2 (curta) e o fim do vídeo."""
     with tempfile.TemporaryDirectory() as tmp:
-        pasta = _com_legenda(tmp, SRT_VALIDO.replace('00:00:01,800 --> 00:00:03,600',
-                                                     '00:00:01,800 --> 00:00:03,200'))
-        deve_recusar(pasta, Path(tmp) / 'midia', '01.srt', 'fala 2', '1,4 s')
+        pasta = _com_legenda(tmp, '1\n00:00:00,000 --> 00:00:01,500\nUm.\n\n'
+                                  '2\n00:00:01,500 --> 00:00:02,900\nDois.\n\n'
+                                  '3\n00:00:02,900 --> 00:00:03,900\nTrês.\n')
+        saida = deve_recusar(pasta, Path(tmp) / 'midia', '01.srt', 'fala 2 dura 1,4 s',
+                             'fala 3 dura 1 s', 'não há espaço')
+        assert '2 problema(s)' in saida, saida
 
 
 def teste_limite_exato_da_fala_1_5_s():
-    """R8-K (c): 1,5 s em ponto passa; 1 ms a menos recusa."""
+    """R8-K (c): 1,5 s em ponto passa, intacta e sem aviso; 1 ms a menos é
+    estendida (FM4) quando há espaço — e recusada quando não há."""
     um_e_meio = '1\n00:00:00,000 --> 00:00:01,500\nUm.\n'
-    assert pt.conferir_legenda(um_e_meio, 4.0) == []
-    assert pt.conferir_legenda(um_e_meio.replace('01,500', '01,499'), 4.0) == \
-        ['fala 1 dura 1,499 s — o mínimo é 1,5 s']
+    avisos = []
+    assert pt.conferir_legenda(um_e_meio, 4.0, avisos=avisos) == [] and avisos == []
+    assert pt.ajustar_legenda(um_e_meio, 4.0) == ([], [], None)
+    curta = um_e_meio.replace('01,500', '01,499')
+    problemas, avisos, ajustado = pt.ajustar_legenda(curta, 4.0)
+    assert problemas == [], problemas
+    assert avisos == ['fala 1 durava 1,499 s: estendida para 1,5 s '
+                      '(00:00:00,000 --> 00:00:01,500)'], avisos
+    assert ajustado == um_e_meio
+    # O vídeo acaba em 1,499 s: não há para onde estender.
+    assert pt.conferir_legenda(curta, 1.499) == \
+        ['fala 1 dura 1,499 s — o mínimo é 1,5 s, e não há espaço para estendê-la']
+
+
+def teste_fala_que_precisa_de_tempo_e_estendida_para_a_frente_para_tras_ou_sobre_a_anterior():
+    """FM4: a fala que dura menos do que precisa (1,5 s; ou k × 1,5 s
+    quando vai ser dividida em k pedaços) é estendida até isso — primeiro
+    para a frente, até a fala seguinte (ou o fim do vídeo); depois para
+    trás, no vazio depois da anterior; por fim encurtando a anterior, desde
+    que ela fique com o mínimo dela (o caso real do 05.srt da t1-v2: a fala
+    2, de 1,388 s, colada na 1 e na 3). Cada caso sai como AVISO; o SRT
+    ajustado tem os tempos novos."""
+    # Para a frente, até a fala seguinte: 1,4 s + 0,1 s de vazio.
+    srt = ('1\n00:00:00,000 --> 00:00:01,400\nUm.\n\n'
+           '2\n00:00:01,500 --> 00:00:03,000\nDois.\n')
+    problemas, avisos, ajustado = pt.ajustar_legenda(srt, 4.0)
+    assert problemas == [] and len(avisos) == 1, (problemas, avisos)
+    assert 'fala 1 durava 1,4 s: estendida para 1,5 s (00:00:00,000 --> 00:00:01,500)' in avisos[0]
+    assert ajustado == srt.replace('00:00:01,400', '00:00:01,500')
+    # Para a frente só cabe uma parte; o resto vem de trás, no vazio.
+    srt = ('1\n00:00:00,000 --> 00:00:01,500\nUm.\n\n'
+           '2\n00:00:01,700 --> 00:00:03,000\nDois.\n\n'
+           '3\n00:00:03,050 --> 00:00:04,550\nTrês.\n')
+    problemas, avisos, ajustado = pt.ajustar_legenda(srt, 5.0)
+    assert problemas == [] and len(avisos) == 1, (problemas, avisos)
+    assert '(00:00:01,550 --> 00:00:03,050)' in avisos[0], avisos
+    assert '00:00:01,550 --> 00:00:03,050' in ajustado and '00:00:03,050 --> 00:00:04,550' in ajustado
+    # Colada nas duas vizinhas (o 05.srt real): a anterior, longa, é encurtada.
+    srt = ('1\n00:00:00,500 --> 00:00:04,662\nOntem: José interpretou os sonhos.\n\n'
+           '2\n00:00:04,662 --> 00:00:06,050\nE foi esquecido.\n\n'
+           '3\n00:00:06,050 --> 00:00:07,550\nCapítulo cinco.\n')
+    problemas, avisos, ajustado = pt.ajustar_legenda(srt, 90.0)
+    assert problemas == [] and len(avisos) == 1, (problemas, avisos)
+    assert 'fala 2 durava 1,388 s: estendida para 1,5 s (00:00:04,550 --> 00:00:06,050; ' \
+           'a fala 1 passa a terminar em 00:00:04,550)' == avisos[0], avisos
+    assert ajustado == ('1\n00:00:00,500 --> 00:00:04,550\nOntem: José interpretou os sonhos.\n\n'
+                        '2\n00:00:04,550 --> 00:00:06,050\nE foi esquecido.\n\n'
+                        '3\n00:00:06,050 --> 00:00:07,550\nCapítulo cinco.\n')
+    # A anterior só cede o que sobra do mínimo DELA — contando a divisão que
+    # ela vai sofrer (63 caracteres: 2 pedaços, 3 s): fica em 3 s em ponto.
+    longa = 'O meu feixe se levantou, e os vossos se prostravam diante dele.'
+    srt = (f'1\n00:00:00,000 --> 00:00:03,200\n{longa}\n\n'
+           '2\n00:00:03,200 --> 00:00:04,500\nDois.\n\n'
+           '3\n00:00:04,500 --> 00:00:06,000\nTrês.\n')
+    problemas, avisos, ajustado = pt.ajustar_legenda(srt, 6.5)
+    assert problemas == [], problemas
+    assert any('fala 2 durava 1,3 s: estendida para 1,5 s (00:00:03,000 --> 00:00:04,500; '
+               'a fala 1 passa a terminar em 00:00:03,000)' == a for a in avisos), avisos
+    assert '00:00:00,000 --> 00:00:01,500\nO meu feixe se levantou,' in ajustado, ajustado
+    assert '00:00:01,500 --> 00:00:03,000\ne os vossos se prostravam diante dele.' in ajustado
+    # E quando nem a anterior tem sobra (os 3 s em ponto da divisão dela), recusa.
+    srt = (f'1\n00:00:00,000 --> 00:00:03,000\n{longa}\n\n'
+           '2\n00:00:03,000 --> 00:00:04,300\nDois.\n\n'
+           '3\n00:00:04,300 --> 00:00:05,800\nTrês.\n')
+    problemas, avisos, ajustado = pt.ajustar_legenda(srt, 6.5)
+    assert len(problemas) == 1 and 'fala 2 dura 1,3 s' in problemas[0], problemas
+    assert 'não há espaço' in problemas[0] and ajustado is None
+    # A fala longa que vai ser dividida precisa de k × 1,5 s: é estendida
+    # até isso, pela folga da frente (o caso real da fala 5 do 04.srt da
+    # t1-v2: 44 caracteres em 2,543 s, com 0,73 s de vazio até a seguinte).
+    srt = ('1\n00:00:17,108 --> 00:00:19,651\nDentro de três dias, o faraó te reabilitará.\n\n'
+           '2\n00:00:20,381 --> 00:00:24,902\nLembra-te de mim.\n')
+    problemas, avisos, ajustado = pt.ajustar_legenda(srt, 30.0)
+    assert problemas == [], problemas
+    assert avisos == ['fala 1 durava 2,543 s: estendida para 3 s, o que a divisão em 2 pede '
+                      '(00:00:17,108 --> 00:00:20,108)',
+                      'fala 1 com 44 caracteres dividida em 2: '
+                      '00:00:17,108 --> 00:00:18,608 "Dentro de três dias," | '
+                      '00:00:18,608 --> 00:00:20,108 "o faraó te reabilitará."'], avisos
+    assert ajustado.startswith('1\n00:00:17,108 --> 00:00:18,608\nDentro de três dias,\n\n'
+                               '2\n00:00:18,608 --> 00:00:20,108\no faraó te reabilitará.\n\n'
+                               '3\n00:00:20,381 --> 00:00:24,902\n')
+    # Sem folga nenhuma (colada numa fala de 1,5 s antes e noutra depois), a
+    # divisão que não cabe continua erro, dizendo que também não havia para
+    # onde estender.
+    srt = ('1\n00:00:15,608 --> 00:00:17,108\nAntes.\n\n'
+           '2\n00:00:17,108 --> 00:00:19,651\nDentro de três dias, o faraó te reabilitará.\n\n'
+           '3\n00:00:19,651 --> 00:00:21,151\nLembra-te de mim.\n')
+    problemas, avisos, ajustado = pt.ajustar_legenda(srt, 30.0)
+    assert len(problemas) == 1 and ajustado is None, (problemas, avisos)
+    assert problemas[0].startswith('fala 2 com 44 caracteres ('), problemas
+    assert '2 pedaços' in problemas[0] and 'a fala tem 2,543 s' in problemas[0], problemas
+    assert 'não há espaço em volta' in problemas[0], problemas
 
 
 def teste_dividir_fala_corta_entre_palavras_no_menor_numero_de_pedacos_preferindo_a_pontuacao():
@@ -660,18 +757,19 @@ def teste_fala_longa_e_dividida_com_os_tempos_repartidos_e_sai_como_aviso():
     assert ajustado == ('1\n00:00:08,227 --> 00:00:10,753\nEm meu sonho, vi uma cepa diante de mim,\n\n'
                         '2\n00:00:10,753 --> 00:00:12,269\ne nessa cepa três varas;\n\n'
                         '3\n00:00:12,269 --> 00:00:14,227\nseus cachos deram uvas maduras.\n')
-    # A divisão não cabe: 50 caracteres em 1,6 s (2 pedaços pedem 3 s).
+    # A divisão não cabe: 50 caracteres em 1,6 s (2 pedaços pedem 3 s) e
+    # o vídeo acaba ali — sem folga para estender (FM4).
     cinquenta = 'Depois sonhou que o sol e a lua se curvavam a ele.'
     assert len(cinquenta) == 50
     srt = f'1\n00:00:01,000 --> 00:00:02,600\n{cinquenta}\n'
-    problemas, avisos, ajustado = pt.ajustar_legenda(srt, 10.0)
+    problemas, avisos, ajustado = pt.ajustar_legenda(srt, 2.6)
     assert len(problemas) == 1 and avisos == [] and ajustado is None, (problemas, avisos)
     assert problemas[0].startswith('fala 1 com 50 caracteres (') and 'o máximo é 42' in problemas[0]
     assert '2 pedaços' in problemas[0] and '1,6 s' in problemas[0], problemas
     # 42 em ponto: intacta, sem aviso, nada a escrever de novo.
     assert pt.ajustar_legenda('1\n00:00:01,000 --> 00:00:02,600\n' + 'x' * 42 + '\n', 10.0) == \
         ([], [], None)
-    # Uma palavra maior que 42: erro, dizendo por quê.
+    # Uma palavra maior que 42: erro, dizendo por quê (nem a extensão ajuda).
     srt = '1\n00:00:01,000 --> 00:00:04,600\n' + 'x' * 43 + '\n'
     problemas = pt.ajustar_legenda(srt, 10.0)[0]
     assert len(problemas) == 1 and 'não dá para dividir' in problemas[0], problemas
@@ -688,29 +786,31 @@ def teste_fala_longa_e_dividida_com_os_tempos_repartidos_e_sai_como_aviso():
 
 
 def teste_simular_escreve_a_legenda_dividida_e_a_da_entrega_nao_muda():
-    """FM3: o SRT escrito em novela/ é o ajustado (dividido), sem BOM e com
-    LF; o da entrega fica como veio; o aviso sai na conferência e no
-    resumo. Uma legenda que não precisou de ajuste é copiada byte a byte,
-    como antes."""
+    """FM3/FM4: o SRT escrito em novela/ é o ajustado (dividido e
+    estendido), sem BOM e com LF; o da entrega fica como veio; o aviso sai
+    na conferência e no resumo. Uma legenda que não precisou de ajuste é
+    copiada byte a byte, como antes."""
     longa = 'O meu feixe se levantou, e os vossos se prostravam diante dele.'
     with tempfile.TemporaryDirectory() as tmp:
         pasta = entrega_valida(tmp)
-        # O capítulo 1 com 5 s (duracaoS = 4 cabe na folga): a 2 longa com 3,3 s.
+        # O capítulo 1 com 5 s (duracaoS = 4 cabe na folga): a fala 1 curta,
+        # colada na 2 (só dá para estender para trás), e a 2 longa com 3,3 s.
         m = midia_sintetica()
         shutil.copyfile(m['cinco_catolico'], pasta / '01-catolico.mp4')
         shutil.copyfile(m['cinco'], pasta / '01-evangelico.mp4')
-        original = ('﻿1\r\n00:00:00,000 --> 00:00:01,600\r\nNo princípio.\r\n\r\n'
+        original = ('﻿1\r\n00:00:00,200 --> 00:00:01,600\r\nNo princípio.\r\n\r\n'
                     f'2\r\n00:00:01,600 --> 00:00:04,900\r\n{longa}\r\n')
         (pasta / '01.srt').write_bytes(original.encode('utf-8'))
         midia = Path(tmp) / 'midia'
         codigo, saida = publicar(pasta, midia)
         assert codigo == 0, saida
         assert (midia / 'novela' / 't1c1.srt').read_bytes() == (
-            '1\n00:00:00,000 --> 00:00:01,600\nNo princípio.\n\n'
+            '1\n00:00:00,100 --> 00:00:01,600\nNo princípio.\n\n'
             '2\n00:00:01,600 --> 00:00:03,100\nO meu feixe se levantou,\n\n'
             '3\n00:00:03,100 --> 00:00:04,900\ne os vossos se prostravam diante dele.\n').encode('utf-8')
         assert (pasta / '01.srt').read_bytes() == original.encode('utf-8'), 'a entrega não muda'
         resumo = saida.split('== resumo')[1]
+        assert 'cap. 1 (01.srt): fala 1 durava 1,4 s: estendida para 1,5 s' in resumo, resumo
         assert 'cap. 1 (01.srt): fala 2 com 63 caracteres dividida em 2' in resumo, resumo
         assert 'legenda: sim' in resumo
         # E a legenda que já estava na régua: cópia exata (sem o BOM).
