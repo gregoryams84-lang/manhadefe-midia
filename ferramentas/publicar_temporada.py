@@ -823,9 +823,28 @@ def tomar_trava(midia):
                       'basta apagar esse arquivo e rodar de novo; nada foi tocado')
     except OSError as e:
         return None, f'não deu para criar a trava {caminho} ({type(e).__name__}: {e})'
-    with os.fdopen(descritor, 'w', encoding='utf-8', newline='') as f:
-        f.write(f'{datetime.now():%Y-%m-%d %H:%M:%S} PID {os.getpid()}' + chr(10))
+    # Daqui em diante a trava existe e é desta publicação: toda saída que
+    # não a devolve a apaga (F15) — uma trava vazia, de ninguém, faria a
+    # rodada seguinte recusar e mandar apagar à mão.
+    try:
+        escrever_trava(descritor, f'{datetime.now():%Y-%m-%d %H:%M:%S} PID {os.getpid()}' + chr(10))
+    except OSError as e:
+        soltar_trava(caminho)
+        return None, (f'não deu para escrever a trava {caminho} ({type(e).__name__}: {e}); ela foi '
+                      'apagada e nada foi tocado')
+    except BaseException:
+        # Um Ctrl+C entre a criação e a devolução: a trava não pode ficar.
+        soltar_trava(caminho)
+        raise
     return caminho, None
+
+
+def escrever_trava(descritor, texto):
+    """O conteúdo da trava, pelo descritor que o O_EXCL deu (fechado aqui,
+    também na falha). É o ponto que o teste troca por uma escrita que falha
+    ou é interrompida."""
+    with os.fdopen(descritor, 'w', encoding='utf-8', newline='') as f:
+        f.write(texto)
 
 
 def soltar_trava(caminho):
@@ -1510,15 +1529,20 @@ def main(argv=None):
         return _publicar(args, midia, app, prefixo)
     # A rodada real: uma por vez nesta raiz de mídia (R8-N). A trava vem
     # antes de qualquer conferência, HEAD ou envio, e sai no finally —
-    # também na falha e numa interrupção.
-    trava, recusa = tomar_trava(midia)
-    if trava is None:
-        print(f'trava: {recusa}')
-        return 1
+    # também na falha e numa interrupção. O tomar_trava fica DENTRO do try
+    # (F15): um Ctrl+C entre a criação dela e o try não a deixaria; o
+    # finally só apaga a trava desta publicação (a de outra, tomar_trava
+    # nem devolve).
+    trava = None
     try:
+        trava, recusa = tomar_trava(midia)
+        if trava is None:
+            print(f'trava: {recusa}')
+            return 1
         return _publicar(args, midia, app, prefixo)
     finally:
-        soltar_trava(trava)
+        if trava is not None:
+            soltar_trava(trava)
 
 
 def _publicar(args, midia, app, prefixo):

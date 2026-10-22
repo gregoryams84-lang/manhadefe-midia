@@ -1618,6 +1618,66 @@ def teste_trava_exclusiva_uma_publicacao_real_por_vez():
         assert not (Path(tmp) / 'nao-existe').exists()
 
 
+def teste_trava_nao_fica_se_a_escrita_dela_falha_nem_num_ctrl_c_logo_depois_de_criada():
+    """F15: a trava nasce com O_EXCL e só então recebe a data/hora e o PID.
+    Se essa escrita falha (disco cheio), ela é apagada antes da recusa —
+    senão a rodada seguinte acharia uma trava vazia de ninguém; e um Ctrl+C
+    entre a criação e o try do main (aqui, dentro da escrita) também não a
+    deixa. A trava de OUTRA publicação nunca é tocada por essas saídas."""
+    with tempfile.TemporaryDirectory() as tmp:
+        dubles = Dubles(tmp)
+        midia = dubles.midia()
+        pasta = entrega_valida(tmp)
+        trava = midia / '.publicando.trava'
+        real = pt.escrever_trava
+
+        def falha(descritor, texto):
+            os.close(descritor)
+            raise OSError(28, 'No space left on device')
+
+        def interrompe(descritor, texto):
+            os.close(descritor)
+            raise KeyboardInterrupt()
+
+        # (1) A escrita falha: recusa, a trava apagada, nada tocado.
+        pt.escrever_trava = falha
+        try:
+            codigo, saida = dubles.publicar(pasta, midia, '--sem-voz')
+        finally:
+            pt.escrever_trava = real
+        assert codigo == 1, saida
+        assert 'trava' in saida and 'No space left' in saida and 'nada foi tocado' in saida, saida
+        assert not trava.exists(), 'a trava que não pôde ser escrita foi apagada'
+        assert dubles.cliente.consultas == [] and dubles.comandos == []
+        # (2) Ctrl+C logo depois da criação: a interrupção sobe, a trava não fica.
+        pt.escrever_trava = interrompe
+        try:
+            try:
+                dubles.publicar(pasta, midia, '--sem-voz')
+            except KeyboardInterrupt:
+                pass
+            else:
+                raise AssertionError('a interrupção deveria ter subido')
+        finally:
+            pt.escrever_trava = real
+        assert not trava.exists()
+        assert dubles.cliente.consultas == [] and dubles.comandos == []
+        # (3) A trava de outra publicação fica como está (a escrita nem roda).
+        trava.write_text(TRAVA_DE_OUTRA, encoding='utf-8')
+        chamadas = []
+        pt.escrever_trava = lambda *a: chamadas.append(a) or falha(*a)
+        try:
+            codigo, saida = dubles.publicar(pasta, midia, '--sem-voz')
+        finally:
+            pt.escrever_trava = real
+        assert codigo == 1 and 'outra publicação' in saida, saida
+        assert chamadas == [] and trava.read_text(encoding='utf-8') == TRAVA_DE_OUTRA
+        # (4) Nada ficou preso: a publicação seguinte passa e solta a trava.
+        trava.unlink()
+        assert dubles.publicar(pasta, midia, '--sem-voz')[0] == 0
+        assert not trava.exists()
+
+
 def teste_duas_publicacoes_ao_mesmo_tempo_a_segunda_recusa():
     """R8-N (N1 da re-revisão): a segunda publicação, lançada enquanto a
     primeira está no meio (aqui, de dentro do primeiro HEAD dela) e com um
