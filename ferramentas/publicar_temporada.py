@@ -26,7 +26,12 @@ são ignorados.
    - legenda: SRT que o parser do app lê inteiro, UMA linha por fala, até
      42 caracteres (cabe inteira com a letra no máximo, Ruling 9), cada fala
      com pelo menos 1,5 s, dentro da duração do vídeo e sem sobrepor a
-     anterior;
+     anterior. A fala com mais de 42 caracteres é DIVIDIDA em pedaços de
+     até 42 (entre palavras, de preferência depois de pontuação), com a
+     duração repartida na proporção dos caracteres e cada pedaço com pelo
+     menos 1,5 s — sai como AVISO (fala, pedaços e tempos), e o SRT que vai
+     para novela/ é o dividido (o da entrega não muda); se a divisão não
+     cabe na duração da fala, é erro;
    - textos: versículo até 180 caracteres, reflexão de 40 a 100 palavras
      e no máximo 2 travessões (as réguas do lint do app, contadas do mesmo
      jeito: no texto aparado, como o app o lê), oração terminando em
@@ -199,6 +204,7 @@ class CapituloDaEntrega:
     capa: Path
     legenda: Path | None
     shas: dict                  # tradição -> sha256 do vídeo (medido na conferência)
+    legenda_ajustada: str | None = None   # o SRT que vai para novela/, quando a conferência o ajustou
 
     @property
     def nn(self):
@@ -332,60 +338,194 @@ def _blocos_como_o_app(texto):
     return blocos
 
 
-def conferir_legenda(texto, duracao_do_video):
-    """Os problemas da legenda (lista vazia = passa). O app lê o SRT pelo
-    SubRipCaptionFile do video_player 2.14: ele PARA no primeiro bloco com
-    menos de 3 linhas (uma linha em branco a mais no meio basta), lança no
-    bloco que não começa por número (o app então toca sem legenda) e pula em
-    silêncio a fala de tempo fora do formato. A tela mostra uma fala por vez,
-    numa linha só: até 42 caracteres, pelo menos 1,5 s, dentro do vídeo e
-    sem sobrepor a anterior."""
-    if texto.startswith('\ufeff'):
+PONTUACAO_DE_CORTE = ',;:.!?…'
+# Um corte fora da pontuação custa o mesmo que uns 20 caracteres de
+# desequilíbrio entre os pedaços (20², na soma dos quadrados).
+CUSTO_DO_CORTE_SEM_PONTUACAO = 400
+
+
+def dividir_fala(texto, maximo=MAXIMO_DE_CARACTERES_DA_FALA):
+    """Os pedaços de até `maximo` caracteres de uma fala longa (FM3), ou
+    None quando não dá (uma palavra maior que o máximo). Só corta entre
+    palavras. Entre as partições possíveis, a de MENOS pedaços (menos
+    trocas na tela, cada uma mais tempo); entre essas, a de menor custo —
+    a soma dos quadrados dos comprimentos (a mais equilibrada) mais
+    CUSTO_DO_CORTE_SEM_PONTUACAO por corte que não vem depois de
+    pontuação: "O meu feixe se levantou, | e os vossos…" vence o corte
+    pelo meio, e "Ontem: | José interpretou…" perde para ele. A fala que
+    cabe volta inteira, intocada."""
+    if len(texto) <= maximo:
+        return [texto]
+    palavras = texto.split()
+    if not palavras or any(len(p) > maximo for p in palavras):
+        return None
+    n = len(palavras)
+    melhor = [None] * (n + 1)      # (pedaços, custo, partição) das palavras [0, j)
+    melhor[0] = (0, 0, [])
+    for j in range(1, n + 1):
+        for i in range(j - 1, -1, -1):
+            pedaco = ' '.join(palavras[i:j])
+            if len(pedaco) > maximo:
+                break
+            if melhor[i] is None:
+                continue
+            pedacos, custo, particao = melhor[i]
+            corte = 0 if j == n or pedaco[-1] in PONTUACAO_DE_CORTE else CUSTO_DO_CORTE_SEM_PONTUACAO
+            candidato = (pedacos + 1, custo + len(pedaco) ** 2 + corte, particao + [pedaco])
+            if melhor[j] is None or candidato[:2] < melhor[j][:2]:
+                melhor[j] = candidato
+    return melhor[n][2]
+
+
+def repartir_duracao(total_ms, comprimentos, minimo=MINIMO_DE_MS_DA_FALA):
+    """A duração (ms, inteira) de cada pedaço de uma fala dividida (FM3):
+    na proporção dos caracteres, com cada pedaço ficando com pelo menos
+    `minimo` — o que falta a um pedaço curto sai dos outros, na proporção
+    deles. A soma é exatamente `total_ms`. None se o total não dá para
+    todos (len × minimo): a fala é curta demais para a divisão."""
+    k = len(comprimentos)
+    if total_ms < k * minimo:
+        return None
+    fixos, duracoes = {}, {}
+    while True:
+        livres = [i for i in range(k) if i not in fixos]
+        sobra = total_ms - sum(fixos.values())
+        peso = sum(comprimentos[i] for i in livres)
+        duracoes = {i: sobra * comprimentos[i] / peso for i in livres} if peso else {}
+        curtos = [i for i in livres if duracoes[i] < minimo]
+        if not curtos:
+            break
+        for i in curtos:
+            fixos[i] = minimo
+    exatas = [fixos.get(i, duracoes.get(i, 0)) for i in range(k)]
+    inteiras = [int(d) for d in exatas]
+    # O que o truncamento tirou volta um ms por vez, para as maiores frações.
+    resto = total_ms - sum(inteiras)
+    for i in sorted(range(k), key=lambda i: exatas[i] - inteiras[i], reverse=True)[:resto]:
+        inteiras[i] += 1
+    return inteiras
+
+
+@dataclass
+class _Fala:
+    """Uma fala da legenda com tempo válido, na ordem do arquivo."""
+    numero: int                  # a posição (1, 2...), como as mensagens contam
+    inicio: int                  # ms
+    fim: int
+    texto: str
+    pedacos: list | None = None  # (inicio, fim, texto) de cada pedaço, quando dividida
+
+
+def _dividir_falas_longas(falas, problemas, avisos):
+    """FM3: a fala com mais de 42 caracteres vira pedaços de até 42, com a
+    duração dela repartida entre eles (repartir_duracao) — cada um com
+    pelo menos 1,5 s; se a divisão não cabe (ou uma palavra passa de 42),
+    é problema. `problemas` e `avisos` recebem (número da fala, texto)."""
+    for fala in falas:
+        if len(fala.texto) <= MAXIMO_DE_CARACTERES_DA_FALA:
+            continue
+        pedacos = dividir_fala(fala.texto)
+        duracao = fala.fim - fala.inicio
+        duracoes = repartir_duracao(duracao, [len(p) for p in pedacos]) if pedacos else None
+        cabecalho = f'fala {fala.numero} com {len(fala.texto)} caracteres'
+        if duracoes is None:
+            if pedacos is None:
+                motivo = 'não dá para dividir (uma palavra maior que o máximo)'
+            else:
+                motivo = (f'dividida em {len(pedacos)} pedaços, cada um precisaria de '
+                          f'{_segundos(MINIMO_DE_MS_DA_FALA)} s, e a fala tem {_segundos(duracao)} s')
+            problemas.append((fala.numero, f'{cabecalho} ("{fala.texto}") — o máximo é '
+                                           f'{MAXIMO_DE_CARACTERES_DA_FALA}, e {motivo}'))
+            continue
+        inicio, fala.pedacos = fala.inicio, []
+        for pedaco, ms in zip(pedacos, duracoes):
+            fala.pedacos.append((inicio, inicio + ms, pedaco))
+            inicio += ms
+        avisos.append((fala.numero, f'{cabecalho} dividida em {len(pedacos)}: ' + ' | '.join(
+            f'{_tempo_srt(a)} --> {_tempo_srt(b)} "{t}"' for a, b, t in fala.pedacos)))
+
+
+def _srt_de(falas):
+    """O SRT das falas (as divididas como falas seguidas), renumerado, uma
+    linha de texto por fala, LF, sem BOM."""
+    linhas, n = [], 0
+    for fala in falas:
+        for inicio, fim, texto in fala.pedacos or [(fala.inicio, fala.fim, fala.texto)]:
+            n += 1
+            linhas += [str(n), f'{_tempo_srt(inicio)} --> {_tempo_srt(fim)}', texto, '']
+    return '\n'.join(linhas)
+
+
+def ajustar_legenda(texto, duracao_do_video):
+    """(problemas, avisos, o SRT ajustado — ou None quando nada mudou) de
+    uma legenda. O app lê o SRT pelo SubRipCaptionFile do video_player
+    2.14: ele PARA no primeiro bloco com menos de 3 linhas (uma linha em
+    branco a mais no meio basta), lança no bloco que não começa por número
+    (o app então toca sem legenda) e pula em silêncio a fala de tempo fora
+    do formato. A tela mostra uma fala por vez, numa linha só: até 42
+    caracteres, pelo menos 1,5 s, dentro do vídeo e sem sobrepor a
+    anterior. O que dá para ajustar sem mexer no sentido é ajustado e sai
+    como aviso: a fala longa é dividida (FM3, _dividir_falas_longas). O
+    resto é problema (lista vazia = passa)."""
+    if texto.startswith('﻿'):
         texto = texto[1:]
     blocos = _blocos_como_o_app(texto)
-    problemas = []
-    falas = fim_anterior = 0
+    problemas, falas = [], []
+    contagem = fim_anterior = 0
     for i, bloco in enumerate(blocos):
         if not bloco:
             if any(blocos[i + 1:]):
-                onde = f'a mais depois da fala {falas}' if falas else 'antes da primeira fala'
+                onde = f'a mais depois da fala {contagem}' if contagem else 'antes da primeira fala'
                 problemas.append(f'linha em branco {onde} — o app para de ler a legenda ali')
             continue
-        falas += 1
+        contagem += 1
         if len(bloco) < 3:
-            problemas.append(f'fala {falas} com {len(bloco)} linha(s) — cada fala tem número, '
+            problemas.append(f'fala {contagem} com {len(bloco)} linha(s) — cada fala tem número, '
                              'tempo e uma linha de texto; o app para de ler a legenda ali')
             continue
         numero, tempo, texto_da_fala = bloco[0].strip(), bloco[1].strip(), bloco[2:]
         if not re.fullmatch(r'[0-9]+', numero):
-            problemas.append(f'fala {falas}: o bloco não começa por número ("{numero}") — o app '
+            problemas.append(f'fala {contagem}: o bloco não começa por número ("{numero}") — o app '
                              'não abre a legenda')
         if len(texto_da_fala) != 1:
-            problemas.append(f'fala {falas} com {len(texto_da_fala)} linhas — uma linha só por fala')
+            problemas.append(f'fala {contagem} com {len(texto_da_fala)} linhas — uma linha só por '
+                             'fala')
         linha = ' '.join(t.strip() for t in texto_da_fala)
-        if len(linha) > MAXIMO_DE_CARACTERES_DA_FALA:
-            problemas.append(f'fala {falas} com {len(linha)} caracteres ("{linha}") — o máximo é '
-                             f'{MAXIMO_DE_CARACTERES_DA_FALA}')
         m = _TEMPO_SRT.fullmatch(tempo)
         if not m:
-            problemas.append(f'fala {falas}: tempo "{tempo}" fora do formato '
+            problemas.append(f'fala {contagem}: tempo "{tempo}" fora do formato '
                              'HH:MM:SS,mmm --> HH:MM:SS,mmm — o app pula a fala')
             continue
         g = [int(x) for x in m.groups()]
         inicio = ((g[0] * 60 + g[1]) * 60 + g[2]) * 1000 + g[3]
         fim = ((g[4] * 60 + g[5]) * 60 + g[6]) * 1000 + g[7]
         if fim - inicio < MINIMO_DE_MS_DA_FALA:
-            problemas.append(f'fala {falas} dura {_segundos(fim - inicio)} s — o mínimo é '
+            problemas.append(f'fala {contagem} dura {_segundos(fim - inicio)} s — o mínimo é '
                              f'{_segundos(MINIMO_DE_MS_DA_FALA)} s')
         if duracao_do_video is not None and fim > round(duracao_do_video * 1000):
-            problemas.append(f'fala {falas} termina em {_tempo_srt(fim)}, depois do fim do vídeo '
+            problemas.append(f'fala {contagem} termina em {_tempo_srt(fim)}, depois do fim do vídeo '
                              f'({_tempo_srt(round(duracao_do_video * 1000))})')
         if inicio < fim_anterior:
-            problemas.append(f'fala {falas} começa em {_tempo_srt(inicio)}, antes do fim da fala '
+            problemas.append(f'fala {contagem} começa em {_tempo_srt(inicio)}, antes do fim da fala '
                              f'anterior ({_tempo_srt(fim_anterior)})')
         fim_anterior = max(fim_anterior, fim)
-    if not falas:
+        falas.append(_Fala(contagem, inicio, fim, linha))
+    if not contagem:
         problemas.append('nenhuma fala')
+    # Os ajustes, fala a fala (as mensagens saem na ordem das falas).
+    das_falas, avisos = [], []
+    _dividir_falas_longas(falas, das_falas, avisos)
+    problemas += [p for _, p in sorted(das_falas, key=lambda par: par[0])]
+    avisos = [a for _, a in sorted(avisos, key=lambda par: par[0])]
+    return problemas, avisos, _srt_de(falas) if avisos else None
+
+
+def conferir_legenda(texto, duracao_do_video, avisos=None):
+    """Só os problemas da legenda (ajustar_legenda); os avisos vão para a
+    lista `avisos`, se vier uma."""
+    problemas, novos, _ = ajustar_legenda(texto, duracao_do_video)
+    if avisos is not None:
+        avisos.extend(novos)
     return problemas
 
 
@@ -427,8 +567,8 @@ def conferir_entrega(pasta, limite_de_bytes=LIMITE_DE_BYTES, avisos=None):
     início e os capítulos dão para ler — mesmo com problemas, para as outras
     conferências (o índice) também listarem os delas. `limite_de_bytes` é
     parâmetro para o teste não precisar de um vídeo de 25 MB. O que passa
-    mas merece aviso (o yuvj420p, R8-M) vai para a lista `avisos`, se vier
-    uma — nunca para os problemas."""
+    mas merece aviso (o yuvj420p, R8-M; a fala dividida, FM3) vai para a
+    lista `avisos`, se vier uma — nunca para os problemas."""
     pasta = Path(pasta)
     arquivo = pasta / 'temporada.json'
     if not pasta.is_dir():
@@ -543,18 +683,22 @@ def conferir_entrega(pasta, limite_de_bytes=LIMITE_DE_BYTES, avisos=None):
                                  f'tem de ser {TAMANHO_DA_CAPA[0]}x{TAMANHO_DA_CAPA[1]}')
 
         legenda = pasta / f'{nn}.srt'
+        legenda_ajustada = None
         if legenda.exists():
             try:
                 texto = legenda.read_bytes().decode('utf-8')
             except UnicodeDecodeError:
                 problemas.append(f'{rotulo} ({legenda.name}): não está em UTF-8')
             else:
-                problemas += [f'{rotulo} ({legenda.name}): {p}' for p in
-                              conferir_legenda(texto, min(duracoes.values()) if duracoes else None)]
+                p, a, legenda_ajustada = ajustar_legenda(
+                    texto, min(duracoes.values()) if duracoes else None)
+                problemas += [f'{rotulo} ({legenda.name}): {x}' for x in p]
+                if avisos is not None:
+                    avisos += [f'{rotulo} ({legenda.name}): {x}' for x in a]
         else:
             legenda = None
         lista.append(CapituloDaEntrega(n=i, dados=cap, videos=videos, capa=capa, legenda=legenda,
-                                       shas=shas))
+                                       shas=shas, legenda_ajustada=legenda_ajustada))
 
     for arquivo_da_pasta in sorted(pasta.iterdir()):
         m = _ARQUIVO_DA_ENTREGA.fullmatch(arquivo_da_pasta.name)
@@ -1326,9 +1470,14 @@ def escrever(midia, entrega, videos, base, indice):
         shutil.copyfile(c.capa, destino)
         escritos.append(f'imagens/{id_}.webp')
         if c.legenda is not None:
-            bruto = c.legenda.read_bytes()
-            if bruto.startswith(b'\xef\xbb\xbf'):
-                bruto = bruto[3:]
+            if c.legenda_ajustada is not None:
+                # A conferência dividiu falas (FM3): vai o SRT ajustado; o
+                # da entrega não muda.
+                bruto = c.legenda_ajustada.encode('utf-8')
+            else:
+                bruto = c.legenda.read_bytes()
+                if bruto.startswith(b'\xef\xbb\xbf'):
+                    bruto = bruto[3:]
             (midia / 'novela' / f'{id_}.srt').write_bytes(bruto)
             escritos.append(f'novela/{id_}.srt')
     removidos = limpar_sobras(midia, entrega)

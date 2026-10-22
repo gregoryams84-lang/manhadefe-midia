@@ -81,6 +81,9 @@ def midia_sintetica():
             estreito=video(pasta / 'estreito.mp4', 640, 1280, 4, 440),
             longo=video(pasta / 'longo.mp4', 720, 1280, 7, 440),
             cinco=video(pasta / 'cinco.mp4', 720, 1280, 5, 660),
+            # O par católico do `cinco`: um capítulo de 5 s (duracaoS = 4
+            # cabe na folga) para uma legenda com espaço de sobra.
+            cinco_catolico=video(pasta / 'cinco-catolico.mp4', 720, 1280, 5, 440),
             # Outro vídeo válido de 4 s (outro conteúdo, outro sha256).
             outro=video(pasta / 'outro.mp4', 720, 1280, 4, 550),
             # h264 High 4:4:4, High 10 e High 4:2:2: o ffprobe diz h264, mas
@@ -589,6 +592,132 @@ def teste_limite_exato_da_fala_1_5_s():
     assert pt.conferir_legenda(um_e_meio, 4.0) == []
     assert pt.conferir_legenda(um_e_meio.replace('01,500', '01,499'), 4.0) == \
         ['fala 1 dura 1,499 s — o mínimo é 1,5 s']
+
+
+def teste_dividir_fala_corta_entre_palavras_no_menor_numero_de_pedacos_preferindo_a_pontuacao():
+    """FM3, a função pura: o menor número de pedaços de até 42; entre as
+    partições com esse número, a mais equilibrada — e um corte depois de
+    pontuação vale uns 20 caracteres de desequilíbrio a favor."""
+    assert pt.dividir_fala('x' * 42) == ['x' * 42]
+    assert pt.dividir_fala('O meu feixe se levantou, e os vossos se prostravam diante dele.') == \
+        ['O meu feixe se levantou,', 'e os vossos se prostravam diante dele.']
+    cepa = ('Em meu sonho, vi uma cepa diante de mim, e nessa cepa três varas; seus cachos '
+            'deram uvas maduras.')
+    assert len(cepa) == 97
+    assert pt.dividir_fala(cepa) == ['Em meu sonho, vi uma cepa diante de mim,',
+                                     'e nessa cepa três varas;', 'seus cachos deram uvas maduras.']
+    # Sem pontuação perto: o corte mais equilibrado.
+    assert pt.dividir_fala('Como poderia eu cometer um tão grande crime e pecar contra Deus?') == \
+        ['Como poderia eu cometer um tão', 'grande crime e pecar contra Deus?']
+    # A pontuação longe demais do meio perde para o equilíbrio.
+    assert pt.dividir_fala('Ontem: José interpretou os sonhos de dois presos.') == \
+        ['Ontem: José interpretou', 'os sonhos de dois presos.']
+    # Mas perto o bastante, ganha.
+    assert pt.dividir_fala('Manhã de Fé, todo dia de manhã no seu celular.') == \
+        ['Manhã de Fé,', 'todo dia de manhã no seu celular.']
+    assert pt.dividir_fala('No Egito, Potifar, chefe da guarda do faraó, comprou José.') == \
+        ['No Egito, Potifar,', 'chefe da guarda do faraó, comprou José.']
+    # Uma palavra maior que o máximo: não dá.
+    assert pt.dividir_fala('Supercalifragilisticexpialidocioso' + 'x' * 20 + ' e fim.') is None
+    for pedaco in pt.dividir_fala(cepa):
+        assert len(pedaco) <= pt.MAXIMO_DE_CARACTERES_DA_FALA
+
+
+def teste_repartir_duracao_proporcional_aos_caracteres_com_o_piso_de_1_5_s():
+    """FM3: a duração dividida na proporção dos caracteres; o pedaço que
+    ficaria abaixo de 1,5 s sobe para 1,5 s e o que falta sai dos outros,
+    na proporção deles; a soma é exata; se o total não dá para todos, None."""
+    assert pt.repartir_duracao(3000, [24, 38]) == [1500, 1500]
+    assert pt.repartir_duracao(6000, [40, 24, 31]) == [2526, 1516, 1958]
+    assert pt.repartir_duracao(4521, [34, 26, 33]) == [1521, 1500, 1500]
+    assert pt.repartir_duracao(4000, [10, 30]) == [1500, 2500]
+    assert pt.repartir_duracao(2999, [1, 1]) is None
+    assert pt.repartir_duracao(1500, [42]) == [1500]
+
+
+def teste_fala_longa_e_dividida_com_os_tempos_repartidos_e_sai_como_aviso():
+    """FM3: a fala com mais de 42 caracteres é dividida em pedaços de até
+    42, a duração repartida na proporção dos caracteres (cada pedaço com
+    pelo menos 1,5 s), e a divisão sai como AVISO (fala, pedaços e tempos);
+    o SRT ajustado traz os pedaços como falas seguidas, renumeradas. Fala
+    curta demais para a divisão continua ERRO; a de 42 fica intacta."""
+    longa = 'O meu feixe se levantou, e os vossos se prostravam diante dele.'
+    assert len(longa) == 63
+    srt = f'1\n00:00:01,000 --> 00:00:04,000\n{longa}\n'
+    problemas, avisos, ajustado = pt.ajustar_legenda(srt, 10.0)
+    assert problemas == [], problemas
+    assert avisos == ['fala 1 com 63 caracteres dividida em 2: '
+                      '00:00:01,000 --> 00:00:02,500 "O meu feixe se levantou," | '
+                      '00:00:02,500 --> 00:00:04,000 "e os vossos se prostravam diante dele."'], avisos
+    assert ajustado == ('1\n00:00:01,000 --> 00:00:02,500\nO meu feixe se levantou,\n\n'
+                        '2\n00:00:02,500 --> 00:00:04,000\ne os vossos se prostravam diante dele.\n')
+    # 97 caracteres em 6 s: 3 pedaços, os tempos encostados e a soma exata.
+    cepa = ('Em meu sonho, vi uma cepa diante de mim, e nessa cepa três varas; seus cachos '
+            'deram uvas maduras.')
+    srt = f'1\n00:00:08,227 --> 00:00:14,227\n{cepa}\n'
+    problemas, avisos, ajustado = pt.ajustar_legenda(srt, 20.0)
+    assert problemas == [] and len(avisos) == 1 and 'dividida em 3' in avisos[0], (problemas, avisos)
+    assert ajustado == ('1\n00:00:08,227 --> 00:00:10,753\nEm meu sonho, vi uma cepa diante de mim,\n\n'
+                        '2\n00:00:10,753 --> 00:00:12,269\ne nessa cepa três varas;\n\n'
+                        '3\n00:00:12,269 --> 00:00:14,227\nseus cachos deram uvas maduras.\n')
+    # A divisão não cabe: 50 caracteres em 1,6 s (2 pedaços pedem 3 s).
+    cinquenta = 'Depois sonhou que o sol e a lua se curvavam a ele.'
+    assert len(cinquenta) == 50
+    srt = f'1\n00:00:01,000 --> 00:00:02,600\n{cinquenta}\n'
+    problemas, avisos, ajustado = pt.ajustar_legenda(srt, 10.0)
+    assert len(problemas) == 1 and avisos == [] and ajustado is None, (problemas, avisos)
+    assert problemas[0].startswith('fala 1 com 50 caracteres (') and 'o máximo é 42' in problemas[0]
+    assert '2 pedaços' in problemas[0] and '1,6 s' in problemas[0], problemas
+    # 42 em ponto: intacta, sem aviso, nada a escrever de novo.
+    assert pt.ajustar_legenda('1\n00:00:01,000 --> 00:00:02,600\n' + 'x' * 42 + '\n', 10.0) == \
+        ([], [], None)
+    # Uma palavra maior que 42: erro, dizendo por quê.
+    srt = '1\n00:00:01,000 --> 00:00:04,600\n' + 'x' * 43 + '\n'
+    problemas = pt.ajustar_legenda(srt, 10.0)[0]
+    assert len(problemas) == 1 and 'não dá para dividir' in problemas[0], problemas
+    # A fala dividida e a intacta convivem: só a dividida muda, a numeração segue.
+    srt = (f'1\n00:00:00,000 --> 00:00:01,500\nUm.\n\n'
+           f'2\n00:00:01,500 --> 00:00:04,500\n{longa}\n\n'
+           f'3\n00:00:04,500 --> 00:00:06,000\nTrês.\n')
+    problemas, avisos, ajustado = pt.ajustar_legenda(srt, 10.0)
+    assert problemas == [] and len(avisos) == 1
+    assert ajustado == ('1\n00:00:00,000 --> 00:00:01,500\nUm.\n\n'
+                        '2\n00:00:01,500 --> 00:00:03,000\nO meu feixe se levantou,\n\n'
+                        '3\n00:00:03,000 --> 00:00:04,500\ne os vossos se prostravam diante dele.\n\n'
+                        '4\n00:00:04,500 --> 00:00:06,000\nTrês.\n')
+
+
+def teste_simular_escreve_a_legenda_dividida_e_a_da_entrega_nao_muda():
+    """FM3: o SRT escrito em novela/ é o ajustado (dividido), sem BOM e com
+    LF; o da entrega fica como veio; o aviso sai na conferência e no
+    resumo. Uma legenda que não precisou de ajuste é copiada byte a byte,
+    como antes."""
+    longa = 'O meu feixe se levantou, e os vossos se prostravam diante dele.'
+    with tempfile.TemporaryDirectory() as tmp:
+        pasta = entrega_valida(tmp)
+        # O capítulo 1 com 5 s (duracaoS = 4 cabe na folga): a 2 longa com 3,3 s.
+        m = midia_sintetica()
+        shutil.copyfile(m['cinco_catolico'], pasta / '01-catolico.mp4')
+        shutil.copyfile(m['cinco'], pasta / '01-evangelico.mp4')
+        original = ('﻿1\r\n00:00:00,000 --> 00:00:01,600\r\nNo princípio.\r\n\r\n'
+                    f'2\r\n00:00:01,600 --> 00:00:04,900\r\n{longa}\r\n')
+        (pasta / '01.srt').write_bytes(original.encode('utf-8'))
+        midia = Path(tmp) / 'midia'
+        codigo, saida = publicar(pasta, midia)
+        assert codigo == 0, saida
+        assert (midia / 'novela' / 't1c1.srt').read_bytes() == (
+            '1\n00:00:00,000 --> 00:00:01,600\nNo princípio.\n\n'
+            '2\n00:00:01,600 --> 00:00:03,100\nO meu feixe se levantou,\n\n'
+            '3\n00:00:03,100 --> 00:00:04,900\ne os vossos se prostravam diante dele.\n').encode('utf-8')
+        assert (pasta / '01.srt').read_bytes() == original.encode('utf-8'), 'a entrega não muda'
+        resumo = saida.split('== resumo')[1]
+        assert 'cap. 1 (01.srt): fala 2 com 63 caracteres dividida em 2' in resumo, resumo
+        assert 'legenda: sim' in resumo
+        # E a legenda que já estava na régua: cópia exata (sem o BOM).
+        (pasta / '01.srt').write_bytes(b'\xef\xbb\xbf' + SRT_VALIDO.encode('utf-8'))
+        codigo, saida = publicar(pasta, Path(tmp) / 'midia2')
+        assert codigo == 0 and 'aviso' not in saida.split('== resumo')[1], saida
+        assert (Path(tmp) / 'midia2' / 'novela' / 't1c1.srt').read_bytes() == SRT_VALIDO.encode('utf-8')
 
 
 def teste_linha_em_branco_antes_da_primeira_fala():
