@@ -1743,10 +1743,18 @@ class Dubles:
                         f.write(json.dumps(registro) + chr(10))
             return 1 if erros else 0
         if cmd[1].endswith('conferir_stt.py'):
-            # Como o real: uma linha no stt.log.jsonl por arquivo conferido.
+            # Como o real: uma linha no stt.log.jsonl por arquivo conferido;
+            # o aceito à mão (stt-aceitos.txt) segue `aprovado: false` no log
+            # e só sai do código de saída.
             midia = Path(cmd[1]).parents[1]
             log = midia / 'ferramentas' / 'narracao' / 'stt.log.jsonl'
             log.parent.mkdir(parents=True, exist_ok=True)
+            aceitos_txt = midia / 'ferramentas' / 'narracao' / 'stt-aceitos.txt'
+            aceitos = ({linha.partition(' | ')[0].strip()
+                        for linha in aceitos_txt.read_text(encoding='utf-8').splitlines()
+                        if linha.strip() and not linha.startswith('#')}
+                       if aceitos_txt.exists() else set())
+            reprovou = False
             with open(log, 'a', encoding='utf-8') as f:
                 for id_ in cmd[cmd.index('--ids') + 1].split(','):
                     for tradicao in ('catolico', 'evangelico'):
@@ -1755,10 +1763,11 @@ class Dubles:
                             continue
                         reprovado = self.stt != 0 and (self.reprovados is None
                                                        or caminho in self.reprovados)
+                        reprovou = reprovou or (reprovado and caminho not in aceitos)
                         f.write(json.dumps({'caminho': caminho, 'id': id_, 'ok': True,
                                             'aprovado': not reprovado,
                                             'bytes': (midia / caminho).stat().st_size}) + chr(10))
-            return self.stt
+            return 1 if reprovou else 0
         if 'tool/midia/gerar_manifesto.dart' in cmd:
             raiz = Path(cmd[-1])
             pastas = {'narracao': '.m4a', 'imagens': '.webp', 'novela': ('.json', '.srt')}
@@ -1968,9 +1977,10 @@ def teste_narra_so_o_que_mudou_pelo_registro_origem_e_duas_rodadas_iguais_nao_mu
 def teste_stt_reprovado_lista_so_os_reprovados_e_a_rodada_seguinte_gera_so_esses():
     """M-I2 (c): a mensagem do STT reprovado lista SÓ os ids reprovados (e
     os arquivos) e manda rodar a publicação de novo — nunca "regenerar
-    todos". O registro .origem do reprovado é apagado: a rodada seguinte
-    gera só ele (narrar.py --ids <id> --tradicao <t> --refazer) e confere
-    só ele; o resto fica como está."""
+    todos". O registro .origem fica (ele diz de que texto, motor e voz o
+    áudio veio — a reprova é do stt.log.jsonl, A-m1): a rodada seguinte
+    gera só o reprovado (narrar.py --ids <id> --tradicao <t> --refazer) e
+    confere só ele; o resto fica como está."""
     with tempfile.TemporaryDirectory() as tmp:
         dubles = Dubles(tmp, stt=1)
         dubles.reprovados = {'narracao/catolico/t1c2.m4a'}
@@ -1982,12 +1992,11 @@ def teste_stt_reprovado_lista_so_os_reprovados_e_a_rodada_seguinte_gera_so_esses
         assert 't1c2' in linha and 'narracao/catolico/t1c2.m4a' in linha, linha
         assert 't1c1' not in linha and '--refazer' not in linha and 'regenerar todos' not in linha
         assert 'rode a publicação de novo' in linha and 'pula' in linha, linha
-        assert not (midia / 'narracao/catolico/t1c2.m4a.origem').exists(), 'o registro do reprovado sai'
-        for fica in ('narracao/evangelico/t1c2.m4a.origem', 'narracao/catolico/t1c1.m4a.origem',
-                     'narracao/evangelico/t1c1.m4a.origem'):
+        for fica in ('narracao/catolico/t1c2.m4a.origem', 'narracao/evangelico/t1c2.m4a.origem',
+                     'narracao/catolico/t1c1.m4a.origem', 'narracao/evangelico/t1c1.m4a.origem'):
             assert (midia / fica).exists(), fica
+            assert f'escrito:  {fica}' in saida, fica
         assert 'NÃO rode o gerar_manifesto nem faça commit' in saida
-        assert 'narracao/catolico/t1c2.m4a.origem' not in saida, 'apagado: não consta como escrito'
         # A rodada seguinte (o STT passa): só o reprovado é gerado e conferido.
         dubles.stt = 0
         dubles.comandos.clear()
@@ -2115,6 +2124,87 @@ def teste_prontas_no_log_do_narrar_exige_ok_desta_rodada_e_os_bytes_do_disco():
         assert pt._prontas_no_log_do_narrar(midia, caminhos, '2026-11-08T10:00:05') == set()
 
 
+def teste_narracao_aceita_a_mao_conta_como_conferida_e_mantem_o_origem():
+    """A-m1 (M-I2 c): a narração que o whisper reprova duas vezes, Gregory
+    ouve e aceita à mão em ferramentas/narracao/stt-aceitos.txt (como o
+    conferir_stt.py: segue `aprovado: false` no log, só sai do código de
+    saída) conta como conferida: não é regenerada (o áudio publicado é o
+    que ele ouviu), não fica pendente no STT para sempre e mantém o .origem
+    — também na rodada em que OUTRA narração reprova. A reprova em si não
+    apaga registro nenhum: a rodada seguinte regenera o reprovado pelo
+    stt.log.jsonl (último registro reprovado, com os bytes do disco, e não
+    aceito à mão)."""
+    with tempfile.TemporaryDirectory() as tmp:
+        dubles = Dubles(tmp, stt=1)
+        dubles.reprovados = {'narracao/catolico/t1c1.m4a'}
+        midia = dubles.midia()
+        pasta = entrega_valida(tmp)
+        # 1ª e 2ª rodadas: o whisper reprova t1c1 católico; a 2ª regenera só ele.
+        codigo, saida = dubles.publicar(pasta, midia, '--motor', 'microsoft')
+        assert codigo == 1, saida
+        primeira = (midia / 'narracao/catolico/t1c1.m4a').read_bytes()
+        assert (midia / 'narracao/catolico/t1c1.m4a.origem').exists(), 'a reprova não apaga o registro'
+        dubles.comandos.clear()
+        codigo, saida = dubles.publicar(pasta, midia, '--motor', 'microsoft')
+        assert codigo == 1, saida
+        narrar = [cmd for cmd, _ in dubles.comandos if cmd[1].endswith('narrar.py')]
+        assert len(narrar) == 1 and narrar[0][2:] == ['--motor', 'microsoft', '--ids', 't1c1',
+                                                        '--tradicao', 'catolico', '--refazer'], narrar
+        ouvida = (midia / 'narracao/catolico/t1c1.m4a').read_bytes()
+        assert ouvida != primeira and 'stt-aceitos.txt' in saida, saida
+        # Gregory ouve e aceita à mão.
+        aceitos = midia / 'ferramentas' / 'narracao' / 'stt-aceitos.txt'
+        aceitos.write_text('# reprovações aceitas à mão' + chr(10)
+                           + 'narracao/catolico/t1c1.m4a | ouvido em 08/11: "Potifar" está certo'
+                           + chr(10), encoding='utf-8')
+        # 3ª rodada: nada a gerar, nada a conferir; a voz é a que ele ouviu.
+        dubles.comandos.clear()
+        codigo, saida = dubles.publicar(pasta, midia, '--motor', 'microsoft')
+        assert codigo == 0, saida
+        assert dubles.ferramentas() == ['gerar_manifesto.dart', 'lint_conteudo.dart',
+                                        'texto_narrado.dart', 'gerar_manifesto.dart',
+                                        'lint_conteudo.dart'], dubles.ferramentas()
+        assert (midia / 'narracao/catolico/t1c1.m4a').read_bytes() == ouvida
+        assert (midia / 'narracao/catolico/t1c1.m4a.origem').exists()
+        assert 'nada a gerar' in saida and 'nada a conferir' in saida, saida
+        # 4ª rodada: o texto do capítulo 2 muda, e o whisper reprova o t1c2
+        # católico regenerado — a mensagem lista só t1c2; a aceita à mão não
+        # é conferida de novo nem perde o registro.
+        dubles.reprovados = {'narracao/catolico/t1c1.m4a', 'narracao/catolico/t1c2.m4a'}
+        editar_temporada(pasta, lambda t: t['capitulos'][1].update(
+            reflexao=REFLEXAO.replace('esperava.', 'esperava em silêncio.')))
+        dubles.comandos.clear()
+        codigo, saida = dubles.publicar(pasta, midia, '--motor', 'microsoft')
+        assert codigo == 1, saida
+        linha = next(l for l in saida.splitlines() if l.startswith('voz: ') and 'reprovou' in l)
+        assert 't1c2' in linha and 't1c1' not in linha, linha
+        stt = [cmd for cmd, _ in dubles.comandos if cmd[1].endswith('conferir_stt.py')]
+        assert len(stt) == 1 and stt[0][2:] == ['--stt', 'whisper', '--ids', 't1c2'], stt
+        assert (midia / 'narracao/catolico/t1c1.m4a.origem').exists(), 'a aceita à mão mantém o .origem'
+        assert (midia / 'narracao/catolico/t1c1.m4a').read_bytes() == ouvida
+        # 5ª rodada (o t1c2 agora passa): só o t1c2 católico é regenerado.
+        dubles.reprovados = {'narracao/catolico/t1c1.m4a'}
+        dubles.comandos.clear()
+        codigo, saida = dubles.publicar(pasta, midia, '--motor', 'microsoft')
+        assert codigo == 0, saida
+        narrar = [cmd for cmd, _ in dubles.comandos if cmd[1].endswith('narrar.py')]
+        assert len(narrar) == 1 and narrar[0][2:] == ['--motor', 'microsoft', '--ids', 't1c2',
+                                                        '--tradicao', 'catolico', '--refazer'], narrar
+        assert (midia / 'narracao/catolico/t1c1.m4a').read_bytes() == ouvida
+    # Uma linha fora do formato no stt-aceitos.txt (um aceite sem motivo não
+    # é um aceite) para antes de gastar voz, dizendo o arquivo e a linha.
+    with tempfile.TemporaryDirectory() as tmp:
+        dubles = Dubles(tmp)
+        midia = dubles.midia()
+        aceitos = midia / 'ferramentas' / 'narracao' / 'stt-aceitos.txt'
+        aceitos.parent.mkdir(parents=True, exist_ok=True)
+        aceitos.write_text('narracao/catolico/t1c1.m4a' + chr(10), encoding='utf-8')
+        codigo, saida = dubles.publicar(entrega_valida(tmp), midia, '--motor', 'microsoft')
+        assert codigo == 1, saida
+        assert 'stt-aceitos.txt:1' in saida and 'caminho | motivo' in saida, saida
+        assert 'narrar.py' not in dubles.ferramentas(), 'nenhuma voz gasta'
+
+
 def teste_voz_reprovada_para_antes_do_manifesto_final():
     with tempfile.TemporaryDirectory() as tmp:
         dubles = Dubles(tmp, stt=1)
@@ -2171,11 +2261,13 @@ def teste_stt_reprovado_lista_o_que_foi_escrito_e_os_comandos_exatos_para_desfaz
         assert codigo == 1, saida
         assert 'reprov' in saida and 'NÃO rode o gerar_manifesto nem faça commit' in saida, saida
         versionados = {'imagens/t1c1.webp', 'novela/temporadas.json'}
-        # O manifesto da primeira passada (M-I2 a) e a voz; o registro
-        # .origem dos reprovados (aqui, todos) já saiu — não consta.
+        # O manifesto da primeira passada (M-I2 a), a voz e o registro
+        # .origem de cada narração (fica mesmo reprovada, A-m1).
         novos = {'novela/t1.json', 'novela/t1c1.srt', 'imagens/t1c2.webp', 'manifesto.json',
                  'narracao/catolico/t1c1.m4a', 'narracao/evangelico/t1c1.m4a',
-                 'narracao/catolico/t1c2.m4a', 'narracao/evangelico/t1c2.m4a'}
+                 'narracao/catolico/t1c2.m4a', 'narracao/evangelico/t1c2.m4a',
+                 'narracao/catolico/t1c1.m4a.origem', 'narracao/evangelico/t1c1.m4a.origem',
+                 'narracao/catolico/t1c2.m4a.origem', 'narracao/evangelico/t1c2.m4a.origem'}
         for caminho in versionados | novos:
             assert caminho in saida, caminho
         linhas = [linha.strip() for linha in saida.splitlines()]

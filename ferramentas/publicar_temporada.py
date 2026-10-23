@@ -113,14 +113,19 @@ são ignorados.
      mudou: texto_narrado.dart --temporadas dá o texto de cada narração;
      ao lado de cada .m4a fica o registro <arquivo>.origem (sha256 do
      texto narrado, motor e voz), e só a narração sem registro ou com
-     registro diferente passa pelo narrar.py (--refazer gera tudo); o
+     registro diferente passa pelo narrar.py (--refazer gera tudo); um
+     narrar.py que falha numa narração ainda registra as que o
+     narrar.log.jsonl diz que ficaram prontas nesta rodada. O
      conferir_stt.py --stt whisper roda só no que foi gerado agora ou que
      o stt.log.jsonl ainda não aprovou com estes bytes. Reprovado, para e
-     lista SÓ os ids reprovados, apaga o registro deles e manda rodar a
-     publicação de novo (que gera só esses). Rodar duas vezes a mesma
-     publicação não gera nenhum .m4a novo e deixa o manifesto igual. Os
-     dois .py rodam a cópia de DENTRO de --midia: eles gravam na raiz do
-     repositório em que estão. Os .origem vão no commit junto dos .m4a.
+     lista SÓ os ids reprovados e manda rodar a publicação de novo, que
+     gera só esses (o último registro deles no stt.log.jsonl reprova); o
+     que alguém ouviu e aceitou à mão em ferramentas/narracao/
+     stt-aceitos.txt conta como aprovado e não é gerado de novo. Rodar
+     duas vezes a mesma publicação não gera nenhum .m4a novo e deixa o
+     manifesto igual. Os dois .py rodam a cópia de DENTRO de --midia: eles
+     gravam na raiz do repositório em que estão. Os .origem vão no commit
+     junto dos .m4a.
    Parar DEPOIS de escrever (a voz reprovada, o manifesto, o lint — e
    também um Ctrl+C ou uma exceção imprevista, que seguem subindo depois
    do bloco) lista o que esta rodada escreveu e removeu, diz em destaque
@@ -1795,18 +1800,46 @@ def _narracoes_dos_capitulos(midia, ids):
     return itens
 
 
-def _pendentes_no_stt(midia, ids):
+def _aceitos_a_mao(midia):
+    """{caminho: motivo} de ferramentas/narracao/stt-aceitos.txt da raiz de
+    mídia — as reprovações do STT que alguém ouviu e aceitou, pelo leitor do
+    próprio conferir_stt.py (ao lado deste script). Devolve (aceitos, None);
+    uma linha fora do formato "caminho | motivo" é (None, a mensagem): um
+    aceite sem motivo não é um aceite, e a publicação para antes da voz."""
+    pasta = str(RAIZ / 'ferramentas')
+    if pasta not in sys.path:
+        sys.path.insert(0, pasta)
+    import conferir_stt  # noqa: PLC0415 — só constantes ao importar; nada de rede
+    try:
+        return conferir_stt.aceitos_a_mao(midia / 'ferramentas' / 'narracao' / 'stt-aceitos.txt'), None
+    except SystemExit as e:
+        return None, str(e.code)
+
+
+def _pendentes_no_stt(midia, ids, aceitos=()):
     """As vozes dos `ids` que o stt.log.jsonl ainda não aprovou com os bytes
     de hoje: sem registro, reprovadas, ou com outro tamanho (o arquivo mudou
-    depois da conferência)."""
+    depois da conferência). A reprovada que está em `aceitos` (aceita à mão
+    em stt-aceitos.txt: alguém ouviu) conta como aprovada (A-m1)."""
     registros = _registros_do_stt(midia, ids)
     pendentes = []
     for caminho in sorted(_caminhos_da_voz(ids)):
         arquivo, r = midia / caminho, registros.get(caminho)
-        if (not arquivo.exists() or r is None or not r.get('aprovado')
+        if (not arquivo.exists() or r is None or (not r.get('aprovado') and caminho not in aceitos)
                 or r.get('bytes') != arquivo.stat().st_size):
             pendentes.append(caminho)
     return pendentes
+
+
+def _reprovadas_a_refazer(midia, ids, aceitos):
+    """As vozes dos `ids` que a rodada tem de gerar de novo por causa do STT:
+    o último registro do stt.log.jsonl reprova, o arquivo no disco é o que
+    ele ouviu (os bytes batem) e ninguém a aceitou à mão. É o que faz a
+    rodada seguinte à reprova gerar só o reprovado, sem apagar registro
+    .origem nenhum (M-I2 c, A-m1)."""
+    registros = _registros_do_stt(midia, ids)
+    return {c for c in _reprovados_no_log(midia, ids, aceitos)
+            if (midia / c).exists() and registros[c].get('bytes') == (midia / c).stat().st_size}
 
 
 def _comandos_do_narrar(midia, caminhos, itens, ids, motor):
@@ -1849,20 +1882,29 @@ def gerar_voz(dart, midia, app, ids, motor, refazer, tocados):
         voz.falha = (f'o texto_narrado.dart não emitiu a voz dos capítulos ({", ".join(faltam)}): a '
                      'opção --temporadas é da Task 7 do app — o app apontado já a tem?')
         return voz
+    # (A-m1) O que alguém ouviu e aceitou à mão conta como aprovado pelo STT.
+    aceitos, erro = _aceitos_a_mao(midia)
+    if erro:
+        voz.falha = f'{erro} — corrija o aceite e publique de novo'
+        return voz
     # (M-I2 b) Só o que mudou: o registro .origem ao lado de cada .m4a diz
-    # com que texto, motor e voz ele foi gerado.
+    # com que texto, motor e voz ele foi gerado. E o que o STT reprovou por
+    # último (com estes bytes, sem aceite à mão) é gerado de novo.
     assinaturas = {c: assinatura_da_narracao(item['texto'], motor, item['tradicao'])
                    for c, item in itens.items()}
+    reprovadas = _reprovadas_a_refazer(midia, ids, aceitos)
     a_gerar = sorted(c for c in itens
                      if refazer or not (midia / c).exists() or (midia / c).stat().st_size == 0
-                     or ler_origem(midia / c) != assinaturas[c])
+                     or ler_origem(midia / c) != assinaturas[c] or c in reprovadas)
     voz.puladas = len(itens) - len(a_gerar)
     if not a_gerar:
         print(f'voz: nada a gerar — as {len(itens)} narrações já estão com este texto, motor e voz '
               '(registro .origem)')
     else:
+        pelo_stt = (f'; reprovada(s) pelo STT: {", ".join(sorted(reprovadas & set(a_gerar)))}'
+                    if reprovadas & set(a_gerar) else '')
         print(f'voz: {len(a_gerar)} narração(ões) a gerar ({motor}): {", ".join(a_gerar)}; '
-              f'{voz.puladas} já estava(m) com este texto, motor e voz')
+              f'{voz.puladas} já estava(m) com este texto, motor e voz{pelo_stt}')
         inicio = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')  # o `quando` do narrar.log.jsonl
         existiam = {c for c in a_gerar if (midia / c).exists()}
         codigo = 0
@@ -1897,29 +1939,30 @@ def gerar_voz(dart, midia, app, ids, motor, refazer, tocados):
                          'rodada no narrar.log.jsonl com os bytes do disco)')
             return voz
         voz.geradas = a_gerar
-    # O STT: o que foi gerado agora e o que o log ainda não aprovou.
-    pendentes = sorted(set(voz.geradas) | set(_pendentes_no_stt(midia, ids)))
+    # O STT: o que foi gerado agora e o que o log ainda não aprovou (o
+    # aceito à mão conta como aprovado).
+    pendentes = sorted(set(voz.geradas) | set(_pendentes_no_stt(midia, ids, aceitos)))
     if not pendentes:
-        print(f'STT: nada a conferir — as {len(itens)} narrações já foram aprovadas (stt.log.jsonl)')
+        print(f'STT: nada a conferir — as {len(itens)} narrações já foram aprovadas (stt.log.jsonl'
+              f'{" ou stt-aceitos.txt" if aceitos else ""})')
         return voz
     ids_do_stt = sorted({itens[c]['id'] for c in pendentes}, key=ids.index)
     voz.conferidas = pendentes
     stt, cwd_stt = comando_do_stt(midia, ids_do_stt)
     if rodar(stt, cwd=cwd_stt) != 0:
-        reprovados = _reprovados_no_log(midia, ids_do_stt)
-        # (M-I2 c) O registro do reprovado sai: a rodada seguinte gera só ele.
-        for c in reprovados:
-            origem = f'{c}{SUFIXO_DA_ORIGEM}'
-            Path(midia / origem).unlink(missing_ok=True)
-            if origem in tocados:
-                tocados.remove(origem)
+        # (M-I2 c) A mensagem lista SÓ os reprovados. O registro .origem
+        # deles fica (diz de que texto, motor e voz o áudio veio): é o
+        # stt.log.jsonl que faz a rodada seguinte gerar só eles — e, aceito
+        # à mão, o áudio que a pessoa ouviu é o que fica (A-m1).
+        reprovados = _reprovados_no_log(midia, ids_do_stt, aceitos)
         ids_reprovados = sorted({itens[c]['id'] for c in reprovados if c in itens}, key=ids.index)
         lista = (f' de {", ".join(ids_reprovados)} ({", ".join(reprovados)})' if reprovados
                  else ' (a lista está acima)')
         voz.falha = (f'a conferência por STT reprovou a voz{lista} — rode a publicação de novo: ela '
-                     'pula as narrações aprovadas e gera só essa(s) (o registro .origem delas foi '
-                     'apagado); se reprovar outra vez, ouça o arquivo e, se estiver bom, aceite à '
-                     'mão em ferramentas/narracao/stt-aceitos.txt')
+                     'pula as narrações aprovadas e gera só essa(s) (pelo stt.log.jsonl); se '
+                     'reprovar outra vez, ouça o arquivo e, se estiver bom, aceite à mão em '
+                     'ferramentas/narracao/stt-aceitos.txt (caminho | motivo): aí ela conta como '
+                     'conferida e não é gerada de novo')
         return voz
     return voz
 
@@ -2010,8 +2053,12 @@ def _prontas_no_log_do_narrar(midia, caminhos, desde):
     return prontas
 
 
-def _reprovados_no_log(midia, ids):
-    return sorted(c for c, r in _registros_do_stt(midia, ids).items() if not r.get('aprovado'))
+def _reprovados_no_log(midia, ids, aceitos=()):
+    """Os caminhos cujo ÚLTIMO registro do stt.log.jsonl não aprova — fora
+    os de `aceitos` (aceitos à mão em stt-aceitos.txt), que o conferir_stt.py
+    também não conta na saída dele (A-m1)."""
+    return sorted(c for c, r in _registros_do_stt(midia, ids).items()
+                  if not r.get('aprovado') and c not in aceitos)
 
 
 # ---------------------------------------------------------------------------
