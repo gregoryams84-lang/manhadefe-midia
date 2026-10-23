@@ -52,7 +52,10 @@ são ignorados.
      com esta no lugar da versão anterior dela (o mesmo id) — passa pelas
      regras do app, que o recusa inteiro por qualquer uma: base terminada
      em /, ids únicos, fim = início + capítulos − 1 e nenhuma sobreposição
-     de datas (nem entre as que já estavam);
+     de datas (nem entre as que já estavam); e a temporada em curso HOJE
+     segundo o índice do último commit tem de continuar citada, com o
+     novela/<id>.json dela na raiz (o índice que sai do manifesto apaga a
+     novela de todo aparelho no meio da temporada);
    - no caminho real, também as ferramentas: as chaves do R2, o boto3, o
      dart, as ferramentas do app e as da voz na raiz de mídia.
 
@@ -904,6 +907,73 @@ def conferir_indice(indice):
                                  'índice inteiro')
         vistas.append((id_, inicio, fim))
     return problemas
+
+
+def hoje():
+    """A data de hoje (o teste a troca)."""
+    return date.today()
+
+
+def indice_no_ultimo_commit(midia):
+    """O novela/temporadas.json do ÚLTIMO COMMIT da raiz de mídia (git show
+    HEAD:./novela/temporadas.json) — o que os aparelhos podem ter —, ou
+    None fora de um repositório git, sem commit, sem o arquivo nele ou com
+    ele ilegível."""
+    try:
+        r = subprocess.run(['git', '-C', str(midia), 'show', 'HEAD:./novela/temporadas.json'],
+                           capture_output=True)
+    except OSError:
+        return None
+    if r.returncode != 0:
+        return None
+    try:
+        dados = json.loads(r.stdout.decode('utf-8-sig'))
+    except (ValueError, UnicodeDecodeError):
+        return None
+    return dados if isinstance(dados, dict) and isinstance(dados.get('temporadas'), list) else None
+
+
+def temporada_em_curso(indice, dia):
+    """O resumo da temporada de `indice` em curso em `dia` (início ≤ dia ≤
+    fim), ou None."""
+    for r in indice.get('temporadas') or []:
+        if not isinstance(r, dict) or not isinstance(r.get('id'), str):
+            continue
+        inicio, fim = data_valida(r.get('inicio')), data_valida(r.get('fim'))
+        if inicio is not None and fim is not None and inicio <= dia <= fim:
+            return r
+    return None
+
+
+def conferir_temporada_em_curso(midia, indice_final, dia):
+    """[problemas] (FM2, N-8): o índice que sai do manifesto apaga a novela
+    de todo aparelho — vídeos, capas, voz e o botão NOVELA. Se o
+    novela/temporadas.json do último commit tem uma temporada em curso em
+    `dia`, o índice FINAL tem de citá-la e o novela/<id>.json dela tem de
+    estar na raiz (senão o manifesto não a listaria): um índice local
+    perdido num checkout ou clean não pode tirar a temporada do ar no meio
+    dela."""
+    anterior = indice_no_ultimo_commit(midia)
+    if anterior is None:
+        return []
+    em_curso = temporada_em_curso(anterior, dia)
+    if em_curso is None:
+        return []
+    id_, quando = em_curso['id'], f'{em_curso.get("inicio")} a {em_curso.get("fim")}'
+    citada = any(isinstance(r, dict) and r.get('id') == id_
+                 for r in indice_final.get('temporadas') or [])
+    if not citada:
+        return [f'a temporada {id_} está em curso hoje ({quando}) segundo o último commit de '
+                'novela/temporadas.json, e o índice final não a cita — publicar assim tiraria a '
+                'novela de todo aparelho no meio da temporada (o índice que sai do manifesto apaga '
+                'as temporadas, os vídeos e o botão NOVELA); restaure o índice (git checkout -- '
+                'novela/temporadas.json) e publique de novo']
+    if not (Path(midia) / 'novela' / f'{id_}.json').exists():
+        return [f'a temporada {id_} está em curso hoje ({quando}) segundo o último commit, e '
+                f'novela/{id_}.json não está na raiz de mídia — o manifesto não a listaria e a '
+                'novela sairia de todo aparelho no meio da temporada; restaure-o (git checkout -- '
+                f'novela/{id_}.json) e publique de novo']
+    return []
 
 
 def normalizar_prefixo(prefixo):
@@ -1994,9 +2064,13 @@ def _publicar(args, midia, app, prefixo):
     publica = MARCADOR_DA_URL_PUBLICA if args.simular else (chaves.url_publica if chaves else None)
     base, p = resolver_base(args.videos_base, indice, publica, prefixo)
     problemas += p
-    # O índice FINAL, inteiro, pelas regras do app (que o recusa inteiro).
+    # O índice FINAL, inteiro, pelas regras do app (que o recusa inteiro) —
+    # e a temporada em curso hoje segundo o último commit tem de seguir
+    # nele (FM2).
     if entrega is not None and base is not None and not problemas_do_indice:
-        problemas += conferir_indice(indice_atualizado(indice, entrega, base))
+        final = indice_atualizado(indice, entrega, base)
+        problemas += conferir_indice(final)
+        problemas += conferir_temporada_em_curso(midia, final, hoje())
     if problemas:
         print(f'conferência: {len(problemas)} problema(s) — nada foi enviado nem escrito:')
         for problema in problemas:

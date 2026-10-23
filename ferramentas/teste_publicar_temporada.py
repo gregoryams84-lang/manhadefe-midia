@@ -25,6 +25,7 @@ import sys
 import tempfile
 import traceback
 import urllib.error
+from datetime import date
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -1540,6 +1541,69 @@ def teste_recusa_do_trocado_com_o_json_da_pasta_ou_do_ultimo_commit_e_a_de_sempr
         codigo, saida = dubles.publicar(pasta, midia, '--sem-voz')
         assert codigo == 1 and 'sobra de uma rodada interrompida' in saida, saida
         assert 'já publicado' not in saida, saida
+
+
+def teste_recusa_publicar_quando_o_indice_final_deixa_de_citar_a_temporada_em_curso_no_ultimo_commit():
+    """FM2 (N-8): o índice que sai do manifesto apaga a novela de todo
+    aparelho — os vídeos, as capas, a voz e o botão NOVELA. Se o
+    novela/temporadas.json do último commit tem uma temporada em curso
+    HOJE e o índice final não a cita (o local sumiu num checkout ou clean),
+    ou o novela/<id>.json dela não está na raiz (o manifesto não a
+    listaria), a publicação recusa antes de escrever qualquer coisa. A
+    própria temporada republicada cita a si mesma; fora das datas dela,
+    nada a proteger."""
+    with tempfile.TemporaryDirectory() as tmp:
+        dubles = Dubles(tmp)
+        midia = dubles.midia()
+        (midia / 'novela').mkdir(parents=True)
+        indice = {'versao': 1, 'videos': 'https://pub-exemplo123.r2.dev/',
+                  'temporadas': [_resumo('t1', '2026-11-10', '2026-11-16', 7)]}
+
+        def gravar_indice():
+            (midia / 'novela' / 'temporadas.json').write_text(json.dumps(indice), encoding='utf-8')
+
+        gravar_indice()
+        (midia / 'novela' / 't1.json').write_text('{"id": "t1"}', encoding='utf-8')
+        _git(midia, 'init', '-q')
+        _git(midia, 'add', '--', 'novela/temporadas.json', 'novela/t1.json')
+        _git(midia, 'commit', '-q', '-m', 'a t1 no ar')
+        pasta = entrega_valida(tmp, id_='t2', inicio='2026-11-20')
+        real = pt.hoje
+        pt.hoje = lambda: date(2026, 11, 12)      # a t1 está em curso
+        try:
+            # (1) O índice local sumiu: o final só teria a t2 — recusa, sem tocar em nada.
+            (midia / 'novela' / 'temporadas.json').unlink()
+            antes = _arvore(midia)
+            codigo, saida = dubles.publicar(pasta, midia, '--sem-voz')
+            assert codigo == 1, saida
+            for trecho in ('t1', 'em curso', 'último commit', '2026-11-10', '2026-11-16',
+                           'git checkout -- novela/temporadas.json', 'nada foi enviado nem escrito'):
+                assert trecho in saida, (trecho, saida)
+            assert _arvore(midia) == antes and dubles.cliente.envios == [] and dubles.comandos == []
+            # (2) O índice local está lá: a t1 continua citada — passa.
+            gravar_indice()
+            assert dubles.publicar(pasta, midia, '--sem-voz')[0] == 0
+            # (3) A própria t1 republicada com o índice sumido: cita a si mesma.
+            (midia / 'novela' / 'temporadas.json').unlink()
+            pasta_t1 = entrega_valida(tmp, inicio='2026-11-10', id_='t1', nome='entrega-t1')
+            assert dubles.publicar(pasta_t1, midia, '--sem-voz')[0] == 0
+            # (4) O índice cita a t1, mas o novela/t1.json sumiu da raiz: recusa.
+            gravar_indice()
+            (midia / 'novela' / 't1.json').unlink()
+            antes = _arvore(midia)
+            codigo, saida = dubles.publicar(pasta, midia, '--sem-voz')
+            assert codigo == 1, saida
+            assert 'novela/t1.json' in saida and 'em curso' in saida, saida
+            assert _arvore(midia) == antes and dubles.comandos == []
+            # (5) Fora das datas da t1: nada a proteger.
+            pt.hoje = lambda: date(2026, 11, 17)
+            (midia / 'novela' / 'temporadas.json').unlink()
+            assert dubles.publicar(pasta, midia, '--sem-voz')[0] == 0
+        finally:
+            pt.hoje = real
+    # Fora de um repositório git (a simulação numa pasta temporária): nada a comparar.
+    assert pt.indice_no_ultimo_commit(Path(tempfile.gettempdir())) is None
+    assert pt.hoje() == date.today()
 
 
 def teste_simular_preve_o_trocado_pelo_json_publicado():
