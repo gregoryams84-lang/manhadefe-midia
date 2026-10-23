@@ -630,8 +630,9 @@ def conferir_entrega(pasta, limite_de_bytes=LIMITE_DE_BYTES, avisos=None):
     início e os capítulos dão para ler — mesmo com problemas, para as outras
     conferências (o índice) também listarem os delas. `limite_de_bytes` é
     parâmetro para o teste não precisar de um vídeo de 25 MB. O que passa
-    mas merece aviso (o yuvj420p, R8-M; a fala dividida, FM3) vai para a
-    lista `avisos`, se vier uma — nunca para os problemas."""
+    mas merece aviso (o yuvj420p, R8-M; a fala dividida, FM3; a fala
+    estendida, FM4) vai para a lista `avisos`, se vier uma — nunca para os
+    problemas."""
     pasta = Path(pasta)
     arquivo = pasta / 'temporada.json'
     if not pasta.is_dir():
