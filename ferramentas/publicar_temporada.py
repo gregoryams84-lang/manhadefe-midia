@@ -91,15 +91,25 @@ são ignorados.
      de início, as outras mantidas. A base `videos` vem de --videos-base,
      senão do índice existente, senão da "Public Development URL" do
      arquivo de chaves (+ --r2-prefixo), sempre terminando em /;
-   - a voz dos cartões dos dias de capítulo (sem --sem-voz):
-     texto_narrado.dart --temporadas, narrar.py --ids <t>c1,... --refazer e
-     conferir_stt.py --stt whisper — reprovado, para e lista (o manifesto
-     não é refeito). Os dois .py rodam a cópia de DENTRO de --midia: eles
-     gravam na raiz do repositório em que estão;
    - o manifesto (gerar_manifesto.dart), conferido: tem de listar os
      arquivos da temporada (um app anterior à Task 7 não conhece novela/ e
      a temporada não chegaria a ninguém); e o lint (lint_conteudo.dart, 0
-     erros, senão sai com 1).
+     erros, senão sai com 1). Os dois rodam ANTES da voz — o lint é a
+     palavra final sobre os textos, e um texto que ele recusa não gasta um
+     crédito de voz (a narração ausente é só pendência da regra 2) — e DE
+     NOVO depois dela, com a voz dentro;
+   - a voz dos cartões dos dias de capítulo (sem --sem-voz), SÓ o que
+     mudou: texto_narrado.dart --temporadas dá o texto de cada narração;
+     ao lado de cada .m4a fica o registro <arquivo>.origem (sha256 do
+     texto narrado, motor e voz), e só a narração sem registro ou com
+     registro diferente passa pelo narrar.py (--refazer gera tudo); o
+     conferir_stt.py --stt whisper roda só no que foi gerado agora ou que
+     o stt.log.jsonl ainda não aprovou com estes bytes. Reprovado, para e
+     lista SÓ os ids reprovados, apaga o registro deles e manda rodar a
+     publicação de novo (que gera só esses). Rodar duas vezes a mesma
+     publicação não gera nenhum .m4a novo e deixa o manifesto igual. Os
+     dois .py rodam a cópia de DENTRO de --midia: eles gravam na raiz do
+     repositório em que estão. Os .origem vão no commit junto dos .m4a.
    Parar DEPOIS de escrever (a voz reprovada, o manifesto, o lint — e
    também um Ctrl+C ou uma exceção imprevista, que seguem subindo depois
    do bloco) lista o que esta rodada escreveu e removeu, diz em destaque
@@ -141,7 +151,7 @@ import subprocess
 import sys
 import unicodedata
 import urllib.request
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import date, datetime, timedelta
 from pathlib import Path
 from urllib.parse import urlparse
@@ -1494,18 +1504,21 @@ def indice_atualizado(indice, entrega, base):
             'temporadas': sorted(outras + [nova], key=lambda r: r['inicio'])}
 
 
-_DO_CAPITULO = re.compile(r'(t\d+)c(\d+)\.(webp|srt|m4a)')
+_DO_CAPITULO = re.compile(r'(t\d+)c(\d+)\.(webp|srt|m4a|m4a\.origem)')
 
 
 def limpar_sobras(midia, entrega):
     """Apaga o que uma versão anterior DESTA temporada deixou e a nova não
-    tem: capa e voz de capítulo que sumiu, legenda que saiu. Nada de outra
-    temporada nem de outro conteúdo é tocado."""
+    tem: capa e voz (com o registro .origem dela) de capítulo que sumiu,
+    legenda que saiu. Nada de outra temporada nem de outro conteúdo é
+    tocado."""
     com_legenda = {c.n for c in entrega.capitulos if c.legenda is not None}
     total = len(entrega.capitulos)
     candidatos = [*(midia / 'imagens').glob(f'{entrega.id}c*.webp'),
                   *(midia / 'novela').glob(f'{entrega.id}c*.srt'),
-                  *(p for t in TRADICOES for p in (midia / 'narracao' / t).glob(f'{entrega.id}c*.m4a'))]
+                  *(p for t in TRADICOES for p in (midia / 'narracao' / t).glob(f'{entrega.id}c*.m4a')),
+                  *(p for t in TRADICOES
+                    for p in (midia / 'narracao' / t).glob(f'{entrega.id}c*.m4a.origem'))]
     removidos = []
     for caminho in sorted(candidatos):
         m = _DO_CAPITULO.fullmatch(caminho.name)
@@ -1554,18 +1567,6 @@ def escrever(midia, entrega, videos, base, indice):
 # Voz, manifesto e lint
 # ---------------------------------------------------------------------------
 
-def comandos_da_voz(dart, midia, app, ids, motor):
-    return [
-        ([dart, 'run', 'tool/midia/texto_narrado.dart',
-          f'--saida={midia / "ferramentas" / "narracao" / "narracoes.jsonl"}',
-          f'--temporadas={midia / "novela"}', str(app)], app),
-        ([sys.executable, str(midia / 'ferramentas' / 'narrar.py'), '--motor', motor,
-          '--ids', ','.join(ids), '--refazer'], midia),
-        ([sys.executable, str(midia / 'ferramentas' / 'conferir_stt.py'), '--stt', 'whisper',
-          '--ids', ','.join(ids)], midia),
-    ]
-
-
 def comandos_do_manifesto(dart, midia, app):
     return [([dart, 'run', 'tool/midia/gerar_manifesto.dart', str(midia)], app),
             ([dart, 'run', 'tool/lint_conteudo.dart', f'--manifesto={midia / "manifesto.json"}'], app)]
@@ -1597,39 +1598,202 @@ def fora_do_manifesto(midia, entrega, com_voz):
     return [chave for chave in esperados if chave not in arquivos]
 
 
-def gerar_voz(dart, midia, app, ids, motor):
-    """texto_narrado -> narrar -> conferir_stt. Devolve (None se tudo passou,
-    senão a mensagem do que parou; se o narrar.py chegou a rodar — e a voz
-    a gravar no disco)."""
-    (texto, cwd_texto), (narrar, cwd_narrar), (stt, cwd_stt) = comandos_da_voz(
-        dart, midia, app, ids, motor)
-    if rodar(texto, cwd=cwd_texto) != 0:
-        return ('o texto_narrado.dart falhou (a opção --temporadas é da Task 7 do app: o app '
-                'apontado já a tem?)'), False
+def comandos_da_voz(dart, midia, app, ids, motor):
+    """Os três comandos da voz na forma geral — texto_narrado, narrar (todos
+    os ids) e conferir_stt (todos os ids) —, o que o --simular mostra. A
+    rodada real monta cada um só com o que precisa (gerar_voz)."""
+    return [comando_do_texto_narrado(dart, midia, app), comando_do_narrar(midia, ids, motor),
+            comando_do_stt(midia, ids)]
+
+
+def comando_do_texto_narrado(dart, midia, app):
+    return ([dart, 'run', 'tool/midia/texto_narrado.dart',
+             f'--saida={midia / "ferramentas" / "narracao" / "narracoes.jsonl"}',
+             f'--temporadas={midia / "novela"}', str(app)], app)
+
+
+def comando_do_narrar(midia, ids, motor, tradicao=None):
+    """O narrar.py da cópia de DENTRO de --midia (ele grava na raiz em que
+    está), com --refazer: ele próprio só pularia o arquivo que existe; quem
+    decide o que gerar é o registro .origem, aqui. Só a `tradicao`, quando
+    vem uma (a outra já está certa)."""
+    cmd = [sys.executable, str(midia / 'ferramentas' / 'narrar.py'), '--motor', motor,
+           '--ids', ','.join(ids)]
+    if tradicao:
+        cmd += ['--tradicao', tradicao]
+    return cmd + ['--refazer'], midia
+
+
+def comando_do_stt(midia, ids):
+    return ([sys.executable, str(midia / 'ferramentas' / 'conferir_stt.py'), '--stt', 'whisper',
+             '--ids', ','.join(ids)], midia)
+
+
+# ---------------------------------------------------------------------------
+# O registro de origem de cada narração: narrar só o que mudou (M-I2)
+# ---------------------------------------------------------------------------
+
+SUFIXO_DA_ORIGEM = '.origem'
+
+
+def identificar_voz(motor, tradicao):
+    """O identificador da voz que lê a `tradicao` neste `motor` — a voice_id
+    da ElevenLabs, o nome da voz da Microsoft —, pelo narrar.py ao lado
+    deste script (o mesmo código da cópia em --midia). É a parte "voz" do
+    registro .origem: trocar a voz no narrar.py regenera a narração."""
+    pasta = str(RAIZ / 'ferramentas')
+    if pasta not in sys.path:
+        sys.path.insert(0, pasta)
+    import narrar  # noqa: PLC0415 — só na rodada real; nada de rede
+    return narrar.voz_de({'tradicao': tradicao}, motor)
+
+
+def assinatura_da_narracao(texto, motor, tradicao):
+    """O registro <arquivo>.origem de uma narração: o sha256 do texto
+    narrado (com as pausas), o motor e a voz. Igual = a mesma narração, não
+    precisa gerar de novo."""
+    return {'texto_sha256': hashlib.sha256(texto.encode('utf-8')).hexdigest(),
+            'motor': motor, 'voz': identificar_voz(motor, tradicao)}
+
+
+def ler_origem(arquivo):
+    """O registro ao lado de `arquivo` (um .m4a), ou None se não há ou não lê."""
+    try:
+        dados = json.loads(Path(f'{arquivo}{SUFIXO_DA_ORIGEM}').read_text(encoding='utf-8'))
+    except (OSError, ValueError, UnicodeDecodeError):
+        return None
+    return dados if isinstance(dados, dict) else None
+
+
+def escrever_origem(arquivo, assinatura):
+    """Grava o registro ao lado do .m4a (UTF-8, LF). Não é mídia: o
+    gerar_manifesto só pega .m4a, e o lint não o vê; vai no commit junto do
+    .m4a, para a cópia seguinte do repositório também saber a origem."""
+    Path(f'{arquivo}{SUFIXO_DA_ORIGEM}').write_text(
+        json.dumps(assinatura, ensure_ascii=False, indent=2) + '\n', encoding='utf-8', newline='')
+
+
+def _narracoes_dos_capitulos(midia, ids):
+    """{caminho: item} do narracoes.jsonl para os `ids` — o que o
+    texto_narrado.dart emitiu para a temporada."""
     jsonl = midia / 'ferramentas' / 'narracao' / 'narracoes.jsonl'
-    emitidos = set()
+    itens = {}
     for linha in jsonl.read_text(encoding='utf-8').splitlines():
         if linha.strip():
             item = json.loads(linha)
-            if item.get('id') in ids:
-                emitidos.add(item.get('caminho'))
-    faltam = sorted(_caminhos_da_voz(ids) - emitidos)
+            if item.get('id') in ids and isinstance(item.get('caminho'), str):
+                itens[item['caminho']] = item
+    return itens
+
+
+def _pendentes_no_stt(midia, ids):
+    """As vozes dos `ids` que o stt.log.jsonl ainda não aprovou com os bytes
+    de hoje: sem registro, reprovadas, ou com outro tamanho (o arquivo mudou
+    depois da conferência)."""
+    registros = _registros_do_stt(midia, ids)
+    pendentes = []
+    for caminho in sorted(_caminhos_da_voz(ids)):
+        arquivo, r = midia / caminho, registros.get(caminho)
+        if (not arquivo.exists() or r is None or not r.get('aprovado')
+                or r.get('bytes') != arquivo.stat().st_size):
+            pendentes.append(caminho)
+    return pendentes
+
+
+def _comandos_do_narrar(midia, caminhos, itens, ids, motor):
+    """Um narrar.py por tradição que precisa — ou um só, sem --tradicao,
+    quando as duas precisam dos mesmos ids (o motor da Microsoft então gera
+    o texto igual uma vez e copia)."""
+    por_tradicao = {}
+    for t in TRADICOES:
+        lista = sorted({itens[c]['id'] for c in caminhos if itens[c]['tradicao'] == t},
+                       key=ids.index)
+        if lista:
+            por_tradicao[t] = lista
+    if len(por_tradicao) == len(TRADICOES) and len({tuple(v) for v in por_tradicao.values()}) == 1:
+        return [comando_do_narrar(midia, next(iter(por_tradicao.values())), motor)]
+    return [comando_do_narrar(midia, lista, motor, tradicao=t) for t, lista in por_tradicao.items()]
+
+
+@dataclass
+class Voz:
+    """O que a etapa da voz fez — ou onde parou (`falha`)."""
+    falha: str | None = None
+    geradas: list = field(default_factory=list)      # os caminhos narrados nesta rodada
+    puladas: int = 0                                 # já estavam com este texto, motor e voz
+    conferidas: list = field(default_factory=list)   # os caminhos que passaram pelo STT agora
+
+
+def gerar_voz(dart, midia, app, ids, motor, refazer, tocados):
+    """texto_narrado -> narrar (só o que mudou) -> conferir_stt (só o que
+    ainda não foi aprovado). `tocados` recebe cada caminho gravado (os .m4a
+    e os .origem), para o bloco de como desfazer. Devolve a Voz."""
+    voz = Voz()
+    texto, cwd_texto = comando_do_texto_narrado(dart, midia, app)
+    if rodar(texto, cwd=cwd_texto) != 0:
+        voz.falha = ('o texto_narrado.dart falhou (a opção --temporadas é da Task 7 do app: o app '
+                     'apontado já a tem?)')
+        return voz
+    itens = _narracoes_dos_capitulos(midia, ids)
+    faltam = sorted(_caminhos_da_voz(ids) - set(itens))
     if faltam:
-        return (f'o texto_narrado.dart não emitiu a voz dos capítulos ({", ".join(faltam)}): a '
-                'opção --temporadas é da Task 7 do app — o app apontado já a tem?'), False
-    if rodar(narrar, cwd=cwd_narrar) != 0:
-        return 'o narrar.py falhou (a saída está acima); nada do manifesto foi refeito', True
-    faltam = sorted(c for c in _caminhos_da_voz(ids)
-                    if not (midia / c).exists() or (midia / c).stat().st_size == 0)
-    if faltam:
-        return f'o narrar.py não gravou {", ".join(faltam)}; nada do manifesto foi refeito', True
+        voz.falha = (f'o texto_narrado.dart não emitiu a voz dos capítulos ({", ".join(faltam)}): a '
+                     'opção --temporadas é da Task 7 do app — o app apontado já a tem?')
+        return voz
+    # (M-I2 b) Só o que mudou: o registro .origem ao lado de cada .m4a diz
+    # com que texto, motor e voz ele foi gerado.
+    assinaturas = {c: assinatura_da_narracao(item['texto'], motor, item['tradicao'])
+                   for c, item in itens.items()}
+    a_gerar = sorted(c for c in itens
+                     if refazer or not (midia / c).exists() or (midia / c).stat().st_size == 0
+                     or ler_origem(midia / c) != assinaturas[c])
+    voz.puladas = len(itens) - len(a_gerar)
+    if not a_gerar:
+        print(f'voz: nada a gerar — as {len(itens)} narrações já estão com este texto, motor e voz '
+              '(registro .origem)')
+    else:
+        print(f'voz: {len(a_gerar)} narração(ões) a gerar ({motor}): {", ".join(a_gerar)}; '
+              f'{voz.puladas} já estava(m) com este texto, motor e voz')
+        for cmd, cwd in _comandos_do_narrar(midia, a_gerar, itens, ids, motor):
+            codigo = rodar(cmd, cwd=cwd)
+            tocados += [c for c in a_gerar if (midia / c).exists() and c not in tocados]
+            if codigo != 0:
+                voz.falha = 'o narrar.py falhou (a saída está acima)'
+                return voz
+        nao_gravadas = sorted(c for c in a_gerar
+                              if not (midia / c).exists() or (midia / c).stat().st_size == 0)
+        if nao_gravadas:
+            voz.falha = f'o narrar.py não gravou {", ".join(nao_gravadas)}'
+            return voz
+        for c in a_gerar:
+            escrever_origem(midia / c, assinaturas[c])
+            tocados.append(f'{c}{SUFIXO_DA_ORIGEM}')
+        voz.geradas = a_gerar
+    # O STT: o que foi gerado agora e o que o log ainda não aprovou.
+    pendentes = sorted(set(voz.geradas) | set(_pendentes_no_stt(midia, ids)))
+    if not pendentes:
+        print(f'STT: nada a conferir — as {len(itens)} narrações já foram aprovadas (stt.log.jsonl)')
+        return voz
+    ids_do_stt = sorted({itens[c]['id'] for c in pendentes}, key=ids.index)
+    voz.conferidas = pendentes
+    stt, cwd_stt = comando_do_stt(midia, ids_do_stt)
     if rodar(stt, cwd=cwd_stt) != 0:
-        reprovados = _reprovados_no_log(midia, ids)
-        lista = f': {", ".join(reprovados)}' if reprovados else ' (a lista está acima)'
-        return (f'a conferência por STT reprovou a voz{lista} — refaça com narrar.py --ids '
-                f'{",".join(ids)} --refazer e publique de novo; nada do manifesto foi '
-                'refeito'), True
-    return None, True
+        reprovados = _reprovados_no_log(midia, ids_do_stt)
+        # (M-I2 c) O registro do reprovado sai: a rodada seguinte gera só ele.
+        for c in reprovados:
+            origem = f'{c}{SUFIXO_DA_ORIGEM}'
+            Path(midia / origem).unlink(missing_ok=True)
+            if origem in tocados:
+                tocados.remove(origem)
+        ids_reprovados = sorted({itens[c]['id'] for c in reprovados if c in itens}, key=ids.index)
+        lista = (f' de {", ".join(ids_reprovados)} ({", ".join(reprovados)})' if reprovados
+                 else ' (a lista está acima)')
+        voz.falha = (f'a conferência por STT reprovou a voz{lista} — rode a publicação de novo: ela '
+                     'pula as narrações aprovadas e gera só essa(s) (o registro .origem delas foi '
+                     'apagado); se reprovar outra vez, ouça o arquivo e, se estiver bom, aceite à '
+                     'mão em ferramentas/narracao/stt-aceitos.txt')
+        return voz
+    return voz
 
 
 def _versionados_no_git(midia, caminhos):
@@ -1726,6 +1890,9 @@ def _argumentos(argv):
     ap.add_argument('--motor', choices=MOTORES, default='microsoft',
                     help='a voz dos cartões dos capítulos (padrão: microsoft, a fase atual)')
     ap.add_argument('--sem-voz', action='store_true', help='não gera a voz dos capítulos')
+    ap.add_argument('--refazer', action='store_true',
+                    help='gera de novo TODA a voz dos capítulos, mesmo a que o registro .origem diz '
+                         'que não mudou (texto, motor e voz iguais)')
     ap.add_argument('--substituir-videos', action='store_true',
                     help='o vídeo já publicado com OUTRO conteúdo sobe numa chave nova '
                          '(video/<t>/<nn>-<tradicao>-<sha8>.mp4) e o JSON aponta para ela; o objeto '
@@ -1893,7 +2060,8 @@ def _publicar(args, midia, app, prefixo):
         if args.sem_voz:
             print('voz (simulado): pulada (--sem-voz)')
         else:
-            print('voz (simulado): rodaria')
+            print('voz (simulado): rodaria — na forma geral; a rodada real gera só a narração cujo '
+                  'registro .origem não bate e confere só a que o stt.log.jsonl ainda não aprovou')
             for cmd, cwd in comandos_da_voz('dart', midia, app, ids, args.motor):
                 print(_mostrar(cmd, cwd))
         print('manifesto e lint (simulado): rodaria')
@@ -1916,26 +2084,42 @@ def _publicar(args, midia, app, prefixo):
         def voz_no_disco():
             return [c for c in sorted(_caminhos_da_voz(ids)) if (midia / c).exists()]
 
+        voz = Voz()
         try:
-            if not args.sem_voz:
-                falha, narrou = gerar_voz(dart, midia, app, ids, args.motor)
-                if narrou:
-                    tocados += voz_no_disco()
-                if falha:
-                    return parar(f'voz: {falha}')
             (manifesto, cwd_manifesto), (lint, cwd_lint) = comandos_do_manifesto(dart, midia, app)
-            # Começou a ser refeito: conta como tocado, mesmo que falhe no meio.
-            tocados.append('manifesto.json')
-            if rodar(manifesto, cwd=cwd_manifesto) != 0:
-                return parar('manifesto: o gerar_manifesto.dart falhou (a saída está acima)')
-            faltam = fora_do_manifesto(midia, entrega, com_voz=not args.sem_voz)
-            if faltam:
-                return parar(f'manifesto: não lista {", ".join(faltam)} — o gerar_manifesto.dart '
-                             'do app apontado conhece a pasta novela/ (Task 7)? Sem isso o app não '
-                             'baixa a temporada')
-            if rodar(lint, cwd=cwd_lint) != 0:
-                return parar('lint: o lint_conteudo.dart achou erro (a saída está acima) — corrija '
-                             'e publique de novo')
+
+            def manifesto_e_lint(com_voz):
+                """None se passou; senão o código da parada (com o bloco)."""
+                # Começou a ser refeito: conta como tocado, mesmo que falhe no meio.
+                if 'manifesto.json' not in tocados:
+                    tocados.append('manifesto.json')
+                if rodar(manifesto, cwd=cwd_manifesto) != 0:
+                    return parar('manifesto: o gerar_manifesto.dart falhou (a saída está acima)')
+                faltam = fora_do_manifesto(midia, entrega, com_voz=com_voz)
+                if faltam:
+                    return parar(f'manifesto: não lista {", ".join(faltam)} — o gerar_manifesto.dart '
+                                 'do app apontado conhece a pasta novela/ (Task 7)? Sem isso o app '
+                                 'não baixa a temporada')
+                if rodar(lint, cwd=cwd_lint) != 0:
+                    antes_da_voz = '' if com_voz or args.sem_voz else ' (nenhuma voz foi gerada)'
+                    return parar('lint: o lint_conteudo.dart achou erro (a saída está acima) — '
+                                 f'corrija e publique de novo{antes_da_voz}')
+                return None
+
+            # (M-I2 a) O manifesto e o lint ANTES da voz: o lint é a palavra
+            # final sobre os textos, e um texto que ele recusa não gasta um
+            # crédito de voz (a narração ausente é pendência da regra 2,
+            # não erro). Depois da voz, os dois de novo, com ela dentro.
+            codigo = manifesto_e_lint(com_voz=False)
+            if codigo is not None:
+                return codigo
+            if not args.sem_voz:
+                voz = gerar_voz(dart, midia, app, ids, args.motor, args.refazer, tocados)
+                if voz.falha:
+                    return parar(f'voz: {voz.falha}')
+                codigo = manifesto_e_lint(com_voz=True)
+                if codigo is not None:
+                    return codigo
         except BaseException as e:  # noqa: BLE001 — o Ctrl+C não é Exception; tudo sobe depois do bloco
             # A voz pode ter sido gravada antes de o gerar_voz devolver (o
             # Ctrl+C no whisper): o que está no disco entra na lista.
@@ -1991,10 +2175,11 @@ def _publicar(args, midia, app, prefixo):
         print('voz, manifesto e lint: não rodaram (simulado)')
     else:
         da_voz = ('pulada (--sem-voz)' if args.sem_voz
-                  else f'{args.motor}, {len(ids) * 2} arquivos, STT ok')
+                  else f'{args.motor}: {len(voz.geradas)} narração(ões) gerada(s), {voz.puladas} já '
+                       f'estava(m) (registro .origem); STT: {len(voz.conferidas)} conferida(s), ok')
         print(f'voz: {da_voz}; manifesto refeito; lint sem erro')
-    print('lembrete: commit por caminho (git add -- <novos>; git commit -- <caminhos>) + push SÓ '
-          'com OK do Gregory.')
+    print('lembrete: commit por caminho (git add -- <novos>; git commit -- <caminhos>), com cada '
+          '.origem junto do .m4a dele + push SÓ com OK do Gregory.')
     return 0
 
 
