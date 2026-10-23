@@ -1930,7 +1930,8 @@ def teste_narra_so_o_que_mudou_pelo_registro_origem_e_duas_rodadas_iguais_nao_mu
             origem = json.loads((midia / f'{caminho}.origem').read_text(encoding='utf-8'))
             assert origem == {'texto_sha256': hashlib.sha256(textos[caminho].encode('utf-8')).hexdigest(),
                               'motor': 'microsoft',
-                              'voz': pt.identificar_voz('microsoft', tradicao)}, origem
+                              'voz': pt.identificar_voz('microsoft', tradicao),
+                              'ajustes': pt.ajustes_da_voz('microsoft', tradicao)}, origem
         # A voz é a do narrar.py: na ElevenLabs, uma por tradição.
         assert pt.identificar_voz('elevenlabs', 'catolico') != pt.identificar_voz('elevenlabs', 'evangelico')
         assert pt.identificar_voz('elevenlabs', 'catolico') != pt.identificar_voz('microsoft', 'catolico')
@@ -1972,6 +1973,61 @@ def teste_narra_so_o_que_mudou_pelo_registro_origem_e_duas_rodadas_iguais_nao_mu
         assert len(narrar) == 1 and '--ids' in narrar[0] and 't1c1,t1c2' in narrar[0], narrar
         origem = json.loads((midia / 'narracao/catolico/t1c1.m4a.origem').read_text(encoding='utf-8'))
         assert (origem['motor'], origem['voz']) == ('elevenlabs', pt.identificar_voz('elevenlabs', 'catolico'))
+
+
+def teste_mudanca_de_ajuste_de_voz_regenera_a_narracao():
+    """A-m4 (M-I2 b): o registro .origem leva também os ajustes da voz do
+    narrar.py — na ElevenLabs o model_id e os voice_settings (estabilidade,
+    velocidade...), na Microsoft a velocidade. Baixar a velocidade do
+    "Padre Católico" e republicar regenera, em vez de "nada a gerar"; um
+    registro do formato antigo (sem ajustes) também regenera."""
+    import narrar  # noqa: PLC0415 — o de ferramentas/ (sys.path acima); nada de rede
+    import voz_microsoft  # noqa: PLC0415
+    assert pt.ajustes_da_voz('microsoft', 'catolico') == {'velocidade': voz_microsoft.VELOCIDADE}
+    for tradicao in ('catolico', 'evangelico'):
+        assert pt.ajustes_da_voz('elevenlabs', tradicao) == {
+            'modelo': narrar.MODELO, 'voice_settings': narrar.VOZES[tradicao]['voice_settings']}
+    assert pt.ajustes_da_voz('elevenlabs', 'catolico') != pt.ajustes_da_voz('elevenlabs', 'evangelico')
+    with tempfile.TemporaryDirectory() as tmp:
+        dubles = Dubles(tmp)
+        midia = dubles.midia()
+        pasta = entrega_valida(tmp)
+        assert dubles.publicar(pasta, midia, '--motor', 'microsoft')[0] == 0
+        caminhos = sorted(pt._caminhos_da_voz(['t1c1', 't1c2']))
+        origem = json.loads((midia / 'narracao/catolico/t1c1.m4a.origem').read_text(encoding='utf-8'))
+        assert origem['ajustes'] == {'velocidade': voz_microsoft.VELOCIDADE}, origem
+        # Outra velocidade no narrar.py: as quatro são geradas de novo e o
+        # registro passa a dizer a nova.
+        ajustes = pt.ajustes_da_voz
+        pt.ajustes_da_voz = lambda motor, tradicao: {'velocidade': '-20%'}
+        try:
+            dubles.comandos.clear()
+            codigo, saida = dubles.publicar(pasta, midia, '--motor', 'microsoft')
+            assert codigo == 0, saida
+            narrar_ = [cmd for cmd, _ in dubles.comandos if cmd[1].endswith('narrar.py')]
+            assert len(narrar_) == 1 and narrar_[0][2:] == ['--motor', 'microsoft', '--ids',
+                                                             't1c1,t1c2', '--refazer'], narrar_
+            for caminho in caminhos:
+                registro = json.loads((midia / f'{caminho}.origem').read_text(encoding='utf-8'))
+                assert registro['ajustes'] == {'velocidade': '-20%'}, registro
+            # A mesma velocidade de novo: nada a gerar.
+            dubles.comandos.clear()
+            codigo, saida = dubles.publicar(pasta, midia, '--motor', 'microsoft')
+            assert codigo == 0 and 'nada a gerar' in saida, saida
+        finally:
+            pt.ajustes_da_voz = ajustes
+        # Um registro do formato antigo (sem "ajustes") numa narração: só ela
+        # é gerada de novo.
+        assert dubles.publicar(pasta, midia, '--motor', 'microsoft')[0] == 0
+        antigo = json.loads((midia / 'narracao/evangelico/t1c2.m4a.origem').read_text(encoding='utf-8'))
+        del antigo['ajustes']
+        (midia / 'narracao/evangelico/t1c2.m4a.origem').write_text(json.dumps(antigo), encoding='utf-8')
+        dubles.comandos.clear()
+        codigo, saida = dubles.publicar(pasta, midia, '--motor', 'microsoft')
+        assert codigo == 0, saida
+        narrar_ = [cmd for cmd, _ in dubles.comandos if cmd[1].endswith('narrar.py')]
+        assert len(narrar_) == 1 and narrar_[0][2:] == ['--motor', 'microsoft', '--ids', 't1c2',
+                                                         '--tradicao', 'evangelico', '--refazer'], narrar_
 
 
 def teste_stt_reprovado_lista_so_os_reprovados_e_a_rodada_seguinte_gera_so_esses():

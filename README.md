@@ -52,10 +52,16 @@ Lista o que falhou e sai com 1; nada falhou, 0. Nunca escreve nada.
    JSONs, as capas e as legendas, gera só a voz que mudou, confere por STT,
    refaz o manifesto e roda o lint — `--simular` antes, numa pasta
    temporária, para ver o que faria; `--help` para o resto).
+   Com o domínio dos vídeos no ar (o DNS do `manhadefe.com.br` na
+   Cloudflare), acrescente `--videos-base https://video.manhadefe.com.br/`:
+   sem a opção e sem índice anterior, a base `videos` do índice sai da
+   Public Development URL do R2 (`*.r2.dev`, que a Cloudflare limita), com
+   aviso — e corrigir depois é republicar só o índice e o manifesto.
 2. Commit por caminho (`git add -- <novos>`; `git commit -- <caminhos>`), com
    cada `.origem` junto do `.m4a` dele. Push só com o OK do Gregory.
 3. ~10 min depois: `python ferramentas/conferir_servidor.py --midia .` (ou
-   `--so-novela`). Só com "tudo no ar" a temporada está publicada.
+   `--so-novela`; `--paralelo 4` se o Pages limitar os HEADs — o padrão é
+   8). Só com "tudo no ar" a temporada está publicada.
 
 ## Higiene
 

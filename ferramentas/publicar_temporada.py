@@ -112,8 +112,9 @@ são ignorados.
    - a voz dos cartões dos dias de capítulo (sem --sem-voz), SÓ o que
      mudou: texto_narrado.dart --temporadas dá o texto de cada narração;
      ao lado de cada .m4a fica o registro <arquivo>.origem (sha256 do
-     texto narrado, motor e voz), e só a narração sem registro ou com
-     registro diferente passa pelo narrar.py (--refazer gera tudo); um
+     texto narrado, motor, voz e os ajustes dela — velocidade,
+     estabilidade...), e só a narração sem registro ou com registro
+     diferente passa pelo narrar.py (--refazer gera tudo); um
      narrar.py que falha numa narração ainda registra as que o
      narrar.log.jsonl diz que ficaram prontas nesta rodada. O
      conferir_stt.py --stt whisper roda só no que foi gerado agora ou que
@@ -1762,12 +1763,28 @@ def identificar_voz(motor, tradicao):
     return narrar.voz_de({'tradicao': tradicao}, motor)
 
 
+def ajustes_da_voz(motor, tradicao):
+    """Os ajustes com que o `motor` lê a `tradicao`, pelo narrar.py ao lado
+    deste script: na ElevenLabs o model_id e os voice_settings
+    (estabilidade, velocidade...), na Microsoft a velocidade. Vão no
+    registro .origem: mudar um ajuste regenera a narração (A-m4)."""
+    pasta = str(RAIZ / 'ferramentas')
+    if pasta not in sys.path:
+        sys.path.insert(0, pasta)
+    import narrar  # noqa: PLC0415 — só na rodada real; nada de rede
+    if motor == narrar.voz_microsoft.MOTOR:
+        return {'velocidade': narrar.voz_microsoft.VELOCIDADE}
+    return {'modelo': narrar.MODELO,
+            'voice_settings': dict(narrar.VOZES[tradicao]['voice_settings'])}
+
+
 def assinatura_da_narracao(texto, motor, tradicao):
     """O registro <arquivo>.origem de uma narração: o sha256 do texto
-    narrado (com as pausas), o motor e a voz. Igual = a mesma narração, não
-    precisa gerar de novo."""
+    narrado (com as pausas), o motor, a voz e os ajustes dela. Igual = a
+    mesma narração, não precisa gerar de novo."""
     return {'texto_sha256': hashlib.sha256(texto.encode('utf-8')).hexdigest(),
-            'motor': motor, 'voz': identificar_voz(motor, tradicao)}
+            'motor': motor, 'voz': identificar_voz(motor, tradicao),
+            'ajustes': ajustes_da_voz(motor, tradicao)}
 
 
 def ler_origem(arquivo):
@@ -1898,13 +1915,13 @@ def gerar_voz(dart, midia, app, ids, motor, refazer, tocados):
                      or ler_origem(midia / c) != assinaturas[c] or c in reprovadas)
     voz.puladas = len(itens) - len(a_gerar)
     if not a_gerar:
-        print(f'voz: nada a gerar — as {len(itens)} narrações já estão com este texto, motor e voz '
-              '(registro .origem)')
+        print(f'voz: nada a gerar — as {len(itens)} narrações já estão com este texto, motor, voz e '
+              'ajustes (registro .origem)')
     else:
         pelo_stt = (f'; reprovada(s) pelo STT: {", ".join(sorted(reprovadas & set(a_gerar)))}'
                     if reprovadas & set(a_gerar) else '')
         print(f'voz: {len(a_gerar)} narração(ões) a gerar ({motor}): {", ".join(a_gerar)}; '
-              f'{voz.puladas} já estava(m) com este texto, motor e voz{pelo_stt}')
+              f'{voz.puladas} já estava(m) com este texto, motor, voz e ajustes{pelo_stt}')
         inicio = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')  # o `quando` do narrar.log.jsonl
         existiam = {c for c in a_gerar if (midia / c).exists()}
         codigo = 0
@@ -2090,7 +2107,7 @@ def _argumentos(argv):
     ap.add_argument('--sem-voz', action='store_true', help='não gera a voz dos capítulos')
     ap.add_argument('--refazer', action='store_true',
                     help='gera de novo TODA a voz dos capítulos, mesmo a que o registro .origem diz '
-                         'que não mudou (texto, motor e voz iguais)')
+                         'que não mudou (texto, motor, voz e ajustes da voz iguais)')
     ap.add_argument('--substituir-videos', action='store_true',
                     help='o vídeo já publicado com OUTRO conteúdo sobe numa chave nova '
                          '(video/<t>/<nn>-<tradicao>-<sha8>.mp4) e o JSON aponta para ela; o objeto '
@@ -2385,7 +2402,8 @@ def _publicar(args, midia, app, prefixo):
         print(f'voz: {da_voz}; manifesto refeito; lint sem erro')
     print('lembrete: commit por caminho (git add -- <novos>; git commit -- <caminhos>), com cada '
           '.origem junto do .m4a dele + push SÓ com OK do Gregory. Depois do push e dos ~10 min do '
-          'CDN: python ferramentas/conferir_servidor.py --midia .')
+          'CDN: python ferramentas/conferir_servidor.py --midia . (ou --so-novela; --paralelo 4 se '
+          'o Pages limitar)')
     return 0
 
 
