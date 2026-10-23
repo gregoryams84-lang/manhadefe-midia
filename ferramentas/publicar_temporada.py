@@ -2221,7 +2221,8 @@ def _publicar(args, midia, app, prefixo):
                        f'estava(m) (registro .origem); STT: {len(voz.conferidas)} conferida(s), ok')
         print(f'voz: {da_voz}; manifesto refeito; lint sem erro')
     print('lembrete: commit por caminho (git add -- <novos>; git commit -- <caminhos>), com cada '
-          '.origem junto do .m4a dele + push SÓ com OK do Gregory.')
+          '.origem junto do .m4a dele + push SÓ com OK do Gregory. Depois do push e dos ~10 min do '
+          'CDN: python ferramentas/conferir_servidor.py --midia .')
     return 0
 
 
