@@ -1591,6 +1591,7 @@ def teste_recusa_publicar_quando_o_indice_final_deixa_de_citar_a_temporada_em_cu
             gravar_indice()
             (midia / 'novela' / 't1.json').unlink()
             antes = _arvore(midia)
+            dubles.comandos.clear()
             codigo, saida = dubles.publicar(pasta, midia, '--sem-voz')
             assert codigo == 1, saida
             assert 'novela/t1.json' in saida and 'em curso' in saida, saida
