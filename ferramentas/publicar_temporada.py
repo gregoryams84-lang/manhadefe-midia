@@ -1863,20 +1863,39 @@ def gerar_voz(dart, midia, app, ids, motor, refazer, tocados):
     else:
         print(f'voz: {len(a_gerar)} narração(ões) a gerar ({motor}): {", ".join(a_gerar)}; '
               f'{voz.puladas} já estava(m) com este texto, motor e voz')
+        inicio = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')  # o `quando` do narrar.log.jsonl
+        existiam = {c for c in a_gerar if (midia / c).exists()}
+        codigo = 0
         for cmd, cwd in _comandos_do_narrar(midia, a_gerar, itens, ids, motor):
             codigo = rodar(cmd, cwd=cwd)
-            tocados += [c for c in a_gerar if (midia / c).exists() and c not in tocados]
             if codigo != 0:
-                voz.falha = 'o narrar.py falhou (a saída está acima)'
-                return voz
-        nao_gravadas = sorted(c for c in a_gerar
-                              if not (midia / c).exists() or (midia / c).stat().st_size == 0)
-        if nao_gravadas:
-            voz.falha = f'o narrar.py não gravou {", ".join(nao_gravadas)}'
-            return voz
-        for c in a_gerar:
+                break
+        # (A-I1) O narrar.py devolve 1 quando QUALQUER item do lote falha,
+        # mas os outros ficam no disco: o que o narrar.log.jsonl diz que
+        # ficou pronto nesta rodada ganha o registro .origem já, com
+        # qualquer código de saída — a rodada seguinte gera só o que faltou.
+        prontas = _prontas_no_log_do_narrar(midia, a_gerar, inicio)
+        tocados += [c for c in a_gerar if c not in tocados
+                    and (c in prontas or (c not in existiam and (midia / c).exists()))]
+        for c in sorted(prontas):
             escrever_origem(midia / c, assinaturas[c])
             tocados.append(f'{c}{SUFIXO_DA_ORIGEM}')
+        faltaram = sorted(set(a_gerar) - prontas)
+        if refazer:
+            # O arquivo velho da que falhou fica no lugar, mas o registro
+            # dele não vale mais: sem isto a rodada seguinte (sem --refazer)
+            # a pularia como se tivesse sido refeita.
+            for c in faltaram:
+                Path(midia / f'{c}{SUFIXO_DA_ORIGEM}').unlink(missing_ok=True)
+        if codigo != 0:
+            voz.falha = (f'o narrar.py falhou (a saída está acima); {len(prontas)} narração(ões) '
+                         f'ficaram prontas e registradas (.origem) — rode a publicação de novo: '
+                         f'ela gera só o que faltou ({", ".join(faltaram) or "nada"})')
+            return voz
+        if faltaram:
+            voz.falha = (f'o narrar.py não gravou {", ".join(faltaram)} (sem registro ok desta '
+                         'rodada no narrar.log.jsonl com os bytes do disco)')
+            return voz
         voz.geradas = a_gerar
     # O STT: o que foi gerado agora e o que o log ainda não aprovou.
     pendentes = sorted(set(voz.geradas) | set(_pendentes_no_stt(midia, ids)))
@@ -1947,14 +1966,13 @@ def como_desfazer(midia, escritos, removidos):
     return linhas
 
 
-def _registros_do_stt(midia, ids):
-    """{caminho: o ÚLTIMO registro do stt.log.jsonl} das vozes dos `ids`.
-    Uma linha truncada (um conferir_stt.py morto no meio da escrita, numa
-    rodada anterior) é pulada, não derruba a publicação (M-m2)."""
-    log = midia / 'ferramentas' / 'narracao' / 'stt.log.jsonl'
+def _ultimos_registros(log, caminhos):
+    """{caminho: o ÚLTIMO registro de `log` (jsonl, um por tentativa)} dos
+    `caminhos`. Uma linha truncada (uma ferramenta morta no meio da escrita,
+    numa rodada anterior) é pulada, não derruba a publicação (M-m2)."""
     if not log.exists():
         return {}
-    caminhos = _caminhos_da_voz(ids)
+    caminhos = set(caminhos)
     ultimo = {}
     for linha in log.read_text(encoding='utf-8').splitlines():
         if not linha.strip():
@@ -1966,6 +1984,30 @@ def _registros_do_stt(midia, ids):
         if isinstance(r, dict) and r.get('caminho') in caminhos:
             ultimo[r['caminho']] = r
     return ultimo
+
+
+def _registros_do_stt(midia, ids):
+    """{caminho: o ÚLTIMO registro do stt.log.jsonl} das vozes dos `ids`."""
+    return _ultimos_registros(midia / 'ferramentas' / 'narracao' / 'stt.log.jsonl',
+                              _caminhos_da_voz(ids))
+
+
+def _prontas_no_log_do_narrar(midia, caminhos, desde):
+    """Os `caminhos` que o narrar.log.jsonl (narrar.py: uma linha por
+    tentativa, com caminho, ok, bytes e quando) diz que ficaram prontos
+    NESTA rodada: o último registro de cada um é ok, de `desde` em diante
+    (o mesmo formato do `quando`, AAAA-MM-DDTHH:MM:SS) e com `bytes` igual
+    ao tamanho no disco. "Existe e não está vazio" não serve: com --refazer,
+    o arquivo VELHO de uma narração que falhou continua no lugar (A-I1)."""
+    log = midia / 'ferramentas' / 'narracao' / 'narrar.log.jsonl'
+    prontas = set()
+    for c, r in _ultimos_registros(log, caminhos).items():
+        arquivo = midia / c
+        if (r.get('ok') is True and isinstance(r.get('quando'), str) and r['quando'] >= desde
+                and arquivo.exists() and arquivo.stat().st_size > 0
+                and r.get('bytes') == arquivo.stat().st_size):
+            prontas.add(c)
+    return prontas
 
 
 def _reprovados_no_log(midia, ids):

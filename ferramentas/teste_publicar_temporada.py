@@ -23,6 +23,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import time
 import traceback
 import urllib.error
 from datetime import date
@@ -1663,6 +1664,9 @@ class Dubles:
         # Quantas vezes o narrar.py rodou: cada geração grava bytes
         # diferentes, para um .m4a regenerado não passar por intocado.
         self.narracoes = 0
+        # Os caminhos em que o narrar.py falha (como o real: o lote devolve
+        # 1, os outros ficam no disco e cada um vai ao narrar.log.jsonl).
+        self.narrar_falha = set()
         # (fim do nome de um comando, exceção): esse comando, em vez de
         # rodar, lança a exceção — um Ctrl+C no whisper, um erro imprevisto.
         self.explode = None
@@ -1710,16 +1714,34 @@ class Dubles:
             Path(saida).write_text(chr(10).join(linhas) + chr(10), encoding='utf-8')
             return 0
         if cmd[1].endswith('narrar.py'):
+            # Como o real: um .m4a por item e uma linha no narrar.log.jsonl
+            # por tentativa (caminho, ok, bytes, quando); o item que falha
+            # não é gravado (o velho, se há, fica) e o lote devolve 1.
             midia = Path(cmd[1]).parents[1]
             self.narracoes += 1
+            motor = cmd[cmd.index('--motor') + 1]
             tradicoes = ([cmd[cmd.index('--tradicao') + 1]] if '--tradicao' in cmd
                          else ['catolico', 'evangelico'])
-            for id_ in cmd[cmd.index('--ids') + 1].split(','):
-                for tradicao in tradicoes:
-                    (midia / 'narracao' / tradicao).mkdir(parents=True, exist_ok=True)
-                    (midia / 'narracao' / tradicao / f'{id_}.m4a').write_bytes(
-                        f'voz {self.narracoes} {tradicao} {id_}'.encode('utf-8'))
-            return 0
+            log = midia / 'ferramentas' / 'narracao' / 'narrar.log.jsonl'
+            log.parent.mkdir(parents=True, exist_ok=True)
+            erros = 0
+            with open(log, 'a', encoding='utf-8') as f:
+                for id_ in cmd[cmd.index('--ids') + 1].split(','):
+                    for tradicao in tradicoes:
+                        caminho = f'narracao/{tradicao}/{id_}.m4a'
+                        registro = {'caminho': caminho, 'id': id_, 'tradicao': tradicao,
+                                    'motor': motor, 'quando': time.strftime('%Y-%m-%dT%H:%M:%S')}
+                        if caminho in self.narrar_falha:
+                            erros += 1
+                            registro.update(ok=False, erro='HTTP 503: de mentira')
+                        else:
+                            (midia / 'narracao' / tradicao).mkdir(parents=True, exist_ok=True)
+                            (midia / caminho).write_bytes(
+                                f'voz {self.narracoes} {tradicao} {id_}'.encode('utf-8'))
+                            registro.update(ok=True, segundos=4.0,
+                                            bytes=(midia / caminho).stat().st_size)
+                        f.write(json.dumps(registro) + chr(10))
+            return 1 if erros else 0
         if cmd[1].endswith('conferir_stt.py'):
             # Como o real: uma linha no stt.log.jsonl por arquivo conferido.
             midia = Path(cmd[1]).parents[1]
@@ -1981,6 +2003,116 @@ def teste_stt_reprovado_lista_so_os_reprovados_e_a_rodada_seguinte_gera_so_esses
         assert len(stt) == 1 and stt[0][2:] == ['--stt', 'whisper', '--ids', 't1c2'], stt
         assert {c: (midia / c).read_bytes() for c in intocados} == intocados
         assert (midia / 'narracao/catolico/t1c2.m4a.origem').exists()
+
+
+def teste_narrar_que_falha_numa_narracao_registra_as_prontas_e_a_rodada_seguinte_gera_so_o_que_faltou():
+    """A-I1 (M-I2 b): o narrar.py devolve 1 quando QUALQUER item do lote
+    falha (HTTP 5xx depois das tentativas, rede), mas os outros ficam no
+    disco e no narrar.log.jsonl (ok, bytes, quando). O publicador grava o
+    .origem de cada um que o log diz que ficou pronto NESTA rodada antes de
+    devolver a falha: a rodada seguinte gera só o que faltou — nunca as
+    outras 13 de novo. "Existe e não está vazio" não serve: com --refazer, o
+    arquivo VELHO da narração que falhou continua no lugar; o registro velho
+    dela sai, e a rodada seguinte (sem --refazer) gera só ela."""
+    with tempfile.TemporaryDirectory() as tmp:
+        dubles = Dubles(tmp)
+        dubles.narrar_falha = {'narracao/catolico/t1c1.m4a'}
+        midia = dubles.midia()
+        pasta = entrega_valida(tmp)
+        codigo, saida = dubles.publicar(pasta, midia, '--motor', 'microsoft')
+        assert codigo == 1, saida
+        linha = next(l for l in saida.splitlines() if l.startswith('voz: ') and 'falhou' in l)
+        assert 'narracao/catolico/t1c1.m4a' in linha and 'só o que faltou' in linha, linha
+        assert dubles.ferramentas() == ['gerar_manifesto.dart', 'lint_conteudo.dart',
+                                        'texto_narrado.dart', 'narrar.py'], 'parou no narrar: sem STT'
+        assert not (midia / 'narracao/catolico/t1c1.m4a').exists()
+        assert not (midia / 'narracao/catolico/t1c1.m4a.origem').exists()
+        prontas = ['narracao/evangelico/t1c1.m4a', 'narracao/catolico/t1c2.m4a',
+                   'narracao/evangelico/t1c2.m4a']
+        for c in prontas:
+            assert (midia / c).exists() and (midia / f'{c}.origem').exists(), c
+            assert f'escrito:  {c}' in saida and f'escrito:  {c}.origem' in saida, (c, saida)
+        assert 'escrito:  narracao/catolico/t1c1.m4a' not in saida, 'não foi gravada: não consta'
+        bytes_prontas = {c: (midia / c).read_bytes() for c in prontas}
+        # A rodada seguinte: só a que faltou é gerada; o STT ouve a nova e
+        # as três prontas, que a rodada anterior não chegou a conferir.
+        dubles.narrar_falha = set()
+        dubles.comandos.clear()
+        codigo, saida = dubles.publicar(pasta, midia, '--motor', 'microsoft')
+        assert codigo == 0, saida
+        narrar = [cmd for cmd, _ in dubles.comandos if cmd[1].endswith('narrar.py')]
+        assert len(narrar) == 1 and narrar[0][2:] == ['--motor', 'microsoft', '--ids', 't1c1',
+                                                        '--tradicao', 'catolico', '--refazer'], narrar
+        stt = [cmd for cmd, _ in dubles.comandos if cmd[1].endswith('conferir_stt.py')]
+        assert len(stt) == 1 and stt[0][2:] == ['--stt', 'whisper', '--ids', 't1c1,t1c2'], stt
+        assert {c: (midia / c).read_bytes() for c in prontas} == bytes_prontas, 'as prontas ficam'
+        assert (midia / 'narracao/catolico/t1c1.m4a.origem').exists()
+        # --refazer com uma falha: o arquivo velho fica no lugar (não é "gravado
+        # nesta rodada"), o registro velho dele sai, e a rodada seguinte, sem
+        # --refazer, gera só ele.
+        dubles.narrar_falha = {'narracao/evangelico/t1c2.m4a'}
+        dubles.comandos.clear()
+        velho = (midia / 'narracao/evangelico/t1c2.m4a').read_bytes()
+        codigo, saida = dubles.publicar(pasta, midia, '--motor', 'microsoft', '--refazer')
+        assert codigo == 1, saida
+        assert (midia / 'narracao/evangelico/t1c2.m4a').read_bytes() == velho, 'o velho fica'
+        assert not (midia / 'narracao/evangelico/t1c2.m4a.origem').exists(), \
+            'o registro velho não vale mais'
+        assert 'escrito:  narracao/evangelico/t1c2.m4a' not in saida, saida
+        for c in ('narracao/catolico/t1c1.m4a', 'narracao/evangelico/t1c1.m4a',
+                  'narracao/catolico/t1c2.m4a'):
+            assert (midia / c).read_bytes() != bytes_prontas.get(c, b''), f'{c} regenerada'
+            assert (midia / f'{c}.origem').exists(), c
+        dubles.narrar_falha = set()
+        dubles.comandos.clear()
+        codigo, saida = dubles.publicar(pasta, midia, '--motor', 'microsoft')
+        assert codigo == 0, saida
+        narrar = [cmd for cmd, _ in dubles.comandos if cmd[1].endswith('narrar.py')]
+        assert len(narrar) == 1 and narrar[0][2:] == ['--motor', 'microsoft', '--ids', 't1c2',
+                                                        '--tradicao', 'evangelico', '--refazer'], narrar
+
+
+def teste_prontas_no_log_do_narrar_exige_ok_desta_rodada_e_os_bytes_do_disco():
+    """A-I1: o que conta como pronto é o ÚLTIMO registro do caminho no
+    narrar.log.jsonl — ok, de `desde` em diante, com `bytes` igual ao
+    tamanho no disco. Registro velho (de outra rodada), reprovado por último,
+    bytes diferentes ou arquivo ausente não contam; linha truncada é pulada."""
+    with tempfile.TemporaryDirectory() as tmp:
+        midia = Path(tmp)
+        for c, conteudo in (('narracao/catolico/t1c1.m4a', b'novo'),
+                            ('narracao/evangelico/t1c1.m4a', b'velho'),
+                            ('narracao/catolico/t1c2.m4a', b'ok mas mudou'),
+                            ('narracao/evangelico/t1c2.m4a', b'ok de antes')):
+            (midia / c).parent.mkdir(parents=True, exist_ok=True)
+            (midia / c).write_bytes(conteudo)
+        log = midia / 'ferramentas' / 'narracao' / 'narrar.log.jsonl'
+        log.parent.mkdir(parents=True)
+        linhas = [
+            # Esta rodada, ok, bytes certos: pronta.
+            json.dumps({'caminho': 'narracao/catolico/t1c1.m4a', 'ok': True, 'bytes': 4,
+                        'quando': '2026-11-08T10:00:05'}),
+            # Ok numa rodada anterior e, por último, falhou nesta (--refazer: o velho fica).
+            json.dumps({'caminho': 'narracao/evangelico/t1c1.m4a', 'ok': True, 'bytes': 5,
+                        'quando': '2026-11-01T09:00:00'}),
+            json.dumps({'caminho': 'narracao/evangelico/t1c1.m4a', 'ok': False,
+                        'erro': 'HTTP 503', 'quando': '2026-11-08T10:00:06'}),
+            # Ok nesta rodada, mas os bytes do disco não são os do registro.
+            json.dumps({'caminho': 'narracao/catolico/t1c2.m4a', 'ok': True, 'bytes': 3,
+                        'quando': '2026-11-08T10:00:07'}),
+            # Ok só numa rodada anterior.
+            json.dumps({'caminho': 'narracao/evangelico/t1c2.m4a', 'ok': True, 'bytes': 11,
+                        'quando': '2026-11-08T09:59:59'}),
+            # Ok nesta rodada, mas o arquivo não está no disco.
+            json.dumps({'caminho': 'narracao/catolico/t1c3.m4a', 'ok': True, 'bytes': 2,
+                        'quando': '2026-11-08T10:00:08'}),
+            '{"caminho": "narracao/evangelico/t1c3.m4a", "ok": tr']
+        log.write_text(chr(10).join(linhas) + chr(10), encoding='utf-8')
+        caminhos = sorted(pt._caminhos_da_voz(['t1c1', 't1c2', 't1c3']))
+        assert pt._prontas_no_log_do_narrar(midia, caminhos, '2026-11-08T10:00:05') == \
+            {'narracao/catolico/t1c1.m4a'}
+        # Sem log, nada está pronto.
+        log.unlink()
+        assert pt._prontas_no_log_do_narrar(midia, caminhos, '2026-11-08T10:00:05') == set()
 
 
 def teste_voz_reprovada_para_antes_do_manifesto_final():
