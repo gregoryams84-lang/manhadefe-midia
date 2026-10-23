@@ -912,6 +912,111 @@ def teste_recusa_arquivo_que_falta_e_arquivo_que_sobra():
                      '03-catolico.mp4')
 
 
+def entrega_de_uma_versao(tmp, versao='catolico', capitulos=2, id_='t2', inicio='2026-12-17',
+                          nome='entrega-uma-versao'):
+    """Uma entrega com "versoes": [versao] — só NN-<versao>.mp4 (Ruling 23:
+    nas novelas, um vídeo serve às duas tradições)."""
+    pasta = entrega_valida(tmp, capitulos=capitulos, inicio=inicio, id_=id_, nome=nome)
+    editar_temporada(pasta, lambda t: t.update(versoes=[versao]))
+    outra = 'evangelico' if versao == 'catolico' else 'catolico'
+    for n in range(1, capitulos + 1):
+        (pasta / f'{n:02d}-{outra}.mp4').unlink()
+    return pasta
+
+
+def teste_entrega_de_uma_versao_publica_um_video_por_capitulo_que_serve_as_duas_tradicoes():
+    """FM5 (Ruling 23): com "versoes": ["catolico"], a entrega traz só
+    NN-catolico.mp4; sobe um vídeo por capítulo, conferido como qualquer
+    outro; e o novela/<t>.json escreve as DUAS tradições apontando para o
+    MESMO arquivo (mesmos bytes e sha256). A voz dos cartões continua nas
+    duas tradições. Sem "versoes", tudo como antes."""
+    with tempfile.TemporaryDirectory() as tmp:
+        pasta = entrega_de_uma_versao(tmp)
+        midia = Path(tmp) / 'midia'
+        codigo, saida = publicar(pasta, midia)
+        assert codigo == 0, saida
+        t2 = json.loads((midia / 'novela' / 't2.json').read_text(encoding='utf-8'))
+        for c in t2['capitulos']:
+            nn = f'{c["n"]:02d}'
+            fonte = pasta / f'{nn}-catolico.mp4'
+            esperado = {'arquivo': f'video/t2/{nn}-catolico.mp4', 'bytes': fonte.stat().st_size,
+                        'sha256': sha256_de(fonte)}
+            assert c['video'] == {'catolico': esperado, 'evangelico': esperado}, c['video']
+        resumo = saida.split('== resumo')[1]
+        assert 'novo: 2, já estava: 0' in resumo and 'video/t2/01-catolico.mp4' in resumo, resumo
+        assert 'evangelico.mp4' not in resumo, 'nenhum vídeo evangélico a subir'
+        assert 'um vídeo por capítulo serve às duas tradições' in resumo, resumo
+        # Republicar: nada sobe; o vídeo trocado é recusado e, com a opção,
+        # a chave versionada vale para as duas tradições.
+        codigo, saida = publicar(pasta, midia)
+        assert codigo == 0 and 'novo: 0, já estava: 2' in saida, saida
+        shutil.copyfile(midia_sintetica()['outro'], pasta / '01-catolico.mp4')
+        deve_recusar(pasta, midia, 'video/t2/01-catolico.mp4 (cap. 1, t2c1, 2026-12-17)',
+                     '--substituir-videos')
+        assert publicar(pasta, midia, '--substituir-videos')[0] == 0
+        t2 = json.loads((midia / 'novela' / 't2.json').read_text(encoding='utf-8'))
+        sha = sha256_de(pasta / '01-catolico.mp4')
+        for tradicao in ('catolico', 'evangelico'):
+            assert t2['capitulos'][0]['video'][tradicao]['arquivo'] == f'video/t2/01-catolico-{sha[:8]}.mp4'
+    # A versão evangélica sozinha também serve.
+    with tempfile.TemporaryDirectory() as tmp:
+        pasta = entrega_de_uma_versao(tmp, versao='evangelico', capitulos=1)
+        codigo, saida = publicar(pasta, Path(tmp) / 'midia')
+        assert codigo == 0, saida
+        t2 = json.loads((Path(tmp) / 'midia' / 'novela' / 't2.json').read_text(encoding='utf-8'))
+        video = t2['capitulos'][0]['video']
+        assert video['catolico'] == video['evangelico']
+        assert video['catolico']['arquivo'] == 'video/t2/01-evangelico.mp4'
+    # O caminho real, com dublês: um envio e um HEAD público por capítulo; a
+    # voz dos cartões nas duas tradições.
+    with tempfile.TemporaryDirectory() as tmp:
+        dubles = Dubles(tmp)
+        midia = dubles.midia()
+        pasta = entrega_de_uma_versao(tmp)
+        codigo, saida = dubles.publicar(pasta, midia, '--motor', 'microsoft')
+        assert codigo == 0, saida
+        assert [k for k, _ in dubles.cliente.envios] == ['video/t2/01-catolico.mp4',
+                                                          'video/t2/02-catolico.mp4']
+        assert len(dubles.urls) == 2 and all(u.endswith('-catolico.mp4') for u in dubles.urls)
+        narrar = next(cmd for cmd, _ in dubles.comandos if cmd[1].endswith('narrar.py'))
+        assert '--tradicao' not in narrar and 't2c1,t2c2' in narrar, narrar
+        for tradicao in ('catolico', 'evangelico'):
+            assert (midia / 'narracao' / tradicao / 't2c1.m4a').exists(), tradicao
+    # "versoes" com as duas, explícito: igual a sem "versoes" — e o R8-J vale.
+    with tempfile.TemporaryDirectory() as tmp:
+        pasta = entrega_valida(tmp)
+        editar_temporada(pasta, lambda t: t.update(versoes=['evangelico', 'catolico']))
+        assert publicar(pasta, Path(tmp) / 'midia')[0] == 0
+        shutil.copyfile(pasta / '02-catolico.mp4', pasta / '02-evangelico.mp4')
+        deve_recusar(pasta, Path(tmp) / 'midia2', 'mesmo sha256', 'entrega trocada')
+
+
+def teste_entrega_de_uma_versao_recusa_o_video_da_outra_sobrando():
+    """FM5: com "versoes": ["catolico"], um NN-evangelico.mp4 na pasta é
+    recusado — não se publica um vídeo por engano, nem se ignora um que o
+    chat mandou: ou entra em "versoes", ou sai da pasta. E, só com uma
+    versão, o católico igual ao evangélico (R8-J) não tem como valer."""
+    with tempfile.TemporaryDirectory() as tmp:
+        pasta = entrega_de_uma_versao(tmp)
+        shutil.copyfile(pasta / '02-catolico.mp4', pasta / '02-evangelico.mp4')
+        saida = deve_recusar(pasta, Path(tmp) / 'midia', 'cap. 2', '02-evangelico.mp4', 'sobra',
+                             'versoes')
+        assert '1 problema(s)' in saida and 'mesmo sha256' not in saida, saida
+
+
+def teste_versoes_invalida_recusa():
+    """FM5: "versoes" tem de ser uma lista não vazia de "catolico" e/ou
+    "evangelico", sem repetição; ausente = as duas."""
+    with tempfile.TemporaryDirectory() as tmp:
+        pasta = entrega_valida(tmp)
+        for ruim in ([], ['catolico', 'catolico'], ['bispo'], 'catolico', [1], [None]):
+            editar_temporada(pasta, lambda t, ruim=ruim: t.update(versoes=ruim))
+            saida = deve_recusar(pasta, Path(tmp) / 'midia', 'versoes')
+            assert '1 problema(s)' in saida, (ruim, saida)
+        editar_temporada(pasta, lambda t: t.pop('versoes'))
+        assert publicar(pasta, Path(tmp) / 'midia')[0] == 0
+
+
 def teste_recusa_sobreposicao_com_temporada_existente():
     with tempfile.TemporaryDirectory() as tmp:
         midia = Path(tmp) / 'midia'
@@ -2336,6 +2441,33 @@ def teste_temporada_de_teste_t0_passa_na_conferencia_do_publicar():
             assert e.code != 0 and 'vazia' in str(e.code), e.code
         else:
             raise AssertionError('deveria ter recusado a pasta com arquivos')
+        # FM5: --versoes catolico monta a entrega de uma versão só (o
+        # temporada.json com "versoes"), que publica do mesmo jeito.
+        uma = Path(tmp) / 't0-uma-versao'
+        assert tt.main([str(uma), '--inicio', '2026-10-21', '--versoes', 'catolico']) == 0
+        assert sorted(p.name for p in uma.iterdir()) == [
+            '01-catolico.mp4', '01.srt', '01.webp', '02-catolico.mp4', '02.srt', '02.webp',
+            'temporada.json']
+        temporada = json.loads((uma / 'temporada.json').read_text(encoding='utf-8'))
+        assert temporada['versoes'] == ['catolico']
+        entrega, problemas = pt.conferir_entrega(uma)
+        assert entrega is not None and problemas == [], problemas
+        assert entrega.versoes == ('catolico',)
+        codigo, texto = publicar(uma, Path(tmp) / 'midia-uma-versao')
+        assert codigo == 0, texto
+        t0 = json.loads((Path(tmp) / 'midia-uma-versao' / 'novela' / 't0.json')
+                        .read_text(encoding='utf-8'))
+        video = t0['capitulos'][0]['video']
+        assert video['catolico'] == video['evangelico']
+        assert video['catolico']['arquivo'] == 'video/t0/01-catolico.mp4'
+        # --versoes fora do formato: recusa antes de montar.
+        try:
+            tt.main([str(Path(tmp) / 't0-ruim'), '--inicio', '2026-10-21', '--versoes', 'bispo'])
+        except SystemExit as e:
+            assert e.code != 0 and 'versoes' in str(e.code), e.code
+        else:
+            raise AssertionError('deveria ter recusado --versoes bispo')
+        assert not (Path(tmp) / 't0-ruim').exists()
 
 
 # ---------------------------------------------------------------------------

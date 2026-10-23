@@ -3,9 +3,14 @@
 D1-D12 da spec de 19/10/2026) a partir da ENTREGA do chat da novela.
 
 A entrega é uma pasta (formato fechado com o chat da novela):
-  temporada.json   {id, titulo, inicio, capitulos: [{n, data, titulo, gancho,
-                    referenciaBiblica, versiculo, reflexao, oracao, duracaoS}]}
-  NN-catolico.mp4, NN-evangelico.mp4   os dois vídeos de cada capítulo
+  temporada.json   {id, titulo, inicio, versoes?, capitulos: [{n, data,
+                    titulo, gancho, referenciaBiblica, versiculo, reflexao,
+                    oracao, duracaoS}]}
+  NN-catolico.mp4, NN-evangelico.mp4   os dois vídeos de cada capítulo —
+                   ou só um deles, quando "versoes" é ["catolico"] ou
+                   ["evangelico"]: nas novelas um vídeo (a voz do Bispo)
+                   serve às duas tradições (Ruling 23, Gregory 22/10);
+                   "versoes" ausente = as duas
   NN.webp          a capa (1080x1350)
   NN.srt           a legenda (opcional)
 com NN de 2 dígitos (01, 02...). Outros arquivos da pasta (um LEIA, notas)
@@ -15,13 +20,15 @@ são ignorados.
    problemas e sai com 1:
    - id `t<número>`; capítulos numerados de 1 a N em ordem; datas que
      existem e consecutivas a partir de `inicio`; duracaoS inteiro;
-   - vídeos: os dois de cada capítulo, h264 yuv420p (o 4:2:0 de 8 bits que
-     todo Android toca; o yuvj420p, o mesmo com a faixa cheia de cor, passa
+   - vídeos: os dois de cada capítulo — ou só o da versão de "versoes",
+     e aí o da outra versão sobrando na pasta é recusado (não se publica
+     um vídeo por engano) —, h264 yuv420p (o 4:2:0 de 8 bits que todo
+     Android toca; o yuvj420p, o mesmo com a faixa cheia de cor, passa
      com um AVISO que sugere exportar em yuv420p; 10 bits, 4:2:2 e 4:4:4
      são erro), 720x1280, até 25 MB (D4), a duração a 2 s de
-     duracaoS e as duas versões a 0,5 s uma da outra (no limite passa); e
-     as duas diferentes — o mesmo sha256 nas duas é entrega trocada (o
-     bispo na católica, o pastor na evangélica);
+     duracaoS e, com as duas versões, uma a 0,5 s da outra (no limite
+     passa) e as duas diferentes — o mesmo sha256 nas duas é entrega
+     trocada (o bispo na católica, o pastor na evangélica);
    - capa WebP 1080x1350;
    - legenda: SRT que o parser do app lê inteiro, UMA linha por fala, até
      42 caracteres (cabe inteira com a letra no máximo, Ruling 9), cada fala
@@ -82,7 +89,8 @@ são ignorados.
    - <midia>/novela/<t>.json: a temporada no formato do app (Temporada.fromJson
      em lib/content/novela.dart) — por capítulo, `id` <t>c<n>, `capa`,
      `legenda` (só com SRT) e `video` com arquivo (a chave escolhida
-     acima), bytes e sha256;
+     acima), bytes e sha256; com uma versão só, as DUAS tradições apontam
+     para o mesmo arquivo (o app aceita o vídeo compartilhado, NV-1);
    - capas em <midia>/imagens/<t>c<n>.webp, legendas em
      <midia>/novela/<t>c<n>.srt (sem o BOM, se vier com um); as sobras de
      uma versão anterior da MESMA temporada (capítulo que sumiu, legenda
@@ -232,6 +240,7 @@ class Entrega:
     titulo: str
     inicio: date
     capitulos: list
+    versoes: tuple = TRADICOES    # as versões entregues: as duas, ou uma que serve às duas
 
     @property
     def fim(self):
@@ -249,6 +258,21 @@ def data_valida(texto):
         return date.fromisoformat(texto)
     except ValueError:
         return None
+
+
+def versoes_da_entrega(dados):
+    """(as versões entregues, na ordem de TRADICOES; [problema]) pelo
+    "versoes" do temporada.json: ausente = as duas; senão uma lista não
+    vazia de "catolico" e/ou "evangelico", sem repetição (FM5, Ruling 23).
+    Fora do formato, a conferência segue com as duas, e o problema recusa."""
+    bruto = dados.get('versoes')
+    if bruto is None:
+        return TRADICOES, []
+    if (not isinstance(bruto, list) or not bruto or not all(isinstance(v, str) for v in bruto)
+            or len(set(bruto)) != len(bruto) or any(v not in TRADICOES for v in bruto)):
+        return TRADICOES, [f'versoes {json.dumps(bruto, ensure_ascii=False)} — tem de ser uma lista '
+                           'sem repetição com "catolico" e/ou "evangelico" (ausente = as duas)']
+    return tuple(t for t in TRADICOES if t in bruto), []
 
 
 def contar_palavras(reflexao):
@@ -670,6 +694,8 @@ def conferir_entrega(pasta, limite_de_bytes=LIMITE_DE_BYTES, avisos=None):
     if not isinstance(capitulos, list) or not capitulos:
         problemas.append('a temporada não tem "capitulos"')
         return None, problemas
+    versoes, p = versoes_da_entrega(dados)
+    problemas += p
 
     lista = []
     for i, cap in enumerate(capitulos, 1):
@@ -699,6 +725,14 @@ def conferir_entrega(pasta, limite_de_bytes=LIMITE_DE_BYTES, avisos=None):
         videos, duracoes, shas = {}, {}, {}
         for tradicao in TRADICOES:
             video = pasta / f'{nn}-{tradicao}.mp4'
+            if tradicao not in versoes:
+                # Uma versão só: o vídeo da outra sobrando não é ignorado
+                # em silêncio nem publicado por engano.
+                if video.exists():
+                    problemas.append(f'{rotulo}: {video.name} sobra — "versoes" diz que a temporada '
+                                     f'tem só a versão {versoes[0]}: para publicar as duas, ponha '
+                                     f'"{tradicao}" em versoes; para uma só, tire o arquivo da pasta')
+                continue
             if not video.exists():
                 problemas.append(f'{rotulo}: falta {video.name}')
                 continue
@@ -734,7 +768,9 @@ def conferir_entrega(pasta, limite_de_bytes=LIMITE_DE_BYTES, avisos=None):
             if duracao_ok and passa_da_folga(medida['duracao'], duracao, FOLGA_DA_DURACAO):
                 problemas.append(f'{rotulo} ({video.name}): {_ms(medida["duracao"])} s, mas '
                                  f'duracaoS = {duracao} (folga de {_casas(FOLGA_DA_DURACAO)} s)')
-        if len(shas) == len(TRADICOES) and shas['catolico'] == shas['evangelico']:
+        # R8-J, só com as duas versões entregues (com uma, o mesmo vídeo
+        # serve às duas de propósito).
+        if len(versoes) == 2 and len(shas) == 2 and shas['catolico'] == shas['evangelico']:
             problemas.append(f'{rotulo}: {nn}-catolico.mp4 e {nn}-evangelico.mp4 são o mesmo arquivo '
                              '(mesmo sha256) — a versão católica é do bispo e a evangélica do '
                              'pastor: entrega trocada')
@@ -782,7 +818,7 @@ def conferir_entrega(pasta, limite_de_bytes=LIMITE_DE_BYTES, avisos=None):
     if not (id_ok and inicio is not None and len(lista) == len(capitulos)):
         return None, problemas
     return Entrega(pasta=pasta, id=id_, titulo=titulo.strip() if isinstance(titulo, str) else '',
-                   inicio=inicio, capitulos=lista), problemas
+                   inicio=inicio, capitulos=lista, versoes=versoes), problemas
 
 
 # ---------------------------------------------------------------------------
@@ -1232,10 +1268,11 @@ class Video:
 
 
 def videos_da_entrega(entrega):
-    """Os vídeos, na ordem dos capítulos (católico, evangélico), com o
-    tamanho e o sha256 medidos na conferência."""
+    """Os vídeos entregues, na ordem dos capítulos (católico, evangélico —
+    ou só a versão entregue), com o tamanho e o sha256 medidos na
+    conferência."""
     return [Video(capitulo=c, tradicao=t, arquivo=c.videos[t], bytes=c.videos[t].stat().st_size,
-                  sha256=c.shas[t]) for c in entrega.capitulos for t in TRADICOES]
+                  sha256=c.shas[t]) for c in entrega.capitulos for t in entrega.versoes]
 
 
 def chave_do_video(entrega, capitulo, tradicao):
@@ -1475,7 +1512,8 @@ def escrever_json(caminho, dados):
 
 def temporada_no_formato_do_app(entrega, videos):
     """O <t>.json que Temporada.fromJson lê. `videos`: {(n, tradição):
-    Video}, com a chave que o plano escolheu (a fixa ou a versionada)."""
+    Video}, com a chave que o plano escolheu (a fixa ou a versionada); com
+    uma versão só, as duas tradições apontam para o mesmo Video (NV-1)."""
     capitulos = []
     for c in entrega.capitulos:
         id_ = entrega.id_do_capitulo(c)
@@ -1485,9 +1523,10 @@ def temporada_no_formato_do_app(entrega, videos):
         saida['capa'] = f'assets/images/cartoes/{id_}.webp'
         if c.legenda is not None:
             saida['legenda'] = f'novela/{id_}.srt'
-        saida['video'] = {t: {'arquivo': videos[c.n, t].chave, 'bytes': videos[c.n, t].bytes,
-                              'sha256': videos[c.n, t].sha256}
-                          for t in TRADICOES}
+        saida['video'] = {}
+        for t in TRADICOES:
+            v = videos.get((c.n, t)) or videos[c.n, entrega.versoes[0]]
+            saida['video'][t] = {'arquivo': v.chave, 'bytes': v.bytes, 'sha256': v.sha256}
         capitulos.append(saida)
     return {'id': entrega.id, 'titulo': entrega.titulo, 'inicio': entrega.inicio.isoformat(),
             'capitulos': capitulos}
@@ -2134,9 +2173,12 @@ def _publicar(args, midia, app, prefixo):
     print(f'== resumo{" (SIMULADO)" if args.simular else ""} ==')
     print(f'temporada {entrega.id} ("{entrega.titulo}"): {len(ids)} capítulo(s), de '
           f'{entrega.inicio} a {entrega.fim}')
+    if len(entrega.versoes) == 1:
+        print(f'  versões: só {entrega.versoes[0]} — um vídeo por capítulo serve às duas tradições '
+              '(Ruling 23); o JSON aponta o mesmo arquivo nas duas')
     for c in entrega.capitulos:
         tamanhos = '  '.join(f'{c.nn}-{t}.mp4 {_milhar(por_capitulo[c.n, t].bytes)} bytes'
-                             for t in TRADICOES)
+                             for t in entrega.versoes)
         print(f'  {entrega.id_do_capitulo(c)}  {c.dados["data"]}  {tamanhos}  '
               f'legenda: {"sim" if c.legenda else "não"}')
     for aviso in avisos_da_entrega:

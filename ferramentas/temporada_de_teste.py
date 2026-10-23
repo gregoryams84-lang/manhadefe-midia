@@ -15,12 +15,15 @@ O que sai na pasta:
   NN-catolico.mp4, NN-evangelico.mp4   10 s de testsrc 720x1280 (ffmpeg),
                    com o título do capítulo e a tradição desenhados (no
                    passeio dá para ver QUAL versão tocou) e um tom senoidal
-                   diferente por tradição
+                   diferente por tradição — ou só um deles, com --versoes
+                   (o temporada.json ganha "versoes": o vídeo serve às
+                   duas tradições, Ruling 23)
   NN.webp          a capa 1080x1350, com o título
   NN.srt           duas falas curtas
 
 Uso:
   python ferramentas/temporada_de_teste.py <pasta de saída> --inicio AAAA-MM-DD [--app <raiz>]
+  python ferramentas/temporada_de_teste.py <pasta de saída> --inicio AAAA-MM-DD --versoes catolico
 """
 import argparse
 import json
@@ -100,9 +103,10 @@ def achar_fonte(pedida=None):
              'aponte uma .ttf com --fonte')
 
 
-def montar(saida, inicio, app, fonte):
+def montar(saida, inicio, app, fonte, versoes=None):
     """Grava a entrega em `saida` (uma pasta nova ou vazia) e devolve o
-    temporada.json escrito."""
+    temporada.json escrito. `versoes`: só estas versões do vídeo (e o
+    temporada.json diz "versoes"); None = as duas, sem a chave."""
     capitulos = []
     with tempfile.TemporaryDirectory(prefix='temporada-de-teste-') as tmp:
         trabalho = Path(tmp)
@@ -116,11 +120,14 @@ def montar(saida, inicio, app, fonte):
                 'gancho': f'Teste da novela: o capítulo {n} de {len(CARTOES)}.',
                 'referenciaBiblica': dados['referenciaBiblica'], 'versiculo': dados['versiculo'],
                 'reflexao': dados['reflexao'], 'oracao': dados['oracao'], 'duracaoS': SEGUNDOS})
-            for tradicao in pt.TRADICOES:
+            for tradicao in versoes or pt.TRADICOES:
                 video(saida / f'{n:02d}-{tradicao}.mp4', trabalho, titulo, tradicao)
             capa(saida / f'{n:02d}.webp', trabalho, titulo)
             (saida / f'{n:02d}.srt').write_text(SRT.format(n=n), encoding='utf-8', newline='')
-    temporada = {'id': ID, 'titulo': TITULO, 'inicio': inicio.isoformat(), 'capitulos': capitulos}
+    temporada = {'id': ID, 'titulo': TITULO, 'inicio': inicio.isoformat()}
+    if versoes:
+        temporada['versoes'] = list(versoes)
+    temporada['capitulos'] = capitulos
     (saida / 'temporada.json').write_text(json.dumps(temporada, ensure_ascii=False, indent=2) + '\n',
                                           encoding='utf-8', newline='')
     return temporada
@@ -133,10 +140,18 @@ def main(argv=None):
     ap.add_argument('--app', help='raiz do repo manha-de-fe-app, de onde vêm os textos '
                                   '(padrão: pasta-irmã, ou MANHA_DE_FE_APP)')
     ap.add_argument('--fonte', help='a .ttf do título desenhado (padrão: Arial do Windows)')
+    ap.add_argument('--versoes', help='só esta(s) versão(ões) do vídeo, separadas por vírgula '
+                                      '(catolico, evangelico); o temporada.json ganha "versoes". '
+                                      'Padrão: as duas, sem a chave')
     args = ap.parse_args(argv)
     inicio = pt.data_valida(args.inicio)
     if inicio is None:
         sys.exit(f'--inicio "{args.inicio}" não é uma data AAAA-MM-DD que exista')
+    versoes = None
+    if args.versoes:
+        versoes, problemas = pt.versoes_da_entrega({'versoes': args.versoes.split(',')})
+        if problemas:
+            sys.exit(f'--versoes "{args.versoes}": {problemas[0]}')
     app = Path(args.app) if args.app else pt.APP_PADRAO
     if not all((app / 'assets' / 'content' / 'cartoes' / f'{c}.json').exists() for c in CARTOES):
         sys.exit(f'{app} não tem assets/content/cartoes/{CARTOES[0]}.json e {CARTOES[1]}.json: '
@@ -147,10 +162,11 @@ def main(argv=None):
                  'mistura com outra)')
     fonte = achar_fonte(args.fonte)
     saida.mkdir(parents=True, exist_ok=True)
-    temporada = montar(saida, inicio, app, fonte)
+    temporada = montar(saida, inicio, app, fonte, versoes)
     fim = temporada['capitulos'][-1]['data']
+    das_versoes = f', só a versão {versoes[0]}' if versoes and len(versoes) == 1 else ''
     print(f'entrega {ID} em {saida}: {len(CARTOES)} capítulos de {SEGUNDOS} s, de '
-          f'{temporada["inicio"]} a {fim} (textos de {", ".join(CARTOES)})')
+          f'{temporada["inicio"]} a {fim} (textos de {", ".join(CARTOES)}{das_versoes})')
     print('publicar num ambiente de teste (nada no main): python ferramentas/publicar_temporada.py '
           f'"{saida}" --midia <cópia temporária do repo de mídia> --r2-prefixo teste/midia/ '
           '--motor microsoft')
