@@ -1,6 +1,6 @@
 {
   "versao": 1,
-  "geradoEm": "2026-10-20T04:44:29.000Z",
+  "geradoEm": "2026-10-26T16:22:18.000Z",
   "arquivos": {
     "hinos/a-linda-historia.m4a": {
       "bytes": 399269,
@@ -6727,44 +6727,44 @@
       "sha256": "b23917c4c14df7bcaf49b57b931b7ff1034b9df8a914e09a59086464a8b07d7e"
     },
     "oracoes/ave-maria.m4a": {
-      "bytes": 78156,
-      "sha256": "e808adc012e94db49b353a480f875fcb470a5ee359ac3b3ea3712b6146a372c7"
+      "bytes": 106609,
+      "sha256": "0c68535bf455cc34e7f9a1bc71a5a8667a2847545239839eebab527c04d4f536"
     },
     "oracoes/creio.m4a": {
-      "bytes": 181361,
-      "sha256": "d2ca9317d3d57e193140497be8dd27fa17a7823f2f377d869bd94c0aff2ed9d0"
+      "bytes": 268622,
+      "sha256": "478cd6c0cf0e8128242f7610f1e14dafca1d6e3f2ee39e05e46482a0da7035fb"
     },
     "oracoes/marcas.json": {
       "bytes": 494,
-      "sha256": "0359c270604f33f07a82f7d5ab80d3bfe2e4b2bbf081d747b1eca5e9b2a5b293"
+      "sha256": "e7cffeea7355a4d5c2d932d6d6a68b4c5cc0a96c5e347ef1e37a3e800dbd0f85"
     },
     "oracoes/oracao-da-manha.m4a": {
-      "bytes": 60266,
-      "sha256": "f8243e8ff97eacec6eecdec85e7eb309dc3c39856747683ee18ddda183aa9ccb"
+      "bytes": 81512,
+      "sha256": "1e5094b51c6182b6e9182909f517e2994c3c49ad810c05a0f705cddcca7a5a71"
     },
     "oracoes/oracao-da-noite.m4a": {
-      "bytes": 82845,
-      "sha256": "6f73f30908b4c8cab491a86c0ab3648fd86e9ddb92ee657b381705c4e7dcd238"
+      "bytes": 121512,
+      "sha256": "9b6e3fb3659facd95412de3013876c2fda81c736c04b2a57a8ef3b8b458a07c0"
     },
     "oracoes/oracao-de-entrega.m4a": {
-      "bytes": 43196,
-      "sha256": "a4fb0a65f52de5b8786e0ae9e369263a14bbcae0588e7482664e6ea423c23ce0"
+      "bytes": 58675,
+      "sha256": "d85747fb0be8dd2fc9b5193694869a88567b0c84148127977f1497a0837e7460"
     },
     "oracoes/pai-nosso-catolico.m4a": {
-      "bytes": 101835,
-      "sha256": "8afd9f432bfa75fd2ed53d9d210777704b4ce9da019673a331d88cfc2f49197b"
+      "bytes": 156106,
+      "sha256": "058bfd3a2f338d34fedde7c0ebb226b50cae0375b38ddc351e8dfc172f695724"
     },
     "oracoes/pai-nosso-evangelico.m4a": {
-      "bytes": 124909,
-      "sha256": "b05ad305079e17139b04d76cc3efeb7469b220a2b7c7b634297f3f87860f600e"
+      "bytes": 150828,
+      "sha256": "7c6544881deeff4c80f8911375fe2ed5ac576e9524d7bff7c01476e60a221b2d"
     },
     "oracoes/salmo-23.m4a": {
-      "bytes": 174750,
-      "sha256": "50a1cba25473f47bc77c6cf6c873a9fda6963dc84b3279ec18a232b26ec13b90"
+      "bytes": 259695,
+      "sha256": "c6ba3a2b5f30d1068ae76b2c5a2e5d92303cfc11683f50ff76663e06a13f9e63"
     },
     "oracoes/salve-rainha.m4a": {
-      "bytes": 167130,
-      "sha256": "fba5808f8ed40f28aa012633a81919581aa8c6796049e1ab74b9a5de08d9e36f"
+      "bytes": 231482,
+      "sha256": "b557eec1a1ac3fde077c2f64f9883c910742d39355a127311a754369780c44db"
     },
     "santos/01-01.m4a": {
       "bytes": 133020,
@@ -9695,120 +9695,120 @@
       "sha256": "57d8001069ad90a8574fa8ac97bf7156339f5b00541018d105d68f3017905aec"
     },
     "terco/dolorosos-abertura.m4a": {
-      "bytes": 620372,
-      "sha256": "bd2577d2173eabddf0f22504189ed9c32f924b5751230243666a24d5b4e65204"
+      "bytes": 880405,
+      "sha256": "201e916a05ee6445345705a73b486b1e594b540bc03a8c140e457008bb94a002"
     },
     "terco/dolorosos-dezena-1.m4a": {
-      "bytes": 1029645,
-      "sha256": "90febce768f4e987a365aa95de39b7d0b9b0bb5aa0992da941dc0b373bc2d564"
+      "bytes": 1422825,
+      "sha256": "44d4de11abf27369b40a06c31c84ea6b6d64d8a9dd561d3dd25379b634e746f1"
     },
     "terco/dolorosos-dezena-2.m4a": {
-      "bytes": 1018911,
-      "sha256": "86d5e01bcb66f037a6828ff067d5ea9f17f84ad2e23b937eeff8f204b618dc68"
+      "bytes": 1409263,
+      "sha256": "5223919a7335d6afbbe101245dd14c3d952d7558777127ec2ad063d932e6e928"
     },
     "terco/dolorosos-dezena-3.m4a": {
-      "bytes": 1018373,
-      "sha256": "4a495023b477afd162c12a7a60dde39b1342bb53cd016b4e260648cb5a639a1b"
+      "bytes": 1405525,
+      "sha256": "e90316525f1c0e02b819d9a786837053154e0332cdf97721c204af96078e6f44"
     },
     "terco/dolorosos-dezena-4.m4a": {
-      "bytes": 1025627,
-      "sha256": "34e8ec269531009abb06d51ec15d950d0856f9157af87e91a152c26a4ce0fa3a"
+      "bytes": 1424109,
+      "sha256": "3fa4190c0da9c45fcc754af812ccc055fb76056b459c96401386a8a6547ce28f"
     },
     "terco/dolorosos-dezena-5.m4a": {
-      "bytes": 1023552,
-      "sha256": "c55389a797e328e5dbf420dfea82f6c6db6a6a2a8f706e819ecd44279a09b0ad"
+      "bytes": 1410866,
+      "sha256": "4057ddc73f15f33dbb819d348f8c2fc5c851765d2ed70ba707cb72c5232386e6"
     },
     "terco/dolorosos-fecho.m4a": {
-      "bytes": 296766,
-      "sha256": "0979b2edff219b5d7289c731014929578ea13227bbd052b5d09d7da74b198710"
+      "bytes": 377292,
+      "sha256": "87bd1148276caf9651d03d1902aef4dd9aefafa3516104877bcee6a3f4d1228d"
     },
     "terco/gloriosos-abertura.m4a": {
-      "bytes": 620372,
-      "sha256": "bd2577d2173eabddf0f22504189ed9c32f924b5751230243666a24d5b4e65204"
+      "bytes": 880405,
+      "sha256": "201e916a05ee6445345705a73b486b1e594b540bc03a8c140e457008bb94a002"
     },
     "terco/gloriosos-dezena-1.m4a": {
-      "bytes": 1016744,
-      "sha256": "52a47ae547709c027dac3d21dbc01ea9d1429f70ac9c94d8e008bd71aeb0ea30"
+      "bytes": 1409056,
+      "sha256": "bf3111f81c6f490a2ca2d224f4c8547e3c8582621ad6e24211e77fe593795123"
     },
     "terco/gloriosos-dezena-2.m4a": {
-      "bytes": 1017136,
-      "sha256": "c4aee19afe432cdb5e7abf3b117642d82ba9945377af2a82bec97674ec4c16dd"
+      "bytes": 1402543,
+      "sha256": "3bb61d07251db8126fa8ea2415b5682e64526dbdc1e7eb67e805e6a67734e355"
     },
     "terco/gloriosos-dezena-3.m4a": {
-      "bytes": 1017911,
-      "sha256": "363274ffc30e75d9b101b7d7e3f7a2d38bdea1166d62c878f847d53c3320016a"
+      "bytes": 1408599,
+      "sha256": "211aac9c1408d234f8b08551c532f8312d3356ee63af961b9017858c8cf692f7"
     },
     "terco/gloriosos-dezena-4.m4a": {
-      "bytes": 1016649,
-      "sha256": "0222759b824897ec9392a3ece6b8e513178f0928a3503ea21d6cf0705488fb1e"
+      "bytes": 1412058,
+      "sha256": "3864e91bac1f17bff44ef20e65e153a48d30e64323e738164eac795f4f601117"
     },
     "terco/gloriosos-dezena-5.m4a": {
-      "bytes": 1025913,
-      "sha256": "83413cc95596c2e8728381d39f9bd635c52fcd53be9eace835281e49fc4f1e97"
+      "bytes": 1419874,
+      "sha256": "325f68f2fa77bab2a54dccc5b4649a96034a9395c5f46b912d0cf9a51d5cbb44"
     },
     "terco/gloriosos-fecho.m4a": {
-      "bytes": 296766,
-      "sha256": "0979b2edff219b5d7289c731014929578ea13227bbd052b5d09d7da74b198710"
+      "bytes": 377292,
+      "sha256": "87bd1148276caf9651d03d1902aef4dd9aefafa3516104877bcee6a3f4d1228d"
     },
     "terco/gozosos-abertura.m4a": {
-      "bytes": 620372,
-      "sha256": "bd2577d2173eabddf0f22504189ed9c32f924b5751230243666a24d5b4e65204"
+      "bytes": 880405,
+      "sha256": "201e916a05ee6445345705a73b486b1e594b540bc03a8c140e457008bb94a002"
     },
     "terco/gozosos-dezena-1.m4a": {
-      "bytes": 1018185,
-      "sha256": "b2b8ebcfff2cfba11b7a70e8888256b00d4ad8ec6880c22e3f7f4ad5d0f6ca25"
+      "bytes": 1411750,
+      "sha256": "c434196b20326b269fca54ddb4eca90ba3ab7f03ba692f9332aae703639556c9"
     },
     "terco/gozosos-dezena-2.m4a": {
-      "bytes": 1012467,
-      "sha256": "6e2c23a211f8e8ddfdd3a9c7d53f4e4508ac00f5d714ac15f1f76fd304393e51"
+      "bytes": 1399632,
+      "sha256": "1fbd0886cab52d2f2d4affee6a3b81ffb5e685377f724fe7ef05cf7cc071f4f4"
     },
     "terco/gozosos-dezena-3.m4a": {
-      "bytes": 1014724,
-      "sha256": "402aacb5ca551330e8639c33bb2e8581a2a2f5935bfd72836730f0c11a9cfc7e"
+      "bytes": 1402096,
+      "sha256": "e2797eeacc907c57df104954393bf8ae466a89c8119e8afa850f03ee8e41c730"
     },
     "terco/gozosos-dezena-4.m4a": {
-      "bytes": 1012109,
-      "sha256": "1f261b70a964528c8f175581cb660caaddc24d0b099f9a2e038691de00dc5cff"
+      "bytes": 1392962,
+      "sha256": "92f177e5aaaf21d688fea4481e96b6fa7a259b819931139566f3ea61df3df79b"
     },
     "terco/gozosos-dezena-5.m4a": {
-      "bytes": 1020573,
-      "sha256": "7c0f81a5152da99da0707ceaf5b190732c1773d3bc2d9b828fd55a28ca04f850"
+      "bytes": 1411857,
+      "sha256": "70abe6649727f048de260ecfe7cf21963ad08d959dd93879308145e90227fee0"
     },
     "terco/gozosos-fecho.m4a": {
-      "bytes": 296766,
-      "sha256": "0979b2edff219b5d7289c731014929578ea13227bbd052b5d09d7da74b198710"
+      "bytes": 377292,
+      "sha256": "87bd1148276caf9651d03d1902aef4dd9aefafa3516104877bcee6a3f4d1228d"
     },
     "terco/luminosos-abertura.m4a": {
-      "bytes": 620372,
-      "sha256": "bd2577d2173eabddf0f22504189ed9c32f924b5751230243666a24d5b4e65204"
+      "bytes": 880405,
+      "sha256": "201e916a05ee6445345705a73b486b1e594b540bc03a8c140e457008bb94a002"
     },
     "terco/luminosos-dezena-1.m4a": {
-      "bytes": 1025500,
-      "sha256": "97ca618d6e04f04b77b73e4297bc96acceeab48465c0500a1f4a92d95dd19e21"
+      "bytes": 1412957,
+      "sha256": "f38d2b7f9e5f9d339bd3f9dfc9b271cba37d482603b21e4003b6b5e1080198b6"
     },
     "terco/luminosos-dezena-2.m4a": {
-      "bytes": 1015902,
-      "sha256": "0ead250079ec87050fce60d60ad749e20643af1c813c1391a226f183abd303cb"
+      "bytes": 1408238,
+      "sha256": "3e9cb175ecc8062cb43b4b70454b3a69b9480e28b8fffee036379920d742ef4b"
     },
     "terco/luminosos-dezena-3.m4a": {
-      "bytes": 1019376,
-      "sha256": "24a65d5216df75a72d6c2ca986fce097632d68d00e06e82793f7e9e8e3189837"
+      "bytes": 1414779,
+      "sha256": "80eaec771d42c254a1af5cf82e527e865dbfade568b284efe6327db653af66a4"
     },
     "terco/luminosos-dezena-4.m4a": {
-      "bytes": 1018187,
-      "sha256": "b0721752258f387622203fd77f37a479f1b8b502f299185816d0ae5c18333a63"
+      "bytes": 1405139,
+      "sha256": "5f608ee87847c44b5c4625b5517afe1bedbd695414234d9b0e1912575ad8f672"
     },
     "terco/luminosos-dezena-5.m4a": {
-      "bytes": 1019412,
-      "sha256": "dcb80a78e65f1a5573eed0b8d6a77f618bef3510d789435df0f8f000b3a98425"
+      "bytes": 1411175,
+      "sha256": "796532f8da7c735311395e4c570dae0c841ff3e8177e2e939382ad0bcf2d706a"
     },
     "terco/luminosos-fecho.m4a": {
-      "bytes": 296766,
-      "sha256": "0979b2edff219b5d7289c731014929578ea13227bbd052b5d09d7da74b198710"
+      "bytes": 377292,
+      "sha256": "87bd1148276caf9651d03d1902aef4dd9aefafa3516104877bcee6a3f4d1228d"
     },
     "terco/marcas.json": {
-      "bytes": 2777,
-      "sha256": "e98fc7e19b3b71769f06461a669d3be2ed8f38d7fa85d8acafe87a4a4b879b52"
+      "bytes": 2798,
+      "sha256": "337df0ca57e7cb22c066fda953eca0f895e57972b90c503926ef0210035f7315"
     }
   }
 }
