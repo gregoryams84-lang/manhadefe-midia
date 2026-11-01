@@ -1,0 +1,14 @@
+{
+  "versao": 1,
+  "videos": "https://video.manhadefe.com.br/",
+  "temporadas": [
+    {
+      "id": "t1",
+      "titulo": "José do Egito",
+      "inicio": "2026-11-10",
+      "fim": "2026-11-16",
+      "capitulos": 7,
+      "arquivo": "novela/t1.json"
+    }
+  ]
+}

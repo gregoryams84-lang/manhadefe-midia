@@ -1,0 +1,189 @@
+{
+  "id": "t1",
+  "titulo": "José do Egito",
+  "inicio": "2026-11-10",
+  "capitulos": [
+    {
+      "id": "t1c1",
+      "n": 1,
+      "data": "2026-11-10",
+      "titulo": "O sonhador",
+      "gancho": "Um pai, doze filhos e uma túnica que mudou tudo.",
+      "referenciaBiblica": "Gênesis 37,3",
+      "versiculo": "Israel amava José mais do que todos os outros filhos, porque ele era o filho de sua velhice; e mandara-lhe fazer uma túnica de várias cores.",
+      "reflexao": "Jacó amava José e não escondia. Os irmãos olhavam a túnica e sentiam o peso da preferência. Toda família conhece esse aperto: o ciúme que ninguém diz em voz alta e que cresce em silêncio. Hoje, olhe para quem mora com você. Existe alguém que se sente menos amado? Uma palavra sua, um gesto simples, pode desfazer um nó antigo antes que ele vire ferida.",
+      "oracao": "Senhor, cuida da minha família. Tira do nosso meio o ciúme e a comparação, e ensina cada um de nós a amar sem deixar ninguém de fora. Amém.",
+      "duracaoS": 87,
+      "capa": "assets/images/cartoes/t1c1.webp",
+      "legenda": "novela/t1c1.srt",
+      "video": {
+        "catolico": {
+          "arquivo": "video/t1/01-catolico.mp4",
+          "bytes": 20230779,
+          "sha256": "041206bcf6ecb38d04f5ace6ec944a66dd6fc4429f98e957bc86714397735f89"
+        },
+        "evangelico": {
+          "arquivo": "video/t1/01-evangelico.mp4",
+          "bytes": 20222289,
+          "sha256": "356972ae008c624704af5d36b5ca44141adcbf3f7226b68becf26f9f4eb59542"
+        }
+      }
+    },
+    {
+      "id": "t1c2",
+      "n": 2,
+      "data": "2026-11-11",
+      "titulo": "A casa de Potifar",
+      "gancho": "Ele disse não, perdeu o manto e foi parar na prisão.",
+      "referenciaBiblica": "Gênesis 39,2",
+      "versiculo": "O Senhor estava com José, e tudo lhe prosperava. Morava na casa do seu senhor, o egípcio.",
+      "reflexao": "Longe de casa, vendido como escravo, José podia ter desistido de tudo. A Bíblia diz outra coisa: o Senhor estava com ele. E quando veio a tentação, ele preferiu perder o manto a perder a consciência limpa. Fazer o certo às vezes custa caro e ninguém aplaude. Mas a fidelidade guardada no escondido é a que sustenta a vida inteira.",
+      "oracao": "Senhor, fica comigo onde eu estiver hoje. Dá-me firmeza para dizer não ao que é errado, mesmo quando ninguém está olhando. Amém.",
+      "duracaoS": 85,
+      "capa": "assets/images/cartoes/t1c2.webp",
+      "legenda": "novela/t1c2.srt",
+      "video": {
+        "catolico": {
+          "arquivo": "video/t1/02-catolico.mp4",
+          "bytes": 19612490,
+          "sha256": "6721bcb475cad69fb176c064599d11a4d03f8f74c3e2d903de6a8c2c54c052ca"
+        },
+        "evangelico": {
+          "arquivo": "video/t1/02-evangelico.mp4",
+          "bytes": 19601354,
+          "sha256": "bad686c46cc42c81f20846d6d09c2363b46e45c75fad90ad2f91bf7003f81c41"
+        }
+      }
+    },
+    {
+      "id": "t1c3",
+      "n": 3,
+      "data": "2026-11-12",
+      "titulo": "A prisão",
+      "gancho": "Preso sem culpa, José descobriu que Deus também entra na cela.",
+      "referenciaBiblica": "Gênesis 39,21",
+      "versiculo": "O Senhor estava com ele. Mostrou-lhe sua bondade e fez que ele conquistasse a simpatia do chefe da prisão.",
+      "reflexao": "José estava preso por um crime que não cometeu. Seria fácil se encher de amargura. Mas até ali, no lugar mais baixo, o Senhor estava com ele, e José continuou trabalhando com honestidade. Há fases da vida que parecem uma prisão: uma doença, uma dívida, uma solidão. Deus não espera a porta se abrir para estar perto. Ele já está na cela com você.",
+      "oracao": "Senhor, nos dias em que me sinto preso, lembra-me que não estou sozinho. Dá-me paciência e esperança enquanto a porta não se abre. Amém.",
+      "duracaoS": 83,
+      "capa": "assets/images/cartoes/t1c3.webp",
+      "legenda": "novela/t1c3.srt",
+      "video": {
+        "catolico": {
+          "arquivo": "video/t1/03-catolico.mp4",
+          "bytes": 19123437,
+          "sha256": "a16b03ed17ecb2e90bd10325074e62e63dcf1260689e6ae24f7928cb364fa998"
+        },
+        "evangelico": {
+          "arquivo": "video/t1/03-evangelico.mp4",
+          "bytes": 19154648,
+          "sha256": "5b149cc5463173be651c0cd6f5d6f89784a38b215c6c4f3bc5cee8860ced9d29"
+        }
+      }
+    },
+    {
+      "id": "t1c4",
+      "n": 4,
+      "data": "2026-11-13",
+      "titulo": "Os dois sonhos",
+      "gancho": "Ele pediu só para ser lembrado, e foi esquecido.",
+      "referenciaBiblica": "Gênesis 40,23",
+      "versiculo": "Mas o copeiro-mor não pensou mais em José; esqueceu-o.",
+      "reflexao": "José ajudou o copeiro e pediu uma única coisa: lembra-te de mim. O copeiro saiu livre e esqueceu. Quem nunca se sentiu assim? A gente ajuda, espera um retorno, e o silêncio dói. As pessoas esquecem, Deus não. O tempo de espera de José não foi tempo perdido. Se hoje você se sente esquecido, entregue essa dor a quem guarda o seu nome para sempre.",
+      "oracao": "Senhor, quando eu me sentir esquecido, faz-me lembrar que Tu nunca te esqueces de mim. E ensina-me a não esquecer quem precisa de mim. Amém.",
+      "duracaoS": 78,
+      "capa": "assets/images/cartoes/t1c4.webp",
+      "legenda": "novela/t1c4.srt",
+      "video": {
+        "catolico": {
+          "arquivo": "video/t1/04-catolico.mp4",
+          "bytes": 18261751,
+          "sha256": "f0707a848e4ef655ed97f3e9463f56e15943415a358ed1771e09413a172e7e08"
+        },
+        "evangelico": {
+          "arquivo": "video/t1/04-evangelico.mp4",
+          "bytes": 18259186,
+          "sha256": "ae302050ca10cafe16c3f831736aeeedb526590ce81f53ebd63092df4ebc5b44"
+        }
+      }
+    },
+    {
+      "id": "t1c5",
+      "n": 5,
+      "data": "2026-11-14",
+      "titulo": "O Faraó",
+      "gancho": "Da prisão ao palácio em um único dia.",
+      "referenciaBiblica": "Gênesis 41,16",
+      "versiculo": "Não sou eu, mas é Deus quem dará ao faraó uma explicação favorável.",
+      "reflexao": "Depois de anos de espera, José ficou diante do homem mais poderoso do Egito. Era a chance de se mostrar. E a primeira coisa que ele disse foi: não sou eu, é Deus. Quem atravessou o sofrimento com fé aprende que os dons que tem não são troféus, são presentes para servir. Quando a vitória chegar na sua vida, lembre de onde ela veio.",
+      "oracao": "Senhor, tudo o que tenho vem de Ti. Guarda-me do orgulho nos dias bons e da desesperança nos dias difíceis. Amém.",
+      "duracaoS": 88,
+      "capa": "assets/images/cartoes/t1c5.webp",
+      "legenda": "novela/t1c5.srt",
+      "video": {
+        "catolico": {
+          "arquivo": "video/t1/05-catolico.mp4",
+          "bytes": 20258469,
+          "sha256": "a5a760daaf7b0c7fd3ecccfc747b1c1ad011ec0f3392fd2e716891bab6893c9e"
+        },
+        "evangelico": {
+          "arquivo": "video/t1/05-evangelico.mp4",
+          "bytes": 20251708,
+          "sha256": "a6a47a88d729e188b27589e8efc01672511e2b795c31cd1a8d19a5bdccb56dbd"
+        }
+      }
+    },
+    {
+      "id": "t1c6",
+      "n": 6,
+      "data": "2026-11-15",
+      "titulo": "Os irmãos voltam",
+      "gancho": "Os irmãos que o venderam estavam diante dele e não sabiam.",
+      "referenciaBiblica": "Gênesis 43,30",
+      "versiculo": "E retirou-se precipitadamente, porque suas entranhas se tinham comovido por causa de seu irmão, e tinha vontade de chorar; entrou em seu quarto e deu livre curso às lágrimas.",
+      "reflexao": "José tinha poder para se vingar dos irmãos que o venderam. Mas quando viu o irmão mais novo, saiu às pressas e chorou escondido. O coração dele não tinha endurecido. Às vezes a gente carrega uma mágoa por anos e acha que ela virou pedra. Basta um encontro para descobrir que ainda dói. Chorar não é fraqueza. É o primeiro passo para curar.",
+      "oracao": "Senhor, Tu conheces as mágoas que eu guardo. Amolece o que endureceu em mim e prepara o meu coração para o reencontro. Amém.",
+      "duracaoS": 83,
+      "capa": "assets/images/cartoes/t1c6.webp",
+      "legenda": "novela/t1c6.srt",
+      "video": {
+        "catolico": {
+          "arquivo": "video/t1/06-catolico.mp4",
+          "bytes": 19218192,
+          "sha256": "ba54977497914d9204c7d78b257fbfcae487ccee5400323bc7cb8133bda86923"
+        },
+        "evangelico": {
+          "arquivo": "video/t1/06-evangelico.mp4",
+          "bytes": 19237096,
+          "sha256": "6fede969d6364b50999fe4541fc21dba56617a51c84d1e7edc3505988de8759c"
+        }
+      }
+    },
+    {
+      "id": "t1c7",
+      "n": 7,
+      "data": "2026-11-16",
+      "titulo": "Eu sou José",
+      "gancho": "Vendido pelos irmãos, José escolheu perdoar.",
+      "referenciaBiblica": "Gênesis 50,20",
+      "versiculo": "Vossa intenção era de fazer-me mal, mas Deus tirou daí um bem; era para fazer, como acontece hoje, com que se conservasse a vida a um grande povo.",
+      "reflexao": "Foram anos de dor, e José podia cobrar cada um deles. Em vez disso, olhou para os irmãos e disse: vocês quiseram o mal, mas Deus tirou daí um bem. O perdão não apaga o que aconteceu. Ele impede que o passado continue mandando no futuro. Talvez exista alguém que você ainda não conseguiu perdoar. Hoje pode ser o dia do primeiro passo.",
+      "oracao": "Senhor, dá-me a coragem de perdoar quem me feriu. Tira do meu coração o desejo de vingança e faz nascer a paz. Amém.",
+      "duracaoS": 82,
+      "capa": "assets/images/cartoes/t1c7.webp",
+      "legenda": "novela/t1c7.srt",
+      "video": {
+        "catolico": {
+          "arquivo": "video/t1/07-catolico.mp4",
+          "bytes": 18994521,
+          "sha256": "8b584e09bbffb9d9d12e6c04114242f5aa47a43a6132b2dcdd79e668ce251e71"
+        },
+        "evangelico": {
+          "arquivo": "video/t1/07-evangelico.mp4",
+          "bytes": 19029218,
+          "sha256": "652b94cb9e26ee48fd33dd6393ac5fe2d2ee4f4aa0ed90f9a20b16764bb000eb"
+        }
+      }
+    }
+  ]
+}

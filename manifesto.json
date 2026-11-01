@@ -1,6 +1,6 @@
 {
   "versao": 1,
-  "geradoEm": "2026-10-26T16:22:18.000Z",
+  "geradoEm": "2026-11-01T13:38:57.000Z",
   "arquivos": {
     "hinos/a-linda-historia.m4a": {
       "bytes": 399269,
@@ -3590,6 +3590,34 @@
       "bytes": 105514,
       "sha256": "825a7f5c80f9dd5e4e7797633b1039ce17ae1148b939d498d2dd085e25df726f"
     },
+    "imagens/t1c1.webp": {
+      "bytes": 312600,
+      "sha256": "4ad9b7f007e1f3cf849e1393a18ace60ce42e5c326ba6538e7118f4eefffdc56"
+    },
+    "imagens/t1c2.webp": {
+      "bytes": 125690,
+      "sha256": "4051e29353792f38fe6d2bcc708f29db69e404776df73226b078d74828c8c090"
+    },
+    "imagens/t1c3.webp": {
+      "bytes": 196068,
+      "sha256": "c6bb66a13552f3a774c3684f70569aaaf2e379b8dc290294cb9de038b95674d6"
+    },
+    "imagens/t1c4.webp": {
+      "bytes": 191100,
+      "sha256": "fab687c5149167867ab5b7fb68b7020849e395f4a58dd47b9c0b7e1e182e2708"
+    },
+    "imagens/t1c5.webp": {
+      "bytes": 270644,
+      "sha256": "9bbc07d35612c5e1ab17a702c367a1df1cc777768e1ce30a5bf82db9d2142699"
+    },
+    "imagens/t1c6.webp": {
+      "bytes": 263394,
+      "sha256": "2888c90e7f5bc1e843d69b42fb26db6b3189e7081404ab8e3e0ad84828e08b50"
+    },
+    "imagens/t1c7.webp": {
+      "bytes": 210200,
+      "sha256": "8a2f80f03ae0af69bd71f512ec7c2e8347d1c79955d16843424ca35188bbb0a9"
+    },
     "narracao/catolico/01-01.m4a": {
       "bytes": 247384,
       "sha256": "216969974c769f8e535887535289e9b5d877a10b3a833c16dc418254ba156072"
@@ -5158,6 +5186,34 @@
       "bytes": 218995,
       "sha256": "b23917c4c14df7bcaf49b57b931b7ff1034b9df8a914e09a59086464a8b07d7e"
     },
+    "narracao/catolico/t1c1.m4a": {
+      "bytes": 256803,
+      "sha256": "52aebd84fb86fc85ef6d0a226690df795fdc3caf075b11e7a03b46ba289e4fea"
+    },
+    "narracao/catolico/t1c2.m4a": {
+      "bytes": 227262,
+      "sha256": "1b111398e394cf5ba8a3a888c39f437cd202ad6a2360744efae74da365b30a10"
+    },
+    "narracao/catolico/t1c3.m4a": {
+      "bytes": 238823,
+      "sha256": "5cc24562ceb603400c1c33b66ac126613bb9bd049ca6a584c1a6dabc3d49c304"
+    },
+    "narracao/catolico/t1c4.m4a": {
+      "bytes": 218061,
+      "sha256": "7a0f62df583193c4dee60eedfbc3cae68313d2fddf5027164ec89a452d9c064b"
+    },
+    "narracao/catolico/t1c5.m4a": {
+      "bytes": 208502,
+      "sha256": "14eb0f45f37496dfeb9c25da8b98b3ec73406d899a92cbbd1867d9590c2e5b2c"
+    },
+    "narracao/catolico/t1c6.m4a": {
+      "bytes": 258146,
+      "sha256": "1d8d04397ff12f2fa56ac8ea4d43cf9af83de1e4e4ea874d88af58be12649630"
+    },
+    "narracao/catolico/t1c7.m4a": {
+      "bytes": 260790,
+      "sha256": "00af0d217c1ef93deb06ea1b49bd839fe733477706bed6525a504022e83266da"
+    },
     "narracao/evangelico/01-01.m4a": {
       "bytes": 247384,
       "sha256": "216969974c769f8e535887535289e9b5d877a10b3a833c16dc418254ba156072"
@@ -6725,6 +6781,70 @@
     "narracao/evangelico/quaresma-046.m4a": {
       "bytes": 218995,
       "sha256": "b23917c4c14df7bcaf49b57b931b7ff1034b9df8a914e09a59086464a8b07d7e"
+    },
+    "narracao/evangelico/t1c1.m4a": {
+      "bytes": 261024,
+      "sha256": "ec629aa61870322ca5a68936b8f4264e1a04cdbec18231d615db26f6a6c09017"
+    },
+    "narracao/evangelico/t1c2.m4a": {
+      "bytes": 221780,
+      "sha256": "92d7681c1eca5c71755fff58d473d9d54e7bd5b7530dbbef9d1c997299888aff"
+    },
+    "narracao/evangelico/t1c3.m4a": {
+      "bytes": 244232,
+      "sha256": "665f39c0b168b39cc328eab5a0e5757db6688cd389cd6bf1d42d6129b42f0bba"
+    },
+    "narracao/evangelico/t1c4.m4a": {
+      "bytes": 211224,
+      "sha256": "82e9607d338484de056b14f6554528408193e013a749cebfbafe4e611a5151d8"
+    },
+    "narracao/evangelico/t1c5.m4a": {
+      "bytes": 207376,
+      "sha256": "dabbbf1f1c1e27147f512c669b16ce465a16e22b0b8c9a5fa8a4cd40ce213134"
+    },
+    "narracao/evangelico/t1c6.m4a": {
+      "bytes": 262295,
+      "sha256": "b73116de261e07cd84f68ac12b79c81519e2bf164ffad7cb480ea0e5c9786452"
+    },
+    "narracao/evangelico/t1c7.m4a": {
+      "bytes": 258168,
+      "sha256": "52b37da050602555b29c83419bd1b51659a2012a1400c3f20ee0349eef9789f8"
+    },
+    "novela/t1.json": {
+      "bytes": 10012,
+      "sha256": "54422a413122e9c15808703a4ae21e634c3047935151930d0dccb897ccc0fa27"
+    },
+    "novela/t1c1.srt": {
+      "bytes": 2286,
+      "sha256": "503172a52fded349b655e59893690df641c7884defac3afd4279109bb5c8d965"
+    },
+    "novela/t1c2.srt": {
+      "bytes": 2071,
+      "sha256": "813ef2fbc109217b498a6e04753617335087ad6399c8f39ad26eaa0e71d4c26d"
+    },
+    "novela/t1c3.srt": {
+      "bytes": 2127,
+      "sha256": "453a1bafaa5e63e766d4a9a2f56efcd32f95682bedaf03ef09498b889769e463"
+    },
+    "novela/t1c4.srt": {
+      "bytes": 2148,
+      "sha256": "6a44a4bf914e8268744c290678998857222af3234a252d3fb6e6e5e7eb5a5a45"
+    },
+    "novela/t1c5.srt": {
+      "bytes": 2073,
+      "sha256": "567c145f2ec42a80c4632858367ecc5f14666a1111fc354cf88e90091d40a59f"
+    },
+    "novela/t1c6.srt": {
+      "bytes": 2073,
+      "sha256": "e24c5cc6b7a522a8c7be99a4650f565a2e1e87e944122ac4d0457dec4f85bca0"
+    },
+    "novela/t1c7.srt": {
+      "bytes": 2141,
+      "sha256": "1721da21d6e3acdac02547b80a32d341d02161a4da3d2b5ec33d2444b96f176e"
+    },
+    "novela/temporadas.json": {
+      "bytes": 265,
+      "sha256": "e7999f6c1bf40d3a59b5bf1315fcc41917a7156c1ee2432759d9b5c2088c9016"
     },
     "oracoes/ave-maria.m4a": {
       "bytes": 106609,
