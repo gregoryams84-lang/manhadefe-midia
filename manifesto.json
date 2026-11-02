@@ -1,6 +1,6 @@
 {
   "versao": 1,
-  "geradoEm": "2026-11-01T13:38:57.000Z",
+  "geradoEm": "2026-11-02T21:34:34.000Z",
   "arquivos": {
     "hinos/a-linda-historia.m4a": {
       "bytes": 399269,
@@ -3595,8 +3595,8 @@
       "sha256": "4ad9b7f007e1f3cf849e1393a18ace60ce42e5c326ba6538e7118f4eefffdc56"
     },
     "imagens/t1c2.webp": {
-      "bytes": 125690,
-      "sha256": "4051e29353792f38fe6d2bcc708f29db69e404776df73226b078d74828c8c090"
+      "bytes": 184712,
+      "sha256": "d8fe6f43662ebda0dfd6f8b0548c0cfc355d371efb9297feaaac503e3e73f86e"
     },
     "imagens/t1c3.webp": {
       "bytes": 196068,
@@ -5191,8 +5191,8 @@
       "sha256": "52aebd84fb86fc85ef6d0a226690df795fdc3caf075b11e7a03b46ba289e4fea"
     },
     "narracao/catolico/t1c2.m4a": {
-      "bytes": 227262,
-      "sha256": "1b111398e394cf5ba8a3a888c39f437cd202ad6a2360744efae74da365b30a10"
+      "bytes": 217262,
+      "sha256": "9b188c091f953ebfa057486954258bc37d3cfaed09f4c121ef8044c4c84055ab"
     },
     "narracao/catolico/t1c3.m4a": {
       "bytes": 238823,
@@ -6787,8 +6787,8 @@
       "sha256": "ec629aa61870322ca5a68936b8f4264e1a04cdbec18231d615db26f6a6c09017"
     },
     "narracao/evangelico/t1c2.m4a": {
-      "bytes": 221780,
-      "sha256": "92d7681c1eca5c71755fff58d473d9d54e7bd5b7530dbbef9d1c997299888aff"
+      "bytes": 221562,
+      "sha256": "39da7e6bb77be2c3c04fb8165d9318d580031a8da463e2f457058c12525a55f5"
     },
     "narracao/evangelico/t1c3.m4a": {
       "bytes": 244232,
@@ -6811,20 +6811,20 @@
       "sha256": "52b37da050602555b29c83419bd1b51659a2012a1400c3f20ee0349eef9789f8"
     },
     "novela/t1.json": {
-      "bytes": 10012,
-      "sha256": "54422a413122e9c15808703a4ae21e634c3047935151930d0dccb897ccc0fa27"
+      "bytes": 10056,
+      "sha256": "9c0d129b036def50c8e0cc2bc719bb1dc617fdca605eac9e11eff97344056ea9"
     },
     "novela/t1c1.srt": {
-      "bytes": 2286,
-      "sha256": "503172a52fded349b655e59893690df641c7884defac3afd4279109bb5c8d965"
+      "bytes": 2267,
+      "sha256": "b9fe93e3512c35c46d3d5dcc4113bf79edb1807cf81be0c5e3f358281081b853"
     },
     "novela/t1c2.srt": {
-      "bytes": 2071,
-      "sha256": "813ef2fbc109217b498a6e04753617335087ad6399c8f39ad26eaa0e71d4c26d"
+      "bytes": 1198,
+      "sha256": "ef0180c54cedccafcc65f64dbcd3850b37df426c4b554b4728049b609f17aff1"
     },
     "novela/t1c3.srt": {
-      "bytes": 2127,
-      "sha256": "453a1bafaa5e63e766d4a9a2f56efcd32f95682bedaf03ef09498b889769e463"
+      "bytes": 2059,
+      "sha256": "2fcf63c100cb0ea9cb6629512bb919096bd1c2de55ed2c30f724126bbb063085"
     },
     "novela/t1c4.srt": {
       "bytes": 2148,

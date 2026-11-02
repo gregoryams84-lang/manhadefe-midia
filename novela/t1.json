@@ -13,19 +13,19 @@
       "versiculo": "Israel amava José mais do que todos os outros filhos, porque ele era o filho de sua velhice; e mandara-lhe fazer uma túnica de várias cores.",
       "reflexao": "Jacó amava José e não escondia. Os irmãos olhavam a túnica e sentiam o peso da preferência. Toda família conhece esse aperto: o ciúme que ninguém diz em voz alta e que cresce em silêncio. Hoje, olhe para quem mora com você. Existe alguém que se sente menos amado? Uma palavra sua, um gesto simples, pode desfazer um nó antigo antes que ele vire ferida.",
       "oracao": "Senhor, cuida da minha família. Tira do nosso meio o ciúme e a comparação, e ensina cada um de nós a amar sem deixar ninguém de fora. Amém.",
-      "duracaoS": 87,
+      "duracaoS": 86,
       "capa": "assets/images/cartoes/t1c1.webp",
       "legenda": "novela/t1c1.srt",
       "video": {
         "catolico": {
-          "arquivo": "video/t1/01-catolico.mp4",
-          "bytes": 20230779,
-          "sha256": "041206bcf6ecb38d04f5ace6ec944a66dd6fc4429f98e957bc86714397735f89"
+          "arquivo": "video/t1/01-catolico-c9ab3891.mp4",
+          "bytes": 19768605,
+          "sha256": "c9ab38913c69b8aac4c614cf06cd954fff03e157f67a1de48387f4e729407db8"
         },
         "evangelico": {
-          "arquivo": "video/t1/01-evangelico.mp4",
-          "bytes": 20222289,
-          "sha256": "356972ae008c624704af5d36b5ca44141adcbf3f7226b68becf26f9f4eb59542"
+          "arquivo": "video/t1/01-evangelico-df8d1371.mp4",
+          "bytes": 19789490,
+          "sha256": "df8d1371d17ef173a6e8fd22b8bef982095adb9c14204cf33e8893df33dbdfd5"
         }
       }
     },
@@ -34,24 +34,24 @@
       "n": 2,
       "data": "2026-11-11",
       "titulo": "A casa de Potifar",
-      "gancho": "Ele disse não, perdeu o manto e foi parar na prisão.",
+      "gancho": "Acusado sem culpa, José foi parar na prisão.",
       "referenciaBiblica": "Gênesis 39,2",
       "versiculo": "O Senhor estava com José, e tudo lhe prosperava. Morava na casa do seu senhor, o egípcio.",
-      "reflexao": "Longe de casa, vendido como escravo, José podia ter desistido de tudo. A Bíblia diz outra coisa: o Senhor estava com ele. E quando veio a tentação, ele preferiu perder o manto a perder a consciência limpa. Fazer o certo às vezes custa caro e ninguém aplaude. Mas a fidelidade guardada no escondido é a que sustenta a vida inteira.",
+      "reflexao": "Longe de casa, vendido como escravo, José podia ter desistido de tudo. A Bíblia diz outra coisa: o Senhor estava com ele. E quando veio a acusação falsa, ele perdeu o lugar, mas não a consciência limpa. Fazer o certo às vezes custa caro e ninguém aplaude. Mas a fidelidade guardada no escondido é a que sustenta a vida inteira.",
       "oracao": "Senhor, fica comigo onde eu estiver hoje. Dá-me firmeza para dizer não ao que é errado, mesmo quando ninguém está olhando. Amém.",
-      "duracaoS": 85,
+      "duracaoS": 52,
       "capa": "assets/images/cartoes/t1c2.webp",
       "legenda": "novela/t1c2.srt",
       "video": {
         "catolico": {
-          "arquivo": "video/t1/02-catolico.mp4",
-          "bytes": 19612490,
-          "sha256": "6721bcb475cad69fb176c064599d11a4d03f8f74c3e2d903de6a8c2c54c052ca"
+          "arquivo": "video/t1/02-catolico-de54ddaa.mp4",
+          "bytes": 11778127,
+          "sha256": "de54ddaace116a2f6c845d7a9ac382dad9ac77a13c2c389043cadaf6540dc272"
         },
         "evangelico": {
-          "arquivo": "video/t1/02-evangelico.mp4",
-          "bytes": 19601354,
-          "sha256": "bad686c46cc42c81f20846d6d09c2363b46e45c75fad90ad2f91bf7003f81c41"
+          "arquivo": "video/t1/02-evangelico-8564ba3c.mp4",
+          "bytes": 11802653,
+          "sha256": "8564ba3ce1460b22c5bf6670f0302bb3a0886c91f7527e458d424b8f1f383aad"
         }
       }
     },
@@ -65,19 +65,19 @@
       "versiculo": "O Senhor estava com ele. Mostrou-lhe sua bondade e fez que ele conquistasse a simpatia do chefe da prisão.",
       "reflexao": "José estava preso por um crime que não cometeu. Seria fácil se encher de amargura. Mas até ali, no lugar mais baixo, o Senhor estava com ele, e José continuou trabalhando com honestidade. Há fases da vida que parecem uma prisão: uma doença, uma dívida, uma solidão. Deus não espera a porta se abrir para estar perto. Ele já está na cela com você.",
       "oracao": "Senhor, nos dias em que me sinto preso, lembra-me que não estou sozinho. Dá-me paciência e esperança enquanto a porta não se abre. Amém.",
-      "duracaoS": 83,
+      "duracaoS": 80,
       "capa": "assets/images/cartoes/t1c3.webp",
       "legenda": "novela/t1c3.srt",
       "video": {
         "catolico": {
-          "arquivo": "video/t1/03-catolico.mp4",
-          "bytes": 19123437,
-          "sha256": "a16b03ed17ecb2e90bd10325074e62e63dcf1260689e6ae24f7928cb364fa998"
+          "arquivo": "video/t1/03-catolico-7817387c.mp4",
+          "bytes": 18628409,
+          "sha256": "7817387c31b7ecbbc30f7b2d8983ba0260d123d85a6c888e7610e46c31191138"
         },
         "evangelico": {
-          "arquivo": "video/t1/03-evangelico.mp4",
-          "bytes": 19154648,
-          "sha256": "5b149cc5463173be651c0cd6f5d6f89784a38b215c6c4f3bc5cee8860ced9d29"
+          "arquivo": "video/t1/03-evangelico-db8c6c03.mp4",
+          "bytes": 18628812,
+          "sha256": "db8c6c03042b604743a56f342dfd76be083cc49bb1cccea343eb807cd71cd456"
         }
       }
     },
