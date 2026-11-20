@@ -1,6 +1,6 @@
 {
   "versao": 1,
-  "geradoEm": "2026-11-02T21:34:34.000Z",
+  "geradoEm": "2026-11-20T01:49:51.000Z",
   "arquivos": {
     "hinos/a-linda-historia.m4a": {
       "bytes": 399269,
@@ -3618,137 +3618,165 @@
       "bytes": 210200,
       "sha256": "8a2f80f03ae0af69bd71f512ec7c2e8347d1c79955d16843424ca35188bbb0a9"
     },
+    "imagens/t2c1.webp": {
+      "bytes": 249370,
+      "sha256": "3d0ebe7e3c6eb7871f4373186a206f1cac62e1c6511a7f3daf6ef42b1f755dac"
+    },
+    "imagens/t2c2.webp": {
+      "bytes": 246820,
+      "sha256": "15f20a4a8a558102289d65204b3451a3c52d6ea2606561226285ce33874d8475"
+    },
+    "imagens/t2c3.webp": {
+      "bytes": 251824,
+      "sha256": "6c2ae615203847b297768674f028a6b31866f33c58b08d03cf9d51757e3938b7"
+    },
+    "imagens/t2c4.webp": {
+      "bytes": 175054,
+      "sha256": "035d75a458384c5860393da044e8af4673eec77f1179f7dca28e5007fc22e19b"
+    },
+    "imagens/t2c5.webp": {
+      "bytes": 237802,
+      "sha256": "dc88cb491fd9dae267841376bff7ae8ed4d0e386bb03733c777d20b9c9942677"
+    },
+    "imagens/t2c6.webp": {
+      "bytes": 233624,
+      "sha256": "2a7d36d3343cd2a2bff19cd86cab8c956a90af0f844fdef408659141e46b60ee"
+    },
+    "imagens/t2c7.webp": {
+      "bytes": 186300,
+      "sha256": "20e09e2418ff03b2a901255b6d1a8a76c5f4d0908dc700b6655aab674d6d0c3a"
+    },
     "narracao/catolico/01-01.m4a": {
-      "bytes": 247384,
-      "sha256": "216969974c769f8e535887535289e9b5d877a10b3a833c16dc418254ba156072"
+      "bytes": 288373,
+      "sha256": "44083fff00a99443d307645d843505fd89605099c5cc0aaf46ced87dd1725c3f"
     },
     "narracao/catolico/01-06.m4a": {
-      "bytes": 248487,
-      "sha256": "e90227dbf9975decd93ad344bc1b95a24ca7f51e88690edabb306a704e01e289"
+      "bytes": 279799,
+      "sha256": "3fe6c0cbb6a17434408f6ee09fa54215961451720f9b25113327369249cfcb24"
     },
     "narracao/catolico/12-24.m4a": {
-      "bytes": 247596,
-      "sha256": "577b340f2a9d11c4054dbde48905f59d9928ea5654e0b179cf318e4fd4d0a5d7"
+      "bytes": 265267,
+      "sha256": "67c78c290a6e273960501572dadc9389bed33e7c56263863d76870fe571def24"
     },
     "narracao/catolico/12-25.m4a": {
-      "bytes": 242877,
-      "sha256": "a2c584b04fb7c7d6a8293d49bd5283bcea07420bbd0d9a2db8d83a6ae6e297cb"
+      "bytes": 256795,
+      "sha256": "e94e92bd151cdf511b9a794d8505739a7aefcf369a345a2a9d803f9090f9b5ce"
     },
     "narracao/catolico/12-31.m4a": {
-      "bytes": 255026,
-      "sha256": "4af15514cab4abc8f7f73a8d4c6b9d2261d1db1147e045008664f0844f894551"
+      "bytes": 294795,
+      "sha256": "4f56bcf791371339b5476941ec009fabb7b278fce418cfc385d50fd23f1604e9"
     },
     "narracao/catolico/advento-001.m4a": {
-      "bytes": 244368,
-      "sha256": "3c44767d946e24d1fa3404d79037d6faa11724259d5a5f4cf552fffdd2c05014"
+      "bytes": 282622,
+      "sha256": "259643c7a53f83148795efbd8f8979ff19688493956e46eefb147839d7a96c61"
     },
     "narracao/catolico/advento-002.m4a": {
-      "bytes": 240055,
-      "sha256": "d6305ac819bb76a587ecd87db41276ce33b261d52c6561ef7a3c8020658328b2"
+      "bytes": 263386,
+      "sha256": "dea40e1ebb7e2282eccf8e263ce168eef7a4e8dbd8fbc557b6a93bf5e2ec63c5"
     },
     "narracao/catolico/advento-003.m4a": {
-      "bytes": 235644,
-      "sha256": "ccdf5fd6b59f61b860a6d386451375719cf00237bbb3e06c1e5b23ea8bb6df41"
+      "bytes": 257560,
+      "sha256": "1ad7abdf13515d68b85d0633fb80bf2fb2d0fe292b862dc01f042aeb0dca689c"
     },
     "narracao/catolico/advento-004.m4a": {
-      "bytes": 237893,
-      "sha256": "72d2b5eafe6d67eba97f3ac51ec5b24a25cbf3021a190a00f42a0ac8d3d49bb7"
+      "bytes": 253258,
+      "sha256": "c1c217af165c015a62bd19e5e6a4066352b1e658d75ee609432bb84f492525c9"
     },
     "narracao/catolico/advento-005.m4a": {
-      "bytes": 243348,
-      "sha256": "5444169e6dd274ca895f8228f5527a661ad070eaa78d0c373e7f36f485634f7c"
+      "bytes": 277242,
+      "sha256": "a4d0462381eb76c81081560ba5b9b8ee77ee9a9f56d77d8cdfe14782b1f31034"
     },
     "narracao/catolico/advento-006.m4a": {
-      "bytes": 258848,
-      "sha256": "f117defdb33b5d98e5fc535c817723420a6eedc59519ee726b0ef62c4cec5459"
+      "bytes": 306123,
+      "sha256": "0c66a390d5f05e47999808a07f38c1bf65d78ae69c68c19e71178f47ae511d99"
     },
     "narracao/catolico/advento-007.m4a": {
-      "bytes": 238276,
-      "sha256": "740844a55a41f88b1d9ea90e33810d7cfa72d7bfc237bedd798b5f788a52212a"
+      "bytes": 274716,
+      "sha256": "a8dd62c3d7a9628228a20d434d538b3757dcff991c0e97af610ac05d1680bed1"
     },
     "narracao/catolico/advento-008.m4a": {
-      "bytes": 234995,
-      "sha256": "729164bf9f9a7825102b2557aeaced9c1849c379953ca2832320f8ae02124348"
+      "bytes": 257932,
+      "sha256": "115e7f25ada7dc993cd0f8c5534da48d07ca6e26e51157bb0a756b06407a05d9"
     },
     "narracao/catolico/advento-009.m4a": {
-      "bytes": 258892,
-      "sha256": "82a37c24ea3f32f4ad6d899c61e322eed6bd6be0905d0eae812eb7c8dfe3d5d3"
+      "bytes": 292834,
+      "sha256": "ac117527e9bab318a19ab3ae75da3197356f010df38c2212cecbc914b33ee43f"
     },
     "narracao/catolico/advento-010.m4a": {
-      "bytes": 247063,
-      "sha256": "4b64eb466a19878e48e596085e0b18a12a63f61478b1c6b4f500dea1e2f3dfad"
+      "bytes": 278336,
+      "sha256": "f1c5953f6f5e22afbd86046e617b8c97eff1f8d1d25c9dd90aa3c1e3f567ccad"
     },
     "narracao/catolico/advento-011.m4a": {
-      "bytes": 260888,
-      "sha256": "cef35e05d2acd43a7b5259d8ef70a7f50d7690f93510673c147498a45144ee47"
+      "bytes": 285103,
+      "sha256": "f4f846915a469199727c070b946182b3f4c77f2cccbbfc8547d7a936ab18028a"
     },
     "narracao/catolico/advento-012.m4a": {
-      "bytes": 238805,
-      "sha256": "ac5134af002a35aa4488f1fb41c99cbc1765df502df0ebdac1fd5e09c1aaec2f"
+      "bytes": 269039,
+      "sha256": "69ea1c5eab7d0bcce9f57cc1db7f9d8a66a28c8435cb650e4603f0ab3b03a645"
     },
     "narracao/catolico/advento-013.m4a": {
-      "bytes": 264364,
-      "sha256": "e45d461669b746bb1f8407fdda55a14e007a39fff303742c54c40553f9588b60"
+      "bytes": 315916,
+      "sha256": "91a10d90d4ea209863c4ec4d70339c8ca53bd30bd8e2e1d014c4eb8ef8e11b87"
     },
     "narracao/catolico/advento-014.m4a": {
-      "bytes": 218814,
-      "sha256": "201a9ea64fa259d3b9b739b36231f59aae19eb8bddc77d193e3825c4dede7e52"
+      "bytes": 250793,
+      "sha256": "51a274080a516819599e63c0770aafb6c42db0cdf6d348cc5bdd0703693d5298"
     },
     "narracao/catolico/advento-015.m4a": {
-      "bytes": 244798,
-      "sha256": "02f0a8d02d7dc80bc27a1caac7fba7b8460e046199a6f9aef09f05712cb5cb90"
+      "bytes": 253842,
+      "sha256": "4ee2b54c4f0342533b91cdbc483cc099d7f9332ea82a903890f568102ea6f923"
     },
     "narracao/catolico/advento-016.m4a": {
-      "bytes": 238830,
-      "sha256": "460930cd694db88af5632a585c7ea1e9965d72be4510226e4ff3c31dd3b6e0d8"
+      "bytes": 267513,
+      "sha256": "a24e5e4f41ae58c4ef880917195a48a102ee46746d47e267c1c319178f1f679f"
     },
     "narracao/catolico/advento-017.m4a": {
-      "bytes": 225787,
-      "sha256": "7652d8edd5d8f10634cf97022ad6777dbd3edf878c5c6e6fb68de723e628f49f"
+      "bytes": 254463,
+      "sha256": "7958a8d7ced0336a4faef271ae46fdff47f8d6ba1549bc30521380065cfff917"
     },
     "narracao/catolico/advento-018.m4a": {
-      "bytes": 251574,
-      "sha256": "b63630358eded5958826fe48e4b5b7037bcfdc608ec6e716f9065a66e88bf10c"
+      "bytes": 256874,
+      "sha256": "2452f92fbd35ba272eb13e7fdd1de122683b9e08e4a65a49bfc0bd0c11ebb554"
     },
     "narracao/catolico/advento-019.m4a": {
-      "bytes": 275337,
-      "sha256": "059752a0e68a09562313f21cb014cc5b72bc8caf1dcc6a395bef502e53989398"
+      "bytes": 307380,
+      "sha256": "369f691fe3c61174b7fb49cc03b14f0ef98305179955fb2fcb5008c3d8ca4122"
     },
     "narracao/catolico/advento-020.m4a": {
-      "bytes": 244924,
-      "sha256": "8c705e3097497ecf9f0e873b451b569145724951ff6ff102ea12efb2b38cb7a4"
+      "bytes": 263011,
+      "sha256": "9b0609add1572d96c21f7fa5272b0c5f9d80163b42a0314dcccd5804ed3c74c7"
     },
     "narracao/catolico/advento-021.m4a": {
-      "bytes": 243843,
-      "sha256": "f12e3ac903b3ca32132102d0bd573c713ba177e50406087da6152a567d1b8cb8"
+      "bytes": 274471,
+      "sha256": "a447ca8fa72f343819fdb8dcae0aab96d50c9e2d6763b132dfe92caa7f7a158e"
     },
     "narracao/catolico/advento-022.m4a": {
-      "bytes": 277778,
-      "sha256": "5d81f7998b77d67106f241df0141bab55a6f9141c7e5cc6fb195e9c2373dfd40"
+      "bytes": 314290,
+      "sha256": "4f46d110932ad7d02561fabd04c8accec79afcce21bdb34bd01a7dfcd2a554ea"
     },
     "narracao/catolico/advento-023.m4a": {
-      "bytes": 267509,
-      "sha256": "255d02d9eb71c171d2d9ae32a534515d974e53011da4fbf56e6cd2509184efa2"
+      "bytes": 291674,
+      "sha256": "78ab36478818b009c50628b5f7cfd3925c5916bba45aeac497c748611c404032"
     },
     "narracao/catolico/advento-024.m4a": {
-      "bytes": 252011,
-      "sha256": "13119c1c386cbc7dd5bc1dc2dfe6d32bee8d65a6deb8661544b09aa6295f5ca5"
+      "bytes": 298067,
+      "sha256": "8507e7c8ac03de825770ce9a997b37d6fa9e99dcc1bf3391b3071eee25a259c3"
     },
     "narracao/catolico/advento-025.m4a": {
-      "bytes": 232657,
-      "sha256": "37e3c84a471eb84494b0cb99e3a2a150e01e2c0cb835c37ad6de868d9e4c669b"
+      "bytes": 257968,
+      "sha256": "ff942199aa9c720d0efb0c381ee01c52dd6d254a86837eeb7c7d6fe4415f28b8"
     },
     "narracao/catolico/advento-026.m4a": {
-      "bytes": 234300,
-      "sha256": "0bac06c1056bf8414dcc545fe6db0a70c6db59e69c6694600493cc457c738ae4"
+      "bytes": 274552,
+      "sha256": "f878523ddb1fa714ba4243aec8ee7905512ae093bd3fc8947c23f3dd1408916f"
     },
     "narracao/catolico/advento-027.m4a": {
-      "bytes": 240463,
-      "sha256": "55d9eb00249a47e36823607635fb8db76991e0ebd867739d076b9a059fee1091"
+      "bytes": 255154,
+      "sha256": "1052af8d38f4baf3886f324f85ce665b8ab275abb90c2b978724db36d1447af2"
     },
     "narracao/catolico/advento-028.m4a": {
-      "bytes": 248888,
-      "sha256": "21bac59c8a2a8c403e39b3985ad1175913bd62f07e6012fb8ae963b595168c20"
+      "bytes": 268077,
+      "sha256": "2c08944e0294a8b62df674f7167e6cdfc446d61832ee2390a51ed101c7326c79"
     },
     "narracao/catolico/comum-001.m4a": {
       "bytes": 140606,
@@ -4755,52 +4783,52 @@
       "sha256": "74fb285363520eaa2162cfcafbb18d4decf0ced4951bf54806fc591a06d87264"
     },
     "narracao/catolico/natal-001.m4a": {
-      "bytes": 254105,
-      "sha256": "b603ff3f2de069da8348285a32a41bb126c00e249cadb8707a47b2c830137266"
+      "bytes": 272352,
+      "sha256": "0e580ec4d00f7abdb8fbd9fc632b29dd17d50e9ddc782213a012e6fdf2d130ff"
     },
     "narracao/catolico/natal-002.m4a": {
-      "bytes": 237284,
-      "sha256": "b0430db88798e105f085d8b0803bef47d8fd3e14be3f14e4d4c3908fb47ecb46"
+      "bytes": 263422,
+      "sha256": "9a29d96d23c1aa2dab29e23d06b70a46c8c51200b0db4633413301c6c8a714e1"
     },
     "narracao/catolico/natal-003.m4a": {
-      "bytes": 241864,
-      "sha256": "2d5fa6a0541a18b326044a220fb84ab7f1622b9e669ba81c87c4977ff642bdeb"
+      "bytes": 281158,
+      "sha256": "1ca9c8ff28879453af420ba6539767fc67f1e87d5e650be21cbce44cc54ef1f0"
     },
     "narracao/catolico/natal-004.m4a": {
-      "bytes": 236676,
-      "sha256": "1a3fd7d6109f526ee6fde0782db188903910a462ac175749e9e064c1b25f45d8"
+      "bytes": 257673,
+      "sha256": "ade58cd5cadb40b81f39c56b159549cbfc61f1b3dc89a1467835bb7ce20de65a"
     },
     "narracao/catolico/natal-005.m4a": {
-      "bytes": 232388,
-      "sha256": "5ea49520146be32c2ac45b6663c2b5f4a9bf1e8f47f600505427973db772e109"
+      "bytes": 254691,
+      "sha256": "7b2dd99b0343c0e5bcf1a7668ab1c39cee78079a22ebb80d06d184e98347bcb3"
     },
     "narracao/catolico/natal-006.m4a": {
-      "bytes": 253334,
-      "sha256": "659e69abc85349a4c23764d60cef8a581f64a7b0cd08eab68447f3a84a24bef1"
+      "bytes": 272064,
+      "sha256": "0290f3a4a58b84555f095094814a2608ea8f7f5be6cdd16f05367fb40c50d855"
     },
     "narracao/catolico/natal-007.m4a": {
-      "bytes": 256727,
-      "sha256": "eda717ee0594e3dfc1c7389280b1707a004843e0a670ab4b1970ad97160ba3e7"
+      "bytes": 284014,
+      "sha256": "32bd0ef5052847b3186d1e47c286dd7d29c87c082d6e7acc7145e22c7f71ab30"
     },
     "narracao/catolico/natal-008.m4a": {
-      "bytes": 239361,
-      "sha256": "064a1a7baa2e8f83aca39cccff1b4a5047dd6f65116d5d2bf842183ff764efcc"
+      "bytes": 257404,
+      "sha256": "dd4fe14783cbbcbb522688fc990818a81db6d96218f276d77930a5477c8125a3"
     },
     "narracao/catolico/natal-009.m4a": {
-      "bytes": 246032,
-      "sha256": "cd2fa1e1d41cfbb7b4118120f2cbf6d6e346ddfeeac160b53c50620006d8bcff"
+      "bytes": 260077,
+      "sha256": "3d2df02532dfb97672fe2a1d249b94c4c60b5d1d14213ddabe91d70c4462a975"
     },
     "narracao/catolico/natal-010.m4a": {
-      "bytes": 239931,
-      "sha256": "ac61da871a97abf7ff26fdbc4d589536ac3855216d90e6613202e6f97c278cdb"
+      "bytes": 266270,
+      "sha256": "0bc6286c98b0f67b953a793ce86d1369366277b0a1b86ffb4f96b51c80450ebb"
     },
     "narracao/catolico/natal-011.m4a": {
-      "bytes": 252470,
-      "sha256": "7b135d21a0de5068727b1720b3f79d32dbf1bb2073eefc2ad5e847614e9cc3df"
+      "bytes": 264590,
+      "sha256": "e0f85a164b9c7119aeee5ad7577ca3e359debcc5134e0751905f9b796f7a8624"
     },
     "narracao/catolico/natal-012.m4a": {
-      "bytes": 267236,
-      "sha256": "c360c661d9f2b177842557e0cc199616f11167e2624bca0a574b0905283ddd7b"
+      "bytes": 291222,
+      "sha256": "81c6417b7e6da2858d765eb2cb679f450af7da5eb085f4ec9e67205b6e4ed6ff"
     },
     "narracao/catolico/pascoa-001.m4a": {
       "bytes": 265078,
@@ -5213,6 +5241,34 @@
     "narracao/catolico/t1c7.m4a": {
       "bytes": 260790,
       "sha256": "00af0d217c1ef93deb06ea1b49bd839fe733477706bed6525a504022e83266da"
+    },
+    "narracao/catolico/t2c1.m4a": {
+      "bytes": 214799,
+      "sha256": "7a49b858172dbf4077ffb328bd288be7871646b21b78092f7e82c8004e745fd8"
+    },
+    "narracao/catolico/t2c2.m4a": {
+      "bytes": 251824,
+      "sha256": "1cc701693506df9c7cbc17d22677859cc54563be7f649eba1c2589d32c693a64"
+    },
+    "narracao/catolico/t2c3.m4a": {
+      "bytes": 250321,
+      "sha256": "2162fb13255730b9fee39cc442ae1571ee2cc4e08d85eb864652f23099d07718"
+    },
+    "narracao/catolico/t2c4.m4a": {
+      "bytes": 192156,
+      "sha256": "690b8cc3f4bda2e6987a368c2bed6bf311c6c2aa825a8174b2b873a60ef144a6"
+    },
+    "narracao/catolico/t2c5.m4a": {
+      "bytes": 275754,
+      "sha256": "a38272e49b6b397e21096c1613cbcd027aae381237e121f52e077966a5329144"
+    },
+    "narracao/catolico/t2c6.m4a": {
+      "bytes": 258879,
+      "sha256": "a018a97426cfbb749383fa14d107d51afc4c60bf0d96f962c061ccae45cd0db6"
+    },
+    "narracao/catolico/t2c7.m4a": {
+      "bytes": 256117,
+      "sha256": "998af16b6e6756c7c81bc267acf8084658d5352773e7175c2726b6b447e4216e"
     },
     "narracao/evangelico/01-01.m4a": {
       "bytes": 247384,
@@ -6810,6 +6866,34 @@
       "bytes": 258168,
       "sha256": "52b37da050602555b29c83419bd1b51659a2012a1400c3f20ee0349eef9789f8"
     },
+    "narracao/evangelico/t2c1.m4a": {
+      "bytes": 214089,
+      "sha256": "a1f1fcbd490f0ed3052aa999763625e0d91023497fe9fb4930a1d45418417657"
+    },
+    "narracao/evangelico/t2c2.m4a": {
+      "bytes": 254294,
+      "sha256": "d2f8f8383e65a2d1f70ece49c36320595479bbfd790432bd7889dcffc8313c62"
+    },
+    "narracao/evangelico/t2c3.m4a": {
+      "bytes": 253408,
+      "sha256": "06db25b40281987994a10235b7f2cdfe3667076568460059a8b5c3f8331c3aaa"
+    },
+    "narracao/evangelico/t2c4.m4a": {
+      "bytes": 195494,
+      "sha256": "d06c6b2ff75dfb9bd8c6b6dc0eab9272c27f27e8c08dcffa3dad30653cca2e84"
+    },
+    "narracao/evangelico/t2c5.m4a": {
+      "bytes": 275408,
+      "sha256": "1f6bd512df045f91cdd2dad8a74d15f6a70b64bc46625099363404bd92623b63"
+    },
+    "narracao/evangelico/t2c6.m4a": {
+      "bytes": 259389,
+      "sha256": "ea1b72d5668a43539336f64368a92b0da1e051a0228d71737eb01ff10afb3d86"
+    },
+    "narracao/evangelico/t2c7.m4a": {
+      "bytes": 259794,
+      "sha256": "fda9de9661f73bd183b5966a0d0c2e6c4c11616668948a2912fcf3b611e2ff1d"
+    },
     "novela/t1.json": {
       "bytes": 10056,
       "sha256": "9c0d129b036def50c8e0cc2bc719bb1dc617fdca605eac9e11eff97344056ea9"
@@ -6842,9 +6926,41 @@
       "bytes": 2141,
       "sha256": "1721da21d6e3acdac02547b80a32d341d02161a4da3d2b5ec33d2444b96f176e"
     },
+    "novela/t2.json": {
+      "bytes": 10351,
+      "sha256": "618bb51a5337692c3f0fcb06317e8a8b355982f3d007999dac9e7c9cdc9beb86"
+    },
+    "novela/t2c1.srt": {
+      "bytes": 2064,
+      "sha256": "904b613f3c39f72624ec56b73e758133cf9237a4f46aa1830f747b89f08d9342"
+    },
+    "novela/t2c2.srt": {
+      "bytes": 2219,
+      "sha256": "0413354628391c91251fa3aca899a8c02735da18caf967d2fea7de8cc765c75e"
+    },
+    "novela/t2c3.srt": {
+      "bytes": 2295,
+      "sha256": "080808b60fe873f70a2a04f6730527a393ed796ce3ff2c71a42ddf1a18c464da"
+    },
+    "novela/t2c4.srt": {
+      "bytes": 1978,
+      "sha256": "cd908bce1ec0b7334187d677914165511979f2a92cbbaa8a22c8a722c5f20dc2"
+    },
+    "novela/t2c5.srt": {
+      "bytes": 2262,
+      "sha256": "1cbeb283d2b916f5ca05bce5c67735a88fe690fd2b51547a1a0833fe8051b229"
+    },
+    "novela/t2c6.srt": {
+      "bytes": 2346,
+      "sha256": "db50f9e3ea8a53bfda98d836a31d2e9a5314b5be856583480b1883b61604041c"
+    },
+    "novela/t2c7.srt": {
+      "bytes": 2350,
+      "sha256": "c4775a3e4c9bab23a3ecd60efc3df7bd46ced3d868df702a79cbb262ef688cad"
+    },
     "novela/temporadas.json": {
-      "bytes": 265,
-      "sha256": "e7999f6c1bf40d3a59b5bf1315fcc41917a7156c1ee2432759d9b5c2088c9016"
+      "bytes": 435,
+      "sha256": "a3674dda1a8e1d5e79ef9663714c55789d69e0965145a72fcb5ed07cf2de5e7c"
     },
     "oracoes/ave-maria.m4a": {
       "bytes": 106609,
@@ -8187,168 +8303,168 @@
       "sha256": "b6531625b88f4900a4da94d4e64acc4d3faf0331b3677a75a432d4737fe374f8"
     },
     "santos/11-21.m4a": {
-      "bytes": 161179,
-      "sha256": "b4d3f556cae58c0eb684c11a9875642289056a5c0e9044e0313d28a34ad67d25"
+      "bytes": 174870,
+      "sha256": "c97cbf96cd2553c2a21f9432bc86f9d2f4957e9ad7fc3787f260890fe2062680"
     },
     "santos/11-22.m4a": {
-      "bytes": 140983,
-      "sha256": "a78f7d9d83b6ff624f29906d1f96cc5c907d4e488b22d24af2249907799dd0cb"
+      "bytes": 181730,
+      "sha256": "50917f8b55e10cb556c81e012d84cefde1cea645cfd21f2106d10c882b79f32f"
     },
     "santos/11-23.m4a": {
-      "bytes": 157706,
-      "sha256": "b4b66346f7d6ed36352910374b8b4bdb4d27b3aae60f687482e5d121e60268c3"
+      "bytes": 179144,
+      "sha256": "7c069b3330ff7f5c16ba0fc2350e1dbfb4c5aa8c4c8802af90aaa72a5549e1a7"
     },
     "santos/11-24.m4a": {
-      "bytes": 162832,
-      "sha256": "46d3d63e66a326e7d5f90d3a2a15bf7258d517dd41d5a89b043ac7004ddc58d5"
+      "bytes": 175957,
+      "sha256": "cd6e5c15744ce942fbaf424d9c8af76cf7d0391fd8607e1e6fd111edfc27aa0e"
     },
     "santos/11-25.m4a": {
-      "bytes": 162773,
-      "sha256": "7a33d3e4d505d3649d8c269d8b9ad382f2ce509d85e63838949501d5d1026099"
+      "bytes": 189283,
+      "sha256": "5b22fc873e9e294ff78b3e3993b2ecdaed2610add43b69d13d0515ad4f07942a"
     },
     "santos/11-26.m4a": {
-      "bytes": 180085,
-      "sha256": "e638691c0ad9b957055ba44af7c9c8047f1e56f02cfb3877c2c7535398c274b0"
+      "bytes": 180971,
+      "sha256": "f845180eb6a801cda4e50732a5e5d1c465efee40fb35fdd985960bd95d51376c"
     },
     "santos/11-27.m4a": {
-      "bytes": 156322,
-      "sha256": "5969e9907dd8dc016ebac9b165374c12eca0397ce33275d9fad88bd90ba4d853"
+      "bytes": 176263,
+      "sha256": "59678a6a1ed4bd1973cfaf4f6c59d4b2b9152d75710cddfb4d981cd7d0c4243b"
     },
     "santos/11-28.m4a": {
-      "bytes": 152414,
-      "sha256": "05cd8ae266b2ad508437bcc7e34dffae4fe18afadb31f3a6cf731dce18794856"
+      "bytes": 183048,
+      "sha256": "339473b046ed192da210e2c6a86be7f9a8ca831e1307e93095a0b229ca51458e"
     },
     "santos/11-29.m4a": {
-      "bytes": 164751,
-      "sha256": "fcd5bd9448cff54736059656f4bc374a764c52363d2be2add6ba6c2950a6f5af"
+      "bytes": 188285,
+      "sha256": "f6943c1cc855b04688fd541b8560c476a4e9aacd6f8f4e60e71fb166990640b1"
     },
     "santos/11-30.m4a": {
-      "bytes": 154054,
-      "sha256": "91cd411c44a19f49b2a95cd94444cbd735e5ba01b593280125f06ab0ead2dec4"
+      "bytes": 179331,
+      "sha256": "09bc69cc4afb97e9b5800087ffa398256ab1dc543bc85790e205761e8aa962aa"
     },
     "santos/12-01.m4a": {
-      "bytes": 183520,
-      "sha256": "dad43cfa0d577643628a83aefc7dda0de3c8a06bc57f8010e4c8849179153713"
+      "bytes": 190430,
+      "sha256": "712577500a23fa8aca2c96f54923986654a8798810fbb964eb172be07df3ead8"
     },
     "santos/12-02.m4a": {
-      "bytes": 133316,
-      "sha256": "5b86e4c0ee78eb784ca54286eee312cc31a9408605501ad33a40cace6fdace94"
+      "bytes": 164845,
+      "sha256": "a9ec4054912348942a4dd02ea0ea75f66a1c2753d67fe0b7a92d48d68a79ab3d"
     },
     "santos/12-03.m4a": {
-      "bytes": 181128,
-      "sha256": "574410642576c6252029e1758618547b9afa06e393315f1d344ebc6800f1f75c"
+      "bytes": 180177,
+      "sha256": "2b64ae4852367cec230318f720c04f9f4f632da26e3b04445e63ca50e474f978"
     },
     "santos/12-04.m4a": {
-      "bytes": 152342,
-      "sha256": "62aaa237de6936c2250dcf7fae56122b8f59a717fc41cb3f5e3087afd1b56ec8"
+      "bytes": 178250,
+      "sha256": "384c659f2fb5907471cbe449202d5990b7dbfa3c0bc35a011fb750d1f9b48f77"
     },
     "santos/12-05.m4a": {
-      "bytes": 161921,
-      "sha256": "9c4210d1b3479169c1cd0e9d23f30255d50d19086655d32621bbf379e4c199dd"
+      "bytes": 182378,
+      "sha256": "02a4d0ea3be6211c4cc8758334c845b77b329709bb7a63becf5becc0ce9321ae"
     },
     "santos/12-06.m4a": {
-      "bytes": 142705,
-      "sha256": "e1988af1e47605aff3deea425091d671f119d19b697a9c5ef21863ca0e12cb83"
+      "bytes": 167265,
+      "sha256": "e50f74589d5447f380d243d7b56626fa5748a3da8f9b81f8b2b37e599e103965"
     },
     "santos/12-07.m4a": {
-      "bytes": 176494,
-      "sha256": "1c180b0bc2d09938c087dff4b77d87f895e6208de050c5af73053e9c9ed0f9fc"
+      "bytes": 184100,
+      "sha256": "f3b513e9843cfc890569ccfceecb7d6a1287f58eec6a04bd712eff1230e4c0c2"
     },
     "santos/12-08.m4a": {
-      "bytes": 156816,
-      "sha256": "b5600c151541e6e0e6acc3dd288a53523212f9733ddbfb7fe5447b1519cf2e4f"
+      "bytes": 173220,
+      "sha256": "c3d693d9e7ea4f1310ac15650023865f4b4cabc24aa7d5b1d45422b75dff3035"
     },
     "santos/12-09.m4a": {
-      "bytes": 173091,
-      "sha256": "0d4ed44de84af834e53711e48d29688747032b6bd1e13911adfe0dce9992a9a1"
+      "bytes": 184496,
+      "sha256": "a6de34d3dee6829f6f03dc9877b6ed1ec74ebfc38cf6145bf601b73150188338"
     },
     "santos/12-10.m4a": {
-      "bytes": 148549,
-      "sha256": "2d828680ffd0299ceee4c4af6a2320ecd2e6815537bc020b01a277348f936b44"
+      "bytes": 181002,
+      "sha256": "c0bcf59ee8747c5cb496ef8daf86eabb381756a19ea271aca53a4ba8181d868c"
     },
     "santos/12-11.m4a": {
-      "bytes": 165211,
-      "sha256": "e050f7a23474bc3c88b66f1046b7290830ee2c5468bc5966ef768c8589aa863f"
+      "bytes": 183277,
+      "sha256": "5b7ad7647b9b64a6876da39f1320668f8bb5166a51cc24abfdeacec4371d80fc"
     },
     "santos/12-12.m4a": {
-      "bytes": 155902,
-      "sha256": "7b95bf8c6688aabdf413d9eae1d3418b3fb94b9c9e741e0e84b2dead821c3917"
+      "bytes": 179737,
+      "sha256": "a393b3b29871a16b2308c34e666934d10f7ff7e1acef64ad649dd804b201adeb"
     },
     "santos/12-13.m4a": {
-      "bytes": 158826,
-      "sha256": "761de7391a7af7a37470a3826b0a1f09b28960e28aeff707010883ca8be483dd"
+      "bytes": 180846,
+      "sha256": "2e1178a71c272b81af73210503e23acc074e8c2629c0657ffeed82dfdfd732f9"
     },
     "santos/12-14.m4a": {
-      "bytes": 161813,
-      "sha256": "a40d0fcc87e043daa248f05e444e812a43ccd4df5f25df0ffc362bbfdff60334"
+      "bytes": 182133,
+      "sha256": "0c4497ca1db167acfd99691927b809c023c88ad0d0a57477f5ea787e5596a80a"
     },
     "santos/12-15.m4a": {
-      "bytes": 172997,
-      "sha256": "28417563e647a5f572d62ef28655424155df6aa36b35884ded5a759cfbc29c43"
+      "bytes": 186975,
+      "sha256": "ae28d2698133a9f4f0ca4804757ad8811d042508ed815c406eb396b157bd12c4"
     },
     "santos/12-16.m4a": {
-      "bytes": 164862,
-      "sha256": "7391063dfc04b007fe0527241294d4076a3d6fa9889e94838282f0567c73d6e4"
+      "bytes": 183668,
+      "sha256": "0407dce2abe33846d08c13227af8052f678fe17f6b27e4a4ffff580724f1ed28"
     },
     "santos/12-17.m4a": {
-      "bytes": 180630,
-      "sha256": "70911eabb823055ee3d6e3ed8fa58aeaffc4d556940e1695bae35b9d82e983d1"
+      "bytes": 184999,
+      "sha256": "fef26ac9c36a161b7e48d1b3947ed559c26abb9464c78e11d2fe35e8a1576900"
     },
     "santos/12-18.m4a": {
-      "bytes": 163811,
-      "sha256": "a9967ed13a41ac5d8f4fe141dc2452370f5fd7e97411694cad1dca1a67dfca31"
+      "bytes": 177008,
+      "sha256": "d1ed756718f388707a92cd4b799a2ab9f4a9f5ae91b3edf953966bf58d42d10f"
     },
     "santos/12-19.m4a": {
-      "bytes": 142863,
-      "sha256": "a3096920d9b38687f4f2d5ba4bdef1a25c54ef6948b37aeda673aa5a2be96378"
+      "bytes": 176420,
+      "sha256": "7d124a762aeb82a704c6be61d61201b6bc16eddb106e0c20fa915571f6d39a02"
     },
     "santos/12-20.m4a": {
-      "bytes": 151858,
-      "sha256": "3b2104aa46ef2dd88a5754a526f6135b8aeb8384ff55157035e27ec52306dc45"
+      "bytes": 178253,
+      "sha256": "676c541e757de828a49f4d3392cd25226a55071faa81a9adcd45a70b03307483"
     },
     "santos/12-21.m4a": {
-      "bytes": 179378,
-      "sha256": "799965d1ff7f9015dcb964482f6cb8dddea1f9c903f2a1976d638b0dbd4761e9"
+      "bytes": 180754,
+      "sha256": "7c4c6b7625008011c74c8ce239d935e13fd8ee72e715d526bff717aad3217129"
     },
     "santos/12-22.m4a": {
-      "bytes": 174185,
-      "sha256": "3e4a9b0a644b55abf2616290ad56ae0392c26b0d2ba3bb9b53d0acaea4ff8239"
+      "bytes": 182448,
+      "sha256": "f75607311e5ed9aa2ebda152d04b23f1f3e87d1ec19add23ff283528dc61b18b"
     },
     "santos/12-23.m4a": {
-      "bytes": 161545,
-      "sha256": "fec8ea0ca37018a4e0e6e59f7d8af796cde99065d937e064fd2357e975b45549"
+      "bytes": 181705,
+      "sha256": "c7e283e1c08b468955b60941e50426e0e934154bb5dea1b3c7fec7989d85b85b"
     },
     "santos/12-24.m4a": {
-      "bytes": 161249,
-      "sha256": "8a3da363805e33e9b9b9dfd31efe15c307e5a43844aea4b71fa0287585d1a84a"
+      "bytes": 181370,
+      "sha256": "2a03c608a99ca366ff5c0889f0faf3a821c5273a95a395f4d26256b1653119ca"
     },
     "santos/12-25.m4a": {
-      "bytes": 142703,
-      "sha256": "90a66d84d5546bc11b62133c65c0c855fd195ee4ffa79c3696a95d1aa9b68d27"
+      "bytes": 176658,
+      "sha256": "96bad9a9f85e5da9ef9740e50c4717ab40d3a07e741daa9182e2fe275c653206"
     },
     "santos/12-26.m4a": {
-      "bytes": 143581,
-      "sha256": "ab63a807afcaeee125efc196582644d6a5a9d9d52371da27f2ebb3e6045f5786"
+      "bytes": 176814,
+      "sha256": "0e33e9ccf1f5010394193bfbd02aa4cf0aaf5dee14bc0ad3871ebf9ccac2059f"
     },
     "santos/12-27.m4a": {
-      "bytes": 156133,
-      "sha256": "41a58e49c9543fbdafb7374530250c71c6eab9de171410f55af5d3474819d9b5"
+      "bytes": 180117,
+      "sha256": "fc36b679be25a41cd08df09873f04df0af99f562d0eed98fac221794d499615f"
     },
     "santos/12-28.m4a": {
-      "bytes": 141340,
-      "sha256": "763846646f813afa7df7a2b3e59abe8f68dda6e5fae6a3c3b75d0506ebfb3834"
+      "bytes": 179895,
+      "sha256": "ab7b85c20ad2b05d533e3249c169230d356b6920bb704bea4896f349c59591b9"
     },
     "santos/12-29.m4a": {
-      "bytes": 161599,
-      "sha256": "fbbf32bd89e721c3eceb09ebf6ff168e6c72a00f91732ec906528a03f5c65912"
+      "bytes": 178993,
+      "sha256": "2f1c26e324ee8e23bec47eda071aa8d4cb345d985a3bcc62a746ef5962d274b0"
     },
     "santos/12-30.m4a": {
-      "bytes": 169219,
-      "sha256": "f6c6f4cd77237721624391a847524d74adcfcb94415cc1e357882603913e82c0"
+      "bytes": 180145,
+      "sha256": "e7cf78537635eae444c2452408c01b2762f9383cb5b0eede879e74d348b4679c"
     },
     "santos/12-31.m4a": {
-      "bytes": 141303,
-      "sha256": "831133c823a3da6c462bceb87e4854d8cf4889d271ab4e916810d4ceac6c3814"
+      "bytes": 164348,
+      "sha256": "3749308023c379ab5e59d191bcc788c3bc8cc13c43a98029bcb13ad2b8fc1308"
     },
     "santos/anunciacao-do-senhor.webp": {
       "bytes": 109296,

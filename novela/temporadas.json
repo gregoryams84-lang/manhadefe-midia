@@ -9,6 +9,14 @@
       "fim": "2026-11-16",
       "capitulos": 7,
       "arquivo": "novela/t1.json"
+    },
+    {
+      "id": "t2",
+      "titulo": "Belém",
+      "inicio": "2026-12-17",
+      "fim": "2026-12-23",
+      "capitulos": 7,
+      "arquivo": "novela/t2.json"
     }
   ]
 }

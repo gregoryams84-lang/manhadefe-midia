@@ -1,0 +1,15 @@
+{
+  "texto_sha256": "47d0ef5244818458a5c1f3fece87973cf3c620003fc8529542cfb7fac946b0d2",
+  "motor": "elevenlabs",
+  "voz": "dSaUrotvfAiroXLetqrt",
+  "ajustes": {
+    "modelo": "eleven_multilingual_v2",
+    "voice_settings": {
+      "stability": 0.62,
+      "similarity_boost": 0.8,
+      "style": 0.1,
+      "use_speaker_boost": true,
+      "speed": 0.82
+    }
+  }
+}

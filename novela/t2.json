@@ -1,0 +1,189 @@
+{
+  "id": "t2",
+  "titulo": "Belém",
+  "inicio": "2026-12-17",
+  "capitulos": [
+    {
+      "id": "t2c1",
+      "n": 1,
+      "data": "2026-12-17",
+      "titulo": "O anúncio",
+      "gancho": "Uma casa pobre em Nazaré e uma visita que mudou a história.",
+      "referenciaBiblica": "Lucas 1,37",
+      "versiculo": "Porque a Deus nenhuma coisa é impossível.",
+      "reflexao": "Tem coisa que a gente já deu por encerrada: a oração que parece não ter resposta, a situação que todo mundo diz que não tem jeito. A palavra de hoje não promete que tudo vai sair do nosso jeito. Ela lembra quem está agindo. Nada é grande demais para Deus, e nada é pequeno demais para Ele cuidar. Entregue hoje a Ele aquilo que você já não consegue carregar.",
+      "oracao": "Senhor, eu te entrego hoje o que parece impossível para mim. Dá-me fé para esperar e coragem para dizer sim ao que vem de ti. Amém.",
+      "duracaoS": 86,
+      "capa": "assets/images/cartoes/t2c1.webp",
+      "legenda": "novela/t2c1.srt",
+      "video": {
+        "catolico": {
+          "arquivo": "video/t2/01-catolico.mp4",
+          "bytes": 20683811,
+          "sha256": "d4aeee15e6c45bd497dca17cc9602c5621a0ca709878457612b256697c25338a"
+        },
+        "evangelico": {
+          "arquivo": "video/t2/01-catolico.mp4",
+          "bytes": 20683811,
+          "sha256": "d4aeee15e6c45bd497dca17cc9602c5621a0ca709878457612b256697c25338a"
+        }
+      }
+    },
+    {
+      "id": "t2c2",
+      "n": 2,
+      "data": "2026-12-18",
+      "titulo": "A visita",
+      "gancho": "Um encontro numa casa das montanhas e uma misericórdia que atravessa gerações.",
+      "referenciaBiblica": "Lucas 1,50",
+      "versiculo": "Sua misericórdia se estende, de geração em geração, sobre os que o temem.",
+      "reflexao": "Muita gente chegou até a fé porque alguém orou antes: uma avó, um pai, uma vizinha que pedia a Deus pelo seu nome. A misericórdia que sustentou essas pessoas não parou nelas. Foi passando de mão em mão, de geração em geração, até chegar à sua casa. Agora ela passa por você. Quem você leva hoje nas suas orações? Pode ser que alguém, lá na frente, receba de Deus o que você pediu hoje.",
+      "oracao": "Senhor, eu te agradeço por quem pediu por mim antes que eu soubesse pedir. Que a tua misericórdia siga de geração em geração na minha casa, e que eu leve adiante o que recebi. Amém.",
+      "duracaoS": 87,
+      "capa": "assets/images/cartoes/t2c2.webp",
+      "legenda": "novela/t2c2.srt",
+      "video": {
+        "catolico": {
+          "arquivo": "video/t2/02-catolico.mp4",
+          "bytes": 20417681,
+          "sha256": "c0994384544fd7d573dcccf655390609bf0da24a2ac7aa4070f326506b5c3dec"
+        },
+        "evangelico": {
+          "arquivo": "video/t2/02-catolico.mp4",
+          "bytes": 20417681,
+          "sha256": "c0994384544fd7d573dcccf655390609bf0da24a2ac7aa4070f326506b5c3dec"
+        }
+      }
+    },
+    {
+      "id": "t2c3",
+      "n": 3,
+      "data": "2026-12-19",
+      "titulo": "O sonho de José",
+      "gancho": "Uma noite de dúvida, um sonho e uma porta aberta ao amanhecer.",
+      "referenciaBiblica": "Mateus 1,21",
+      "versiculo": "Ele salvará o seu povo de seus pecados.",
+      "reflexao": "Tem decisão que só aparece de noite, quando a casa dorme e a cabeça não. A gente revira o mesmo assunto, faz conta, ensaia conversa, tem medo de errar e de machucar quem ama. A palavra de hoje não escolhe por você, mas lembra quem segura a história: é Deus quem salva, e não o nosso controle. Você não precisa ter todas as respostas antes de dormir. Entregue a Ele o que está tirando o seu sono e deixe a manhã chegar.",
+      "oracao": "Senhor, eu te entrego a decisão que está pesando no meu peito. Tira de mim o medo de errar, dá-me a tua paz para descansar à noite e a tua luz para escolher na hora certa. Amém.",
+      "duracaoS": 89,
+      "capa": "assets/images/cartoes/t2c3.webp",
+      "legenda": "novela/t2c3.srt",
+      "video": {
+        "catolico": {
+          "arquivo": "video/t2/03-catolico.mp4",
+          "bytes": 21273760,
+          "sha256": "a86da318750b7c97cbbeb2de26408992595ef5fade3be041f36dca1951530020"
+        },
+        "evangelico": {
+          "arquivo": "video/t2/03-catolico.mp4",
+          "bytes": 21273760,
+          "sha256": "a86da318750b7c97cbbeb2de26408992595ef5fade3be041f36dca1951530020"
+        }
+      }
+    },
+    {
+      "id": "t2c4",
+      "n": 4,
+      "data": "2026-12-20",
+      "titulo": "Não havia lugar",
+      "gancho": "Não havia lugar para eles, e foi justamente ali que Deus chegou.",
+      "referenciaBiblica": "Lucas 2,7",
+      "versiculo": "Porque não havia lugar para eles na hospedaria.",
+      "reflexao": "A gente costuma achar que Deus só chega quando a vida está em ordem: casa arrumada, contas em dia, cabeça tranquila. Em Belém não havia lugar para eles na hospedaria, e foi num presépio que o Menino foi deitado. Talvez hoje também não sobre lugar no seu dia. Deus não espera vagar um quarto. Abra para Ele o canto que sobrou.",
+      "oracao": "Senhor, tu vieste onde não havia lugar. Entra hoje no meu dia cheio, no canto que sobrou, e fica comigo. Amém.",
+      "duracaoS": 87,
+      "capa": "assets/images/cartoes/t2c4.webp",
+      "legenda": "novela/t2c4.srt",
+      "video": {
+        "catolico": {
+          "arquivo": "video/t2/04-catolico.mp4",
+          "bytes": 20416477,
+          "sha256": "592a4f702db52193c62f304f1b5bc73cc61d98d7afe8711f085653fd40dc6bd3"
+        },
+        "evangelico": {
+          "arquivo": "video/t2/04-catolico.mp4",
+          "bytes": 20416477,
+          "sha256": "592a4f702db52193c62f304f1b5bc73cc61d98d7afe8711f085653fd40dc6bd3"
+        }
+      }
+    },
+    {
+      "id": "t2c5",
+      "n": 5,
+      "data": "2026-12-21",
+      "titulo": "Os pastores",
+      "gancho": "Homens que guardavam ovelhas no escuro foram os primeiros a saber.",
+      "referenciaBiblica": "Lucas 2,10-11",
+      "versiculo": "Não temais, eis que vos anuncio uma Boa-Nova que será alegria para todo o povo: hoje vos nasceu na Cidade de Davi um Salvador, que é o Cristo Senhor.",
+      "reflexao": "A primeira notícia daquela noite não foi levada a um palácio. Foi entregue a homens em pleno turno, no escuro do campo, com cheiro de fogueira e de ovelha, gente que ninguém convidaria para nada. E veio com uma ordem antes da novidade: não temais. Talvez você esteja agora no meio de um turno longo, cuidando do que é seu sem que ninguém perceba. É justamente aí que a boa notícia costuma achar a gente.",
+      "oracao": "Senhor, tu conheces o meu trabalho de cada dia, até o que ninguém vê. Tira de mim o medo e dá-me pressa para ir ao teu encontro e contar o que recebi de ti. Amém.",
+      "duracaoS": 87,
+      "capa": "assets/images/cartoes/t2c5.webp",
+      "legenda": "novela/t2c5.srt",
+      "video": {
+        "catolico": {
+          "arquivo": "video/t2/05-catolico.mp4",
+          "bytes": 20751079,
+          "sha256": "a93787d70b11119a93413d1035df0409236e996730fe24ef374ed13d5077eeac"
+        },
+        "evangelico": {
+          "arquivo": "video/t2/05-catolico.mp4",
+          "bytes": 20751079,
+          "sha256": "a93787d70b11119a93413d1035df0409236e996730fe24ef374ed13d5077eeac"
+        }
+      }
+    },
+    {
+      "id": "t2c6",
+      "n": 6,
+      "data": "2026-12-22",
+      "titulo": "O Menino no Templo",
+      "gancho": "Uma promessa que, um dia, coube nos braços.",
+      "referenciaBiblica": "Lucas 2,29-30",
+      "versiculo": "Agora, Senhor, deixai o vosso servo ir em paz, segundo a vossa palavra. Porque os meus olhos viram a vossa salvação.",
+      "reflexao": "Tem espera que atravessa anos: a resposta que não vem, a paz que não chega em casa, o filho que ainda não voltou. A gente cansa e, às vezes, para de olhar. No Templo, a promessa de Deus chegou e coube inteira nos braços de quem não tinha desistido de esperar. Deus não marca hora com a gente, mas não esquece o que prometeu. Se você espera há muito tempo, não feche os olhos agora.",
+      "oracao": "Senhor, tu sabes há quanto tempo eu espero. Quando eu cansar, guarda a minha esperança, e dá-me olhos para reconhecer a tua salvação quando ela chegar. Amém.",
+      "duracaoS": 89,
+      "capa": "assets/images/cartoes/t2c6.webp",
+      "legenda": "novela/t2c6.srt",
+      "video": {
+        "catolico": {
+          "arquivo": "video/t2/06-catolico.mp4",
+          "bytes": 21017035,
+          "sha256": "a6432ce341f111cd09a610f8dcdfec1f46cc65c35a82e74dacbefb65a10109f9"
+        },
+        "evangelico": {
+          "arquivo": "video/t2/06-catolico.mp4",
+          "bytes": 21017035,
+          "sha256": "a6432ce341f111cd09a610f8dcdfec1f46cc65c35a82e74dacbefb65a10109f9"
+        }
+      }
+    },
+    {
+      "id": "t2c7",
+      "n": 7,
+      "data": "2026-12-23",
+      "titulo": "A estrela, a fuga",
+      "gancho": "Estrangeiros seguiram uma luz no céu e acharam o que procuravam numa casa simples.",
+      "referenciaBiblica": "Mateus 2,10",
+      "versiculo": "A aparição daquela estrela os encheu de profunda alegria.",
+      "reflexao": "Os magos não tinham mapa, tinham uma luz. Saíram de longe sem saber onde a viagem ia dar, perguntaram no lugar errado e ouviram promessa de quem não queria o bem deles. Mesmo assim, a luz não sumiu: foi na frente e parou exatamente onde precisava. Tem caminho que a gente só entende quando chega. Se hoje você não enxerga o fim da estrada, não precisa enxergar. Siga a luz que Deus já acendeu na sua frente e dê só o próximo passo.",
+      "oracao": "Senhor, quando eu não souber por onde ir, acende a tua luz no meu caminho. Dá-me coragem para seguir sem ver o fim, e alegria quando eu chegar aonde tu me esperas. Amém.",
+      "duracaoS": 89,
+      "capa": "assets/images/cartoes/t2c7.webp",
+      "legenda": "novela/t2c7.srt",
+      "video": {
+        "catolico": {
+          "arquivo": "video/t2/07-catolico.mp4",
+          "bytes": 21189693,
+          "sha256": "a4ce00e6bcff02de59044ff5ca998856e0238eb9774772cd694fe55badee43cd"
+        },
+        "evangelico": {
+          "arquivo": "video/t2/07-catolico.mp4",
+          "bytes": 21189693,
+          "sha256": "a4ce00e6bcff02de59044ff5ca998856e0238eb9774772cd694fe55badee43cd"
+        }
+      }
+    }
+  ]
+}
