@@ -13,19 +13,19 @@
       "versiculo": "Porque a Deus nenhuma coisa é impossível.",
       "reflexao": "Tem coisa que a gente já deu por encerrada: a oração que parece não ter resposta, a situação que todo mundo diz que não tem jeito. A palavra de hoje não promete que tudo vai sair do nosso jeito. Ela lembra quem está agindo. Nada é grande demais para Deus, e nada é pequeno demais para Ele cuidar. Entregue hoje a Ele aquilo que você já não consegue carregar.",
       "oracao": "Senhor, eu te entrego hoje o que parece impossível para mim. Dá-me fé para esperar e coragem para dizer sim ao que vem de ti. Amém.",
-      "duracaoS": 86,
+      "duracaoS": 85,
       "capa": "assets/images/cartoes/t2c1.webp",
       "legenda": "novela/t2c1.srt",
       "video": {
         "catolico": {
-          "arquivo": "video/t2/01-catolico.mp4",
-          "bytes": 20683811,
-          "sha256": "d4aeee15e6c45bd497dca17cc9602c5621a0ca709878457612b256697c25338a"
+          "arquivo": "video/t2/01-catolico-7d8e3c8b.mp4",
+          "bytes": 20639479,
+          "sha256": "7d8e3c8baa450932fd0c79d689c7197a7ef6fe6b42e37c6b050a1fe57c4a4087"
         },
         "evangelico": {
-          "arquivo": "video/t2/01-catolico.mp4",
-          "bytes": 20683811,
-          "sha256": "d4aeee15e6c45bd497dca17cc9602c5621a0ca709878457612b256697c25338a"
+          "arquivo": "video/t2/01-catolico-7d8e3c8b.mp4",
+          "bytes": 20639479,
+          "sha256": "7d8e3c8baa450932fd0c79d689c7197a7ef6fe6b42e37c6b050a1fe57c4a4087"
         }
       }
     },
@@ -39,19 +39,19 @@
       "versiculo": "Sua misericórdia se estende, de geração em geração, sobre os que o temem.",
       "reflexao": "Muita gente chegou até a fé porque alguém orou antes: uma avó, um pai, uma vizinha que pedia a Deus pelo seu nome. A misericórdia que sustentou essas pessoas não parou nelas. Foi passando de mão em mão, de geração em geração, até chegar à sua casa. Agora ela passa por você. Quem você leva hoje nas suas orações? Pode ser que alguém, lá na frente, receba de Deus o que você pediu hoje.",
       "oracao": "Senhor, eu te agradeço por quem pediu por mim antes que eu soubesse pedir. Que a tua misericórdia siga de geração em geração na minha casa, e que eu leve adiante o que recebi. Amém.",
-      "duracaoS": 87,
+      "duracaoS": 90,
       "capa": "assets/images/cartoes/t2c2.webp",
       "legenda": "novela/t2c2.srt",
       "video": {
         "catolico": {
-          "arquivo": "video/t2/02-catolico.mp4",
-          "bytes": 20417681,
-          "sha256": "c0994384544fd7d573dcccf655390609bf0da24a2ac7aa4070f326506b5c3dec"
+          "arquivo": "video/t2/02-catolico-d45a2938.mp4",
+          "bytes": 21580773,
+          "sha256": "d45a29386ddf4ca45454e88517d6e082c12f0b8eb167f6cf46985f9f77b15967"
         },
         "evangelico": {
-          "arquivo": "video/t2/02-catolico.mp4",
-          "bytes": 20417681,
-          "sha256": "c0994384544fd7d573dcccf655390609bf0da24a2ac7aa4070f326506b5c3dec"
+          "arquivo": "video/t2/02-catolico-d45a2938.mp4",
+          "bytes": 21580773,
+          "sha256": "d45a29386ddf4ca45454e88517d6e082c12f0b8eb167f6cf46985f9f77b15967"
         }
       }
     },
@@ -70,14 +70,14 @@
       "legenda": "novela/t2c3.srt",
       "video": {
         "catolico": {
-          "arquivo": "video/t2/03-catolico.mp4",
-          "bytes": 21273760,
-          "sha256": "a86da318750b7c97cbbeb2de26408992595ef5fade3be041f36dca1951530020"
+          "arquivo": "video/t2/03-catolico-91290ea5.mp4",
+          "bytes": 21761192,
+          "sha256": "91290ea59d62d1186f99718eb193114f8086d3806bfea60962d8fd707cbad367"
         },
         "evangelico": {
-          "arquivo": "video/t2/03-catolico.mp4",
-          "bytes": 21273760,
-          "sha256": "a86da318750b7c97cbbeb2de26408992595ef5fade3be041f36dca1951530020"
+          "arquivo": "video/t2/03-catolico-91290ea5.mp4",
+          "bytes": 21761192,
+          "sha256": "91290ea59d62d1186f99718eb193114f8086d3806bfea60962d8fd707cbad367"
         }
       }
     },
@@ -91,19 +91,19 @@
       "versiculo": "Porque não havia lugar para eles na hospedaria.",
       "reflexao": "A gente costuma achar que Deus só chega quando a vida está em ordem: casa arrumada, contas em dia, cabeça tranquila. Em Belém não havia lugar para eles na hospedaria, e foi num presépio que o Menino foi deitado. Talvez hoje também não sobre lugar no seu dia. Deus não espera vagar um quarto. Abra para Ele o canto que sobrou.",
       "oracao": "Senhor, tu vieste onde não havia lugar. Entra hoje no meu dia cheio, no canto que sobrou, e fica comigo. Amém.",
-      "duracaoS": 87,
+      "duracaoS": 81,
       "capa": "assets/images/cartoes/t2c4.webp",
       "legenda": "novela/t2c4.srt",
       "video": {
         "catolico": {
-          "arquivo": "video/t2/04-catolico.mp4",
-          "bytes": 20416477,
-          "sha256": "592a4f702db52193c62f304f1b5bc73cc61d98d7afe8711f085653fd40dc6bd3"
+          "arquivo": "video/t2/04-catolico-a58ee8bc.mp4",
+          "bytes": 19676922,
+          "sha256": "a58ee8bcae50b6e891632047a74e453362a1c3da31c93ccd13be6c82b2a974c8"
         },
         "evangelico": {
-          "arquivo": "video/t2/04-catolico.mp4",
-          "bytes": 20416477,
-          "sha256": "592a4f702db52193c62f304f1b5bc73cc61d98d7afe8711f085653fd40dc6bd3"
+          "arquivo": "video/t2/04-catolico-a58ee8bc.mp4",
+          "bytes": 19676922,
+          "sha256": "a58ee8bcae50b6e891632047a74e453362a1c3da31c93ccd13be6c82b2a974c8"
         }
       }
     },
@@ -122,14 +122,14 @@
       "legenda": "novela/t2c5.srt",
       "video": {
         "catolico": {
-          "arquivo": "video/t2/05-catolico.mp4",
-          "bytes": 20751079,
-          "sha256": "a93787d70b11119a93413d1035df0409236e996730fe24ef374ed13d5077eeac"
+          "arquivo": "video/t2/05-catolico-677e2ce9.mp4",
+          "bytes": 20957353,
+          "sha256": "677e2ce93c5c39212aaa39cd4a0807f3d01624be2ed93b5da80117910b727b58"
         },
         "evangelico": {
-          "arquivo": "video/t2/05-catolico.mp4",
-          "bytes": 20751079,
-          "sha256": "a93787d70b11119a93413d1035df0409236e996730fe24ef374ed13d5077eeac"
+          "arquivo": "video/t2/05-catolico-677e2ce9.mp4",
+          "bytes": 20957353,
+          "sha256": "677e2ce93c5c39212aaa39cd4a0807f3d01624be2ed93b5da80117910b727b58"
         }
       }
     },
@@ -148,14 +148,14 @@
       "legenda": "novela/t2c6.srt",
       "video": {
         "catolico": {
-          "arquivo": "video/t2/06-catolico.mp4",
-          "bytes": 21017035,
-          "sha256": "a6432ce341f111cd09a610f8dcdfec1f46cc65c35a82e74dacbefb65a10109f9"
+          "arquivo": "video/t2/06-catolico-304d7315.mp4",
+          "bytes": 21216017,
+          "sha256": "304d7315b9c56ffecbab8b829e005830595421ee0dbfa9193776fc7e24384b0b"
         },
         "evangelico": {
-          "arquivo": "video/t2/06-catolico.mp4",
-          "bytes": 21017035,
-          "sha256": "a6432ce341f111cd09a610f8dcdfec1f46cc65c35a82e74dacbefb65a10109f9"
+          "arquivo": "video/t2/06-catolico-304d7315.mp4",
+          "bytes": 21216017,
+          "sha256": "304d7315b9c56ffecbab8b829e005830595421ee0dbfa9193776fc7e24384b0b"
         }
       }
     },
@@ -174,14 +174,14 @@
       "legenda": "novela/t2c7.srt",
       "video": {
         "catolico": {
-          "arquivo": "video/t2/07-catolico.mp4",
-          "bytes": 21189693,
-          "sha256": "a4ce00e6bcff02de59044ff5ca998856e0238eb9774772cd694fe55badee43cd"
+          "arquivo": "video/t2/07-catolico-c22ed4d1.mp4",
+          "bytes": 21369813,
+          "sha256": "c22ed4d1898c7bc2b667ad8092e6f52a05ee2574b5b190ff928be1b3a4825988"
         },
         "evangelico": {
-          "arquivo": "video/t2/07-catolico.mp4",
-          "bytes": 21189693,
-          "sha256": "a4ce00e6bcff02de59044ff5ca998856e0238eb9774772cd694fe55badee43cd"
+          "arquivo": "video/t2/07-catolico-c22ed4d1.mp4",
+          "bytes": 21369813,
+          "sha256": "c22ed4d1898c7bc2b667ad8092e6f52a05ee2574b5b190ff928be1b3a4825988"
         }
       }
     }

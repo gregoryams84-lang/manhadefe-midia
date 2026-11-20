@@ -1,6 +1,6 @@
 {
   "versao": 1,
-  "geradoEm": "2026-11-20T01:49:51.000Z",
+  "geradoEm": "2026-11-20T10:17:04.000Z",
   "arquivos": {
     "hinos/a-linda-historia.m4a": {
       "bytes": 399269,
@@ -6927,24 +6927,24 @@
       "sha256": "1721da21d6e3acdac02547b80a32d341d02161a4da3d2b5ec33d2444b96f176e"
     },
     "novela/t2.json": {
-      "bytes": 10351,
-      "sha256": "618bb51a5337692c3f0fcb06317e8a8b355982f3d007999dac9e7c9cdc9beb86"
+      "bytes": 10477,
+      "sha256": "c7fe356bcdcf00222ac2ee93f472437dd22b0f78a656a33610cde65881f1ea8d"
     },
     "novela/t2c1.srt": {
-      "bytes": 2064,
-      "sha256": "904b613f3c39f72624ec56b73e758133cf9237a4f46aa1830f747b89f08d9342"
+      "bytes": 2216,
+      "sha256": "21d607327fe5891752d53fce42cdd113d1b6007205fe05478f2773e13dee4c55"
     },
     "novela/t2c2.srt": {
-      "bytes": 2219,
-      "sha256": "0413354628391c91251fa3aca899a8c02735da18caf967d2fea7de8cc765c75e"
+      "bytes": 2468,
+      "sha256": "35a5015a25a06bd7e933ceea32d32c89394f3ae074a9ac2809603efe21e468e5"
     },
     "novela/t2c3.srt": {
-      "bytes": 2295,
-      "sha256": "080808b60fe873f70a2a04f6730527a393ed796ce3ff2c71a42ddf1a18c464da"
+      "bytes": 2437,
+      "sha256": "dab8ee451c78417fd743892fede26e045e9739c503b8f2ed8c3089c820db9734"
     },
     "novela/t2c4.srt": {
-      "bytes": 1978,
-      "sha256": "cd908bce1ec0b7334187d677914165511979f2a92cbbaa8a22c8a722c5f20dc2"
+      "bytes": 1952,
+      "sha256": "7b94f70420fe880e88c6bf8c204c7fa216f033cb9f66f28c5c4716f71b6eb9cb"
     },
     "novela/t2c5.srt": {
       "bytes": 2262,
